@@ -1,0 +1,76 @@
+---
+title: Week 14 - Cooperation
+format: 
+  revealjs:
+    css: /resources/custom_css.css
+    theme: white
+    progress: true
+    transition: convex
+    reveal_plugins: ['notes']
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+knitr::opts_knit$set(root.dir = './')
+source("resources/preamble.R")
+set.seed(0121)
+library(igraph)
+library(tidygraph)
+library(ggraph)
+```
+
+## Today's Dad Joke
+
+Yesterday I confused the words "jacuzzi" and "Yakuza".
+
+<span class='fragment'>
+Now I'm in hot water with the Japanese mafia.
+</span>
+
+## Housekeeping
+
+> - Final project schedule
+>   - Rough draft on Tuesday before Thanksgiving
+>   - Peer feedback by the following Tuesday
+>   - Presentations on the last day of class
+>   - Final report due on December 11th
+>	- I will make peer assignments and send a Brightspace + discord announcement
+> - May want to look at the Advanced R Rmd file
+
+## Housekeeping
+
+> - No class on Tuesday before Thanksgiving - work on final project
+> - Troubled Lands activity Thursday
+
+## Plan for today
+
+> - Review Questions
+> - Discussion Questions
+> - Exam review
+
+
+## Review Questions
+
+> - What is a public/collective good?
+> - Why do collective goods often fail?
+> - How can networks help people to collaborate and solve collective goods problems?
+> - What is "transactive memory"?
+
+<aside class='notes'>
+Rumors and defection
+
+Transactive memory
+
+Shared mental models
+</aside>
+
+## Review Questions
+
+> - What are some reasons that online collaboration works?
+
+
+## Discussion Questions
+
+
+## Exam Review
+
