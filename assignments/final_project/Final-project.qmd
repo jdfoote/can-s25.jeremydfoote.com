@@ -1,5 +1,6 @@
 ---
 title: Final project
+date: "2025-05-02"
 ---
 
 ## Project Options
@@ -46,20 +47,10 @@ her class include:
     Health and Counseling Services to bring therapy animals to campus
     during finals week.
 
-#### Presentation
-
-Because this is a group project, I\'ll expect a lot more than the
-individual projects. Part of this is in being ambitious in the project
-that you select, but also in how you present your results.
-
-In particular, those choosing this option will do a short (5 minute)
-presentation to the class at the end of the semester, to tell us about
-your project and your findings. It would be fun for those in the class
-to learn about what you\'ve been doing.
 
 #### Executive Report {#executive_report}
 
-The major part of the assignment, though, is a 5-6 page executive
+The key component of this assignment is a 5-6 page executive
 report. This report should have the following sections:
 
 -   Introduction
@@ -83,7 +74,7 @@ report. This report should have the following sections:
         learn about awareness or beliefs, or you might gather data from
         the web or gather network data. At some point in your report you
         should include 1) a network analysis and 2) at least 1-2 network
-        visualizations. It\'s possible that these may come earlier. For
+        visualizations. It's possible that these may come earlier. For
         example, you might use existing data or simulated data to
         explain a network theory or to motivate your approach. If you
         are able to gather network data, then the network analysis and
@@ -95,8 +86,7 @@ report. This report should have the following sections:
 ### Network Analysis {#network_analysis}
 
 Either alone or in groups of up to 4, you will design and carry out a
-research project based on existing network data. Group projects are
-expected to be more ambitious than individual projects.
+research project based on existing or novel network data. Group projects are expected to be more ambitious than individual projects.
 
 Basically, you will identify a network and a set of hypotheses/research
 questions that you would like to answer using data from that network.
@@ -124,15 +114,13 @@ you to import different file types. [This
 page](https://igraph.org/c/doc/igraph-Foreign.html) gives a great
 overview.
 
+You can also create a network from your own data. For example, students have created friendship networks of their coworkers or within their sorority, or have analyzed network data from some of the activities we have done in class.
+
 **Early in the semester you should identify the network you want to work
 with and make sure that 1) it has the attributes you need to answer the
 questions you want to answer and 2) you are able to load it into
 tidygraph format.**
 
-#### Presentation {#presentation_1}
-
-As with the intervention assignment, I would like you to present a short
-(5 minute) presentation about your project toward the end of class.
 
 #### Executive Report {#executive_report_1}
 
@@ -166,16 +154,16 @@ You will prepare a \~5 page report, with the following sections:
         your analyses and 2) reflecting on how your findings fit in (or
         don\'t) with network theories you learned about in the class.
 
-### Company Pitch {#company_pitch}
+### Organization Pitch {#org_pitch}
 
 Based on your work in this class, you will craft a pitch to help an
-organization make sense of their own social networks and craft a
+organization (business, club, fraternity, church, etc.) make sense of their own social networks and craft a
 portfolio of your work with data drawing on the previous labs and
 readings to support your pitch.
 
-1.  Select a potential employer, and research them to identify the
+1.  Select a potential organization, and research them to identify the
     pressing organizational issues facing them as a company.
-2.  Write a document for a potential employer that
+2.  Write a document for the organization that
     1.  Introduces you and states your professional objectives. (1
         paragraph)
     2.  Makes the case for the most important problems facing this
@@ -218,26 +206,20 @@ here](/resources/final_project_example_code.html).
 This project is similar to a final project that Josh Barbour assigns to
 his class. You can find examples of their projects on Brightspace.
 
+## Final Project Deliverables
+
+### Written Component
+
+The written component of your final project should be turned in on Brightspace. This includes the .qmd file as well as a PDF of your report. For the PDF export, make sure to set `echo=FALSE` so that it doesn't include all of your code, and just looks like a nice report.
+
+### Class Presentation
+
+The last week of class, we will have presentations. You will have 5 minutes to present your project to the class (a few minutes extra for group projects), with three minutes for questions. You should prepare a slide deck for this presentation.
+
 ## Timeline
 
-### Project Proposal
-
-Due in Week 9. This is just a few paragraphs that explain:
-
-- Which project type you are going to do
-- Who will be in your group (if you are doing a group project)
-- What you are planning to do for your project - what is the network
-  you are going to study, what are the questions you are going to ask,
-  etc.
-
-### Rough Draft
-
-Due November 26. This should be a complete draft of your project. You will turn this in on Brightspace, and also send it to your peers for feedback. You will be expected to provide feedback to your peers by the following Tuesday.
-
-### Presentations
-
-The last Thursday of class, we will have presentations. You will have 5 minutes to present your project to the class.
-
-### Final Project
-
-Due December 11. You will turn in your final project on Brightspace. This includes the .qmd file as well as a PDF of your report. Make sure to set `echo=FALSE` so that it doesn't include all of your code, and just looks like a nice report.
+- March 11: [Final Project Idea](./project-idea.qmd)
+- April 24: [Rough Draft](./rough-draft.qmd)
+- April 28: [Peer Feedback](./peer-feedback.qmd)
+- April 29 / May 1: Presentations
+- May 2: Final Project Due

@@ -62,7 +62,6 @@ website:
             - assignments/ego_networks_activity.qmd
             - assignments/Social-Search-Assignment.qmd
             - assignments/Visualization-challenge.qmd
-            - assignments/Final-project.qmd
             - assignments/Self-Assessment-Reflection.qmd
             - assignments/Final-Self-Assessment-Reflection.qmd
 
@@ -76,10 +75,16 @@ website:
             - assignments/r_lab_6_–_visualizing_power.qmd
             - assignments/r_lab_7_–_groups_in_networks.qmd
             - assignments/r_lab_8_–_network_stats.qmd
-  repo-url: "https://github.com/jdfoote/canf24.jeremydfoote.com"
+        - section: "Final Project"
+          contents:
+            - assignments/final_project/Final-project.qmd
+            - assignments/final_project/project-idea.qmd
+            - assignments/final_project/rough-draft.qmd
+
+  repo-url: "https://github.com/jdfoote/can-s25.jeremydfoote.com"
   repo-actions: ["edit", "issue"]
   favicon: "resources/favicon.ico"
-  site-url: "https://canf24.jeremydfoote.com"
+  site-url: "https://can-s25.jeremydfoote.com"
             
 
 
