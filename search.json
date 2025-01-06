@@ -201,7 +201,7 @@
     "href": "schedule/week_09.html",
     "title": "Week 9: Scale-free networks and the friendship paradox",
     "section": "",
-    "text": "Tuesday\nAssignment Due:\n\nProposal for Final Project; this is a few paragraphs about which final project you’d like to do, and what you are planning to do for it.\nTroubled Lands Reflection\nReading Review\n\nDiscussion Questions\n\n\nReadings:\n\nFeld, Scott L. (1991), Why your friends have more friends than you do. American Journal of Sociology, 96 (6): 1464–1477. https://doi.org/10.1086%2F229693\nEarly Detection of an Outbreak using the Friendship Paradox\nNetworks are everywhere with Albert-László Barabási\n(Optional) Christakis, N. A., & Fowler, J. H. (2010). Social Network Sensors for Early Detection of Contagious Outbreaks. PLOS ONE, 5(9), e12948. https://doi.org/10.1371/journal.pone.0012948\n\nLecture Video:\n\nScale-free networks and the Friendship Paradox [18:21]\n\n\n\nSlides\n\n\n\n\n\nThursday\nClass Schedule:\n\nSix Degrees of Wikipedia Activity\n\n\n\nDiscussion Questions",
+    "text": "Tuesday\nAssignment Due:\n\nFinal Project Idea\nTroubled Lands Reflection\nReading Review\n\nDiscussion Questions\n\n\nReadings:\n\nFeld, Scott L. (1991), Why your friends have more friends than you do. American Journal of Sociology, 96 (6): 1464–1477. https://doi.org/10.1086%2F229693\nEarly Detection of an Outbreak using the Friendship Paradox\nNetworks are everywhere with Albert-László Barabási\n(Optional) Christakis, N. A., & Fowler, J. H. (2010). Social Network Sensors for Early Detection of Contagious Outbreaks. PLOS ONE, 5(9), e12948. https://doi.org/10.1371/journal.pone.0012948\n\nLecture Video:\n\nScale-free networks and the Friendship Paradox [18:21]\n\n\n\nSlides\n\n\n\n\n\nThursday\nClass Schedule:\n\nSix Degrees of Wikipedia Activity\n\n\n\nDiscussion Questions",
     "crumbs": [
       "Schedule",
       "Course content",
@@ -1390,6 +1390,66 @@
     ]
   },
   {
+    "objectID": "assignments/final_project/project-idea.html",
+    "href": "assignments/final_project/project-idea.html",
+    "title": "Project Idea",
+    "section": "",
+    "text": "Some of the projects require ongoing work during the semester, such as doing a network-based intervention or gathering network data.\nTo help you to be well-prepared for the final project, you should start thinking about your project idea early. For this assignment, you will submit a brief (~1 page) description of your project idea. This should include the following:\n\nWhich project option you are planning to do\nA brief description of the data you will use\nA brief description of the network concepts you will use\n\nTurn this in on Brightspace.",
+    "crumbs": [
+      "Assignments",
+      "Final Project",
+      "Project Idea"
+    ]
+  },
+  {
+    "objectID": "assignments/final_project/Final-project.html",
+    "href": "assignments/final_project/Final-project.html",
+    "title": "Final project",
+    "section": "",
+    "text": "You can choose a final project from one of the following options:\n\nNetwork Intervention\nNetwork Analysis\nCompany Pitch\n\nMore information about each option is below. For each project, you will produce a research report of some kind. You should write this in a Quarto file, and then export it to a PDF.\n\n\nIn teams of 3 or 4, you will design, carry out, and measure a network intervention, using principles from this class, like diffusion, contagion, social capital, etc. You will identify a message/product/idea/etc and try to spread it, either within or beyond Purdue.\nI would encourage you to identify a goal that is meaningful to your group; projects should be creative, courageous, and challenging. We will evaluate your work not based on whether your are ultimately successful, but how innovate your approach is, and how grounded it is in the network theories we have learned about.\n\n\nBrooke Foucault-Welles has run a similar project in her class. Examples of well-designed projects in her class include:\n\nA comparison of the diffusion on Twitter of a plain-text and image-and-text message about feminism.\nAn alteration intervention that aimed to boost morale in a student organization by creating cross-cohort (year in school) friendship ties.\nA marketing campaign that leveraged the friendship paradox to spread the word about a new student group.\nAn intervention that targeted student leaders to lobby University Health and Counseling Services to bring therapy animals to campus during finals week.\n\n\n\n\nThe key component of this assignment is a 5-6 page executive report. This report should have the following sections:\n\nIntroduction\n\nIn the introduction you will describe the motivation for your intervention. You will explain what you did, and why you chose that approach.\n\nNetwork Theory\n\nIn your introduction, you will likely mention some network theories that helped to motivate your intervention. In this section, you will provide more detail about the theories that guide your work. You should include at least three references to support your approach and analyses.\n\nApproach\n\nIn the introduction you will give a high-level explanation of your intervention. Here you will provide a more detailed description, together with a more extended argument about why this is a good approach to meet your goals.\n\nAnalysis\n\nYou will analyze the effect of your intervention. The data to do this can take different forms - e.g., you may survey people to learn about awareness or beliefs, or you might gather data from the web or gather network data. At some point in your report you should include 1) a network analysis and 2) at least 1-2 network visualizations. It’s possible that these may come earlier. For example, you might use existing data or simulated data to explain a network theory or to motivate your approach. If you are able to gather network data, then the network analysis and visualizations would probably be part of this Analysis section.\n\nConclusion\n\nFinally, write a few paragraphs reflecting on what was learned from your work.\n\n\n\n\n\n\nEither alone or in groups of up to 4, you will design and carry out a research project based on existing or novel network data. Group projects are expected to be more ambitious than individual projects.\nBasically, you will identify a network and a set of hypotheses/research questions that you would like to answer using data from that network. You will use network analysis and network visualization tools to answer those questions, and then you will report on and discuss your findings.\n\n\nThere are a number of repositories of network datasets. Probably the simplest to use are those found in the networkdata package, which we have already been using. If you look at the homepage of the package, you can see descriptions of the datasets that are included.\nAnother repository I really like is the Index of Complex Networks. You can filter by type of network, size, etc. One thing to note about these networks is that you will need to load them into R (unlike networkdata). They are in different formats, and you will likely need to do some work to get them to be igraph/tidygraph networks.\nFortunately, there are a number of tools in igraph designed to help you to import different file types. This page gives a great overview.\nYou can also create a network from your own data. For example, students have created friendship networks of their coworkers or within their sorority, or have analyzed network data from some of the activities we have done in class.\nEarly in the semester you should identify the network you want to work with and make sure that 1) it has the attributes you need to answer the questions you want to answer and 2) you are able to load it into tidygraph format.\n\n\n\nYou will prepare a ~5 page report, with the following sections:\n\nIntroduction\n\nGive a compelling introduction to the project: why is this something worth studying? You may also want to preview some of the results of your research.\n\nNetwork Theory\n\nIn your introduction, you will likely mention some network theories that helped to motivate your research. In this section, you will provide more detail about the theories, leading up to the development of 2-5 hypotheses or research questions. You should include at least three references to support your arguments.\n\nMethod and Data\n\nYou will explain how you are going to answer your research questions / hypotheses. Explain what data you will be using, and describe what analyses you will do, and why those are appropriate for answering your questions.\n\nAnalysis\n\nFor each hypothesis / research question, you will perform some sort of analysis. For some questions, this will be an analysis of network measures. For others, this might be a network visualization. Your analysis can include other types of analyses (e.g., statistical analyses) but it should include at least one network analysis and at least one visualization.\n\nDiscussion and Conclusion\n\nFinally, write a few paragraphs 1) summarizing the findings from your analyses and 2) reflecting on how your findings fit in (or don't) with network theories you learned about in the class.\n\n\n\n\n\n\nBased on your work in this class, you will craft a pitch to help an organization (business, club, fraternity, church, etc.) make sense of their own social networks and craft a portfolio of your work with data drawing on the previous labs and readings to support your pitch.\n\nSelect a potential organization, and research them to identify the pressing organizational issues facing them as a company.\nWrite a document for the organization that\n\nIntroduces you and states your professional objectives. (1 paragraph)\nMakes the case for the most important problems facing this organization or industry based on your research. Be sure to cite any literature that you use. (1 paragraph)\nExplains how a network approach and your expertise in particular can help address the sorts of problems facing their organization and industry\n\nInclude at least three distinctive insights (e.g., my expertise in network analysis can help you identify opinion leaders in this organization).\nInclude example visualizations of each insight from your own work (or create new visualizations).\nInclude ideas from and references to the class readings to make your case.\n\nCloses with a request for a meeting to learn more about their organization.\n\nCompile and submit your document on Brightspace\n\nWhile I want everyone to write and turn in their own document, I encourage you to help each other with the visualization portions and to ask questions on the group Discord channel. I expect that the final document will be ~5 pages long (maybe longer if you want to showcase a lot of visualizations).\n\n\nIf you would like, you can use data from a real organization. There are some great options of network data files already in igraph format at https://github.com/schochastics/networkdata.\nI created an example of how to load this data, and how to run some simple network metrics and visualizations. There's an RMarkdown file here and the HTML output here.\n\n\n\nThis project is similar to a final project that Josh Barbour assigns to his class. You can find examples of their projects on Brightspace.",
+    "crumbs": [
+      "Assignments",
+      "Final Project",
+      "Final project"
+    ]
+  },
+  {
+    "objectID": "assignments/final_project/Final-project.html#project-options",
+    "href": "assignments/final_project/Final-project.html#project-options",
+    "title": "Final project",
+    "section": "",
+    "text": "You can choose a final project from one of the following options:\n\nNetwork Intervention\nNetwork Analysis\nCompany Pitch\n\nMore information about each option is below. For each project, you will produce a research report of some kind. You should write this in a Quarto file, and then export it to a PDF.\n\n\nIn teams of 3 or 4, you will design, carry out, and measure a network intervention, using principles from this class, like diffusion, contagion, social capital, etc. You will identify a message/product/idea/etc and try to spread it, either within or beyond Purdue.\nI would encourage you to identify a goal that is meaningful to your group; projects should be creative, courageous, and challenging. We will evaluate your work not based on whether your are ultimately successful, but how innovate your approach is, and how grounded it is in the network theories we have learned about.\n\n\nBrooke Foucault-Welles has run a similar project in her class. Examples of well-designed projects in her class include:\n\nA comparison of the diffusion on Twitter of a plain-text and image-and-text message about feminism.\nAn alteration intervention that aimed to boost morale in a student organization by creating cross-cohort (year in school) friendship ties.\nA marketing campaign that leveraged the friendship paradox to spread the word about a new student group.\nAn intervention that targeted student leaders to lobby University Health and Counseling Services to bring therapy animals to campus during finals week.\n\n\n\n\nThe key component of this assignment is a 5-6 page executive report. This report should have the following sections:\n\nIntroduction\n\nIn the introduction you will describe the motivation for your intervention. You will explain what you did, and why you chose that approach.\n\nNetwork Theory\n\nIn your introduction, you will likely mention some network theories that helped to motivate your intervention. In this section, you will provide more detail about the theories that guide your work. You should include at least three references to support your approach and analyses.\n\nApproach\n\nIn the introduction you will give a high-level explanation of your intervention. Here you will provide a more detailed description, together with a more extended argument about why this is a good approach to meet your goals.\n\nAnalysis\n\nYou will analyze the effect of your intervention. The data to do this can take different forms - e.g., you may survey people to learn about awareness or beliefs, or you might gather data from the web or gather network data. At some point in your report you should include 1) a network analysis and 2) at least 1-2 network visualizations. It’s possible that these may come earlier. For example, you might use existing data or simulated data to explain a network theory or to motivate your approach. If you are able to gather network data, then the network analysis and visualizations would probably be part of this Analysis section.\n\nConclusion\n\nFinally, write a few paragraphs reflecting on what was learned from your work.\n\n\n\n\n\n\nEither alone or in groups of up to 4, you will design and carry out a research project based on existing or novel network data. Group projects are expected to be more ambitious than individual projects.\nBasically, you will identify a network and a set of hypotheses/research questions that you would like to answer using data from that network. You will use network analysis and network visualization tools to answer those questions, and then you will report on and discuss your findings.\n\n\nThere are a number of repositories of network datasets. Probably the simplest to use are those found in the networkdata package, which we have already been using. If you look at the homepage of the package, you can see descriptions of the datasets that are included.\nAnother repository I really like is the Index of Complex Networks. You can filter by type of network, size, etc. One thing to note about these networks is that you will need to load them into R (unlike networkdata). They are in different formats, and you will likely need to do some work to get them to be igraph/tidygraph networks.\nFortunately, there are a number of tools in igraph designed to help you to import different file types. This page gives a great overview.\nYou can also create a network from your own data. For example, students have created friendship networks of their coworkers or within their sorority, or have analyzed network data from some of the activities we have done in class.\nEarly in the semester you should identify the network you want to work with and make sure that 1) it has the attributes you need to answer the questions you want to answer and 2) you are able to load it into tidygraph format.\n\n\n\nYou will prepare a ~5 page report, with the following sections:\n\nIntroduction\n\nGive a compelling introduction to the project: why is this something worth studying? You may also want to preview some of the results of your research.\n\nNetwork Theory\n\nIn your introduction, you will likely mention some network theories that helped to motivate your research. In this section, you will provide more detail about the theories, leading up to the development of 2-5 hypotheses or research questions. You should include at least three references to support your arguments.\n\nMethod and Data\n\nYou will explain how you are going to answer your research questions / hypotheses. Explain what data you will be using, and describe what analyses you will do, and why those are appropriate for answering your questions.\n\nAnalysis\n\nFor each hypothesis / research question, you will perform some sort of analysis. For some questions, this will be an analysis of network measures. For others, this might be a network visualization. Your analysis can include other types of analyses (e.g., statistical analyses) but it should include at least one network analysis and at least one visualization.\n\nDiscussion and Conclusion\n\nFinally, write a few paragraphs 1) summarizing the findings from your analyses and 2) reflecting on how your findings fit in (or don't) with network theories you learned about in the class.\n\n\n\n\n\n\nBased on your work in this class, you will craft a pitch to help an organization (business, club, fraternity, church, etc.) make sense of their own social networks and craft a portfolio of your work with data drawing on the previous labs and readings to support your pitch.\n\nSelect a potential organization, and research them to identify the pressing organizational issues facing them as a company.\nWrite a document for the organization that\n\nIntroduces you and states your professional objectives. (1 paragraph)\nMakes the case for the most important problems facing this organization or industry based on your research. Be sure to cite any literature that you use. (1 paragraph)\nExplains how a network approach and your expertise in particular can help address the sorts of problems facing their organization and industry\n\nInclude at least three distinctive insights (e.g., my expertise in network analysis can help you identify opinion leaders in this organization).\nInclude example visualizations of each insight from your own work (or create new visualizations).\nInclude ideas from and references to the class readings to make your case.\n\nCloses with a request for a meeting to learn more about their organization.\n\nCompile and submit your document on Brightspace\n\nWhile I want everyone to write and turn in their own document, I encourage you to help each other with the visualization portions and to ask questions on the group Discord channel. I expect that the final document will be ~5 pages long (maybe longer if you want to showcase a lot of visualizations).\n\n\nIf you would like, you can use data from a real organization. There are some great options of network data files already in igraph format at https://github.com/schochastics/networkdata.\nI created an example of how to load this data, and how to run some simple network metrics and visualizations. There's an RMarkdown file here and the HTML output here.\n\n\n\nThis project is similar to a final project that Josh Barbour assigns to his class. You can find examples of their projects on Brightspace.",
+    "crumbs": [
+      "Assignments",
+      "Final Project",
+      "Final project"
+    ]
+  },
+  {
+    "objectID": "assignments/final_project/Final-project.html#final-project-deliverables",
+    "href": "assignments/final_project/Final-project.html#final-project-deliverables",
+    "title": "Final project",
+    "section": "Final Project Deliverables",
+    "text": "Final Project Deliverables\n\nWritten Component\nThe written component of your final project should be turned in on Brightspace. This includes the .qmd file as well as a PDF of your report. For the PDF export, make sure to set echo=FALSE so that it doesn’t include all of your code, and just looks like a nice report.\n\n\nClass Presentation\nThe last week of class, we will have presentations. You will have 5 minutes to present your project to the class (a few minutes extra for group projects), with three minutes for questions. You should prepare a slide deck for this presentation.",
+    "crumbs": [
+      "Assignments",
+      "Final Project",
+      "Final project"
+    ]
+  },
+  {
+    "objectID": "assignments/final_project/Final-project.html#timeline",
+    "href": "assignments/final_project/Final-project.html#timeline",
+    "title": "Final project",
+    "section": "Timeline",
+    "text": "Timeline\n\nMarch 11: Final Project Idea\nApril 24: Rough Draft\nApril 28: Peer Feedback\nApril 29 / May 1: Presentations\nMay 2: Final Project Due",
+    "crumbs": [
+      "Assignments",
+      "Final Project",
+      "Final project"
+    ]
+  },
+  {
     "objectID": "assignments/assignments.html",
     "href": "assignments/assignments.html",
     "title": "Overview of Assignments",
@@ -1461,143 +1521,6 @@
       "Assignments",
       "Homework 1"
     ]
-  },
-  {
-    "objectID": "assignments/Final-Self-Assessment-Reflection.html",
-    "href": "assignments/Final-Self-Assessment-Reflection.html",
-    "title": "Final Self-Assessment Reflection",
-    "section": "",
-    "text": "Answer the following questions about your learning and participation thus far. Please note that there are a lot of questions. I am not expecting extensive essays for these. Some may be answered in a single sentence, while others may inspire more detail.\n\nWhat have you done to ensure that you understand the material and concepts?\nHow have you addressed previous goals, challenges, and/or feedback?\nWhat have you done to apply the concepts we’ve been learning to your own experiences?\nWhat have you learned in this class that you will take with you?\nWhat obstacles have you overcome?\nWhat else would you like to share?\n\nNext, I’d like you to look on Brightspace and Discord and review the work you’ve done, and think about your participation in class. I’d also like you to review the expectations for each grade in this class.\n\nBased on your answers above, the work you have done, and the guidelines in the syllabus, what grade would you assign yourself in the class? Why?\n\nFinally, some feedback for me (feel free to submit this at https://forms.gle/ZQbTXHiaqy7WrxFj7 if you’d prefer to be anonymous):\n\nWhat did you enjoy about this class?\nWhat are two ways in which this class could be better?",
-    "crumbs": [
-      "Assignments",
-      "Final Self-Assessment Reflection"
-    ]
-  },
-  {
-    "objectID": "activities/troubled_lands/troubled_lands.html#troubled-lands-explainer",
-    "href": "activities/troubled_lands/troubled_lands.html#troubled-lands-explainer",
-    "title": "Troubled Lands Activity",
-    "section": "Troubled Lands Explainer",
-    "text": "Troubled Lands Explainer"
-  },
-  {
-    "objectID": "activities/troubled_lands/troubled_lands.html#troubled-lands",
-    "href": "activities/troubled_lands/troubled_lands.html#troubled-lands",
-    "title": "Troubled Lands Activity",
-    "section": "Troubled Lands",
-    "text": "Troubled Lands\n\nRules\n\nTalking is fine\nNo talking/interacting with other groups\nCan see other people’s cards\nEach person does one thing each turn (before drawing the weather card)\nEroded -&gt; Fallow -&gt; Forest/Fields/Pasture\nWeather are 1-10 (plus extra 6,8), sorted randomly\n6/9 are tough to distinguish - make sure raindrops are falling down"
-  },
-  {
-    "objectID": "activities/troubled_lands/troubled_lands.html#round-1---collaborative",
-    "href": "activities/troubled_lands/troubled_lands.html#round-1---collaborative",
-    "title": "Troubled Lands Activity",
-    "section": "Round 1 - Collaborative",
-    "text": "Round 1 - Collaborative\n\n8 turns\nGroup with highest total score wins\nWhen done, bring weather cards to me for reshuffling and write your score on the board"
-  },
-  {
-    "objectID": "activities/troubled_lands/troubled_lands.html#reminder",
-    "href": "activities/troubled_lands/troubled_lands.html#reminder",
-    "title": "Troubled Lands Activity",
-    "section": "Reminder",
-    "text": "Reminder\n\nStart with:\n\n6 Forest\n2 Fallows\n2 Fields\n2 Pasture\n\nEroded if more rain than forests\n\n2 become eroded\nErosion order: Fallows, field, pasture, forest\n\n\nCan’t plant on eroded, have to turn it to fallows first"
-  },
-  {
-    "objectID": "activities/troubled_lands/troubled_lands.html#round-2---within-group-competition",
-    "href": "activities/troubled_lands/troubled_lands.html#round-2---within-group-competition",
-    "title": "Troubled Lands Activity",
-    "section": "Round 2 - Within-group competition",
-    "text": "Round 2 - Within-group competition\n\n8 turns\nPerson in group with highest score wins\nWhen done, bring weather cards to me for reshuffling\nWrite your score and role on the board"
-  },
-  {
-    "objectID": "activities/troubled_lands/troubled_lands.html#round-3---within-role-competition",
-    "href": "activities/troubled_lands/troubled_lands.html#round-3---within-role-competition",
-    "title": "Troubled Lands Activity",
-    "section": "Round 3 - Within-role competition",
-    "text": "Round 3 - Within-role competition\n\nPerson of each type with highest score wins"
-  },
-  {
-    "objectID": "activities/troubled_lands/troubled_lands.html#take-a-few-minutes-to-thinkwrite-about",
-    "href": "activities/troubled_lands/troubled_lands.html#take-a-few-minutes-to-thinkwrite-about",
-    "title": "Troubled Lands Activity",
-    "section": "Take a few minutes to think/write about:",
-    "text": "Take a few minutes to think/write about:\n\nHow did you play differently in different versions?\nWhat in real life is similar to each version of the game?\nHow did you decide whether or not to help others?\nWhat does this have to do with social networks and social capital?!"
-  },
-  {
-    "objectID": "activities/troubled_lands/troubled_lands.html#debrief",
-    "href": "activities/troubled_lands/troubled_lands.html#debrief",
-    "title": "Troubled Lands Activity",
-    "section": "Debrief",
-    "text": "Debrief\n\nWhat did you think about while playing?\nHow did you feel as you played? Did those feeling change across different versions of the game?\nWhen do you help others in real life?"
-  },
-  {
-    "objectID": "activities/troubled_lands/troubled_lands.html#debrief-1",
-    "href": "activities/troubled_lands/troubled_lands.html#debrief-1",
-    "title": "Troubled Lands Activity",
-    "section": "Debrief",
-    "text": "Debrief\n\nWere resources and abilities distributed fairly?\nHow should resources be distributed in the real world?\nWhat role did communication play? How did your group make decisions?\nDid you work to make things equal? Why or why not?\nWhat kinds of inequality appeared in the game?"
-  },
-  {
-    "objectID": "activities/troubled_lands/troubled_lands.html#debrief-2",
-    "href": "activities/troubled_lands/troubled_lands.html#debrief-2",
-    "title": "Troubled Lands Activity",
-    "section": "Debrief",
-    "text": "Debrief\n\nDid anyone sanction someone else? Why?"
-  },
-  {
-    "objectID": "activities/network_simulation/resource_game.html#discord-signup",
-    "href": "activities/network_simulation/resource_game.html#discord-signup",
-    "title": "The Resource Game",
-    "section": "Discord signup",
-    "text": "Discord signup\nhttps://discord.gg/WSc5J7stgg"
-  },
-  {
-    "objectID": "activities/network_simulation/resource_game.html#the-game",
-    "href": "activities/network_simulation/resource_game.html#the-game",
-    "title": "The Resource Game",
-    "section": "The game",
-    "text": "The game\nEach of you needs things that other people in the room have. These resources are represented by letters.\nHowever, you are only “friends” with a small number of people. These are the people that you can communicate with, ask for resources, and give resources to.\nThe goal is to get the resources that you need as quickly as possible."
-  },
-  {
-    "objectID": "activities/network_simulation/resource_game.html#rules",
-    "href": "activities/network_simulation/resource_game.html#rules",
-    "title": "The Resource Game",
-    "section": "Rules",
-    "text": "Rules\n\nOnly communicate through written messages, to neighbors\nGive resources by sending ‘$give jdfoote A’ to the NetworkGameBot\nIf you forget what you have/need, send ‘$status’\nIf you are an observer, send ‘$status’ to get an updated network graph\nYou can continue playing after you have all resources, if you want"
-  },
-  {
-    "objectID": "activities/network_simulation/resource_game.html#how-did-it-go",
-    "href": "activities/network_simulation/resource_game.html#how-did-it-go",
-    "title": "The Resource Game",
-    "section": "How did it go?",
-    "text": "How did it go?\n\nWhat worked well?\nWhat didn’t?\nWho was fastest? Why?\nWhat was the longest path a resource traveled?"
-  },
-  {
-    "objectID": "activities/network_simulation/resource_game.html#global-network",
-    "href": "activities/network_simulation/resource_game.html#global-network",
-    "title": "The Resource Game",
-    "section": "Global network",
-    "text": "Global network"
-  },
-  {
-    "objectID": "activities/network_simulation/resource_game.html#debrief-topics-to-cover",
-    "href": "activities/network_simulation/resource_game.html#debrief-topics-to-cover",
-    "title": "The Resource Game",
-    "section": "Debrief topics to cover",
-    "text": "Debrief topics to cover\n\nDegree centrality\nReciprocity\nSocial capital\nStructural holes\nReputation and deceit\nPosition and power\nMultiplexity\nNumber vs. type of ties (centrality measures)"
-  },
-  {
-    "objectID": "activities/network_simulation/resource_game.html#debrief-topics-to-cover-1",
-    "href": "activities/network_simulation/resource_game.html#debrief-topics-to-cover-1",
-    "title": "The Resource Game",
-    "section": "Debrief topics to cover",
-    "text": "Debrief topics to cover\n\nGlobal/local networks\nTie maintenance\nSponsorship\nNorms and social conventions"
-  },
-  {
-    "objectID": "activities/network_simulation/resource_game.html#meta-discussion",
-    "href": "activities/network_simulation/resource_game.html#meta-discussion",
-    "title": "The Resource Game",
-    "section": "Meta discussion",
-    "text": "Meta discussion\n\nHow does this differ from real-world networks?\nWhat does this make you see differently?"
   },
   {
     "objectID": "activities/who_dunnit/whodunnit.html#instructions",
@@ -1691,36 +1614,140 @@
     "text": "Debrief\n\nWho succeeded?\nWhy? How did network position influence your ability to gather information?\nHow did you make effort to overcome your constraints?\nHow did you decide who to talk to?\nHow is this game similar or different from real life situations?"
   },
   {
-    "objectID": "assignments/Final-project.html",
-    "href": "assignments/Final-project.html",
-    "title": "Final project",
-    "section": "",
-    "text": "You can choose a final project from one of the following options:\n\nNetwork Intervention\nNetwork Analysis\nCompany Pitch\n\nMore information about each option is below. For each project, you will produce a research report of some kind. You should write this in a Quarto file, and then export it to a PDF.\n\n\nIn teams of 3 or 4, you will design, carry out, and measure a network intervention, using principles from this class, like diffusion, contagion, social capital, etc. You will identify a message/product/idea/etc and try to spread it, either within or beyond Purdue.\nI would encourage you to identify a goal that is meaningful to your group; projects should be creative, courageous, and challenging. We will evaluate your work not based on whether your are ultimately successful, but how innovate your approach is, and how grounded it is in the network theories we have learned about.\n\n\nBrooke Foucault-Welles has run a similar project in her class. Examples of well-designed projects in her class include:\n\nA comparison of the diffusion on Twitter of a plain-text and image-and-text message about feminism.\nAn alteration intervention that aimed to boost morale in a student organization by creating cross-cohort (year in school) friendship ties.\nA marketing campaign that leveraged the friendship paradox to spread the word about a new student group.\nAn intervention that targeted student leaders to lobby University Health and Counseling Services to bring therapy animals to campus during finals week.\n\n\n\n\nBecause this is a group project, I'll expect a lot more than the individual projects. Part of this is in being ambitious in the project that you select, but also in how you present your results.\nIn particular, those choosing this option will do a short (5 minute) presentation to the class at the end of the semester, to tell us about your project and your findings. It would be fun for those in the class to learn about what you've been doing.\n\n\n\nThe major part of the assignment, though, is a 5-6 page executive report. This report should have the following sections:\n\nIntroduction\n\nIn the introduction you will describe the motivation for your intervention. You will explain what you did, and why you chose that approach.\n\nNetwork Theory\n\nIn your introduction, you will likely mention some network theories that helped to motivate your intervention. In this section, you will provide more detail about the theories that guide your work. You should include at least three references to support your approach and analyses.\n\nApproach\n\nIn the introduction you will give a high-level explanation of your intervention. Here you will provide a more detailed description, together with a more extended argument about why this is a good approach to meet your goals.\n\nAnalysis\n\nYou will analyze the effect of your intervention. The data to do this can take different forms - e.g., you may survey people to learn about awareness or beliefs, or you might gather data from the web or gather network data. At some point in your report you should include 1) a network analysis and 2) at least 1-2 network visualizations. It's possible that these may come earlier. For example, you might use existing data or simulated data to explain a network theory or to motivate your approach. If you are able to gather network data, then the network analysis and visualizations would probably be part of this Analysis section.\n\nConclusion\n\nFinally, write a few paragraphs reflecting on what was learned from your work.\n\n\n\n\n\n\nEither alone or in groups of up to 4, you will design and carry out a research project based on existing network data. Group projects are expected to be more ambitious than individual projects.\nBasically, you will identify a network and a set of hypotheses/research questions that you would like to answer using data from that network. You will use network analysis and network visualization tools to answer those questions, and then you will report on and discuss your findings.\n\n\nThere are a number of repositories of network datasets. Probably the simplest to use are those found in the networkdata package, which we have already been using. If you look at the homepage of the package, you can see descriptions of the datasets that are included.\nAnother repository I really like is the Index of Complex Networks. You can filter by type of network, size, etc. One thing to note about these networks is that you will need to load them into R (unlike networkdata). They are in different formats, and you will likely need to do some work to get them to be igraph/tidygraph networks.\nFortunately, there are a number of tools in igraph designed to help you to import different file types. This page gives a great overview.\nEarly in the semester you should identify the network you want to work with and make sure that 1) it has the attributes you need to answer the questions you want to answer and 2) you are able to load it into tidygraph format.\n\n\n\nAs with the intervention assignment, I would like you to present a short (5 minute) presentation about your project toward the end of class.\n\n\n\nYou will prepare a ~5 page report, with the following sections:\n\nIntroduction\n\nGive a compelling introduction to the project: why is this something worth studying? You may also want to preview some of the results of your research.\n\nNetwork Theory\n\nIn your introduction, you will likely mention some network theories that helped to motivate your research. In this section, you will provide more detail about the theories, leading up to the development of 2-5 hypotheses or research questions. You should include at least three references to support your arguments.\n\nMethod and Data\n\nYou will explain how you are going to answer your research questions / hypotheses. Explain what data you will be using, and describe what analyses you will do, and why those are appropriate for answering your questions.\n\nAnalysis\n\nFor each hypothesis / research question, you will perform some sort of analysis. For some questions, this will be an analysis of network measures. For others, this might be a network visualization. Your analysis can include other types of analyses (e.g., statistical analyses) but it should include at least one network analysis and at least one visualization.\n\nDiscussion and Conclusion\n\nFinally, write a few paragraphs 1) summarizing the findings from your analyses and 2) reflecting on how your findings fit in (or don't) with network theories you learned about in the class.\n\n\n\n\n\n\nBased on your work in this class, you will craft a pitch to help an organization make sense of their own social networks and craft a portfolio of your work with data drawing on the previous labs and readings to support your pitch.\n\nSelect a potential employer, and research them to identify the pressing organizational issues facing them as a company.\nWrite a document for a potential employer that\n\nIntroduces you and states your professional objectives. (1 paragraph)\nMakes the case for the most important problems facing this organization or industry based on your research. Be sure to cite any literature that you use. (1 paragraph)\nExplains how a network approach and your expertise in particular can help address the sorts of problems facing their organization and industry\n\nInclude at least three distinctive insights (e.g., my expertise in network analysis can help you identify opinion leaders in this organization).\nInclude example visualizations of each insight from your own work (or create new visualizations).\nInclude ideas from and references to the class readings to make your case.\n\nCloses with a request for a meeting to learn more about their organization.\n\nCompile and submit your document on Brightspace\n\nWhile I want everyone to write and turn in their own document, I encourage you to help each other with the visualization portions and to ask questions on the group Discord channel. I expect that the final document will be ~5 pages long (maybe longer if you want to showcase a lot of visualizations).\n\n\nIf you would like, you can use data from a real organization. There are some great options of network data files already in igraph format at https://github.com/schochastics/networkdata.\nI created an example of how to load this data, and how to run some simple network metrics and visualizations. There's an RMarkdown file here and the HTML output here.\n\n\n\nThis project is similar to a final project that Josh Barbour assigns to his class. You can find examples of their projects on Brightspace.",
-    "crumbs": [
-      "Assignments",
-      "Final project"
-    ]
+    "objectID": "activities/network_simulation/resource_game.html#discord-signup",
+    "href": "activities/network_simulation/resource_game.html#discord-signup",
+    "title": "The Resource Game",
+    "section": "Discord signup",
+    "text": "Discord signup\nhttps://discord.gg/WSc5J7stgg"
   },
   {
-    "objectID": "assignments/Final-project.html#project-options",
-    "href": "assignments/Final-project.html#project-options",
-    "title": "Final project",
-    "section": "",
-    "text": "You can choose a final project from one of the following options:\n\nNetwork Intervention\nNetwork Analysis\nCompany Pitch\n\nMore information about each option is below. For each project, you will produce a research report of some kind. You should write this in a Quarto file, and then export it to a PDF.\n\n\nIn teams of 3 or 4, you will design, carry out, and measure a network intervention, using principles from this class, like diffusion, contagion, social capital, etc. You will identify a message/product/idea/etc and try to spread it, either within or beyond Purdue.\nI would encourage you to identify a goal that is meaningful to your group; projects should be creative, courageous, and challenging. We will evaluate your work not based on whether your are ultimately successful, but how innovate your approach is, and how grounded it is in the network theories we have learned about.\n\n\nBrooke Foucault-Welles has run a similar project in her class. Examples of well-designed projects in her class include:\n\nA comparison of the diffusion on Twitter of a plain-text and image-and-text message about feminism.\nAn alteration intervention that aimed to boost morale in a student organization by creating cross-cohort (year in school) friendship ties.\nA marketing campaign that leveraged the friendship paradox to spread the word about a new student group.\nAn intervention that targeted student leaders to lobby University Health and Counseling Services to bring therapy animals to campus during finals week.\n\n\n\n\nBecause this is a group project, I'll expect a lot more than the individual projects. Part of this is in being ambitious in the project that you select, but also in how you present your results.\nIn particular, those choosing this option will do a short (5 minute) presentation to the class at the end of the semester, to tell us about your project and your findings. It would be fun for those in the class to learn about what you've been doing.\n\n\n\nThe major part of the assignment, though, is a 5-6 page executive report. This report should have the following sections:\n\nIntroduction\n\nIn the introduction you will describe the motivation for your intervention. You will explain what you did, and why you chose that approach.\n\nNetwork Theory\n\nIn your introduction, you will likely mention some network theories that helped to motivate your intervention. In this section, you will provide more detail about the theories that guide your work. You should include at least three references to support your approach and analyses.\n\nApproach\n\nIn the introduction you will give a high-level explanation of your intervention. Here you will provide a more detailed description, together with a more extended argument about why this is a good approach to meet your goals.\n\nAnalysis\n\nYou will analyze the effect of your intervention. The data to do this can take different forms - e.g., you may survey people to learn about awareness or beliefs, or you might gather data from the web or gather network data. At some point in your report you should include 1) a network analysis and 2) at least 1-2 network visualizations. It's possible that these may come earlier. For example, you might use existing data or simulated data to explain a network theory or to motivate your approach. If you are able to gather network data, then the network analysis and visualizations would probably be part of this Analysis section.\n\nConclusion\n\nFinally, write a few paragraphs reflecting on what was learned from your work.\n\n\n\n\n\n\nEither alone or in groups of up to 4, you will design and carry out a research project based on existing network data. Group projects are expected to be more ambitious than individual projects.\nBasically, you will identify a network and a set of hypotheses/research questions that you would like to answer using data from that network. You will use network analysis and network visualization tools to answer those questions, and then you will report on and discuss your findings.\n\n\nThere are a number of repositories of network datasets. Probably the simplest to use are those found in the networkdata package, which we have already been using. If you look at the homepage of the package, you can see descriptions of the datasets that are included.\nAnother repository I really like is the Index of Complex Networks. You can filter by type of network, size, etc. One thing to note about these networks is that you will need to load them into R (unlike networkdata). They are in different formats, and you will likely need to do some work to get them to be igraph/tidygraph networks.\nFortunately, there are a number of tools in igraph designed to help you to import different file types. This page gives a great overview.\nEarly in the semester you should identify the network you want to work with and make sure that 1) it has the attributes you need to answer the questions you want to answer and 2) you are able to load it into tidygraph format.\n\n\n\nAs with the intervention assignment, I would like you to present a short (5 minute) presentation about your project toward the end of class.\n\n\n\nYou will prepare a ~5 page report, with the following sections:\n\nIntroduction\n\nGive a compelling introduction to the project: why is this something worth studying? You may also want to preview some of the results of your research.\n\nNetwork Theory\n\nIn your introduction, you will likely mention some network theories that helped to motivate your research. In this section, you will provide more detail about the theories, leading up to the development of 2-5 hypotheses or research questions. You should include at least three references to support your arguments.\n\nMethod and Data\n\nYou will explain how you are going to answer your research questions / hypotheses. Explain what data you will be using, and describe what analyses you will do, and why those are appropriate for answering your questions.\n\nAnalysis\n\nFor each hypothesis / research question, you will perform some sort of analysis. For some questions, this will be an analysis of network measures. For others, this might be a network visualization. Your analysis can include other types of analyses (e.g., statistical analyses) but it should include at least one network analysis and at least one visualization.\n\nDiscussion and Conclusion\n\nFinally, write a few paragraphs 1) summarizing the findings from your analyses and 2) reflecting on how your findings fit in (or don't) with network theories you learned about in the class.\n\n\n\n\n\n\nBased on your work in this class, you will craft a pitch to help an organization make sense of their own social networks and craft a portfolio of your work with data drawing on the previous labs and readings to support your pitch.\n\nSelect a potential employer, and research them to identify the pressing organizational issues facing them as a company.\nWrite a document for a potential employer that\n\nIntroduces you and states your professional objectives. (1 paragraph)\nMakes the case for the most important problems facing this organization or industry based on your research. Be sure to cite any literature that you use. (1 paragraph)\nExplains how a network approach and your expertise in particular can help address the sorts of problems facing their organization and industry\n\nInclude at least three distinctive insights (e.g., my expertise in network analysis can help you identify opinion leaders in this organization).\nInclude example visualizations of each insight from your own work (or create new visualizations).\nInclude ideas from and references to the class readings to make your case.\n\nCloses with a request for a meeting to learn more about their organization.\n\nCompile and submit your document on Brightspace\n\nWhile I want everyone to write and turn in their own document, I encourage you to help each other with the visualization portions and to ask questions on the group Discord channel. I expect that the final document will be ~5 pages long (maybe longer if you want to showcase a lot of visualizations).\n\n\nIf you would like, you can use data from a real organization. There are some great options of network data files already in igraph format at https://github.com/schochastics/networkdata.\nI created an example of how to load this data, and how to run some simple network metrics and visualizations. There's an RMarkdown file here and the HTML output here.\n\n\n\nThis project is similar to a final project that Josh Barbour assigns to his class. You can find examples of their projects on Brightspace.",
-    "crumbs": [
-      "Assignments",
-      "Final project"
-    ]
+    "objectID": "activities/network_simulation/resource_game.html#the-game",
+    "href": "activities/network_simulation/resource_game.html#the-game",
+    "title": "The Resource Game",
+    "section": "The game",
+    "text": "The game\nEach of you needs things that other people in the room have. These resources are represented by letters.\nHowever, you are only “friends” with a small number of people. These are the people that you can communicate with, ask for resources, and give resources to.\nThe goal is to get the resources that you need as quickly as possible."
   },
   {
-    "objectID": "assignments/Final-project.html#timeline",
-    "href": "assignments/Final-project.html#timeline",
-    "title": "Final project",
-    "section": "Timeline",
-    "text": "Timeline\n\nProject Proposal\nDue in Week 9. This is just a few paragraphs that explain:\n\nWhich project type you are going to do\nWho will be in your group (if you are doing a group project)\nWhat you are planning to do for your project - what is the network you are going to study, what are the questions you are going to ask, etc.\n\n\n\nRough Draft\nDue November 26. This should be a complete draft of your project. You will turn this in on Brightspace, and also send it to your peers for feedback. You will be expected to provide feedback to your peers by the following Tuesday.\n\n\nPresentations\nThe last Thursday of class, we will have presentations. You will have 5 minutes to present your project to the class.\n\n\nFinal Project\nDue December 11. You will turn in your final project on Brightspace. This includes the .qmd file as well as a PDF of your report. Make sure to set echo=FALSE so that it doesn’t include all of your code, and just looks like a nice report.",
+    "objectID": "activities/network_simulation/resource_game.html#rules",
+    "href": "activities/network_simulation/resource_game.html#rules",
+    "title": "The Resource Game",
+    "section": "Rules",
+    "text": "Rules\n\nOnly communicate through written messages, to neighbors\nGive resources by sending ‘$give jdfoote A’ to the NetworkGameBot\nIf you forget what you have/need, send ‘$status’\nIf you are an observer, send ‘$status’ to get an updated network graph\nYou can continue playing after you have all resources, if you want"
+  },
+  {
+    "objectID": "activities/network_simulation/resource_game.html#how-did-it-go",
+    "href": "activities/network_simulation/resource_game.html#how-did-it-go",
+    "title": "The Resource Game",
+    "section": "How did it go?",
+    "text": "How did it go?\n\nWhat worked well?\nWhat didn’t?\nWho was fastest? Why?\nWhat was the longest path a resource traveled?"
+  },
+  {
+    "objectID": "activities/network_simulation/resource_game.html#global-network",
+    "href": "activities/network_simulation/resource_game.html#global-network",
+    "title": "The Resource Game",
+    "section": "Global network",
+    "text": "Global network"
+  },
+  {
+    "objectID": "activities/network_simulation/resource_game.html#debrief-topics-to-cover",
+    "href": "activities/network_simulation/resource_game.html#debrief-topics-to-cover",
+    "title": "The Resource Game",
+    "section": "Debrief topics to cover",
+    "text": "Debrief topics to cover\n\nDegree centrality\nReciprocity\nSocial capital\nStructural holes\nReputation and deceit\nPosition and power\nMultiplexity\nNumber vs. type of ties (centrality measures)"
+  },
+  {
+    "objectID": "activities/network_simulation/resource_game.html#debrief-topics-to-cover-1",
+    "href": "activities/network_simulation/resource_game.html#debrief-topics-to-cover-1",
+    "title": "The Resource Game",
+    "section": "Debrief topics to cover",
+    "text": "Debrief topics to cover\n\nGlobal/local networks\nTie maintenance\nSponsorship\nNorms and social conventions"
+  },
+  {
+    "objectID": "activities/network_simulation/resource_game.html#meta-discussion",
+    "href": "activities/network_simulation/resource_game.html#meta-discussion",
+    "title": "The Resource Game",
+    "section": "Meta discussion",
+    "text": "Meta discussion\n\nHow does this differ from real-world networks?\nWhat does this make you see differently?"
+  },
+  {
+    "objectID": "activities/troubled_lands/troubled_lands.html#troubled-lands-explainer",
+    "href": "activities/troubled_lands/troubled_lands.html#troubled-lands-explainer",
+    "title": "Troubled Lands Activity",
+    "section": "Troubled Lands Explainer",
+    "text": "Troubled Lands Explainer"
+  },
+  {
+    "objectID": "activities/troubled_lands/troubled_lands.html#troubled-lands",
+    "href": "activities/troubled_lands/troubled_lands.html#troubled-lands",
+    "title": "Troubled Lands Activity",
+    "section": "Troubled Lands",
+    "text": "Troubled Lands\n\nRules\n\nTalking is fine\nNo talking/interacting with other groups\nCan see other people’s cards\nEach person does one thing each turn (before drawing the weather card)\nEroded -&gt; Fallow -&gt; Forest/Fields/Pasture\nWeather are 1-10 (plus extra 6,8), sorted randomly\n6/9 are tough to distinguish - make sure raindrops are falling down"
+  },
+  {
+    "objectID": "activities/troubled_lands/troubled_lands.html#round-1---collaborative",
+    "href": "activities/troubled_lands/troubled_lands.html#round-1---collaborative",
+    "title": "Troubled Lands Activity",
+    "section": "Round 1 - Collaborative",
+    "text": "Round 1 - Collaborative\n\n8 turns\nGroup with highest total score wins\nWhen done, bring weather cards to me for reshuffling and write your score on the board"
+  },
+  {
+    "objectID": "activities/troubled_lands/troubled_lands.html#reminder",
+    "href": "activities/troubled_lands/troubled_lands.html#reminder",
+    "title": "Troubled Lands Activity",
+    "section": "Reminder",
+    "text": "Reminder\n\nStart with:\n\n6 Forest\n2 Fallows\n2 Fields\n2 Pasture\n\nEroded if more rain than forests\n\n2 become eroded\nErosion order: Fallows, field, pasture, forest\n\n\nCan’t plant on eroded, have to turn it to fallows first"
+  },
+  {
+    "objectID": "activities/troubled_lands/troubled_lands.html#round-2---within-group-competition",
+    "href": "activities/troubled_lands/troubled_lands.html#round-2---within-group-competition",
+    "title": "Troubled Lands Activity",
+    "section": "Round 2 - Within-group competition",
+    "text": "Round 2 - Within-group competition\n\n8 turns\nPerson in group with highest score wins\nWhen done, bring weather cards to me for reshuffling\nWrite your score and role on the board"
+  },
+  {
+    "objectID": "activities/troubled_lands/troubled_lands.html#round-3---within-role-competition",
+    "href": "activities/troubled_lands/troubled_lands.html#round-3---within-role-competition",
+    "title": "Troubled Lands Activity",
+    "section": "Round 3 - Within-role competition",
+    "text": "Round 3 - Within-role competition\n\nPerson of each type with highest score wins"
+  },
+  {
+    "objectID": "activities/troubled_lands/troubled_lands.html#take-a-few-minutes-to-thinkwrite-about",
+    "href": "activities/troubled_lands/troubled_lands.html#take-a-few-minutes-to-thinkwrite-about",
+    "title": "Troubled Lands Activity",
+    "section": "Take a few minutes to think/write about:",
+    "text": "Take a few minutes to think/write about:\n\nHow did you play differently in different versions?\nWhat in real life is similar to each version of the game?\nHow did you decide whether or not to help others?\nWhat does this have to do with social networks and social capital?!"
+  },
+  {
+    "objectID": "activities/troubled_lands/troubled_lands.html#debrief",
+    "href": "activities/troubled_lands/troubled_lands.html#debrief",
+    "title": "Troubled Lands Activity",
+    "section": "Debrief",
+    "text": "Debrief\n\nWhat did you think about while playing?\nHow did you feel as you played? Did those feeling change across different versions of the game?\nWhen do you help others in real life?"
+  },
+  {
+    "objectID": "activities/troubled_lands/troubled_lands.html#debrief-1",
+    "href": "activities/troubled_lands/troubled_lands.html#debrief-1",
+    "title": "Troubled Lands Activity",
+    "section": "Debrief",
+    "text": "Debrief\n\nWere resources and abilities distributed fairly?\nHow should resources be distributed in the real world?\nWhat role did communication play? How did your group make decisions?\nDid you work to make things equal? Why or why not?\nWhat kinds of inequality appeared in the game?"
+  },
+  {
+    "objectID": "activities/troubled_lands/troubled_lands.html#debrief-2",
+    "href": "activities/troubled_lands/troubled_lands.html#debrief-2",
+    "title": "Troubled Lands Activity",
+    "section": "Debrief",
+    "text": "Debrief\n\nDid anyone sanction someone else? Why?"
+  },
+  {
+    "objectID": "assignments/Final-Self-Assessment-Reflection.html",
+    "href": "assignments/Final-Self-Assessment-Reflection.html",
+    "title": "Final Self-Assessment Reflection",
+    "section": "",
+    "text": "Answer the following questions about your learning and participation thus far. Please note that there are a lot of questions. I am not expecting extensive essays for these. Some may be answered in a single sentence, while others may inspire more detail.\n\nWhat have you done to ensure that you understand the material and concepts?\nHow have you addressed previous goals, challenges, and/or feedback?\nWhat have you done to apply the concepts we’ve been learning to your own experiences?\nWhat have you learned in this class that you will take with you?\nWhat obstacles have you overcome?\nWhat else would you like to share?\n\nNext, I’d like you to look on Brightspace and Discord and review the work you’ve done, and think about your participation in class. I’d also like you to review the expectations for each grade in this class.\n\nBased on your answers above, the work you have done, and the guidelines in the syllabus, what grade would you assign yourself in the class? Why?\n\nFinally, some feedback for me (feel free to submit this at https://forms.gle/ZQbTXHiaqy7WrxFj7 if you’d prefer to be anonymous):\n\nWhat did you enjoy about this class?\nWhat are two ways in which this class could be better?",
     "crumbs": [
       "Assignments",
-      "Final project"
+      "Final Self-Assessment Reflection"
     ]
   },
   {
@@ -1835,23 +1862,30 @@
     ]
   },
   {
+    "objectID": "assignments/final_project/peer-feedback.html",
+    "href": "assignments/final_project/peer-feedback.html",
+    "title": "Peer Feedback",
+    "section": "",
+    "text": "Write a ~1 page response for each of the rough drafts from your group members. For each response, you should provide feedback on the following:\n\nHow well does the paper explain the goals of the project?\nHow well does the paper incorporate network concepts?\nAre the visualizations clear, informative, and professional-looking? Do they help to further the arguments of the paper?\n\nYou can also provide feedback on other aspects of the paper, such as the writing style, organization, or any other aspects that you think could be improved or that you think are particularly strong."
+  },
+  {
+    "objectID": "assignments/final_project/rough-draft.html",
+    "href": "assignments/final_project/rough-draft.html",
+    "title": "Final Project Rough Draft",
+    "section": "",
+    "text": "Each of the final project options includes a written report. While the format of these differs somewhat, they all include both network concepts and network visualizations.\nThis rough draft is designed to help you to get feedback before the final version is submitted. Ideally, it should be basically complete at this point. Everyone in the class will be placed in groups of ~3 people to provide feedback on each other’s projects.\nYou should submit your rough draft to Brightspace and also send it to your group members, probably through Discord.",
+    "crumbs": [
+      "Assignments",
+      "Final Project",
+      "Final Project Rough Draft"
+    ]
+  },
+  {
     "objectID": "assignments/r_lab_2_–_creating_networks.html#assignment-file",
     "href": "assignments/r_lab_2_–_creating_networks.html#assignment-file",
     "title": "R Lab 2 – Creating Networks",
     "section": "Assignment File",
     "text": "Assignment File\nDownload Assignment (right-click and save)",
-    "crumbs": [
-      "Assignments",
-      "R Labs",
-      "R Lab 2 – Creating Networks"
-    ]
-  },
-  {
-    "objectID": "assignments/r_lab_2_–_creating_networks.html#additional-requirement",
-    "href": "assignments/r_lab_2_–_creating_networks.html#additional-requirement",
-    "title": "R Lab 2 – Creating Networks",
-    "section": "Additional Requirement",
-    "text": "Additional Requirement\nFor this lab, I want you to also practice asking programming questions on Discord. As you work on the assignment, identify something that is confusing or where you get stuck.\nThen, go to the #homework-help channel on Discord and ask a question. Practice using the syntax for posting code snippets - i.e., use three backticks (```) before and after your code block.",
     "crumbs": [
       "Assignments",
       "R Labs",
@@ -3037,7 +3071,7 @@
     "href": "schedule/week_08.html",
     "title": "Week 8: Small worlds",
     "section": "",
-    "text": "Tuesday\nOCTOBER BREAK\n\n\nThursday\nAssignment Due (Wednesday):\n\nR Lab 5 - Aesthetics in ggraph\nReading Review Assignments\n\nDiscussion Questions\n\n\nReadings:\n\nThe Science of Six Degrees of Separation [video][9:22]\nTravers, J. and Milgram, S. (1969). An experimental study of the small world problem. Sociometry, 32(4):425-443\n\nClaude.ai summary\n\n(Optional but short) Dodds, P. S., Muhamad, R., & Watts, D. J. (2003). An Experimental Study of Search in Global Social Networks. Science, 301(5634), 827.\n\nLecture Video:\n [18:45]\n\nSlides\n\n\n\n\n\nDiscussion Questions",
+    "text": "Tuesday\nAssignment Due (Wednesday):\n\nR Lab 5 - Aesthetics in ggraph\nReading Review Assignments\n\nDiscussion Questions\n\n\nReadings:\n\nThe Science of Six Degrees of Separation [video][9:22]\nTravers, J. and Milgram, S. (1969). An experimental study of the small world problem. Sociometry, 32(4):425-443\n\nClaude.ai summary\n\n(Optional but short) Dodds, P. S., Muhamad, R., & Watts, D. J. (2003). An Experimental Study of Search in Global Social Networks. Science, 301(5634), 827.\n\nLecture Video:\n [18:45]\n\nSlides\n\n\n\n\n\nDiscussion Questions\n\n\n\n\nThursday",
     "crumbs": [
       "Schedule",
       "Course content",
