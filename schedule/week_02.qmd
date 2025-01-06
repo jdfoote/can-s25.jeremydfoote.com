@@ -1,6 +1,6 @@
 ---
 title: "Week 2: Network representations"
-date: "2024-08-27"
+date: "2025-01-20"
 ---
 
 

@@ -1,6 +1,6 @@
 ---
 title: "R Lab 6 – Visualizing Power"
-date: 2024-10-21
+date: 2025-03-24
 ---
 
 

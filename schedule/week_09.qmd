@@ -1,13 +1,13 @@
 ---
 title: "Week 9: Scale-free networks and the friendship paradox"
-date: "2024-10-15"
+date: "2025-03-10"
 ---
 
 ### Tuesday
 
 **Assignment Due:**
 
-* Proposal for [Final Project](/assignments/Final-project.qmd); this is a few paragraphs about which final project you'd like to do, and what you are planning to do for it.
+* [Final Project Idea](/assignments/final_project/project-idea.qmd)
 * Troubled Lands Reflection
 * [Reading Review](/syllabus/syllabus.qmd#reading-review-assignments)
     * [Discussion Questions](#discussion-questions)

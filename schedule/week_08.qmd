@@ -1,13 +1,9 @@
 ---
 title: "Week 8: Small worlds"
-date: "2024-10-08"
+date: "2025-03-03"
 ---
 
 ### Tuesday
-
-**OCTOBER BREAK**
-
-### Thursday
 
 **Assignment Due (Wednesday):**
 
@@ -33,3 +29,6 @@ date: "2024-10-08"
 ### Discussion Questions
 
 <iframe src="https://pollev-embeds.com/discourses/lynmGy0N0qneA2ZLNYZnH/respond" width="900px" height="600px"></iframe>
+
+
+### Thursday
