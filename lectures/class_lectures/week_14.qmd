@@ -30,10 +30,10 @@ Now I'm in hot water with the Japanese mafia.
 ## Housekeeping
 
 > - Final project schedule
->   - Rough draft on Tuesday before Thanksgiving
->   - Peer feedback by the following Tuesday
->   - Presentations on the last day of class
->   - Final report due on December 11th
+>   - Rough draft next Thursday
+>   - Peer feedback by the following Monday
+>   - Presentations on the last 2 days of class
+>   - Final report due on May 2
 >	- I will make peer assignments and send a Brightspace + discord announcement
 > - May want to look at the Advanced R Rmd file
 

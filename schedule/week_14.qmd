@@ -1,5 +1,5 @@
 ---
-title: "Week 14: Networks and collaboration"
+title: "Week 14: Networks and Equality"
 date: "2025-04-21"
 ---
 
@@ -12,25 +12,26 @@ date: "2025-04-21"
 * [Reading Review](/syllabus/syllabus.qmd#reading-review-assignments)
     * [Discussion Questions](#discussion-questions)
 
-**Readings:** 
+**Readings:**
 
-* Read the [Wikipedia Article about The Wealth of Networks](https://en.wikipedia.org/wiki/The_Wealth_of_Networks)
-* Skim section two of Benkler, Y. (2002). [Coase’s Penguin, or, Linux and "The Nature of the Firm."](https://www-jstor-org.ezproxy.lib.purdue.edu/stable/1562247) The Yale Law Journal, 112(3), 369.
+* Fernandez, R. M., & Fernandez-Mateo, I. (2006). [Networks, Race, and Hiring](https://journals-sagepub-com.ezproxy.lib.purdue.edu/doi/pdf/10.1177/000312240607100103). American Sociological Review, 71(1), 42–71. **Read the introduction (pp. 42–47) and the Summary and Conclusion (pp. 65–67)**
+* Sunstein, C. R. (1991). Why markets don’t stop discrimination. Social Philosophy and Policy, 8(02), 22–37. [https://doi.org/10.1017/S0265052500001114](https://doi.org/10.1017/S0265052500001114)
 
 **Lecture video:**
 
-{{< video https://youtu.be/_8gFd0XZJKc >}} [17:19]
+TBA
 
 * Slides
 
-<iframe class='slide-deck' src="/lectures/content_lectures/networks_and_collaboration.html"></iframe>
+<iframe class='slide-deck' src="/lectures/content_lectures/networks_and_inequality.html"></iframe>
 
 
 ### Thursday
 
 **Assignments Due:**
 
-* Rough draft of [Final Project](/assignments/Final-project.qmd) on Brightspace and sent to your "peers"
+* [Rough draft of Final Project](/assignments/final_project/rough-draft.qmd) on Brightspace and sent to your "peers"
+* Saturday: Feedback sent back to your "peers"
 
 **Class Schedule:**
 

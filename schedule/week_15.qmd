@@ -1,5 +1,5 @@
 ---
-title: "Week 15: Networked racism"
+title: "Week 15: Class Presentations and Final Projects"
 date: "2025-04-28"
 ---
 
@@ -7,14 +7,13 @@ date: "2025-04-28"
 
 **Assignment Due:**
 
-* Feedback on final project to peers
-* [Reading Review](/syllabus/syllabus.qmd#reading-review-assignments)
-    * [Discussion Questions](#discussion-questions)
+* Saturday: Feedback on final project to peers
+* Tuesday / Thursday: Final Project Presentation
+* Friday: [Final Project](/assignments/final_project/Final-project.qmd) on Brightspace
 
-**Readings:**
+**Class Schedule:**
 
-* Fernandez, R. M., & Fernandez-Mateo, I. (2006). [Networks, Race, and Hiring](https://journals-sagepub-com.ezproxy.lib.purdue.edu/doi/pdf/10.1177/000312240607100103). American Sociological Review, 71(1), 42–71. **Read the introduction (pp. 42–47) and the Summary and Conclusion (pp. 65–67)**
-* Sunstein, C. R. (1991). Why markets don’t stop discrimination. Social Philosophy and Policy, 8(02), 22–37. [https://doi.org/10.1017/S0265052500001114](https://doi.org/10.1017/S0265052500001114)
+* Final project presentations
 
 ### Thursday
 
@@ -25,7 +24,3 @@ date: "2025-04-28"
 **Resources:**
 
 * (Optional) [Advanced network visualizations in R](/assignments/advanced_visualizations.qmd)
-
-### Discussion Questions
-
-<iframe src="https://pollev-embeds.com/discourses/5lZh3mPUS8VHWEC4XwxCd/respond" width="900px" height="600px"></iframe>
