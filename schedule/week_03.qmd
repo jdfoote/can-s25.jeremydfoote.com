@@ -7,8 +7,7 @@ date: "2025-01-27"
 
 **Assignment Due (on Monday):**
 
-* [Reading Review Assignments](/syllabus/syllabus.qmd#reading-review-assignments)
-* [Discussion Questions](https://pol.is/5krwsnpvkd)
+* [Reading Review](/syllabus/syllabus.qmd#reading-review-assignments)
 
 
 **Readings:** 

@@ -21,6 +21,6 @@ do in order to get access to the class.
 Click the Firework/Network icon (🎆) and you should then see the COM 411
 category on the left side.
 
-I also made a video to walk you through how to do this if you get stuck.
+A few years ago I made a video to walk you through how to do this if you get stuck. I think the process is still basically the same.
 
 {{< video https://youtu.be/pz047i5HtII >}}

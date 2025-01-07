@@ -8,7 +8,6 @@ date: "2025-02-03"
 **Assignment Due:**
 
 * [Reading Review Assignments](/syllabus/syllabus.qmd#reading-review-assignments)
-* [Discussion Questions (Slido)](https://app.sli.do/event/55MbmRBCqZVxJdDiVxLR8p)
 * [R Lab 1](/assignments/r_lab_1_-_installation.qmd)
 * [R Lab 2 - Creating Networks](/assignments/r_lab_2_%E2%80%93_creating_networks.qmd)
 
