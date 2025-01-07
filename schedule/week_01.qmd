@@ -17,7 +17,7 @@ date: "2025-01-13"
 
 **Concepts:**
 
-* Class overview and expectations — We'll walk through this syllabus.
+* Class overview and expectations — We'll walk through [the syllabus](/syllabus/syllabus.qmd)
 * What are social networks?
 * Why study networks?
 
@@ -31,7 +31,6 @@ date: "2025-01-13"
 **Assignment Due:**
 
 * Read the entire [syllabus](/syllabus/syllabus.qmd)
-* Initial Reflection Assignment (on Brightspace)
 
 **Class Schedule:**
 

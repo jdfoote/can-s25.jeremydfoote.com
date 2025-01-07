@@ -1,9 +1,9 @@
 ---
 title: Discord Signup
 ---
-We will be using [Discord](wikipedia:Discord_(software) "wikilink") for
+We will be using [Discord](https://en.wikipedia.org/wiki/Discord) for
 most of the asynchronous communication needs in our class. If you are
-confused about something please ask here first - chances are, others
+confused about something please ask here first—chances are, others
 have the same confusion.
 
 Signing up for Discord is pretty straightforward. You will need to go to

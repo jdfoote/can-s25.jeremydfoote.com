@@ -4,8 +4,8 @@ title: "Syllabus"
 
 # Course Information
 
-**COM 411: Communication and Social Networks**  
-**Location:** BRNG 2275
+**COM 411: Communication and Social Networks** <br/>
+**Location:** BRNG 2275 </br>
 **Class Hours:** Tuesdays and Thursdays; 12:00–1:15 PM
 
 ## Instructor
@@ -20,6 +20,7 @@ title: "Syllabus"
 Communication is inherently a social process. This class focuses on understanding how the structure of relationships between people influences communication patterns and behavior. This perspective can help us to understand a broad set of phenomena, from online communities to friendships to businesses. The course will also introduce students to using network visualizations to gain and share insights about network phenomena.
 
 Students who complete this course will be able to:
+
 1. Understand the foundations of social network theory and analysis.
 2. Critically read and comprehend concepts, results, and implications presented in studies of social networks.
 3. Learn how networks are related to social phenomena in their personal and professional worlds.
@@ -36,8 +37,8 @@ This semester, we are going to try using VSCode, an IDE which can write R code, 
 ## Readings
 
 * Required texts:
-  * Easley, D., & Kleinberg, J. (2010). Networks, crowds, and markets. Cambridge University Press. [web edition (free)](https://www.cs.cornell.edu/home/kleinber/networks-book/) [pre-print pdf (free)](https://www.cs.cornell.edu/home/kleinber/networks-book/networks-book.pdf) [print edition (Amazon)](https://smile.amazon.com/Networks-Crowds-Markets-Reasoning-Connected/dp/0521195330/)
-  * Hanneman, R. A., & Riddle, M. (2005). Introduction to social network methods. Riverside, CA: University of California, Riverside [web edition (free)](http://faculty.ucr.edu/~hanneman/nettext/)
+  * Easley, D., & Kleinberg, J. (2010). Networks, crowds, and markets. Cambridge University Press. [[web edition (free)](https://www.cs.cornell.edu/home/kleinber/networks-book/)] [[pre-print pdf (free)](https://www.cs.cornell.edu/home/kleinber/networks-book/networks-book.pdf)] [[print edition (Amazon)](https://smile.amazon.com/Networks-Crowds-Markets-Reasoning-Connected/dp/0521195330/)]
+  * Hanneman, R. A., & Riddle, M. (2005). Introduction to social network methods. Riverside, CA: University of California, Riverside [[web edition (free)](http://faculty.ucr.edu/~hanneman/nettext/)]
 
 * Other readings: Other readings will be made available on Brightspace.
 
@@ -109,7 +110,9 @@ I'm calling this a "3-2-1 Assignment". I'd like you to:
 
 You should submit your assignment on Brightspace.
 
-Take the discussion question (which can be based on the concepts you learned, or the things you don't understand), and submit it (and up to one other question) that you think would be interesting to discuss on Monday by noon. **Post your questions on the shared Google Doc at [this link](https://docs.google.com/document/d/1AK4MhWLVwDuxqvTwLomN7hu4aLpo59n5qXgEap8SBNc/edit?usp=sharing)**; try to group similar questions together.
+### Discussion Questions
+
+On the bottom of each week's schedule is an embedded poll, where you should submit your discussion question. You should also vote on at least a few other questions that you think would be interesting to discuss. We will talk about the top few in class.
 
 Questions should engage with the readings and either connect to other concepts or to the "real world". Here are some good example questions:
 
