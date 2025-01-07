@@ -143,7 +143,10 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#assignments" id="toc-assignments" class="nav-link" data-scroll-target="#assignments">Assignments</a>
   <ul class="collapse">
   <li><a href="#participation" id="toc-participation" class="nav-link" data-scroll-target="#participation">Participation</a></li>
-  <li><a href="#reading-review-assignments" id="toc-reading-review-assignments" class="nav-link" data-scroll-target="#reading-review-assignments">Reading Review Assignments</a></li>
+  <li><a href="#reading-review-assignments" id="toc-reading-review-assignments" class="nav-link" data-scroll-target="#reading-review-assignments">Reading Review Assignments</a>
+  <ul class="collapse">
+  <li><a href="#discussion-questions" id="toc-discussion-questions" class="nav-link" data-scroll-target="#discussion-questions">Discussion Questions</a></li>
+  </ul></li>
   <li><a href="#homeworklabs" id="toc-homeworklabs" class="nav-link" data-scroll-target="#homeworklabs">Homework/Labs</a></li>
   <li><a href="#exams" id="toc-exams" class="nav-link" data-scroll-target="#exams">Exams</a></li>
   <li><a href="#final-project" id="toc-final-project" class="nav-link" data-scroll-target="#final-project">Final Project</a></li>
@@ -192,8 +195,7 @@ ul.task-list li input[type="checkbox"] {
 
 <section id="course-information" class="level1">
 <h1>Course Information</h1>
-<p><strong>COM 411: Communication and Social Networks</strong><br>
-<strong>Location:</strong> BRNG 2275 <strong>Class Hours:</strong> Tuesdays and Thursdays; 12:00–1:15 PM</p>
+<p><strong>COM 411: Communication and Social Networks</strong> <br> <strong>Location:</strong> BRNG 2275 <br> <strong>Class Hours:</strong> Tuesdays and Thursdays; 12:00–1:15 PM</p>
 <section id="instructor" class="level2">
 <h2 class="anchored" data-anchor-id="instructor">Instructor</h2>
 <p><strong>Instructor:</strong> <a href="https://jeremydfoote.com">Jeremy Foote</a><br>
@@ -204,7 +206,13 @@ ul.task-list li input[type="checkbox"] {
 <section id="course-overview-and-learning-objectives" class="level1">
 <h1>Course Overview and Learning Objectives</h1>
 <p>Communication is inherently a social process. This class focuses on understanding how the structure of relationships between people influences communication patterns and behavior. This perspective can help us to understand a broad set of phenomena, from online communities to friendships to businesses. The course will also introduce students to using network visualizations to gain and share insights about network phenomena.</p>
-<p>Students who complete this course will be able to: 1. Understand the foundations of social network theory and analysis. 2. Critically read and comprehend concepts, results, and implications presented in studies of social networks. 3. Learn how networks are related to social phenomena in their personal and professional worlds. 4. Gain a basic understanding of gathering network data and analyzing them using the programming language R.</p>
+<p>Students who complete this course will be able to:</p>
+<ol type="1">
+<li>Understand the foundations of social network theory and analysis.</li>
+<li>Critically read and comprehend concepts, results, and implications presented in studies of social networks.</li>
+<li>Learn how networks are related to social phenomena in their personal and professional worlds.</li>
+<li>Gain a basic understanding of gathering network data and analyzing them using the programming language R.</li>
+</ol>
 </section>
 <section id="required-resources-and-texts" class="level1">
 <h1>Required resources and texts</h1>
@@ -218,8 +226,8 @@ ul.task-list li input[type="checkbox"] {
 <ul>
 <li>Required texts:
 <ul>
-<li>Easley, D., &amp; Kleinberg, J. (2010). Networks, crowds, and markets. Cambridge University Press. <a href="https://www.cs.cornell.edu/home/kleinber/networks-book/">web edition (free)</a> <a href="https://www.cs.cornell.edu/home/kleinber/networks-book/networks-book.pdf">pre-print pdf (free)</a> <a href="https://smile.amazon.com/Networks-Crowds-Markets-Reasoning-Connected/dp/0521195330/">print edition (Amazon)</a></li>
-<li>Hanneman, R. A., &amp; Riddle, M. (2005). Introduction to social network methods. Riverside, CA: University of California, Riverside <a href="http://faculty.ucr.edu/~hanneman/nettext/">web edition (free)</a></li>
+<li>Easley, D., &amp; Kleinberg, J. (2010). Networks, crowds, and markets. Cambridge University Press. [<a href="https://www.cs.cornell.edu/home/kleinber/networks-book/">web edition (free)</a>] [<a href="https://www.cs.cornell.edu/home/kleinber/networks-book/networks-book.pdf">pre-print pdf (free)</a>] [<a href="https://smile.amazon.com/Networks-Crowds-Markets-Reasoning-Connected/dp/0521195330/">print edition (Amazon)</a>]</li>
+<li>Hanneman, R. A., &amp; Riddle, M. (2005). Introduction to social network methods. Riverside, CA: University of California, Riverside [<a href="http://faculty.ucr.edu/~hanneman/nettext/">web edition (free)</a>]</li>
 </ul></li>
 <li>Other readings: Other readings will be made available on Brightspace.</li>
 </ul>
@@ -289,13 +297,16 @@ ul.task-list li input[type="checkbox"] {
 <li>Share one question that you think would make for a good discussion question.</li>
 </ul>
 <p>You should submit your assignment on Brightspace.</p>
-<p>Take the discussion question (which can be based on the concepts you learned, or the things you don’t understand), and submit it (and up to one other question) that you think would be interesting to discuss on Monday by noon. <strong>Post your questions on the shared Google Doc at <a href="https://docs.google.com/document/d/1AK4MhWLVwDuxqvTwLomN7hu4aLpo59n5qXgEap8SBNc/edit?usp=sharing">this link</a></strong>; try to group similar questions together.</p>
+<section id="discussion-questions" class="level3">
+<h3 class="anchored" data-anchor-id="discussion-questions">Discussion Questions</h3>
+<p>On the bottom of each week’s schedule is an embedded poll, where you should submit your discussion question. You should also vote on at least a few other questions that you think would be interesting to discuss. We will talk about the top few in class.</p>
 <p>Questions should engage with the readings and either connect to other concepts or to the “real world”. Here are some good example questions:</p>
 <ul>
 <li>The readings this week talked a lot about how network ties get created. I made a list of my closest friends and I realized that most of them only became friends after we happened to be in the same groups over and over again. What role does repetition have in forming ties?</li>
 <li>I was confused by the reading on social capital. What’s the difference between social capital and power? And if they are the same, then why not just call it “network power”?</li>
 <li>Imagine you were asked to analyze the network of a big company to help them to identify people who deserve a raise. What measures would you use to identify them? What would you not use?</li>
 </ul>
+</section>
 </section>
 <section id="homeworklabs" class="level2">
 <h2 class="anchored" data-anchor-id="homeworklabs">Homework/Labs</h2>
