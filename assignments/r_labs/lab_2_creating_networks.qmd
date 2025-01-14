@@ -4,7 +4,7 @@ author: "Your name here"
 format: pdf
 ---
 
-This first cell is setup code. It loads a bunch of libraries that we will use later on, so you will need to run this cell before your run any other cells.
+This first cell is setup code. It loads a bunch of libraries that we will use later on, so you will need to run this cell before your run any other cells. If you get an error, then you may need to install the libraries. See [Lab 1](/assignments/r_lab_1_-_installation.html) for instructions on how to do that.
 
 ```{r setup, message=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
@@ -33,7 +33,7 @@ We'll start by creating a simple edgelist, using made up names.
 In Excel (or LibreOffice or Google Sheets) open a new spreadsheet, and create a spreadsheet that looks like this:
 
 | From | To |
-|----|---|
+|------|----|
 |John | Ida |
 | Elwyn | Ida |
 | Okan | Axelle |
@@ -48,9 +48,11 @@ Uncomment the code below (by deleting the # symbol) and run it.
 #edgelist <- read_excel("./edges.xlsx")
 ```
 
-You might get an error here that says something like `there is no package called 'readxl'`. If you get that, then you need to run `install.packages('tidyverse')` in the console (this is in the bottom window). It will take a while to install, but if it works correctly your code above should work.
+Look down at the R console (the bottom window) and see if it worked. You might get an error here that says something like `there is no function called 'readxl'`. If you get that, then you need to run `install.packages('tidyverse')` in the console (this is in the bottom window). It will take a while to install, but if it works correctly your code above should work.
 
 You may also get an error that's something like `could not find function "read_excel"`. If you get that, then you need to run the cell at the top of this page (the one that starts with `knitr::opts_chunk$set(echo = TRUE)`). This will load the libraries that we need to run the rest of the code.
+
+Finally, you might get an error that says something like `Error: path does not exist: ‘./edges.xlsx’`. This means that R can't find the file. Make sure that you saved the file to the same folder as this file. If you need to, you can right-click the filename and select `Copy Path` to get the full path to the file. Replace `./edges.xlsx` with the full path.
 
 To test if everything worked right, uncomment the following code to show all of the edges in R.
 
@@ -114,6 +116,8 @@ If you've done everything right, then when you uncomment the code below, it shou
 
 The one piece of code from above that we haven't talked about is `G <-`. This saves the network to the variable `G` and then `plot(G)` makes a basic plot of it.
 
+If this doesn't work, the most likely culprit is a typo in either the edgelist or the node attributes. Check the spelling and capitalization of the names in both files.
+
 ## Tidygraph networks
 
 Finally, to make things even more confusing, for lots of the cool things we'll be doing in future lessons, we need to take one more step, and turn this from a normal network object into a `tidygraph` network object.
@@ -132,19 +136,6 @@ Uncomment the code below and run it. If it worked, then you should see a text ou
 #G
 ```
 
-
-## Exercise
-
-See if you can figure out how to add another person to the network (hint: the easiest way to do this is by creating new spreadsheets in Excel, something like `edgelist_2.xlsx` and `node_atts_2.xlsx`). Give the new person node attributes and at least one edge. Use `graph_from_data_frame` to create a new network object and `as_tbl_graph` to change it into a `tidygraph` network object.
-
-Finally, create a new network plot with the new person.
-
-
-```{r}
-## YOUR CODE HERE
-
-
-```
 
 
 # Loading data from R packages
@@ -168,16 +159,6 @@ Now, you will have access to the networks from the package. Run `data(package='n
 ```
 
 
-## Exercise
-
-Figure out how to load the `ffe_elite` network from `newtorkdata` as a `tidygraph` object, and plot it.
-
-```{r}
-
-# YOUR CODE HERE
-
-
-```
 
 # Random networks
 
@@ -193,18 +174,35 @@ plot(G)
 
 ```
 
-## Excercise
+## Exercises
 
-The `play_gnp()` function above has two parameters, which have the values `20` and `.4`. Try changing the values and observing the result. What do you think each of these parameters do?
+1. See if you can figure out how to add another person to the network you created, following all of the steps above. Do this by creating new spreadsheets in Excel, something like `edgelist_2.xlsx` and `node_atts_2.xlsx`. Make sure to give the new person node attributes and at least one edge. Use `graph_from_data_frame` to create a new network object and `as_tbl_graph` to change it into a `tidygraph` network object.
+
+Finally, create a new network plot with the new person.
+
+
+```{r}
+## YOUR CODE HERE
+
+
+```
+
+2. Above, we loaded the `ht_advice` network. Figure out how to load the `ffe_elite` network from `newtorkdata` as a `tidygraph` object, and plot it.
+
+```{r}
+
+# YOUR CODE HERE
+
+
+```
+
+3. The `play_gnp()` function above has two parameters, which have the values `20` and `.4`. Try changing the values and observing the result. What do you think each of these parameters do?
 
 
 YOUR ANSWER HERE
 
 
-
-## Exercise
-
-A list of a bunch of possible random graphs is listed at https://tidygraph.data-imaginist.com/reference/index.html under "Graph Creation". See if you can figure out how to make a ring graph with 20 nodes.
+4. A list of a bunch of possible random graphs is listed at https://tidygraph.data-imaginist.com/reference/index.html under "Graph Creation". See if you can figure out how to make a ring graph with 20 nodes.
 
 ```{r}
 

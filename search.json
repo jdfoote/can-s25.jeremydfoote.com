@@ -1188,6 +1188,160 @@
     "text": "Order By\n       Default\n         \n          Title\n        \n         \n          Author\n        \n     \n  \n    \n      \n      \n    \n\n\n\n\n\nTitle\n\n\nAuthor\n\n\n\n\n\n\nPower, centrality, and hierarchy\n\n\n \n\n\n\n\nCommunities in Networks\n\n\n \n\n\n\n\nEgo networks and network perceptions\n\n\n \n\n\n\n\nSocial Influence\n\n\n \n\n\n\n\nNetworks and Collaboration\n\n\n \n\n\n\n\nNetworks and Inequality\n\n\n \n\n\n\n\nNetworks and Technology\n\n\n \n\n\n\n\nScale-free networks and the friendship paradox\n\n\n \n\n\n\n\nSmall worlds\n\n\n \n\n\n\n\nThe Forms of Capital\n\n\n \n\n\n\n\nCreation of edges\n\n\n \n\n\n\n\nNetwork Data and Network Types\n\n\n \n\n\n\n\nNetworks in small groups\n\n\n \n\n\n\n\n\nNo matching items"
   },
   {
+    "objectID": "assignments/r_lab_examples/lab_8_network_stats.html",
+    "href": "assignments/r_lab_examples/lab_8_network_stats.html",
+    "title": "Calculating Network Statistics",
+    "section": "",
+    "text": "So far, we have focused on visualizing the network itself. This lesson will focus on calculating and visualizing statistics about the network."
+  },
+  {
+    "objectID": "assignments/r_lab_examples/lab_8_network_stats.html#network-statistics",
+    "href": "assignments/r_lab_examples/lab_8_network_stats.html#network-statistics",
+    "title": "Calculating Network Statistics",
+    "section": "Network statistics",
+    "text": "Network statistics\nThere are a lot of statistics that we might care about, and tidygraph and igraph have a number of functions to calculate them.\nLet’s start with some simple graph-level measures, for our ffe_elite network.\n\nG &lt;- ffe_elite |&gt; as_tbl_graph()\n\nNumber of nodes:\n\nG |&gt; gorder()\n\n[1] 28\n\n\nNumber of edges:\n\nG |&gt; gsize()\n\n[1] 330\n\n\nNumber of mutual edges:\n\nG |&gt; activate(edges) |&gt; filter(edge_is_mutual()) |&gt; gsize()\n\n[1] 160\n\n\nCentralization:\n\nG |&gt; centralization.degree()\n\nWarning: `centralization.degree()` was deprecated in igraph 2.0.0.\nℹ Please use `centr_degree()` instead.\n\n\n$res\n [1] 11 41 34  8 16 15 33 29 21 25 31  8 28 27 27 26 25 24 29  4 32 21 17 26 35\n[26] 27 37  3\n\n$centralization\n[1] 0.3347051\n\n$theoretical_max\n[1] 1458\n\n\n\nExercise\nFigure out how to calculate the betweenness centralization\n\n## Your code here"
+  },
+  {
+    "objectID": "assignments/r_lab_examples/lab_8_network_stats.html#identifying-the-most-central-nodes",
+    "href": "assignments/r_lab_examples/lab_8_network_stats.html#identifying-the-most-central-nodes",
+    "title": "Calculating Network Statistics",
+    "section": "Identifying the most central nodes",
+    "text": "Identifying the most central nodes\nWe can also show the most central nodes in a table. We already know how to calculate centrality measures. After we calculate them, we have to take a step that’s a bit more complicated—basically, we take our node spreadsheet and temporarily convert it back to a “normal” R spreadsheet (a.k.a., tibble), and then manipulate the spreadsheet. That’s what the as_tibble() line below does.\nAfter it’s in a spreadsheet, the select command is the list of columns we want to keep for our table, the arrange command sorts the table (the - before bw_centrality sorts it in reverse order, from highest to lowest). Finally, the head command shows the top N nodes.\n\nG |&gt;\n  activate(nodes) |&gt;\n  mutate(bw_centrality = centrality_betweenness()) |&gt;\n  as_tibble() |&gt;\n  select(vertex.names, bw_centrality) |&gt;\n  arrange(-bw_centrality) |&gt;\n  head(10)\n\n# A tibble: 10 × 2\n   vertex.names bw_centrality\n   &lt;chr&gt;                &lt;dbl&gt;\n 1 E8                   46.2 \n 2 E120                 31.3 \n 3 E117                 26.1 \n 4 E9                   15.9 \n 5 E77                  15.6 \n 6 E49                  12.6 \n 7 E41                  12.1 \n 8 E93                   9.39\n 9 E28                   9.21\n10 E53                   8.74\n\n\n\nExercise\nCalculate the closeness centrality and save it as close_centrality; add it to the table so that it shows both types of centrality, and sort by closeness centrality.\n\n## Your code here"
+  },
+  {
+    "objectID": "assignments/r_lab_examples/lab_8_network_stats.html#visualizing-node-or-edge-level-statistics",
+    "href": "assignments/r_lab_examples/lab_8_network_stats.html#visualizing-node-or-edge-level-statistics",
+    "title": "Calculating Network Statistics",
+    "section": "Visualizing node or edge-level statistics",
+    "text": "Visualizing node or edge-level statistics\nThe other thing I want to show you how to do is to visualize attributes of the nodes or the edges. There are entire courses on visualizations, but I want to show you how to do a few.\n\nHistograms\nWe may want to visualize the distribution of attributes or network statistics.\nWe’ll use tibbles again, and then instead of using ggraph, we use ggplot, which is one of R’s general plotting packages.\ngeom_histogram tells it to create a histogram, in this case with the x axis mapped to the birthdate variable.\nFinally, theme_minimal() adds the axes and tick marks to the graph (try it without that line to see what I mean).\n\nG |&gt;\n  activate(nodes) |&gt;\n  as_tibble() |&gt;\n  ggplot() +\n  geom_histogram(aes(x=birthdate), binwidth=1) + \n  theme_minimal()\n\n\n\n\n\n\n\n\nIf we want to visualize how centralized a network is, a good way to do that is to show the distribution of degree (or betweenness or another centrality measure.) As we have done in a few previous labs, we’ll first need to create the column using mutate and then we’ll visualize it in the same way, using ggplot and geom_histogram.\nNote: You’ll need to calculate networks statistics before calling as_tibble. R knows how to get the centrality of a node spreadsheet, but once it’s converted to a tibble, it doesn’t know what to do.\n\nG |&gt;\n  activate(nodes) |&gt;\n  mutate(degree = centrality_degree(mode='all')) |&gt; \n  as_tibble() |&gt;\n  ggplot() +\n  geom_histogram(aes(x=degree)) + \n  theme_minimal()\n\n`stat_bin()` using `bins = 30`. Pick better value with `binwidth`.\n\n\n\n\n\n\n\n\n\n\n\nExercise\nVisualize the betweenness centrality of the bkfrab dataset as a histogram.\nHint: You need to load the data using as_tbl_graph\n\n# Your code here \n\n\n\nChallenge Exercise\nVisualize the edge weight variable from bkfrab as a histogram.\nHint: Remember to activate the edges spreadsheet.\n\n# Your code here\n\n\n\nBoxplots\nThe other thing we might want to do is compare the distributions of some network measure for different groups. There are lots of ways to do this, but the one I’ll show here is a “boxplot”. This shows where the “typical” values are for each group.\nFor example, this shows the degree distribution for each of the different religions in the ffe_elite dataset.\n\nffe_elite |&gt; as_tbl_graph() |&gt;\n  activate(nodes) |&gt;\n  mutate(degree = centrality_degree(mode='all')) |&gt;\n  mutate(religion = as_factor(religion)) |&gt; # Change religion to a factor\n  as_tibble() |&gt; # convert to a tibble\n  ggplot() + \n  geom_boxplot(aes(x=religion, fill=religion, y=degree)) + # `fill` changes the filled in color. Try changing this to `color` instead\n  theme_minimal()\n\n\n\n\n\n\n\n\n\n\nExercise\nVisualize the betweenness centrality of the ffe_elite data by the university that people attended, as boxplots.\n\n\nChallenge exercise\nCome up with something else that you want to visualize, either as a histogram or as boxplots and create a visualization below.\n\n# Your code here"
+  },
+  {
+    "objectID": "assignments/r_lab_examples/lab_6_visualizing_power.html",
+    "href": "assignments/r_lab_examples/lab_6_visualizing_power.html",
+    "title": "Power Visualization",
+    "section": "",
+    "text": "You have been building up skills and understanding about how ggraph works and now we’re ready to start building complex visualizations. Today we’ll work on different ways of showing power.\n\n\nPower has long been a central concern of social scientists. The famous sociologist Max Weber defined it as the ability to control others or resources—to realize one’s will.\nSome of this power comes in the form of “social capital”—the idea that there is power in our relationships—through mobilizing the resources of those we are connected to.\nThe construct of network power has many facets and over the years social network analysts have come up with a number of different algorithms for measuring different aspects of power in networks. These are usually called “centrality measures”. The intuition is that those in the center of a visualized network are typically those with the most power.\n\n\n\nDegree centrality is simply the number of connections that someone has. For directed networks, indegree can be interpreted as popularity and outdegree as gregariousness.\nLet’s look at different measures of power in the ht_friends network. There are a few new things going on here, so I’ll walk through each line:\n\nactivate(nodes) |&gt; mutate(name = 1:nrow(.N())) adds a column called name to the nodes, which starts at the number one and goes to the number of nodes (nrow(.N())).\nG |&gt; ggraph(): Hopefully you know what these lines do—take our graph (G) and make it into a ggraph\ngeom_edge_fan(aes(alpha = stat(index))): This is where things get a bit tricky. This creates edges using the geom_edge_fan style and sets the transparency (alpha) of an edge so that it’s darkest closest to the to node. It’s for helping us see the direction of directed edges.\ngeom_node_point(color = '#ceb888', size = 5): This should look familiar. It just sets a color and size for nodes\ngeom_node_text(aes(label = name)): This adds the labels we created earlier to the nodes. It just makes it easier for us to talk about individual nodes.\nscale_edge_alpha('Edge direction', guide = 'edge_direction'): Finally, this lets you adjust the legend. We’ll see more examples today and later, but the scale_ funcions let you change the title of a legend, change the colors used, etc.\n\n\nG &lt;- ht_friends |&gt; \n  upgrade_graph() |&gt;\n  as_tbl_graph() |&gt;\n  activate(nodes) |&gt;\n  mutate(name=1:nrow(.N()))\n\nG |&gt;\n  ggraph() + \n  geom_edge_fan(aes(alpha = stat(index))) + # This does gradients for directed edges\n  geom_node_point(color = '#ceb888', size = 5) + \n  geom_node_text(aes(label = name)) + # Adds labels to nodes\n  scale_edge_alpha('Edge direction', guide = 'edge_direction') # Adds the \"Edge direction\" legend\n\n\n\n\n\n\n\n\nNow, let’s show the degree centrality by changing the size of nodes. Here is the total degree centrality. Note that we are using mutate to create the degree column, and then using it to adjust the size of the nodes.\n\nG |&gt;\n  activate(nodes) |&gt;\n  mutate(degree = centrality_degree(mode = 'all')) |&gt;\n  ggraph() +\n  geom_edge_fan(aes(alpha = stat(index))) + # This does gradients for directed edges\n  geom_node_point(aes(size = degree), color = '#ceb888') +\n  geom_node_text(aes(label = name, size=degree *1.1)) +\n  scale_edge_alpha('Edge direction', guide = 'edge_direction') + # Adds the \"Edge direction\" legend\n  scale_size(name='Total Degree') # Can you figure out what this is doing?\n\nUsing \"stress\" as default layout\n\n\n\n\n\n\n\n\n\nNote how this changes when we show indegree/popularity\n\nG |&gt;\n  activate(nodes) |&gt;\n  mutate(degree = centrality_degree(mode = 'in')) |&gt;\n  ggraph() +\n  geom_edge_fan(aes(alpha = stat(index))) + # This does gradients for directed edges\n  geom_node_point(aes(size = degree), color = '#ceb888') +\n  geom_node_text(aes(label = name, size=degree * 1.1)) +\n  scale_edge_alpha('Edge direction', guide = 'edge_direction') + # Adds the \"Edge direction\" legend\n  scale_size_continuous(name='Indegree')\n\nUsing \"stress\" as default layout\n\n\n\n\n\n\n\n\n\n\n\nNow it’s your turn. How would you edit the code above to show outdegree (or gregariousness)? What do you learn / notice based on comparing these three measures?\n\n# YOUR CODE HERE\n\nYOUR ANSWER HERE\n\n\n\n\nThis measure tries to capture how much a node is literally in the center of a graph. It is a measure of the average distance to each other node.\nNote that there is a mode parameter that can be either ‘out’ for only outgoing distance, ‘in’, for incoming distance, or ‘all’, which we use, which ignores whether an edge is incoming or outgoing. If we don’t include the parameter, then it uses the default, which is ‘all’.\n\nG |&gt;\n  activate(nodes) |&gt;\n  mutate(centrality = centrality_closeness(mode='all')) |&gt;\n  mutate(centrality = replace_na(centrality, 0)) |&gt;\n  ggraph() + \n  geom_edge_fan(aes(alpha = stat(index))) + # This does gradients for directed edges\n  geom_node_point(aes(size = centrality), color = '#ceb888') +\n  geom_node_text(aes(label = name, size=centrality * 1)) +\n  scale_edge_alpha('Edge direction', guide = 'edge_direction') + # Adds the \"Edge direction\" legend\n  scale_size_continuous(name = \"Closeness Centrality\")\n\nUsing \"stress\" as default layout\n\n\n\n\n\n\n\n\n\n\n\nWhat do you notice about what’s different here? What kind of power might someone with high closeness centrality have in a network?\nYOUR ANSWER HERE\n\n\n\n\nThis measure counts the number of shortest paths that go through each node. This is based on the value of being in a “structural hole”.\n\n\nLook again at the network and guess which nodes will have the highest betweenness centrality.\nYOUR ANSWER HERE\nAfter you’ve done that, turn this into a code block (by adding “{r}” after the backticks) and then find the bug in the code below so that it colors the nodes based on betweenness centrality (So far we’ve been using the size of the node to represent centrality, but color is the other common way of showing centrality).\nG |&gt;\n  activate(nodes) |&gt;\n  mutate(centrality = centrality_betweenness()) |&gt;\n  ggraph() +\n  geom_edge_fan(aes(alpha = stat(index))) + # This does gradients for directed edges\n  geom_node_point(color = centrality, size = 4) +\n  geom_node_text(aes(label = name)) +\n  scale_edge_alpha('Edge direction', guide = 'edge_direction') + # Adds the \"Edge direction\" legend\n  scale_color_continuous(name = \"Betweenness Centrality\")\n\n\n\n\nThe last important measure of centrality is eigenvector centrality. The calculation is complicated and based on matrix algebra but the concept is pretty simple: all else being equal, a node is more powerful if it’s connected to a node that’s well-connected.\nThis is actually the basis of Google’s original search algorithm, and is part of what made it successful.\n\nG |&gt;\n  activate(nodes) |&gt;\n  mutate(centrality = centrality_eigen(directed = TRUE)) |&gt;\n  ggraph() +\n  geom_edge_fan(aes(alpha = stat(index))) + # This does gradients for directed edges\n  geom_node_point(aes(size = centrality), color = '#ceb888') +\n  geom_node_text(aes(label = name, size = centrality * 1.2)) +\n  scale_edge_alpha('Edge direction', guide = 'edge_direction') + # Adds the \"Edge direction\" legend\n  scale_size_continuous(name = \"Eigenvector Centrality\")\n\nUsing \"stress\" as default layout\n\n\n\n\n\n\n\n\n\n\n\nWhy does Node 12 have higher eigenvector centrality than Node 6? Why does node 10 have such low eigenvector centrality? What does eigenvector centrality measure about power that other measures miss?\nYOUR ANSWER HERE"
+  },
+  {
+    "objectID": "assignments/r_lab_examples/lab_6_visualizing_power.html#power-and-networks",
+    "href": "assignments/r_lab_examples/lab_6_visualizing_power.html#power-and-networks",
+    "title": "Power Visualization",
+    "section": "",
+    "text": "Power has long been a central concern of social scientists. The famous sociologist Max Weber defined it as the ability to control others or resources—to realize one’s will.\nSome of this power comes in the form of “social capital”—the idea that there is power in our relationships—through mobilizing the resources of those we are connected to.\nThe construct of network power has many facets and over the years social network analysts have come up with a number of different algorithms for measuring different aspects of power in networks. These are usually called “centrality measures”. The intuition is that those in the center of a visualized network are typically those with the most power."
+  },
+  {
+    "objectID": "assignments/r_lab_examples/lab_6_visualizing_power.html#degree-centrality",
+    "href": "assignments/r_lab_examples/lab_6_visualizing_power.html#degree-centrality",
+    "title": "Power Visualization",
+    "section": "",
+    "text": "Degree centrality is simply the number of connections that someone has. For directed networks, indegree can be interpreted as popularity and outdegree as gregariousness.\nLet’s look at different measures of power in the ht_friends network. There are a few new things going on here, so I’ll walk through each line:\n\nactivate(nodes) |&gt; mutate(name = 1:nrow(.N())) adds a column called name to the nodes, which starts at the number one and goes to the number of nodes (nrow(.N())).\nG |&gt; ggraph(): Hopefully you know what these lines do—take our graph (G) and make it into a ggraph\ngeom_edge_fan(aes(alpha = stat(index))): This is where things get a bit tricky. This creates edges using the geom_edge_fan style and sets the transparency (alpha) of an edge so that it’s darkest closest to the to node. It’s for helping us see the direction of directed edges.\ngeom_node_point(color = '#ceb888', size = 5): This should look familiar. It just sets a color and size for nodes\ngeom_node_text(aes(label = name)): This adds the labels we created earlier to the nodes. It just makes it easier for us to talk about individual nodes.\nscale_edge_alpha('Edge direction', guide = 'edge_direction'): Finally, this lets you adjust the legend. We’ll see more examples today and later, but the scale_ funcions let you change the title of a legend, change the colors used, etc.\n\n\nG &lt;- ht_friends |&gt; \n  upgrade_graph() |&gt;\n  as_tbl_graph() |&gt;\n  activate(nodes) |&gt;\n  mutate(name=1:nrow(.N()))\n\nG |&gt;\n  ggraph() + \n  geom_edge_fan(aes(alpha = stat(index))) + # This does gradients for directed edges\n  geom_node_point(color = '#ceb888', size = 5) + \n  geom_node_text(aes(label = name)) + # Adds labels to nodes\n  scale_edge_alpha('Edge direction', guide = 'edge_direction') # Adds the \"Edge direction\" legend\n\n\n\n\n\n\n\n\nNow, let’s show the degree centrality by changing the size of nodes. Here is the total degree centrality. Note that we are using mutate to create the degree column, and then using it to adjust the size of the nodes.\n\nG |&gt;\n  activate(nodes) |&gt;\n  mutate(degree = centrality_degree(mode = 'all')) |&gt;\n  ggraph() +\n  geom_edge_fan(aes(alpha = stat(index))) + # This does gradients for directed edges\n  geom_node_point(aes(size = degree), color = '#ceb888') +\n  geom_node_text(aes(label = name, size=degree *1.1)) +\n  scale_edge_alpha('Edge direction', guide = 'edge_direction') + # Adds the \"Edge direction\" legend\n  scale_size(name='Total Degree') # Can you figure out what this is doing?\n\nUsing \"stress\" as default layout\n\n\n\n\n\n\n\n\n\nNote how this changes when we show indegree/popularity\n\nG |&gt;\n  activate(nodes) |&gt;\n  mutate(degree = centrality_degree(mode = 'in')) |&gt;\n  ggraph() +\n  geom_edge_fan(aes(alpha = stat(index))) + # This does gradients for directed edges\n  geom_node_point(aes(size = degree), color = '#ceb888') +\n  geom_node_text(aes(label = name, size=degree * 1.1)) +\n  scale_edge_alpha('Edge direction', guide = 'edge_direction') + # Adds the \"Edge direction\" legend\n  scale_size_continuous(name='Indegree')\n\nUsing \"stress\" as default layout\n\n\n\n\n\n\n\n\n\n\n\nNow it’s your turn. How would you edit the code above to show outdegree (or gregariousness)? What do you learn / notice based on comparing these three measures?\n\n# YOUR CODE HERE\n\nYOUR ANSWER HERE"
+  },
+  {
+    "objectID": "assignments/r_lab_examples/lab_6_visualizing_power.html#closeness-centrality",
+    "href": "assignments/r_lab_examples/lab_6_visualizing_power.html#closeness-centrality",
+    "title": "Power Visualization",
+    "section": "",
+    "text": "This measure tries to capture how much a node is literally in the center of a graph. It is a measure of the average distance to each other node.\nNote that there is a mode parameter that can be either ‘out’ for only outgoing distance, ‘in’, for incoming distance, or ‘all’, which we use, which ignores whether an edge is incoming or outgoing. If we don’t include the parameter, then it uses the default, which is ‘all’.\n\nG |&gt;\n  activate(nodes) |&gt;\n  mutate(centrality = centrality_closeness(mode='all')) |&gt;\n  mutate(centrality = replace_na(centrality, 0)) |&gt;\n  ggraph() + \n  geom_edge_fan(aes(alpha = stat(index))) + # This does gradients for directed edges\n  geom_node_point(aes(size = centrality), color = '#ceb888') +\n  geom_node_text(aes(label = name, size=centrality * 1)) +\n  scale_edge_alpha('Edge direction', guide = 'edge_direction') + # Adds the \"Edge direction\" legend\n  scale_size_continuous(name = \"Closeness Centrality\")\n\nUsing \"stress\" as default layout\n\n\n\n\n\n\n\n\n\n\n\nWhat do you notice about what’s different here? What kind of power might someone with high closeness centrality have in a network?\nYOUR ANSWER HERE"
+  },
+  {
+    "objectID": "assignments/r_lab_examples/lab_6_visualizing_power.html#betweenness-centrality",
+    "href": "assignments/r_lab_examples/lab_6_visualizing_power.html#betweenness-centrality",
+    "title": "Power Visualization",
+    "section": "",
+    "text": "This measure counts the number of shortest paths that go through each node. This is based on the value of being in a “structural hole”.\n\n\nLook again at the network and guess which nodes will have the highest betweenness centrality.\nYOUR ANSWER HERE\nAfter you’ve done that, turn this into a code block (by adding “{r}” after the backticks) and then find the bug in the code below so that it colors the nodes based on betweenness centrality (So far we’ve been using the size of the node to represent centrality, but color is the other common way of showing centrality).\nG |&gt;\n  activate(nodes) |&gt;\n  mutate(centrality = centrality_betweenness()) |&gt;\n  ggraph() +\n  geom_edge_fan(aes(alpha = stat(index))) + # This does gradients for directed edges\n  geom_node_point(color = centrality, size = 4) +\n  geom_node_text(aes(label = name)) +\n  scale_edge_alpha('Edge direction', guide = 'edge_direction') + # Adds the \"Edge direction\" legend\n  scale_color_continuous(name = \"Betweenness Centrality\")"
+  },
+  {
+    "objectID": "assignments/r_lab_examples/lab_6_visualizing_power.html#eigenvector-centrality",
+    "href": "assignments/r_lab_examples/lab_6_visualizing_power.html#eigenvector-centrality",
+    "title": "Power Visualization",
+    "section": "",
+    "text": "The last important measure of centrality is eigenvector centrality. The calculation is complicated and based on matrix algebra but the concept is pretty simple: all else being equal, a node is more powerful if it’s connected to a node that’s well-connected.\nThis is actually the basis of Google’s original search algorithm, and is part of what made it successful.\n\nG |&gt;\n  activate(nodes) |&gt;\n  mutate(centrality = centrality_eigen(directed = TRUE)) |&gt;\n  ggraph() +\n  geom_edge_fan(aes(alpha = stat(index))) + # This does gradients for directed edges\n  geom_node_point(aes(size = centrality), color = '#ceb888') +\n  geom_node_text(aes(label = name, size = centrality * 1.2)) +\n  scale_edge_alpha('Edge direction', guide = 'edge_direction') + # Adds the \"Edge direction\" legend\n  scale_size_continuous(name = \"Eigenvector Centrality\")\n\nUsing \"stress\" as default layout\n\n\n\n\n\n\n\n\n\n\n\nWhy does Node 12 have higher eigenvector centrality than Node 6? Why does node 10 have such low eigenvector centrality? What does eigenvector centrality measure about power that other measures miss?\nYOUR ANSWER HERE"
+  },
+  {
+    "objectID": "assignments/r_lab_examples/lab_4_intro_to_ggraph.html",
+    "href": "assignments/r_lab_examples/lab_4_intro_to_ggraph.html",
+    "title": "Intro to ggraph",
+    "section": "",
+    "text": "tidygraph is the package we’ve been using to manipulate network objects—doing filtering, mutating, etc. The companion package to tidygraph is ggraph, which is designed to let you visualize networks. ggraph is a set of tools based on ggplot2. The key idea behind both ggraph and ggplot2 is that you can build a plot by adding layers according to a “grammar of graphics”. Each layer lets you add to and change things about the plot.\nggraph includes tons of really cool types of plots but for this tutorial I am going to focus on standard plots that show nodes as circles and edges as lines. There are three key components that should be part of any of these plots:"
+  },
+  {
+    "objectID": "assignments/r_lab_examples/lab_4_intro_to_ggraph.html#edges",
+    "href": "assignments/r_lab_examples/lab_4_intro_to_ggraph.html#edges",
+    "title": "Intro to ggraph",
+    "section": "Edges",
+    "text": "Edges\nBy this point, you should know what edges are. ggraph has a number of different options for how to draw edges. Let’s start with the simplest possible network visualization. This shows the Zachary karate network with straight line edges.\nThe ggraph() command tells R to make a ggraph visualization from a network.\ngeom_edge_fan() draws the edges.\n\ncreate_notable('zachary') |&gt;\n  ggraph() +\n  geom_edge_fan()\n\nUsing \"stress\" as default layout\n\n\n\n\n\n\n\n\n\nNote that there aren’t any nodes in this picture—it’s just the edges.\nAll of the different edge options start with geom_edge_, so if you start typing that then R’s autocomplete will show you the options, and you can play around by changing them around.\n\nExercise\nMake a visualization of the Zachary karate network, this time using geom_edge_diagonal\n\n# Your Code here"
+  },
+  {
+    "objectID": "assignments/r_lab_examples/lab_4_intro_to_ggraph.html#nodes",
+    "href": "assignments/r_lab_examples/lab_4_intro_to_ggraph.html#nodes",
+    "title": "Intro to ggraph",
+    "section": "Nodes",
+    "text": "Nodes\nNext, we’ll add the nodes. This is where ggraph gets really cool. We can treat the nodes like just another layer of the plot. We use the plus symbol (+) at the end of each line to tell R that we want to add another layer.\n\ncreate_notable('zachary') |&gt;\n  ggraph() +\n  geom_edge_fan() +\n  geom_node_point()\n\nUsing \"stress\" as default layout\n\n\n\n\n\n\n\n\n\nWhile there are quite a few different options for nodes (start typing geom_node_ to see them all), most of them are designed for different types of plots. We will typically just use geom_node_point.\n\nAesthetic parameters\nNow is a good time to introduce the idea of parameters. geom_edge_ and geom_node_ functions take parameters, so that you can adjust how the visualization looks.\nFor example, maybe we think that the edges are too thick, and that they should be Boilermaker Gold instead (the hex code for the color—#CFB991—is from https://marcom.purdue.edu/our-brand/visual-language-guideline/):\n\ncreate_notable('zachary') |&gt;\n  ggraph() +\n  geom_edge_fan(width=.5, color='#CFB991') +\n  geom_node_point()\n\nUsing \"stress\" as default layout\n\n\n\n\n\n\n\n\n\nWhile there are other parameters for edges, color and width are the ones we’ll use most often.\n\n\nExercise\nWe can also give parameters for the nodes. Create a visualization that keeps our gold edges, but changes the color of the nodes to anything you want, and increases their size (hint: you’ll want the size parameter).\n\n# Your code here"
+  },
+  {
+    "objectID": "assignments/r_lab_examples/lab_4_intro_to_ggraph.html#layout",
+    "href": "assignments/r_lab_examples/lab_4_intro_to_ggraph.html#layout",
+    "title": "Intro to ggraph",
+    "section": "Layout",
+    "text": "Layout\nThe layout is where nodes appear on a graph. There are lots of different algorithms that can be used; some of them are very basic—like putting the nodes in a circle or just scattering them randomly. Most of the layouts we will use are based on algorithms that try to keep nodes which are connected to each other close together and unconnected nodes far apart from each other.\nYou can let ggraph choose a layout for you or you can look through some here and here.\nWe actually don’t add a new layer for the layout: layouts are defined inside the ggraph() function, which has to be called before making any plot. The code below makes a tidy graph of the Zachary karate network using create_notable('zachary'). It then sets 'kk' as the layout, and adds a simple layer for the nodes and a layer for the edges.\n\ncreate_notable('zachary') |&gt;\n  ggraph(layout = 'kk') +\n  geom_node_point() +\n  geom_edge_fan()\n\n\n\n\n\n\n\n\nThe following plot shows the nodes in a circle. This shows how changes the layout can really change the look and the interpretation of the plot. These all show the same data.\n\ncreate_notable('zachary') |&gt;\n  ggraph(layout = 'circle') +\n  geom_node_point() +\n  geom_edge_fan()\n\n\n\n\n\n\n\n\n\nExercise\nChange the layout to randomly. How does this change what you are able to see in the plot?\n\n# Your code here\n\nHopefully this has been a pretty painless introduction to ggraph. Next time we’ll talk about some different options for making your graphs look beautiful and using aesthetics to convey information about the network."
+  },
+  {
+    "objectID": "assignments/r_lab_examples/lab_2_creating_networks.html",
+    "href": "assignments/r_lab_examples/lab_2_creating_networks.html",
+    "title": "Creating Networks",
+    "section": "",
+    "text": "This first cell is setup code. It loads a bunch of libraries that we will use later on, so you will need to run this cell before your run any other cells. If you get an error, then you may need to install the libraries. See Lab 1 for instructions on how to do that.\nknitr::opts_chunk$set(echo = TRUE)\n# import the libraries needed\nlibrary(igraph)\nlibrary(ggraph) # If you get an error run install.packages('ggraph')\nlibrary(tidygraph) # If you get an error run install.packages('tidygraph')\nlibrary(readxl) # If you get an error run install.packages('tidyverse')\nset_graph_style(family='sans')"
+  },
+  {
+    "objectID": "assignments/r_lab_examples/lab_2_creating_networks.html#the-goal",
+    "href": "assignments/r_lab_examples/lab_2_creating_networks.html#the-goal",
+    "title": "Creating Networks",
+    "section": "The goal",
+    "text": "The goal\nThe goal of this assignment is very simple - learn how to create a network in R.\nWe will talk about three main ways to do this, but we will start with the hardest first."
+  },
+  {
+    "objectID": "assignments/r_lab_examples/lab_2_creating_networks.html#networks-from-two-spreadsheets",
+    "href": "assignments/r_lab_examples/lab_2_creating_networks.html#networks-from-two-spreadsheets",
+    "title": "Creating Networks",
+    "section": "Networks from two spreadsheets",
+    "text": "Networks from two spreadsheets\nI think it’s really useful to think of networks as two spreadsheets. The first spreadsheet is a list of edges and their attributes (a.k.a. an edgelist) and the second is a list of nodes and their attributes.\nWe’ll start by creating a simple edgelist, using made up names."
+  },
+  {
+    "objectID": "assignments/r_lab_examples/lab_2_creating_networks.html#exercise",
+    "href": "assignments/r_lab_examples/lab_2_creating_networks.html#exercise",
+    "title": "Creating Networks",
+    "section": "Exercise",
+    "text": "Exercise\nIn Excel (or LibreOffice or Google Sheets) open a new spreadsheet, and create a spreadsheet that looks like this:\n\n\n\nFrom\nTo\n\n\n\n\nJohn\nIda\n\n\nElwyn\nIda\n\n\nOkan\nAxelle\n\n\nJohn\nAxelle\n\n\nAxelle\nIda\n\n\n\nSave the spreadsheet to your computer as an XLSX file called edges.xlsx; make sure to save it to the same folder as this file.\nUncomment the code below (by deleting the # symbol) and run it.\n\nedgelist &lt;- read_excel(\"/home/jeremy/Teaching/can-s25.jeremydfoote.com/assignments/r_lab_examples/edges.xlsx\")\n\nLook down at the R console (the bottom window) and see if it worked. You might get an error here that says something like there is no function called 'readxl'. If you get that, then you need to run install.packages('tidyverse') in the console (this is in the bottom window). It will take a while to install, but if it works correctly your code above should work.\nYou may also get an error that’s something like could not find function \"read_excel\". If you get that, then you need to run the cell at the top of this page (the one that starts with knitr::opts_chunk$set(echo = TRUE)). This will load the libraries that we need to run the rest of the code.\nFinally, you might get an error that says something like Error: path does not exist: ‘./edges.xlsx’. This means that R can’t find the file. Make sure that you saved the file to the same folder as this file. If you need to, you can right-click the filename and select Copy Path to get the full path to the file. Replace ./edges.xlsx with the full path.\nTo test if everything worked right, uncomment the following code to show all of the edges in R.\n\nedgelist\n\n# A tibble: 5 × 2\n  From   To    \n  &lt;chr&gt;  &lt;chr&gt; \n1 John   Ida   \n2 Elwyn  Ida   \n3 Okan   Axelle\n4 John   Axelle\n5 Axelle Ida   \n\n\n(Note: the “#” symbol “comments out” code - this means that anything after the # in a given line will be ignored by R)"
+  },
+  {
+    "objectID": "assignments/r_lab_examples/lab_2_creating_networks.html#excercise",
+    "href": "assignments/r_lab_examples/lab_2_creating_networks.html#excercise",
+    "title": "Creating Networks",
+    "section": "Excercise",
+    "text": "Excercise\nNext, we will create a table of attributes for the people in our network, and import that, too.\nDo the same thing again - open a new spreadsheet, and this time make it look like this:\n\n\n\nName\nAge\nGender\nMajor\n\n\n\n\nJohn\n22\nM\nCOM\n\n\nElwyn\n23\nM\nSOC\n\n\nOkan\n25\nF\nCOM\n\n\nIda\n19\nF\nSOC\n\n\nAxelle\n20\nT\nCOM\n\n\n\nMake sure that the spelling (including capitalization) is the same as in your edgelist file.\nAgain, save it to this folder, as node_atts.xlsx.\nHere is my import code, which should work if you saved it to this folder:\n\nnode_atts &lt;- read_excel(\"/home/jeremy/Teaching/can-s25.jeremydfoote.com/assignments/r_lab_examples/node_atts.xlsx\")\n\nUncomment and run the following code to check that it worked.\n\nnode_atts\n\n# A tibble: 5 × 4\n  Name     Age Gender Major\n  &lt;chr&gt;  &lt;dbl&gt; &lt;chr&gt;  &lt;chr&gt;\n1 John      22 M      COM  \n2 Elwyn     23 M      SOC  \n3 Okan      25 F      COM  \n4 Ida       19 F      SOC  \n5 Axelle    20 T      COM"
+  },
+  {
+    "objectID": "assignments/r_lab_examples/lab_2_creating_networks.html#importing-into-r",
+    "href": "assignments/r_lab_examples/lab_2_creating_networks.html#importing-into-r",
+    "title": "Creating Networks",
+    "section": "Importing into R",
+    "text": "Importing into R\nFinally, we’ll create a network “object” using these files. So far, what we’ve done is take our two spreadsheets, converted them into a format that R can understand (called a tibble), and saved them as the variables edgelist and node_atts. Creating a network objects tells R that these represent a network, so that it can create visualizations, get network statistics, etc.\nWe do this by running graph_from_data_frame. This is a function that takes in the arguments d, vertices, and directed.\n\nd is the edgelist\nvertices is the node attributes\ndirected is whether this is a directed or undirected graph.\n\nIf you’ve done everything right, then when you uncomment the code below, it should produce a network plot.\n\nG &lt;- graph_from_data_frame(d = edgelist, \n                           vertices = node_atts, directed = T)\nplot(G)\n\n\n\n\n\n\n\n\nThe one piece of code from above that we haven’t talked about is G &lt;-. This saves the network to the variable G and then plot(G) makes a basic plot of it.\nIf this doesn’t work, the most likely culprit is a typo in either the edgelist or the node attributes. Check the spelling and capitalization of the names in both files."
+  },
+  {
+    "objectID": "assignments/r_lab_examples/lab_2_creating_networks.html#tidygraph-networks",
+    "href": "assignments/r_lab_examples/lab_2_creating_networks.html#tidygraph-networks",
+    "title": "Creating Networks",
+    "section": "Tidygraph networks",
+    "text": "Tidygraph networks\nFinally, to make things even more confusing, for lots of the cool things we’ll be doing in future lessons, we need to take one more step, and turn this from a normal network object into a tidygraph network object.\nTo do this, we take G (the network object we just created) and run as_tbl_graph() on it.\nUncomment the code below and run it. If it worked, then you should see a text output with two tables:\nNode Data and Edge Data\n\nG &lt;- as_tbl_graph(G)\n\nG\n\n# A tbl_graph: 5 nodes and 5 edges\n#\n# A directed acyclic simple graph with 1 component\n#\n# Node Data: 5 × 4 (active)\n  name     Age Gender Major\n  &lt;chr&gt;  &lt;dbl&gt; &lt;chr&gt;  &lt;chr&gt;\n1 John      22 M      COM  \n2 Elwyn     23 M      SOC  \n3 Okan      25 F      COM  \n4 Ida       19 F      SOC  \n5 Axelle    20 T      COM  \n#\n# Edge Data: 5 × 2\n   from    to\n  &lt;int&gt; &lt;int&gt;\n1     1     4\n2     2     4\n3     3     5\n# ℹ 2 more rows"
+  },
+  {
+    "objectID": "assignments/r_lab_examples/lab_2_creating_networks.html#exercises",
+    "href": "assignments/r_lab_examples/lab_2_creating_networks.html#exercises",
+    "title": "Creating Networks",
+    "section": "Exercises",
+    "text": "Exercises\n\nSee if you can figure out how to add another person to the network you created, following all of the steps above. Do this by creating new spreadsheets in Excel, something like edgelist_2.xlsx and node_atts_2.xlsx. Make sure to give the new person node attributes and at least one edge. Use graph_from_data_frame to create a new network object and as_tbl_graph to change it into a tidygraph network object.\n\nFinally, create a new network plot with the new person.\n\n\n\n\n\n\n\n\n\n\nAbove, we loaded the ht_advice network. Figure out how to load the ffe_elite network from newtorkdata as a tidygraph object, and plot it.\n\n\n\n\n\n\n\n\n\n\n\nThe play_gnp() function above has two parameters, which have the values 20 and .4. Try changing the values and observing the result. What do you think each of these parameters do?\n\nYOUR ANSWER HERE\n\nA list of a bunch of possible random graphs is listed at https://tidygraph.data-imaginist.com/reference/index.html under “Graph Creation”. See if you can figure out how to make a ring graph with 20 nodes."
+  },
+  {
     "objectID": "assignments/r_lab_8_–_network_stats.html",
     "href": "assignments/r_lab_8_–_network_stats.html",
     "title": "R Lab 8 – Network Stats",
@@ -1212,11 +1366,35 @@
     ]
   },
   {
+    "objectID": "assignments/r_lab_8_–_network_stats.html#example-solution",
+    "href": "assignments/r_lab_8_–_network_stats.html#example-solution",
+    "title": "R Lab 8 – Network Stats",
+    "section": "Example Solution",
+    "text": "Example Solution\nView Example Solution",
+    "crumbs": [
+      "Assignments",
+      "R Labs",
+      "R Lab 8 – Network Stats"
+    ]
+  },
+  {
     "objectID": "assignments/r_lab_6_–_visualizing_power.html#assignment-file",
     "href": "assignments/r_lab_6_–_visualizing_power.html#assignment-file",
     "title": "R Lab 6 – Visualizing Power",
     "section": "Assignment File",
     "text": "Assignment File\nDownload Assignment (right-click and save)",
+    "crumbs": [
+      "Assignments",
+      "R Labs",
+      "R Lab 6 – Visualizing Power"
+    ]
+  },
+  {
+    "objectID": "assignments/r_lab_6_–_visualizing_power.html#example-solution",
+    "href": "assignments/r_lab_6_–_visualizing_power.html#example-solution",
+    "title": "R Lab 6 – Visualizing Power",
+    "section": "Example Solution",
+    "text": "Example Solution\nView Example Solution",
     "crumbs": [
       "Assignments",
       "R Labs",
@@ -1236,11 +1414,35 @@
     ]
   },
   {
+    "objectID": "assignments/r_lab_4_–_intro_to_ggraph.html#example-solution",
+    "href": "assignments/r_lab_4_–_intro_to_ggraph.html#example-solution",
+    "title": "R Lab 4 – Intro to ggraph",
+    "section": "Example Solution",
+    "text": "Example Solution\nView Example Solution",
+    "crumbs": [
+      "Assignments",
+      "R Labs",
+      "R Lab 4 – Intro to ggraph"
+    ]
+  },
+  {
     "objectID": "assignments/r_lab_2_–_creating_networks.html#assignment-file",
     "href": "assignments/r_lab_2_–_creating_networks.html#assignment-file",
     "title": "R Lab 2 – Creating Networks",
     "section": "Assignment File",
     "text": "Assignment File\nDownload Assignment (right-click and save)",
+    "crumbs": [
+      "Assignments",
+      "R Labs",
+      "R Lab 2 – Creating Networks"
+    ]
+  },
+  {
+    "objectID": "assignments/r_lab_2_–_creating_networks.html#example-solution",
+    "href": "assignments/r_lab_2_–_creating_networks.html#example-solution",
+    "title": "R Lab 2 – Creating Networks",
+    "section": "Example Solution",
+    "text": "Example Solution\nView Example Solution",
     "crumbs": [
       "Assignments",
       "R Labs",
@@ -1283,6 +1485,17 @@
     "title": "Ego Networks Activity",
     "section": "",
     "text": "Download Assignment (right-click and save)",
+    "crumbs": [
+      "Assignments",
+      "Ego Networks Activity"
+    ]
+  },
+  {
+    "objectID": "assignments/ego_networks_activity.html#example-solution",
+    "href": "assignments/ego_networks_activity.html#example-solution",
+    "title": "Ego Networks Activity",
+    "section": "Example Solution",
+    "text": "Example Solution\nView Example Solution",
     "crumbs": [
       "Assignments",
       "Ego Networks Activity"
@@ -1743,7 +1956,7 @@
     "href": "assignments/r_lab_1_-_installation.html",
     "title": "R Lab 1 - Setting up your environment",
     "section": "",
-    "text": "This lab has three goals:\n\nGet your R environment is set up correctly\nIntroduce you to the idea of Quarto files\nCreate your first network graph\n\nYou can either do your homework on your own computer, or you can use the lab computers. In general, you should be able to get most of the labs done on Thursdays, but you will need to do work outside of class for some labs, and for the final project.\nThis semester, we are going to try using VSCode. This is a popular, open source Interactive Development Environment. One of the cool features is that it has an AI plugin which will automatically suggest code for you. I'm hopeful that this will let you do more, faster.\n\nInstall Quarto\n\nInstall Quarto\n\n\n\nInstall VSCode\n\nInstall VSCode\n\n\n\nInstall R\n\nInstall R. This is a really old, janky-looking site, but I promise it’s real.\n\n\n\nTry to run the lab\n\nCreate a folder on your computer called COM_411_Labs\nRight-click on this link to Lab 1 and save it into the COM_411_Labs folder\nOpen VSCode\nClick on the Extensions icon on the left (it’s 3 attached squares and one floating square)\nSearch for “quarto” and install the quarto extension\nSearch for “R” and install the R extension\nIn VSCode, Click File &gt; Open Folder - Navigate to the COM_411_Labs folder that you created earlier\nClick on the lab_1_quarto.qmd file, and it should open in the main window of VSCode. At this point, it may ask if you want to install “languageserver”. You can click “Install” if it asks.\nScroll down to line 36. You should see a little button that says “Run Cell”. Push that button, and a terminal will open at the bottom of the screen. This will run the R code in the cell.\nIn the R shell at the bottom of VSCode, paste the following:\n\ninstall.packages(c(\"rmarkdown\",\"tidyverse\",\"ggraph\",\"tidygraph\",\"igraphdata\"))\nIt will ask you what CRAN mirror you'd like to use. You can choose something in the US.\nIf it asks if you want to install from source, you can type “no”\nThis will show a bunch of crazy messages for a while. You can probably ignore them.\nWINDOWS USERS: There’s a chance that this won’t work because VSCode doesn’t know where R is. This page has some instructions on how to fix it. Look under “Connect R”. If you can’t get it to work, ask a neighbor (or me) for help.\n\nInstall tinytex. Click the Quarto Preview terminal (in the bottom right) and type:\n\nquarto install tinytex\n\nClick the “Preview” icon at the top right, and hopefully it works!\nRead the document, make the changes that you are asked to, and then preview the document again. Notice that there is a new PDF file in the folder.\nUpload the PDF to Brightspace! You did it!!\n\nIf things aren’t working then ask a neighbor for help.\n\n\nVideo Walkthrough\nThis was from an older version of VSCode, but should still be helpful:\n\n\n\nSet up Github Copilot\nIf you want to use Github Copilot\n\nSign up for an account at Github education\nInstall the GitHub Copilot extension in VSCode\nAuthenticate using the popup that shows up in the bottom right\n\nWe will talk more about how to use Copilot in class.",
+    "text": "This lab has three goals:\n\nGet your R environment is set up correctly\nIntroduce you to the idea of Quarto files\nCreate your first network graph\n\nWe will be using VSCode as our development environment. This is a popular, open source Integrated Development Environment. This is the software that you will actual open and use to do all of your work.\nUnder the hood, VSCode will use Quarto and R. Quarto is a tool that lets you write code and text in the same document, and then convert it to a variety of formats, including PDF, HTML, and Word. R is even lower level, and is the engine that actually runs the code that you write.\nFor the first step, you will need to download and install the three main piece of software that we will be using: Quarto, VSCode, and R.\n\nInstall Quarto\n\nInstall Quarto\n\n\n\nInstall VSCode\n\nInstall VSCode\n\n\n\nInstall R\n\nInstall R. This is a really old, janky-looking site, but I promise it’s real.\n\n\n\nTry to run the lab\n\nCreate a folder on your computer called COM_411_Labs\nRight-click on this link to Lab 1 and save it into the COM_411_Labs folder\nOpen VSCode\nClick on the Extensions icon on the left (it’s 3 attached squares and one floating square)\nSearch for “quarto” and install the quarto extension\nSearch for “R” and install the R extension\nIn VSCode, Click File &gt; Open Folder; Navigate to the COM_411_Labs folder that you created earlier and open it. You should see the lab_1\nClick on the lab_1_quarto.qmd file, and it should open in the main window of VSCode. At this point, it may ask if you want to install “languageserver”. You can click “Install” if it asks.\nScroll down to line 36. You should see a little button that says “Run Cell”. Push that button, and a terminal will open at the bottom of the screen. This will run the R code in the cell.\nIn the R shell at the bottom of VSCode, paste the following:\n\ninstall.packages(c(\"rmarkdown\",\"tidyverse\",\"ggraph\",\"tidygraph\",\"igraphdata\"))\nIt will ask you what CRAN mirror you’d like to use. You can choose something in the US.\nIf it asks if you want to install from source, you can type “no”\nThis will show a bunch of crazy messages for a while. You can probably ignore them.\nWINDOWS USERS: There’s a chance that this won’t work because VSCode doesn’t know where R is. This page has some instructions on how to fix it. Look under “Connect R”. If you can’t get it to work, ask a neighbor (or me) for help.\n\nInstall tinytex. Click the Quarto Preview terminal (in the bottom right) and type:\n\nquarto install tinytex\n\nClick the “Preview” icon at the top right, and hopefully it works!\nRead the document, do the exercises at the bottom, and then preview the document again. Notice that there is a new PDF file in the folder.\nUpload the PDF to Brightspace! You did it!!\n\nIf things aren’t working then ask a neighbor for help.\n\n\nVideo Walkthrough\nThis was from an older version of VSCode, but should still be helpful:\n\n\n\nSet up Github Copilot\nIf you want to use Github Copilot\n\nSign up for an account at Github education\nInstall the GitHub Copilot extension in VSCode\nAuthenticate using the popup that shows up in the bottom right\n\nWe will talk more about how to use Copilot in class.",
     "crumbs": [
       "Assignments",
       "R Labs",
@@ -1763,11 +1976,35 @@
     ]
   },
   {
+    "objectID": "assignments/r_lab_3_–_mutating_and_filtering.html#example-solution",
+    "href": "assignments/r_lab_3_–_mutating_and_filtering.html#example-solution",
+    "title": "R Lab 3 – Mutating and Filtering",
+    "section": "Example Solution",
+    "text": "Example Solution\nView Example Solution",
+    "crumbs": [
+      "Assignments",
+      "R Labs",
+      "R Lab 3 – Mutating and Filtering"
+    ]
+  },
+  {
     "objectID": "assignments/r_lab_5_–_aesthetics_in_ggraph.html#assignment-file",
     "href": "assignments/r_lab_5_–_aesthetics_in_ggraph.html#assignment-file",
     "title": "R Lab 5 – Aesthetics in ggraph",
     "section": "Assignment File",
     "text": "Assignment File\nDownload Assignment (right-click and save)",
+    "crumbs": [
+      "Assignments",
+      "R Labs",
+      "R Lab 5 – Aesthetics in ggraph"
+    ]
+  },
+  {
+    "objectID": "assignments/r_lab_5_–_aesthetics_in_ggraph.html#example-solution",
+    "href": "assignments/r_lab_5_–_aesthetics_in_ggraph.html#example-solution",
+    "title": "R Lab 5 – Aesthetics in ggraph",
+    "section": "Example Solution",
+    "text": "Example Solution\nView Example Solution",
     "crumbs": [
       "Assignments",
       "R Labs",
@@ -1785,6 +2022,179 @@
       "R Labs",
       "R Lab 7 – Groups in Networks"
     ]
+  },
+  {
+    "objectID": "assignments/r_lab_7_–_groups_in_networks.html#example-solution",
+    "href": "assignments/r_lab_7_–_groups_in_networks.html#example-solution",
+    "title": "R Lab 7 – Groups in Networks",
+    "section": "Example Solution",
+    "text": "Example Solution\nView Example Solution",
+    "crumbs": [
+      "Assignments",
+      "R Labs",
+      "R Lab 7 – Groups in Networks"
+    ]
+  },
+  {
+    "objectID": "assignments/r_lab_examples/lab_1_quarto.html",
+    "href": "assignments/r_lab_examples/lab_1_quarto.html",
+    "title": "Markdown and Network Plotting",
+    "section": "",
+    "text": "This is a Quarto Notebook. The goal of Quarto Notebooks is to write documents and reports that intersperse text and code. They can be used for writing reports, creating slides, or even writing books.\nThe text is written in markdown. It has lots of different formatting options. Just take a look at this document for example, such as the “Introduction” header or the links in this section."
+  },
+  {
+    "objectID": "assignments/r_lab_examples/lab_1_quarto.html#introduction",
+    "href": "assignments/r_lab_examples/lab_1_quarto.html#introduction",
+    "title": "Markdown and Network Plotting",
+    "section": "",
+    "text": "This is a Quarto Notebook. The goal of Quarto Notebooks is to write documents and reports that intersperse text and code. They can be used for writing reports, creating slides, or even writing books.\nThe text is written in markdown. It has lots of different formatting options. Just take a look at this document for example, such as the “Introduction” header or the links in this section."
+  },
+  {
+    "objectID": "assignments/r_lab_examples/lab_1_quarto.html#making-documents",
+    "href": "assignments/r_lab_examples/lab_1_quarto.html#making-documents",
+    "title": "Markdown and Network Plotting",
+    "section": "Making documents",
+    "text": "Making documents\nYou can either interact with Quarto files within VSCode or “render” them into finished documents. To create a finished document, open the document that you want to change, and look at the top right. The square icon will render the document. By default, this will create a new PDF file in the same directory as this file, and will open that file in the Quarto Preview window.\nIf that doesn’t work, you may need to install tinytex first. To do that, run the following code in the terminal at the bottom of VSCode: quarto install tinytex.\nOnce you get PDFs working, try changing the format at the top of this document to html or docx. Then render the document again. This time, it should create an HTML file (or Word Document) in the same directory as this file."
+  },
+  {
+    "objectID": "assignments/r_lab_examples/lab_1_quarto.html#excecuting-code",
+    "href": "assignments/r_lab_examples/lab_1_quarto.html#excecuting-code",
+    "title": "Markdown and Network Plotting",
+    "section": "Excecuting Code",
+    "text": "Excecuting Code\nWhen you execute code within VSCode, the code runs in the terminal. If there is visual output, then it will appear in a pane to the right.\nTry executing this chunk by clicking Run Cell or by placing your cursor inside the code chunk it and pressing Ctrl+Shift+Enter.\n\nExcercise\nRun the code below both ways\n\nx &lt;- c(43,643,765)\n\nprint(paste(\"The mean of x is\", mean(x)))\n\n[1] \"The mean of x is 483.666666666667\"\n\n\nCtrl+Shift+Enter will run the whole chunk. If you want to run just the line of code that your cursor is on, then press Ctrl+Enter (Cmd+Return on Macs)."
+  },
+  {
+    "objectID": "assignments/r_lab_examples/lab_1_quarto.html#writing-code",
+    "href": "assignments/r_lab_examples/lab_1_quarto.html#writing-code",
+    "title": "Markdown and Network Plotting",
+    "section": "Writing code",
+    "text": "Writing code\nCode that will be run is marked with three backticks (`) followed by {r}, and ends with three more backticks. The simplest way to create a code block is to do Ctrl+Shift+I. This will create a code block with the cursor in the middle, and you can just start typing your code.\nBy default, the code and the output will appear in the created document, but you can set echo=FALSE and it will just show the output. Typically, you would want to do this when you’re creating a plot.\nFor example, the code below creates a scatterplot. For now, don’t worry about what all of the code means—we’ll come to that in later lessons. Just note that when you render the document, it doesn’t show the plot(mtcars$disp, mtcars$mpg) code—it just shows the scatterplot.\nWhen you run this code in VSCode, it should show the scatterplot in the right pane. If it doesn’t, then you may have to click on “R:(not attached)” in the bottom right corner of the screen. This should connect your session to R, and then it should work."
+  },
+  {
+    "objectID": "assignments/r_lab_examples/lab_1_quarto.html#packages",
+    "href": "assignments/r_lab_examples/lab_1_quarto.html#packages",
+    "title": "Markdown and Network Plotting",
+    "section": "Packages",
+    "text": "Packages\nThe last concept for today is “packages”. A package is a collection of functions and/or data. For example, igraph and tidygraph are two packages that make it much, much easier to work with network data.\nThere are two steps to using a package. First, you need to install it. This downloads the package to your computer. You only need to do this once.\nStep two is to load it into R from your computer. This brings it into R so that R can use it. This is done with the library command.\nHopefully everything worked and you already installed the packages that you will need. Let’s check.\n\nExcercises\nNote from Dr. Foote: In these example documents, I will typically hide the code I use to produce plots and figures (by setting echo=FALSE). You shouldn’t do that, and your documents should show the code used to produce figures.\n\nCreate a new section explaining what you hope to get out of this class. It should include a header (Hint: the header for this section is called ‘Exercises’) and a paragraph of content. When you’re done, render the document again so you can see what your paragraph looks like in the finished document.\n\n\n\nWhat I hope to get from class\nI just find Dr. Foote soooo inspiring. He is just the best professor at Purdue and I can’t wait to learn more about social networks!\n\nCreate your own code block below, and copy and paste the following code into it: hist(iris$Petal.Length)\n\nIf you do it correctly, you should see a histogram plot (a figure with a bunch of vertical gray bars)\n\n\n\n\n\n\n\n\n\n\nTry to load the igraph library. To do this, create a new code block and copy and paste the following into it: library(igraph). Then run the code. If it works, you should see a message that says Attaching package: ‘igraph’. If you don’t see that message, then you need to install the package. To do that, run the following code in an R terminal at the bottom of VSCode. To get to an R terminal, just click Run Cell on one of the code cells above. Then, in the R terminal type: install.packages('igraph').\n\n\nlibrary(igraph)\n\n\nAttaching package: 'igraph'\n\n\nThe following objects are masked from 'package:stats':\n\n    decompose, spectrum\n\n\nThe following object is masked from 'package:base':\n\n    union\n\n\n\nNow that igraph is installed, let’s create our first network graph!!\n\nCreate a new code block, and copy and paste the following into it, and then run it. Note that the first line, library(igraph) loads the igraph package into R. The next few lines create a random network and then make a simple plot of it.\nlibrary(igraph)\n\nG = erdos.renyi.game(10, .6)\nplot(G)"
+  },
+  {
+    "objectID": "assignments/r_lab_examples/lab_3_mutating_and_filtering.html",
+    "href": "assignments/r_lab_examples/lab_3_mutating_and_filtering.html",
+    "title": "Mutating and filtering",
+    "section": "",
+    "text": "We start with a “setup” block of code, that loads our libraries and initializes our settings. This block should work for basically all of our assignments this semester, so you can just copy and paste it.\nknitr::opts_chunk$set(echo = T)\nknitr::opts_knit$set(root.dir = './')\nlibrary(tidyverse)\nlibrary(igraph)\nlibrary(tidygraph)\nlibrary(ggraph)\nset_graph_style(family='sans') # This sets the default style to the graph style\nR has a lot of great tools for working with tables (also called dataframes or tibbles). One really powerful and relatively intuitive set of tools is called the “tidyverse”. Tools in the tidyverse make assumptions about what data will look like—rows represent observations and columns represent variables that describe that observation.\nThe tidygraph package extends that paradigm to networks, by representing networks as two tables: 1) a table of nodes and node attributes and 2) a table of edges and edge attributes.\nThis lets you work with networks using many of the same tools that have been developed for working on other types of data.\nJust to make things simple, we’ll use the Zachary Karate club data for most of this tutorial. Let’s load it, and save it as G\nG &lt;- create_notable('Zachary')\nIf we look at G we can see that it’s already a tbl_graph object. It has 34 nodes and 78 edges.\nG\n\n# A tbl_graph: 34 nodes and 78 edges\n#\n# An undirected simple graph with 1 component\n#\n# Node Data: 34 × 0 (active)\n#\n# Edge Data: 78 × 2\n   from    to\n  &lt;int&gt; &lt;int&gt;\n1     1     2\n2     1     3\n3     1     4\n# ℹ 75 more rows"
+  },
+  {
+    "objectID": "assignments/r_lab_examples/lab_3_mutating_and_filtering.html#getting-to-the-data",
+    "href": "assignments/r_lab_examples/lab_3_mutating_and_filtering.html#getting-to-the-data",
+    "title": "Mutating and filtering",
+    "section": "Getting to the data",
+    "text": "Getting to the data\n\nActivating a table\nBecause a network object is really composed of two tables, we have to let R know which table we want to manipulate. This is done using activate(nodes) or activate(edges).\nFor example, the code below activates the node table and then uses mutate (which we will talk more about further down) to create a variable called degree in the nodes table.\n(Note that the code throughout this tutorial uses “pipes”. Pipes (|&gt;) let you express a sequence of operations, by taking the output of the previous operation and using it as the input of the next operation.)\n\nG |&gt;\n  activate(nodes) |&gt;\n  mutate(degree = centrality_degree())\n\n# A tbl_graph: 34 nodes and 78 edges\n#\n# An undirected simple graph with 1 component\n#\n# Node Data: 34 × 1 (active)\n   degree\n    &lt;dbl&gt;\n 1     16\n 2      9\n 3     10\n 4      6\n 5      3\n 6      4\n 7      4\n 8      4\n 9      5\n10      2\n# ℹ 24 more rows\n#\n# Edge Data: 78 × 2\n   from    to\n  &lt;int&gt; &lt;int&gt;\n1     1     2\n2     1     3\n3     1     4\n# ℹ 75 more rows"
+  },
+  {
+    "objectID": "assignments/r_lab_examples/lab_3_mutating_and_filtering.html#mutate",
+    "href": "assignments/r_lab_examples/lab_3_mutating_and_filtering.html#mutate",
+    "title": "Mutating and filtering",
+    "section": "Mutate",
+    "text": "Mutate\nmutate is a function that just creates a new column in a spreadsheet/dataframe (in our case, either the one for the nodes or the one for the edges). Often, we will want to calculate some network statistic (for example, the code above calculates the degree for each node).\nHowever, you can also create other kinds of columns. For example, you could use mutate to give names to each of the nodes. The code below creates a small network and adds names to it. (The c is how we create a list of things in R)\n\nplay_gnp(5, .5) |&gt;\nactivate(nodes) |&gt;\n  mutate(names = c('Alfred','Bonnie', 'Clyde', 'Doug','Enola'))\n\n# A tbl_graph: 5 nodes and 8 edges\n#\n# A directed simple graph with 1 component\n#\n# Node Data: 5 × 1 (active)\n  names \n  &lt;chr&gt; \n1 Alfred\n2 Bonnie\n3 Clyde \n4 Doug  \n5 Enola \n#\n# Edge Data: 8 × 2\n   from    to\n  &lt;int&gt; &lt;int&gt;\n1     2     1\n2     4     1\n3     5     1\n# ℹ 5 more rows\n\n\n\nExcercise\nModify the code on lines 50-54 to calculate the betweenness centrality instead of the degree of G. Name the column betweenness (Hint: use the centrality_betweenness() function. (Here is the list of all centrality functions.)\n\n# Your code here\n\nNote that if we look at G again, the degree and betweenness columns that we created no longer appear.\n\nG\n\n# A tbl_graph: 34 nodes and 78 edges\n#\n# An undirected simple graph with 1 component\n#\n# Node Data: 34 × 0 (active)\n#\n# Edge Data: 78 × 2\n   from    to\n  &lt;int&gt; &lt;int&gt;\n1     1     2\n2     1     3\n3     1     4\n# ℹ 75 more rows\n\n\nThis is because we didn’t save them; by default mutate will just produce a temporary version of the new column. But don’t worry—saving it is super easy; we can just re-save it as G like this.\n\nG &lt;- G |&gt;\n  activate(nodes) |&gt;\n  mutate(degree = centrality_degree())\n\nThe &lt;- means take whatever is on the right side, and save it to the variable name on the left side. So, this takes all of the output of the mutate operation and saves it. Now, when we look at G, we’ll see the degree column.\n\nG\n\n# A tbl_graph: 34 nodes and 78 edges\n#\n# An undirected simple graph with 1 component\n#\n# Node Data: 34 × 1 (active)\n   degree\n    &lt;dbl&gt;\n 1     16\n 2      9\n 3     10\n 4      6\n 5      3\n 6      4\n 7      4\n 8      4\n 9      5\n10      2\n# ℹ 24 more rows\n#\n# Edge Data: 78 × 2\n   from    to\n  &lt;int&gt; &lt;int&gt;\n1     1     2\n2     1     3\n3     1     4\n# ℹ 75 more rows\n\n\n\n\nExercise\nDo this yourself - add the betweenness column to G. When you’re done, the nodes spreadsheet of G should have two new columns - degree and betweenness.\n\n# Your code here"
+  },
+  {
+    "objectID": "assignments/r_lab_examples/lab_3_mutating_and_filtering.html#filtering",
+    "href": "assignments/r_lab_examples/lab_3_mutating_and_filtering.html#filtering",
+    "title": "Mutating and filtering",
+    "section": "Filtering",
+    "text": "Filtering\nThe one other thing we’re going to learn about today is filtering. Sometimes we may want to know about some subset of the nodes or edges in a network.\nUsually, we would do this based on some attribute of the nodes—for example, looking just at the network of the older (or younger) members of the group.\nLet’s load in a richer network from the networkdata library. (See R Lab 2 for instructions on how to install it if this code doesn’t work.)\nThis code loads the networkdata library and loads the ht_advice network. It then changes it from an igraph network to a tbl_graph network object.\n\nlibrary(networkdata)\n\n\nAttaching package: 'networkdata'\n\n\nThe following object is masked from 'package:dplyr':\n\n    starwars\n\nht_advice &lt;- ht_advice |&gt; as_tbl_graph()\n\nht_advice\n\n# A tbl_graph: 21 nodes and 190 edges\n#\n# A directed simple graph with 1 component\n#\n# Node Data: 21 × 4 (active)\n     age tenure level  dept\n   &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;\n 1    33      9     3     4\n 2    42     20     2     4\n 3    40     13     3     2\n 4    33      8     3     4\n 5    32      3     3     2\n 6    59     28     3     1\n 7    55     30     1     0\n 8    34     11     3     1\n 9    62      5     3     2\n10    37      9     3     3\n# ℹ 11 more rows\n#\n# Edge Data: 190 × 2\n   from    to\n  &lt;int&gt; &lt;int&gt;\n1     1     2\n2     1     4\n3     1     8\n# ℹ 187 more rows\n\n\nWe can see that there are 21 nodes with four attributes: age, tenure, level, and dept. These nodes have 190 edges. Let’s plot the network.\n\nplot(ht_advice)\n\n\n\n\n\n\n\n\nNow we’re going to filter the graph. Maybe we just want to see the network from the Sales department. Let’s pretend like that’s department two, and filter to just those nodes.\nRemember, we first activate the nodes. Then, we use filter to write a condition or set of conditions that will evaluate to True for each of the nodes that we want to keep. Usually, this will involve one node attribute (like dept) and a comparison, like &lt;, &gt;, or ==. Note that when we are testing if things are equal, we use two equal signs in R. This is because one equals sign can be used to assign something to a variable.\n\nht_advice |&gt;\n  activate(nodes) |&gt;\n  filter(dept == 2) |&gt; # Filter to just nodes in dept 2\n  print() |&gt; # We can throw in print() and it will print the output of the last step. In this case, the filtered graph object.\n  plot()\n\n# A tbl_graph: 8 nodes and 25 edges\n#\n# A directed simple graph with 1 component\n#\n# Node Data: 8 × 4 (active)\n    age tenure level  dept\n  &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;\n1    40     13     3     2\n2    32      3     3     2\n3    62      5     3     2\n4    48      0     3     2\n5    43     10     2     2\n6    40      8     3     2\n7    32      5     3     2\n8    38     12     3     2\n#\n# Edge Data: 25 × 2\n   from    to\n  &lt;int&gt; &lt;int&gt;\n1     1     3\n2     1     5\n3     1     8\n# ℹ 22 more rows\n\n\n\n\n\n\n\n\n\n\nExercise\nFilter the ht_advice network to just the people who are older than 35.\nHow many nodes are there?\nHow many edges?\n(Hint: you can use print like I do above to print information about the graph before you plot it)\n\n# Your code here\n\n\n\nChallenge Exercise\nFilter the ht_advice network to only those nodes whose tenure is less than the median value for tenure. Plot the graph.\n\n## Your code here"
+  },
+  {
+    "objectID": "assignments/r_lab_examples/lab_3_mutating_and_filtering.html#chaining-filtering-and-mutating",
+    "href": "assignments/r_lab_examples/lab_3_mutating_and_filtering.html#chaining-filtering-and-mutating",
+    "title": "Mutating and filtering",
+    "section": "Chaining Filtering and Mutating",
+    "text": "Chaining Filtering and Mutating\nFinally, we can use mutate and filter together in powerful ways.\nFor example, we may want to get the betweenness centrality of just the Sales department.\n\nht_advice |&gt;\n  activate(nodes) |&gt;\n  filter(dept == 2) |&gt;\n  mutate(betweenness = centrality_betweenness())\n\n# A tbl_graph: 8 nodes and 25 edges\n#\n# A directed simple graph with 1 component\n#\n# Node Data: 8 × 5 (active)\n    age tenure level  dept betweenness\n  &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;       &lt;dbl&gt;\n1    40     13     3     2         0.5\n2    32      3     3     2         4.5\n3    62      5     3     2         0  \n4    48      0     3     2         1  \n5    43     10     2     2         0  \n6    40      8     3     2         9  \n7    32      5     3     2         3  \n8    38     12     3     2         5  \n#\n# Edge Data: 25 × 2\n   from    to\n  &lt;int&gt; &lt;int&gt;\n1     1     3\n2     1     5\n3     1     8\n# ℹ 22 more rows\n\n\nRemember that the order matters - if we ran mutate before filter then it would calculate the betweenness centrality before filtering.\n\nExercise\nSometimes, that’s what we want. For the last exercise, calculate the degree centrality for ht_advice, save it in a column called degree, and then filter to just the nodes with degree of at least 2.\n\n## Your code here"
+  },
+  {
+    "objectID": "assignments/r_lab_examples/lab_5_aesthetics_in_ggraph.html",
+    "href": "assignments/r_lab_examples/lab_5_aesthetics_in_ggraph.html",
+    "title": "Aesthetics in ggraph",
+    "section": "",
+    "text": "There are two main types of “aesthetics” in ggraph: changes that apply to all of the nodes/edges, and changes that differ based on some attribute of the nodes/edges.\nFor this tutorial, we’ll be visualizing data from a 1990 paper on the French financial elite (ffe) in the networkdata package.\nLet’s load the data as a tbl_graph\n\nlibrary(networkdata)\n\n\nAttaching package: 'networkdata'\n\n\nThe following object is masked from 'package:dplyr':\n\n    starwars\n\nG &lt;- ffe_friends |&gt; as_tbl_graph()\n\nNow, let’s see what it looks like it our basic ggraph plot.\n\nG |&gt;\n  ggraph() +\n  geom_edge_fan() + \n  geom_node_point()\n\nUsing \"stress\" as default layout"
+  },
+  {
+    "objectID": "assignments/r_lab_examples/lab_5_aesthetics_in_ggraph.html#two-types-of-aesthetics",
+    "href": "assignments/r_lab_examples/lab_5_aesthetics_in_ggraph.html#two-types-of-aesthetics",
+    "title": "Aesthetics in ggraph",
+    "section": "",
+    "text": "There are two main types of “aesthetics” in ggraph: changes that apply to all of the nodes/edges, and changes that differ based on some attribute of the nodes/edges.\nFor this tutorial, we’ll be visualizing data from a 1990 paper on the French financial elite (ffe) in the networkdata package.\nLet’s load the data as a tbl_graph\n\nlibrary(networkdata)\n\n\nAttaching package: 'networkdata'\n\n\nThe following object is masked from 'package:dplyr':\n\n    starwars\n\nG &lt;- ffe_friends |&gt; as_tbl_graph()\n\nNow, let’s see what it looks like it our basic ggraph plot.\n\nG |&gt;\n  ggraph() +\n  geom_edge_fan() + \n  geom_node_point()\n\nUsing \"stress\" as default layout"
+  },
+  {
+    "objectID": "assignments/r_lab_examples/lab_5_aesthetics_in_ggraph.html#general-aesthetics",
+    "href": "assignments/r_lab_examples/lab_5_aesthetics_in_ggraph.html#general-aesthetics",
+    "title": "Aesthetics in ggraph",
+    "section": "General aesthetics",
+    "text": "General aesthetics\nWe’ve already learned about the first kind of aesthetics—general aesthetics that apply to the whole graph. Things like changing the size of the nodes or the color of the edges.\nFor example, this changes the shape of the nodes to triangles and makes them a bit bigger.\n\nG |&gt;\n  ggraph() +\n  geom_edge_fan() + \n  geom_node_point(shape='triangle', size = 3)\n\nUsing \"stress\" as default layout\n\n\n\n\n\n\n\n\n\n\nExercise\nChange the width of the edges to .5 and their color to “purple”\n\n# Your code here"
+  },
+  {
+    "objectID": "assignments/r_lab_examples/lab_5_aesthetics_in_ggraph.html#mapping-aesthetics",
+    "href": "assignments/r_lab_examples/lab_5_aesthetics_in_ggraph.html#mapping-aesthetics",
+    "title": "Aesthetics in ggraph",
+    "section": "“Mapping” aesthetics",
+    "text": "“Mapping” aesthetics\nThe second type of aesthetics maps some aspect of the data to some aspect of the visualization. For example, we might color nodes differently based on their major or size them differently based on their centrality.\nLet’s start by figuring out what the attributes of the nodes are in this data.\n\nG\n\n# A tbl_graph: 28 nodes and 66 edges\n#\n# An undirected simple graph with 1 component\n#\n# Node Data: 28 × 26 (active)\n   birthdate birthplace cabinet clubs eliteprom elitevote   ena enayear\n       &lt;dbl&gt;      &lt;dbl&gt;   &lt;dbl&gt; &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt;\n 1      1943          2       1     2         1        24     1    1970\n 2      1935          2       2     3         1        52     2      NA\n 3      1924          1       2     1         1        45     2      NA\n 4      1933          2       2     0         1        28     1    1960\n 5      1931          1       1     3         1        45     1    1957\n 6      1934          2       1     3         0         6     1    1962\n 7      1932          1       2     1         1        48     2      NA\n 8      1931          1       2     3         1        34     2      NA\n 9      1911          2       2     0         0        13     2      NA\n10      1935          1       2     3         1        23     2      NA\n# ℹ 18 more rows\n# ℹ 18 more variables: fathers.lev &lt;dbl&gt;, finance.min &lt;dbl&gt;, igyear &lt;dbl&gt;,\n#   inspec.gen &lt;dbl&gt;, masons &lt;dbl&gt;, na &lt;lgl&gt;, normal.sch &lt;dbl&gt;, party &lt;dbl&gt;,\n#   polytech &lt;dbl&gt;, polyyear &lt;dbl&gt;, prestige &lt;dbl&gt;, religion &lt;dbl&gt;,\n#   sciencepoly &lt;dbl&gt;, socialreg &lt;dbl&gt;, topboards &lt;dbl&gt;, university &lt;dbl&gt;,\n#   vertex.names &lt;chr&gt;, zipcode &lt;dbl&gt;\n#\n# Edge Data: 66 × 2\n   from    to\n  &lt;int&gt; &lt;int&gt;\n1     2     6\n2     3     6\n3     1     7\n# ℹ 63 more rows\n\n\nThis is rich data! There are 26 different variables, some of which are clear (e.g, birthdate) and some of which are confusing (e.g., topboards or igyear). Let’s choose one and visualize it.\nUsually, you would want to be guided by a question about the data which would inform your visualizations. Let’s pretend like we really want to know whether people form friendships across religions. Let’s visualize different religion as different shapes.\nTo do that, we “map” the shape of the nodes to the religion variable. The syntax to do this is to put the thing we want to change, then =, then the variable (column name) we want to use to change it. So, for changing shape to religion, it’s shape = religion. We put that whole thing in aes (which stands for mapping aesthetic), and put it into the geom_node_point function.\n\nG |&gt;\n  mutate(religion = as_factor(religion)) |&gt;\n  ggraph() +\n  geom_edge_fan() + \n  geom_node_point(aes(shape=religion), size = 3)\n\nUsing \"stress\" as default layout\n\n\n\n\n\n\n\n\n\nNote the line mutate(religion = as_factor(religion)) Try commenting out that line and running the code again.\nYou should get an error that is something like A continuous variable can not be mapped to shape. This is saying that in this data religion is a number and it doesn’t make much sense to map a number to a shape, because usually numbers are ordered while shapes are unordered. So, we have to add the mutate step to change the religion variable type using as_factor which changes how R sees it from a number to a factor—in other words, a category (which is what religion really is, anyway!).\n\nExercise\nInstead of mapping their shape to religion, map the color of the nodes to religion.\n\n# Your code here\n\nThere are a number of node aesthetics that we can map variables to. The most common are: shape, size, and color. Let’s do one more exercise to practice these.\n\n\nExercise\nGo back to your code from when we learned about mutate and figure out how to calculate degree centrality for our network; save the centrality in a column called degree and change the size of nodes based on the degree.\n\n# Your code here"
+  },
+  {
+    "objectID": "assignments/r_lab_examples/lab_5_aesthetics_in_ggraph.html#edge-aesthetics",
+    "href": "assignments/r_lab_examples/lab_5_aesthetics_in_ggraph.html#edge-aesthetics",
+    "title": "Aesthetics in ggraph",
+    "section": "Edge aesthetics",
+    "text": "Edge aesthetics\nWe can also map the edge aesthetics to variables from our edgelist spreadsheet. The most common approaches are to map the type of the edge to color and the weight of the edge to the width, color, or alpha of the edge.\nLooking at our data, the edges don’t have weights. For your exercise, we’ll put together a few skills from the last few labs."
+  },
+  {
+    "objectID": "assignments/r_lab_examples/lab_5_aesthetics_in_ggraph.html#exercise-3",
+    "href": "assignments/r_lab_examples/lab_5_aesthetics_in_ggraph.html#exercise-3",
+    "title": "Aesthetics in ggraph",
+    "section": "Exercise",
+    "text": "Exercise\nLoad the bkfrab dataset (also from networkdata, so load it in the same way as the ffe_friends data above). This records how often pairs of subjects were seen talking to each other in a fraternity. Map the alpha of the edge to the weight in the edges dataframe.\nHints: Remember to use as_tbl_graph to change the network type, and to activate the edges dataframe.\n\n# Your code here\n\n\nChallenge Exercise\nWhen we look at the bkfrab data, there are a lot of nodes with edge weight 10. Filter to just the edges whose weight is greater than 10, and map the color of the edges to their weight.\nNote that this will leave a lot of nodes without any edges. The default 'stress' layout puts them along the bottom, which looks kind of odd. You may want to use a layout like 'fr' instead.\n\n# Your code here\n\nYou now have all of the key skills to load in, mutate and filter networks, and to do some pretty cool visualizations with them. From here on out, we’ll mostly be reusing these skills in new ways."
+  },
+  {
+    "objectID": "assignments/r_lab_examples/lab_7_groups_in_networks.html",
+    "href": "assignments/r_lab_examples/lab_7_groups_in_networks.html",
+    "title": "Groups in Networks",
+    "section": "",
+    "text": "In this lesson, we will focus on understanding different approaches to identifying groups in networks. Human networks are “groupy”—whether through triadic closure or foci of activity, and so large enough networks will typically be composed of different groups. If you think about your own friendship network, it’s likely that you could group many of them (e.g., high school friends, soccer friends, and Comm friends). Network structure can be used to identify different groups."
+  },
+  {
+    "objectID": "assignments/r_lab_examples/lab_7_groups_in_networks.html#data",
+    "href": "assignments/r_lab_examples/lab_7_groups_in_networks.html#data",
+    "title": "Groups in Networks",
+    "section": "Data",
+    "text": "Data\nFor much of this lesson, we will use the UKfaculty friendship data which is part of the igraphdata package.\nLet’s load it as UK and take a quick look at it\n\n#install.packages('igraphdata') # Run this if it isn't installed yet\nlibrary(igraphdata)\ndata(\"UKfaculty\")\n\nUK &lt;- as_tbl_graph(UKfaculty)\n\nUK |&gt;\n  activate(edges) |&gt;\n  ggraph() +\n  geom_edge_fan(alpha=.3) +\n  geom_node_point()\n\nThis graph was created by an old(er) igraph version.\n  Call upgrade_graph() on it to use with the current igraph version\n  For now we convert it on the fly...\n\n\nUsing \"stress\" as default layout\n\n\n\n\n\n\n\n\n\nWhenever loading a new dataset, it’s worth looking at it. Because we loaded this as a tidygraph tbl_graph, we can just type the name of the graph, and it will show the node and edge attributes.\n\nUK\n\n# A tbl_graph: 81 nodes and 817 edges\n#\n# A directed simple graph with 1 component\n#\n# Node Data: 81 × 1 (active)\n   Group\n   &lt;dbl&gt;\n 1     3\n 2     1\n 3     3\n 4     3\n 5     2\n 6     2\n 7     2\n 8     1\n 9     3\n10     2\n# ℹ 71 more rows\n#\n# Edge Data: 817 × 3\n   from    to weight\n  &lt;int&gt; &lt;int&gt;  &lt;dbl&gt;\n1    57    52      4\n2    76    42     14\n3    12    69      4\n# ℹ 814 more rows\n\n\nSo, for nodes we know the department that each person belongs to (the “Group” node attribute) and a weight representing the strength of the relationship. Some of the algorithms we are going to be working with assume undirected networks, so we’re going to filter this network to only mutual edges, and treat it as undirected. That’s what this first bit of code does.\n\nUK &lt;- UK |&gt;\n  as.undirected() |&gt; \n  as_tbl_graph()\n\nNow, it’s easier to see what’s going on, and there’s only one edge between each dyad.\n\nUK |&gt;\n  ggraph() +\n  geom_edge_fan(alpha=.4) +\n  geom_node_point()\n\nUsing \"stress\" as default layout\n\n\n\n\n\n\n\n\n\nFinally, we can color the nodes by their group.\n\nExercise\nMake a network figure that colors the nodes by the Group node attribute (Hint: they will look a lot better if you use as_factor).\n\n## YOUR code HERE\n\nWe can use the known group to compare different approaches for identifying groups in networks."
+  },
+  {
+    "objectID": "assignments/r_lab_examples/lab_7_groups_in_networks.html#components",
+    "href": "assignments/r_lab_examples/lab_7_groups_in_networks.html#components",
+    "title": "Groups in Networks",
+    "section": "Components",
+    "text": "Components\nThe simplest version of a group in a social network is all of the people who are connected to each other. This is called a component. Most real-world social or communication networks include almost everyone in a single, “giant component”. This seems strange at first, but an example can help to show why it works this way. Let’s say you had a network of 50 people with two large components of 25 people each. If any one of the 25 people in one component adds an edge to any one of the 25 people in the other component, then the components merge. In other words, there are so many possible edges that would combine the components that one of them is bound to occur unless there is something separating the groups.\nThe following visualizations show random graphs as they go from 2% density to 10% density. Even at only 8% or 10% density almost any random graph will be a single, large component (with maybe a few isolates).\nThis attribute of networks means that components are rarely very interesting as a way of grouping nodes.\n\n# Don't worry about understanding this code - it's basically just plotting \n# different densities of random graphs\n#set.seed(12)\nfor(p in c(.02, .05, .08, .10)){\n  G = random.graph.game(50, p) |&gt; as_tbl_graph()\n  plot &lt;- G |&gt;\n    ggraph(layout='fr') +\n    geom_edge_fan(alpha = .5) +\n    geom_node_point() +\n    labs(title=paste0(\"Random graph with \", p*100, \"% of edges\"))\n  print(plot)\n}"
+  },
+  {
+    "objectID": "assignments/r_lab_examples/lab_7_groups_in_networks.html#cliques",
+    "href": "assignments/r_lab_examples/lab_7_groups_in_networks.html#cliques",
+    "title": "Groups in Networks",
+    "section": "Cliques",
+    "text": "Cliques\nThe next simplest idea is a clique—this identifies groups of nodes where everyone is connected to everyone else in the group.\nLet’s find the largest cliques in this network, using the largest_cliques function\n\n# Find the largest clique(s)\nUK |&gt; \n  largest_cliques()\n\n[[1]]\n+ 9/81 vertices, from 85a8476:\n[1] 49 69 77  5 27 10 68 23 13\n\n[[2]]\n+ 9/81 vertices, from 85a8476:\n[1] 49 69 77  5 27 10 68 23 42\n\n[[3]]\n+ 9/81 vertices, from 85a8476:\n[1] 49 69 77 33 27 10 68 23 13\n\n[[4]]\n+ 9/81 vertices, from 85a8476:\n[1] 49 69 77 33 27 10 68 23 42\n\n[[5]]\n+ 9/81 vertices, from 85a8476:\n[1] 57 29 79 37 15 43 35  2 31\n\n[[6]]\n+ 9/81 vertices, from 85a8476:\n[1] 57 29 79 37 15 43 35  2 18\n\n[[7]]\n+ 9/81 vertices, from 85a8476:\n[1] 57 29 79 46 18 15 43 35  2\n\n[[8]]\n+ 9/81 vertices, from 85a8476:\n[1] 57 29 79 46 31 15 43 35  2\n\n[[9]]\n+ 9/81 vertices, from 85a8476:\n[1] 77 69  7 27 23 10  5 68 13\n\n[[10]]\n+ 9/81 vertices, from 85a8476:\n[1] 77 69  7 27 23 10  5 68 40\n\n[[11]]\n+ 9/81 vertices, from 85a8476:\n[1] 77 69  7 27 23 10  5 68 42\n\n[[12]]\n+ 9/81 vertices, from 85a8476:\n[1] 21 29 31 15 79  2 37 43 35\n\n[[13]]\n+ 9/81 vertices, from 85a8476:\n[1] 21 29 31 15 79  2 46 43 35\n\n\nThis network has a bunch of cliques of size 9—that means that each person in the clique is connected to each of the other 8 people.\nLet’s visualize this by coloring the first of these cliques.\n\n# First, get the list of nodes in the first clique\nclique_nodes &lt;- largest_cliques(UK)[[1]]\nUK |&gt; \n  activate(nodes) |&gt;\n  mutate(idx = 1:nrow(.N())) |&gt; # Create an index for the nodes\n  mutate(in_clique = idx %in% clique_nodes) |&gt; # If the index is one of the clique nodes\nggraph(layout = 'stress') +\n  geom_edge_fan(alpha=.1) +\n  geom_node_point(aes(color=in_clique)) + # Color by whether the node is in the clique\n  scale_color_discrete(name='In largest clique')\n\n\n\n\n\n\n\n\nThis is a fairly intuitive way of identifying groups but we can see the limitations pretty quickly. For example, in the figure above, we can see quite a few nodes which are clearly part of the group but which aren’t included in the clique. This is because maybe they are connected to all but one of the others in that group. This is a problem with cliques—they are very strict about who is in the group and who isn’t.\nA number of tweaks to this approach exist, such as n-cliques (where everyone in the group has to be connected within a distance of n) and k-plexes (where everyone in the group has to be connected to all but k other members). These do help make groups more natural. Unfortunately, neither of these have simple implementations in igraph so I won’t visualize them."
+  },
+  {
+    "objectID": "assignments/r_lab_examples/lab_7_groups_in_networks.html#community-detection",
+    "href": "assignments/r_lab_examples/lab_7_groups_in_networks.html#community-detection",
+    "title": "Groups in Networks",
+    "section": "Community detection",
+    "text": "Community detection\nThere are a number of more complicated algorithms for finding communities in networks, often called “community detection” or “clustering” algorithms. The very bottom of this page shows those which have been implemented in ggraph.\nMany of them are based on one of two ideas—the first is modularity. These approaches attempt to find partitions of a network which maximize the number of edges within groups and minimize the number of edges between them.\nThe second approach is based on “random walks”. The idea is that if you start at a random place in a network and move along a random edge, and keep doing this over and over, then walks should generally stay within groups and rarely go between them.\nI’ll show you how to visualize a couple of these in ggraph\nFirst, a modularity approach, using the “fast greedy” algorithm\n\nUK |&gt;\n  activate(nodes) |&gt;\n  mutate(community = as.factor(group_fast_greedy())) |&gt;\nggraph(layout = 'stress') +\n  geom_edge_fan(alpha=.1) +\n  geom_node_point(aes(color=community)) +\n  scale_color_viridis_d(name='Fast Greedy Communities')\n\n\n\n\n\n\n\n\nAs you can see, this is pretty good. It groups things pretty similarly to the actual departments.\nHere is a label propagation approach, which is similar to random walks:\n\nUK |&gt; as_tbl_graph() |&gt;\n  activate(nodes) |&gt;\n  mutate(community = as.factor(group_louvain())) |&gt;\nggraph(layout = 'stress') +\n  geom_edge_fan(alpha=.1) +\n  geom_node_point(aes(color=community)) +\n  scale_color_viridis_d(name='Louvain Communities')\n\n\n\n\n\n\n\n\nThis is also pretty good, and looks quite similar. For many networks, different modern community detection approaches give fairly similar results.\n\nExercises\n\nThe layout also helps to show groups. Change the layout of this graph to a few of the others found at the bottom of this page. See if you can find one that you think does a better job of showing group structure.\n\n\n# Your code here\n\n\nI have used coloring of nodes as a way to identify different groups in a network. I think that this is a good way of visualizing groups, but there are other options. Come up with a different way of visualizing groups and either draw a picture of your idea or actually code it in ggraph.\n\n\n# Your code here\n\n\nGo back to your Visualization Challenge project and add a visualization of group structure. (Note: you will need to load in the data in this file)\n\n\n# Your code here"
+  },
+  {
+    "objectID": "assignments/r_lab_examples/lab_7_groups_in_networks.html#k-cores",
+    "href": "assignments/r_lab_examples/lab_7_groups_in_networks.html#k-cores",
+    "title": "Groups in Networks",
+    "section": "K-cores",
+    "text": "K-cores\nFinally, it’s worth mentioning a related concept, called “coreness”. This isn’t quite the same as identifying the group a node is in; the idea is to identify “central” and “peripheral” parts of a network. Each node gets a “coreness” number, which is the largest k for which it exists in a subgraph where all nodes are connected with at least k edges. This sounds super confusing, but it makes a bit more sense when plotted. Here is some sample code for visualizing coreness.\n\nUK |&gt;\n  activate(nodes) |&gt;\n  mutate(coreness = node_coreness()) |&gt;\nggraph(layout='stress') +\n  geom_edge_fan(alpha=.1) +\n  geom_node_point(aes(color=coreness)) +\n  scale_color_viridis(name='Coreness')\n\n\n\n\n\n\n\n\nBasically, nodes with a high coreness number are connected to lots of others who are themselves well-connected. This is a great measure for identifying groups that hold important, central positions."
   },
   {
     "objectID": "class_lectures.html",
@@ -2958,7 +3368,7 @@
     "href": "schedule/pages/Scholar-Setup.html",
     "title": "Scholar Setup",
     "section": "",
-    "text": "R is a statistical programming language. People use it for lots of things, but in this class we will focus on using it to analyze and visualize social networks.\nTo help you to learn how to do this, we will go through a number of labs. The first ones will be really basic, but by the end you will be able to create complex, compelling visualizations from network data.\nIn the past, I have had students use R on their own computers. You are welcome to do that, if you would like. But I have also requested access for our class on the Scholar cluster run by Purdue research computing. Basically, there are a bunch of high-powered computers that our class has access to, and you can do your work there.\nIn this tutorial, you will learn how to log in to Scholar, and will get set up so you are ready for the labs.\n\nStep 1: Log in\n\nGo to https://gateway.scholar.rcac.purdue.edu/pun/sys/dashboard\nLog in with your BoilerKey\nClick on Interactive Apps: R Studio Server\nFor the options select \"scholar\", \"4.05\", 1 hour, 1 core (you can change this to up to 4 hours later when you're actually using it for work)\nClick Launch\nWhen the job starts, click \"Connect to R Studio Server\"\n\n\n\nStep 2: Install packages\n\nGo back to the console tab\nRun the following:\n\n   install.packages(\"dplyr\")\n   install.packages(\"ggraph\")\n\nNote: If you run into problems try the following:\n\nStop R (Session: Terminate R)\nClick on the Terminal tab (right next to \"Console\" in the bottom right of RStudio)\nCopy the following and right-click to paste it into the terminal:\n\n\n   rm -rf ~/R/x86_64-pc-linux-gnu-library/4.0/*\n\n\nStep 3: Load the Labs\n1. Download all of the labs by clicking this link.\n2. Go back into RStudio; in the bottom right pane click \"Files\", then \"New Folder\" and create a new folder for our class - something like \"COM 411 R Labs\".\n3. In that bottom right pane click \"Upload\", and upload the ZIP file. It should extract all of the labs for the class.\n\n\nStep 4: Testing\n\nIn the bottom right pane, click Files, then click on lab_1_r_markdown.Rmd. A weird looking file should show up in the top left pane.\nIn the top left pane, click \"Knit\". Some text should appear in the bottom left panel, and after 20 seconds or so, you should see a new window appear with a document titled \"Markdown and Network Plotting\".\nIt is fairly likely that you will get a bug when knitting about not having pandoc installed. If so, you will need to run the following in the Terminal tab:\n\n   module load anaconda\n\nThen restart R (Session : Restart R)\n\nWe'll talk about what all of this means soon, but for now, if that document appears, then you have done everything right and you're ready to go!"
+    "text": "R is a statistical programming language. People use it for lots of things, but in this class we will focus on using it to analyze and visualize social networks.\nTo help you to learn how to do this, we will go through a number of labs. The first ones will be really basic, but by the end you will be able to create complex, compelling visualizations from network data.\nIn the past, I have had students use R on their own computers. You are welcome to do that, if you would like. But I have also requested access for our class on the Scholar cluster run by Purdue research computing. Basically, there are a bunch of high-powered computers that our class has access to, and you can do your work there.\nIn this tutorial, you will learn how to log in to Scholar, and will get set up so you are ready for the labs.\n\nStep 1: Log in\n\nGo to https://gateway.scholar.rcac.purdue.edu/pun/sys/dashboard\nLog in with your BoilerKey\nClick on Interactive Apps: R Studio Server\nFor the options select \"scholar\", \"4.05\", 1 hour, 1 core (you can change this to up to 4 hours later when you're actually using it for work)\nClick Launch\nWhen the job starts, click \"Connect to R Studio Server\"\n\n\n\nStep 2: Install packages\n\nGo back to the console tab\nRun the following:\n\n   install.packages(\"dplyr\")\n   install.packages(\"ggraph\")\n\nNote: If you run into problems try the following:\n\nStop R (Session: Terminate R)\nClick on the Terminal tab (right next to \"Console\" in the bottom right of RStudio)\nCopy the following and right-click to paste it into the terminal:\n\n\n   rm -rf ~/R/x86_64-pc-linux-gnu-library/4.0/*\n\n\nStep 3: Load the Labs\n1. Download all of the labs by clicking this link.\n2. Go back into RStudio; in the bottom right pane click \"Files\", then \"New Folder\" and create a new folder for our class - something like \"COM 411 R Labs\".\n3. In that bottom right pane click \"Upload\", and upload the ZIP file. It should extract all of the labs for the class.\n\n\nStep 4: Testing\n\nIn the bottom right pane, click Files, then click on lab_1_quarto.Rmd. A weird looking file should show up in the top left pane.\nIn the top left pane, click \"Knit\". Some text should appear in the bottom left panel, and after 20 seconds or so, you should see a new window appear with a document titled \"Markdown and Network Plotting\".\nIt is fairly likely that you will get a bug when knitting about not having pandoc installed. If so, you will need to run the following in the Terminal tab:\n\n   module load anaconda\n\nThen restart R (Session : Restart R)\n\nWe'll talk about what all of this means soon, but for now, if that document appears, then you have done everything right and you're ready to go!"
   },
   {
     "objectID": "schedule/pages/Travers-summary.html",

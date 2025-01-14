@@ -302,8 +302,9 @@ ul.task-list li input[type="checkbox"] {
 <li>Introduce you to the idea of Quarto files</li>
 <li>Create your first network graph</li>
 </ol>
-<p>You can either do your homework on your own computer, or you can use the lab computers. In general, you should be able to get most of the labs done on Thursdays, but you will need to do work outside of class for some labs, and for the final project.</p>
-<p>This semester, we are going to try using VSCode. This is a popular, open source Interactive Development Environment. One of the cool features is that it has an AI plugin which will automatically suggest code for you. I'm hopeful that this will let you do more, faster.</p>
+<p>We will be using <a href="https://en.wikipedia.org/wiki/VSCode">VSCode</a> as our development environment. This is a popular, open source <a href="https://en.wikipedia.org/wiki/Integrated_Development_Environment">Integrated Development Environment</a>. This is the software that you will actual open and use to do all of your work.</p>
+<p>Under the hood, VSCode will use <a href="https://quarto.org/">Quarto</a> and R. Quarto is a tool that lets you write code and text in the same document, and then convert it to a variety of formats, including PDF, HTML, and Word. R is even lower level, and is the engine that actually runs the code that you write.</p>
+<p>For the first step, you will need to download and install the three main piece of software that we will be using: Quarto, VSCode, and R.</p>
 <section id="install_quarto" class="level3">
 <h3 class="anchored" data-anchor-id="install_quarto">Install Quarto</h3>
 <ul>
@@ -326,18 +327,18 @@ ul.task-list li input[type="checkbox"] {
 <h3 class="anchored" data-anchor-id="try_to_run_the_lab">Try to run the lab</h3>
 <ol type="1">
 <li>Create a folder on your computer called COM_411_Labs</li>
-<li>Right-click on <a href="https://github.com/jdfoote/com_and_social_networks_labs/raw/main/lab_1_r_markdown.qmd">this link to Lab 1</a> and save it into the COM_411_Labs folder</li>
+<li>Right-click on <a href="../assignments/r_labs/lab_1_quarto.qmd">this link to Lab 1</a> and save it into the COM_411_Labs folder</li>
 <li>Open VSCode</li>
 <li>Click on the Extensions icon on the left (it’s 3 attached squares and one floating square)</li>
 <li>Search for “quarto” and install the quarto extension</li>
 <li>Search for “R” and install the R extension</li>
-<li>In VSCode, Click File &gt; Open Folder - Navigate to the COM_411_Labs folder that you created earlier</li>
+<li>In VSCode, Click File &gt; Open Folder; Navigate to the COM_411_Labs folder that you created earlier and open it. You should see the lab_1</li>
 <li>Click on the lab_1_quarto.qmd file, and it should open in the main window of VSCode. At this point, it may ask if you want to install “languageserver”. You can click “Install” if it asks.</li>
 <li>Scroll down to line 36. You should see a little button that says “Run Cell”. Push that button, and a terminal will open at the bottom of the screen. This will run the R code in the cell.</li>
 <li>In the R shell at the bottom of VSCode, paste the following:
 <ul>
 <li><code>install.packages(c("rmarkdown","tidyverse","ggraph","tidygraph","igraphdata"))</code></li>
-<li>It will ask you what CRAN mirror you'd like to use. You can choose something in the US.</li>
+<li>It will ask you what CRAN mirror you’d like to use. You can choose something in the US.</li>
 <li>If it asks if you want to install from source, you can type “no”</li>
 <li>This will show a bunch of crazy messages for a while. You can probably ignore them.</li>
 <li>WINDOWS USERS: There’s a chance that this won’t work because VSCode doesn’t know where R is. <a href="https://rolkra.github.io/R-VSCode/">This page</a> has some instructions on how to fix it. Look under “Connect R”. If you can’t get it to work, ask a neighbor (or me) for help.</li>
@@ -347,7 +348,7 @@ ul.task-list li input[type="checkbox"] {
 <li><code>quarto install tinytex</code></li>
 </ul></li>
 <li>Click the “Preview” icon at the top right, and hopefully it works!</li>
-<li>Read the document, make the changes that you are asked to, and then preview the document again. Notice that there is a new PDF file in the folder.</li>
+<li>Read the document, do the exercises at the bottom, and then preview the document again. Notice that there is a new PDF file in the folder.</li>
 <li>Upload the PDF to Brightspace! You did it!!</li>
 </ol>
 <p>If things aren’t working then ask a neighbor for help.</p>
