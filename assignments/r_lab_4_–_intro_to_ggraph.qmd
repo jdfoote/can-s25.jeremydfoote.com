@@ -14,3 +14,8 @@ date: 2025-02-24
 
 [Download Assignment (right-click and save)](/assignments/r_labs/lab_4_intro_to_ggraph.qmd)
 
+
+## Example Solution
+
+[View Example Solution](/assignments/r_lab_examples/lab_4_intro_to_ggraph.pdf)
+

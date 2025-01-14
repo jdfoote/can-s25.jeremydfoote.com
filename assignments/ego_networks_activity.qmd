@@ -9,3 +9,8 @@ date: 2025-02-10
 
 [Download Assignment (right-click and save)](/assignments/ego_networks/ego_analysis.qmd)
 
+
+## Example Solution
+
+[View Example Solution](/assignments/ego_networks/ego_analysis.pdf)
+

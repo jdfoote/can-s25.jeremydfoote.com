@@ -23,6 +23,11 @@ date: {due_date}
 
 [Download Assignment (right-click and save)]({file_location})
 
+
+## Example Solution
+
+[View Example Solution]({file_location.replace('/r_labs/', '/r_lab_examples/').replace('.qmd', '.pdf')})
+
 """
     
     

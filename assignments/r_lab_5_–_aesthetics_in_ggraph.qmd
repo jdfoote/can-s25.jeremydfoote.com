@@ -14,3 +14,8 @@ date: 2025-03-03
 
 [Download Assignment (right-click and save)](/assignments/r_labs/lab_5_aesthetics_in_ggraph.qmd)
 
+
+## Example Solution
+
+[View Example Solution](/assignments/r_lab_examples/lab_5_aesthetics_in_ggraph.pdf)
+

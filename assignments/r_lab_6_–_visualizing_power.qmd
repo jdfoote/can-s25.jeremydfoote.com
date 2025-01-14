@@ -14,3 +14,8 @@ date: 2025-03-24
 
 [Download Assignment (right-click and save)](/assignments/r_labs/lab_6_visualizing_power.qmd)
 
+
+## Example Solution
+
+[View Example Solution](/assignments/r_lab_examples/lab_6_visualizing_power.pdf)
+

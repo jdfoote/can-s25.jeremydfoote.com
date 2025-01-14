@@ -62,7 +62,7 @@ It should extract all of the labs for the class.
 ### Step 4: Testing {#step_4_testing}
 
 -   In the bottom right pane, click Files, then click on
-    lab_1_r_markdown.Rmd. A weird looking file should show up in the top
+    lab_1_quarto.Rmd. A weird looking file should show up in the top
     left pane.
 -   In the top left pane, click \"Knit\". Some text should appear in the
     bottom left panel, and after 20 seconds or so, you should see a new

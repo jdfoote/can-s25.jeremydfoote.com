@@ -14,3 +14,8 @@ date: 2025-04-07
 
 [Download Assignment (right-click and save)](/assignments/r_labs/lab_7_groups_in_networks.qmd)
 
+
+## Example Solution
+
+[View Example Solution](/assignments/r_lab_examples/lab_7_groups_in_networks.pdf)
+

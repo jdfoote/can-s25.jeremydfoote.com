@@ -1,6 +1,6 @@
 ---
 title: "Creating Networks"
-author: "Your name here"
+author: "Dr. Foote's Example"
 format: pdf
 ---
 
@@ -45,7 +45,7 @@ Save the spreadsheet to your computer as an XLSX file called `edges.xlsx`; make 
 Uncomment the code below (by deleting the # symbol) and run it. 
 
 ```{r}
-#edgelist <- read_excel("./edges.xlsx")
+edgelist <- read_excel("/home/jeremy/Teaching/can-s25.jeremydfoote.com/assignments/r_lab_examples/edges.xlsx")
 ```
 
 Look down at the R console (the bottom window) and see if it worked. You might get an error here that says something like `there is no function called 'readxl'`. If you get that, then you need to run `install.packages('tidyverse')` in the console (this is in the bottom window). It will take a while to install, but if it works correctly your code above should work.
@@ -57,8 +57,7 @@ Finally, you might get an error that says something like `Error: path does not e
 To test if everything worked right, uncomment the following code to show all of the edges in R.
 
 ```{r}
-
-#edgelist
+edgelist
 ```
 
 (Note: the "#" symbol "comments out" code - this means that anything after the # in a given line will be ignored by R)
@@ -85,14 +84,14 @@ Here is my import code, which should work if you saved it to this folder:
 
 ```{r}
 
-#node_atts <- read_excel("./node_atts.xlsx")
+node_atts <- read_excel("/home/jeremy/Teaching/can-s25.jeremydfoote.com/assignments/r_lab_examples/node_atts.xlsx")
 ```
 
 Uncomment and run the following code to check that it worked.
 
 ```{r}
 
-#node_atts
+node_atts
 ```
 
 
@@ -109,9 +108,9 @@ We do this by running `graph_from_data_frame`. This is a [function](https://www.
 If you've done everything right, then when you uncomment the code below, it should produce a network plot.
 
 ```{r}
-#G <- graph_from_data_frame(d = edgelist, 
-#                           vertices = node_atts, directed = T)
-#plot(G)
+G <- graph_from_data_frame(d = edgelist, 
+                           vertices = node_atts, directed = T)
+plot(G)
 ```
 
 The one piece of code from above that we haven't talked about is `G <-`. This saves the network to the variable `G` and then `plot(G)` makes a basic plot of it.
@@ -131,9 +130,9 @@ Uncomment the code below and run it. If it worked, then you should see a text ou
 
 
 ```{r}
-#G <- as_tbl_graph(G)
+G <- as_tbl_graph(G)
 
-#G
+G
 ```
 
 
@@ -147,15 +146,15 @@ Unfortunately, it's a little bit trickier to install this package than other pac
 If it works, then you should be able to load the package when you uncomment the code below.
 
 ```{r}
-#library(networkdata)
+library(networkdata)
 ```
 
 Now, you will have access to the networks from the package. Run `data(package='networkdata')` to see all of the options. This code shows an advice network from a high-tech firm:
 
 ```{r}
 # This code turns the ht_advice network object into a tidygraph object, and saves it as G
-#G <- as_tbl_graph(ht_advice)
-#plot(G)
+G <- as_tbl_graph(ht_advice)
+plot(G)
 ```
 
 
@@ -181,16 +180,24 @@ plot(G)
 Finally, create a new network plot with the new person.
 
 
-```{r}
+```{r echo=FALSE}
 ## YOUR CODE HERE
-
+e2 <- read_excel("/home/jeremy/Teaching/can-s25.jeremydfoote.com/assignments/r_lab_examples/edges_2.xlsx")
+n2 <- read_excel("/home/jeremy/Teaching/can-s25.jeremydfoote.com/assignments/r_lab_examples/node_atts_2.xlsx")
+G <- graph_from_data_frame(d = e2, 
+                           vertices = n2, directed = T)
+    
+G <- as_tbl_graph(G)
+plot(G)
 
 ```
 
 2. Above, we loaded the `ht_advice` network. Figure out how to load the `ffe_elite` network from `newtorkdata` as a `tidygraph` object, and plot it.
 
-```{r}
+```{r echo=FALSE}
 
+G <- as_tbl_graph(ffe_elite)
+plot(G)
 # YOUR CODE HERE
 
 
@@ -204,8 +211,10 @@ YOUR ANSWER HERE
 
 4. A list of a bunch of possible random graphs is listed at https://tidygraph.data-imaginist.com/reference/index.html under "Graph Creation". See if you can figure out how to make a ring graph with 20 nodes.
 
-```{r}
+```{r echo=FALSE}
 
+G <- create_ring(20)
+plot(G)
 # YOUR CODE HERE
 
 ```

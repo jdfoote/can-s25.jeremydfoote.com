@@ -14,3 +14,8 @@ date: 2025-02-17
 
 [Download Assignment (right-click and save)](/assignments/r_labs/lab_3_mutating_and_filtering.qmd)
 
+
+## Example Solution
+
+[View Example Solution](/assignments/r_lab_examples/lab_3_mutating_and_filtering.pdf)
+

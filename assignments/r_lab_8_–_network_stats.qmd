@@ -9,3 +9,8 @@ date: 2025-04-14
 
 [Download Assignment (right-click and save)](/assignments/r_labs/lab_8_network_stats.qmd)
 
+
+## Example Solution
+
+[View Example Solution](/assignments/r_lab_examples/lab_8_network_stats.pdf)
+
