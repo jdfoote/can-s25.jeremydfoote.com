@@ -77,7 +77,7 @@ Why did the nearsighted man fall in the well?
 
 ## Who you are connected to can be more important than who you are
 
-![](./images/covid_bubble.png){.fragment}
+![](./images/covid_bubble.png){.fragment width=60%}
 
 ## Goals
  1. Understand the foundations of network theory and analysis
