@@ -1,6 +1,6 @@
 ---
 title: "Mutating and filtering"
-author: "Your name here"
+author: "Dr. Foote's Example"
 format: pdf
 ---
 
@@ -137,11 +137,16 @@ ht_advice |>
 
 Remember that the order matters - if we ran `mutate` before `filter` then it would calculate the betweenness centrality _before_ filtering.
 
-### Excercises
+## Excercises
 
 1. Modify the code on lines 49-53 to calculate the betweenness centrality instead of the degree of `G`. Name the column `betweenness` (Hint: use the `centrality_betweenness()` function. ([Here is the list of all centrality functions](https://tidygraph.data-imaginist.com/reference/centrality.html).)
 
-```{r}
+```{r echo=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+
+G |>
+  activate(nodes) |>
+  mutate(betweenness = centrality_betweenness())
 # Your code here
   
 ```
@@ -150,37 +155,62 @@ Remember that the order matters - if we ran `mutate` before `filter` then it wou
 
 ```{r}
 # Your code here
+G <- G |>
+  activate(nodes) |>
+  mutate(betweenness = centrality_betweenness())
+```
+
+```{r echo=T}
+
+G
 ```
 
 3. It's more common that we mutate the nodes, but sometimes we want to mutate the edges. For example, `centrality_edge_betweenness()` is one measure of how important each edge in a network is. Use `mutate` to calculate the edge betweenness of each edge in `G`.
 
 ```{r}
+G |>
+  activate(edges) |>
+  mutate(edge_betweenness = centrality_edge_betweenness())
 
-# Your code here
 ```
 
 4. Filter the `ht_advice` network to just the people who are older than 35. How many nodes are there? How many edges? (Hint: you can use `print` like I do in the example above to print information about the graph before you plot it)
 
 ```{r}
-# Your code here
+ht_advice |>
+  activate(nodes) |>
+  filter(age > 35) |>
+  plot()
 ```
 
 5. Filter the `ht_advice` network to only those nodes whose `tenure` is less than the median value for `tenure`. Plot the graph.
 
 ```{r}
-## Your code here
+ht_advice |>
+  activate(nodes) |>
+  filter(tenure < median(tenure)) |>
+  plot()
 ```
 
 6. Sometimes we want to filter before calculating statistics, and sometimes we want to calculate statistics first. Calculate the degree centrality for `ht_advice`, save it in a column called `degree`, and then filter to just the nodes with `degree` of at least 2, and plot the network.
 
 ```{r}
 
-## Your code here
+ht_advice |>
+  activate(nodes) |>
+  mutate(degree = centrality_degree()) |>
+  filter(degree >= 2) |>
+  plot()
 ```
 
 
 7. Let's go crazy. Take the `ht_advice` network, filter to just the nodes with `dept` equal to 2, and then calculate the degree centrality. Then, filter to just the nodes with a degree centrality of at least 3. Finally, plot the network.
 
 ```{r}
-## Your code here
+ht_advice |>
+  activate(nodes) |>
+  filter(dept == 2) |>
+  mutate(degree = centrality_degree()) |>
+  filter(degree >= 3) |>
+  plot()
 ```

@@ -1,12 +1,12 @@
 ---
 title: 'Power Visualization'
-author: "Your name here"
+author: "Dr. Foote's Example"
 format: pdf
 ---
 
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = T)
+knitr::opts_chunk$set(echo = T, warning = F, message = F)
 knitr::opts_knit$set(root.dir = './')
 library(tidyverse)
 library(igraph)
@@ -102,6 +102,7 @@ G |>
   ggraph() + 
   geom_edge_fan(aes(alpha = stat(index))) + # This does gradients for directed edges
   geom_node_point(aes(size = centrality), color = '#ceb888') +
+  geom_node_text(aes(label=name, size=centrality)) +
   guides(edge_alpha = guide_edge_direction(title="Direction", labels = c('from', 'to'))) + # Adds the "Edge direction" legend
   scale_size_continuous(name = "Closeness Centrality")
 
@@ -139,9 +140,19 @@ G |>
 1. Now it's your turn. How would you edit the code above to show outdegree centrality (or gregariousness)?
 
 
-```{r}
+```{r echo=F}
 
-# YOUR CODE HERE
+knitr::opts_chunk$set(echo = F)
+
+G |>
+  activate(nodes) |>
+  mutate(degree = centrality_degree(mode = 'out')) |>
+  ggraph() +
+  geom_edge_fan(aes(alpha = stat(index))) +
+  geom_node_point(aes(size = degree), color = '#ceb888') +
+  geom_node_text(aes(label = name, size=degree)) +
+  guides(edge_alpha = guide_edge_direction(title="Direction", labels = c('from', 'to')))
+  scale_size_continuous(name='Outdegree')
 
 ```
 
@@ -163,13 +174,13 @@ YOUR ANSWER HERE
 
 4. After you've done that, turn this into a code block (by adding "{r}" after the backticks) and then find the bug in the code below so that it colors the nodes based on betweenness centrality (So far we've been using the size of the node to represent centrality, but color is the other common way of showing centrality).
 
-```
+```{r}
 G |>
   activate(nodes) |>
   mutate(centrality = centrality_betweenness()) |>
   ggraph() +
   geom_edge_fan(aes(alpha = stat(index))) + # This does gradients for directed edges
-  geom_node_point(color = centrality, size = 4) +
+  geom_node_point(aes(color = centrality), size = 4) +
   geom_node_text(aes(label = name)) +
   guides(edge_alpha = guide_edge_direction(title="Direction", labels = c('from', 'to'))) + # Adds the "Edge direction" legend
   scale_color_continuous(name = "Betweenness Centrality")
@@ -183,7 +194,15 @@ YOUR ANSWER HERE
 
 ```{r}
 
-# YOUR CODE HERE
+G |>
+  activate(nodes) |>
+  mutate(centrality = centrality_eigen(directed = TRUE)) |>
+  ggraph() +
+  geom_edge_fan(aes(alpha = stat(index))) + # This does gradients for directed edges
+  geom_node_point(aes(size = centrality, color=tenure)) +
+  geom_node_text(aes(label = name, size = centrality)) +
+  guides(edge_alpha = guide_edge_direction(title="Direction", labels = c('from', 'to'))) + # Adds the "Edge direction" legend
+  scale_size_continuous(name = "Eigenvector Centrality")
 
 ```
 

@@ -1,6 +1,6 @@
 ---
 title: "Intro to ggraph"
-author: "Your name here"
+author: "Dr. Foote's Example"
 format: pdf
 ---
 
@@ -110,14 +110,22 @@ Hopefully this has been a pretty painless introduction to `ggraph`. Next time we
 
 1. Make a visualization of just the edges of the Zachary karate network, this time using `geom_edge_diagonal`
 
-```{r}
-# Your code here
+```{r echo=F}
+knitr::opts_chunk$set(echo = FALSE)
+
+G |>
+  ggraph() +
+  geom_edge_diagonal()
+
 ```
 
 2. Make a visualization of just the nodes of the Zachary karate network, without the edges.
 
 ```{r}
 # Your code here
+G |>
+  ggraph() +
+  geom_node_point()
 
 ```
 
@@ -125,13 +133,22 @@ Hopefully this has been a pretty painless introduction to `ggraph`. Next time we
 
 ```{r}
 # Your code here
+
+G |> 
+  ggraph() +
+  geom_edge_fan(color='#CFB991') +
+  geom_node_point(size=10, color='red')
+
 ```
 
 4. Create a visualization of the network with blue edges that have a width of 2, and red nodes that are squares.
 
 ```{r}
 # Your code here
-
+G |>
+  ggraph() +
+  geom_edge_fan(color='blue', width=2) +
+  geom_node_point(color='red', shape='square')
 ```
 
 
@@ -139,13 +156,10 @@ Hopefully this has been a pretty painless introduction to `ggraph`. Next time we
 
 ```{r}
 # Your code here
+G |>
+  ggraph(layout='randomly') +
+  geom_edge_fan() +
+  geom_node_point()
 
 ```
 
-6. Be creative! Make a visualization of the network that you think looks nice. You can change the layout, the color of the nodes, the size of the nodes, the shape of the nodes, the color of the edges, the width of the edges, etc.
-
-```{r}
-
-# Your code here
-
-```
