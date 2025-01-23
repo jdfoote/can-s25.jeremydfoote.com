@@ -6,7 +6,7 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="author" content="Your name here">
+<meta name="author" content="Dr.&nbsp;Foote’s Example">
 
 <title>Communication and Social Networks - Aesthetics in ggraph</title>
 <style>
@@ -153,20 +153,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
    
   <ul>
   <li><a href="#two-types-of-aesthetics" id="toc-two-types-of-aesthetics" class="nav-link active" data-scroll-target="#two-types-of-aesthetics">Two types of aesthetics</a></li>
-  <li><a href="#general-aesthetics" id="toc-general-aesthetics" class="nav-link" data-scroll-target="#general-aesthetics">General aesthetics</a>
-  <ul class="collapse">
-  <li><a href="#exercise" id="toc-exercise" class="nav-link" data-scroll-target="#exercise">Exercise</a></li>
-  </ul></li>
-  <li><a href="#mapping-aesthetics" id="toc-mapping-aesthetics" class="nav-link" data-scroll-target="#mapping-aesthetics">“Mapping” aesthetics</a>
-  <ul class="collapse">
-  <li><a href="#exercise-1" id="toc-exercise-1" class="nav-link" data-scroll-target="#exercise-1">Exercise</a></li>
-  <li><a href="#exercise-2" id="toc-exercise-2" class="nav-link" data-scroll-target="#exercise-2">Exercise</a></li>
-  </ul></li>
+  <li><a href="#general-aesthetics" id="toc-general-aesthetics" class="nav-link" data-scroll-target="#general-aesthetics">General aesthetics</a></li>
+  <li><a href="#mapping-aesthetics" id="toc-mapping-aesthetics" class="nav-link" data-scroll-target="#mapping-aesthetics">“Mapping” aesthetics</a></li>
   <li><a href="#edge-aesthetics" id="toc-edge-aesthetics" class="nav-link" data-scroll-target="#edge-aesthetics">Edge aesthetics</a></li>
-  <li><a href="#exercise-3" id="toc-exercise-3" class="nav-link" data-scroll-target="#exercise-3">Exercise</a>
-  <ul class="collapse">
-  <li><a href="#challenge-exercise" id="toc-challenge-exercise" class="nav-link" data-scroll-target="#challenge-exercise">Challenge Exercise</a></li>
-  </ul></li>
+  <li><a href="#exercises" id="toc-exercises" class="nav-link" data-scroll-target="#exercises">Exercises</a></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/jdfoote/can-s25.jeremydfoote.com/edit/main/assignments/r_lab_examples/lab_5_aesthetics_in_ggraph.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/jdfoote/can-s25.jeremydfoote.com/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div><div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="lab_5_aesthetics_in_ggraph.pdf"><i class="bi bi-file-pdf"></i>PDF</a></li></ul></div></nav>
     </div>
@@ -235,20 +225,13 @@ Attaching package: 'networkdata'</code></pre>
 </div>
 </div>
 </div>
-<section id="exercise" class="level3">
-<h3 class="anchored" data-anchor-id="exercise">Exercise</h3>
-<p>Change the width of the edges to .5 and their color to “purple”</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Your code here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-</section>
 </section>
 <section id="mapping-aesthetics" class="level2">
 <h2 class="anchored" data-anchor-id="mapping-aesthetics">“Mapping” aesthetics</h2>
-<p>The second type of aesthetics maps some aspect of the data to some aspect of the visualization. For example, we might color nodes differently based on their major or size them differently based on their centrality.</p>
+<p>The second type of aesthetics “maps” some aspect of the data to some aspect of the visualization. For example, we might color nodes differently based on their major or size them differently based on their centrality.</p>
 <p>Let’s start by figuring out what the attributes of the nodes are in this data.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>G</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>G</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tbl_graph: 28 nodes and 66 edges
 #
@@ -284,14 +267,40 @@ Attaching package: 'networkdata'</code></pre>
 </div>
 </div>
 <p>This is rich data! There are 26 different variables, some of which are clear (e.g, <code>birthdate</code>) and some of which are confusing (e.g., <code>topboards</code> or <code>igyear</code>). Let’s choose one and visualize it.</p>
-<p>Usually, you would want to be guided by a question about the data which would inform your visualizations. Let’s pretend like we really want to know whether people form friendships across religions. Let’s visualize different religion as different shapes.</p>
-<p>To do that, we “map” the shape of the nodes to the <code>religion</code> variable. The syntax to do this is to put the thing we want to change, then <code>=</code>, then the variable (column name) we want to use to change it. So, for changing shape to religion, it’s <code>shape = religion</code>. We put that whole thing in <code>aes</code> (which stands for mapping aesthetic), and put it into the <code>geom_node_point</code> function.</p>
+<p>Usually, you would want to be guided by a question about the data which would inform your visualizations. As our question, let’s look into whether people form friendships across religions. Let’s visualize different religions as different shapes.</p>
+<p>To do that, we “map” the shape of the nodes to the <code>religion</code> variable. The syntax to do this is <code>aesthetic=column name</code>. So, to change the shape based on the data in the religion column, it’s <code>shape = religion</code>. We put that whole thing in <code>aes</code> (which stands for mapping aesthetic), and put it into the <code>geom_node_point</code> function.</p>
+<p>The key idea here is that things outside of <code>aes()</code> apply to all nodes or all edges, while things inside of <code>aes()</code> apply to nodes or edges differently based on some attribute of the data.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>G <span class="sc">|&gt;</span></span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">religion =</span> <span class="fu">as_factor</span>(religion)) <span class="sc">|&gt;</span></span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggraph</span>() <span class="sc">+</span></span>
-<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_edge_fan</span>() <span class="sc">+</span> </span>
-<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_node_point</span>(<span class="fu">aes</span>(<span class="at">shape=</span>religion), <span class="at">size =</span> <span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>G <span class="sc">|&gt;</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">religion =</span> <span class="fu">as_factor</span>(religion)) <span class="sc">|&gt;</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggraph</span>() <span class="sc">+</span></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_edge_fan</span>() <span class="sc">+</span> </span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_node_point</span>(<span class="fu">aes</span>(<span class="at">shape=</span>religion), <span class="at">size =</span> <span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Using "stress" as default layout</code></pre>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="lab_5_aesthetics_in_ggraph_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Note the line <code>mutate(religion = as_factor(religion))</code> Try commenting out that line and running the code again.</p>
+<p>You should get an error that is something like <code>A continuous variable can not be mapped to shape</code>. This is saying that in this data <code>religion</code> is a number and it doesn’t make much sense to map a number to a shape, because usually numbers are ordered while shapes are unordered. So, we have to add the <code>mutate</code> step to change the <code>religion</code> variable type using <code>as_factor</code> which changes how R sees it from a number to a <code>factor</code>—in other words, a category (which is what religion really is, anyway!).</p>
+</section>
+<section id="edge-aesthetics" class="level2">
+<h2 class="anchored" data-anchor-id="edge-aesthetics">Edge aesthetics</h2>
+<p>We can also map the edge aesthetics to variables from our edgelist spreadsheet. The most common approaches are to map the type of the edge to color and the weight of the edge to the <code>width</code>, <code>color</code>, or <code>alpha</code> of the edge.</p>
+<p>Looking at our data, the edges don’t have weights, so let’s load in a dataset that does. The code below loads the fourth network from the <code>animal_13</code> data—edges represent how long ants spent near each other—and colors the edges based on their weight.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>ants <span class="ot">&lt;-</span> animal_13[[<span class="dv">4</span>]] <span class="sc">|&gt;</span> <span class="fu">as_tbl_graph</span>()</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>ants <span class="sc">|&gt;</span></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggraph</span>() <span class="sc">+</span></span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_edge_fan</span>(<span class="fu">aes</span>(<span class="at">color=</span>weight)) <span class="sc">+</span> </span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_node_point</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>Using "stress" as default layout</code></pre>
 </div>
@@ -303,47 +312,118 @@ Attaching package: 'networkdata'</code></pre>
 </div>
 </div>
 </div>
-<p>Note the line <code>mutate(religion = as_factor(religion))</code> Try commenting out that line and running the code again.</p>
-<p>You should get an error that is something like <code>A continuous variable can not be mapped to shape</code>. This is saying that in this data <code>religion</code> is a number and it doesn’t make much sense to map a number to a shape, because usually numbers are ordered while shapes are unordered. So, we have to add the <code>mutate</code> step to change the <code>religion</code> variable type using <code>as_factor</code> which changes how R sees it from a number to a <code>factor</code>—in other words, a category (which is what religion really is, anyway!).</p>
-<section id="exercise-1" class="level3">
-<h3 class="anchored" data-anchor-id="exercise-1">Exercise</h3>
-<p>Instead of mapping their shape to <code>religion</code>, map the color of the nodes to <code>religion</code>.</p>
+</section>
+<section id="exercises" class="level2">
+<h2 class="anchored" data-anchor-id="exercises">Exercises</h2>
+<ol type="1">
+<li>Load the <code>G</code> graph and change the width of the edges to .5 and their color to purple.</li>
+</ol>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Your code here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Using "stress" as default layout</code></pre>
 </div>
-<p>There are a number of node aesthetics that we can map variables to. The most common are: <code>shape</code>, <code>size</code>, and <code>color</code>. Let’s do one more exercise to practice these.</p>
-</section>
-<section id="exercise-2" class="level3">
-<h3 class="anchored" data-anchor-id="exercise-2">Exercise</h3>
-<p>Go back to your code from when we learned about <code>mutate</code> and figure out how to calculate <code>degree</code> centrality for our network; save the centrality in a column called <code>degree</code> and change the <code>size</code> of nodes based on the <code>degree</code>.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Your code here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="lab_5_aesthetics_in_ggraph_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
 </div>
-</section>
-</section>
-<section id="edge-aesthetics" class="level2">
-<h2 class="anchored" data-anchor-id="edge-aesthetics">Edge aesthetics</h2>
-<p>We can also map the edge aesthetics to variables from our edgelist spreadsheet. The most common approaches are to map the type of the edge to color and the weight of the edge to the <code>width</code>, <code>color</code>, or <code>alpha</code> of the edge.</p>
-<p>Looking at our data, the edges don’t have weights. For your exercise, we’ll put together a few skills from the last few labs.</p>
-</section>
-<section id="exercise-3" class="level2">
-<h2 class="anchored" data-anchor-id="exercise-3">Exercise</h2>
-<p>Load the <code>bkfrab</code> dataset (also from <code>networkdata</code>, so load it in the same way as the <code>ffe_friends</code> data above). This records how often pairs of subjects were seen talking to each other in a fraternity. Map the <code>alpha</code> of the edge to the <code>weight</code> in the <code>edges</code> dataframe.</p>
-<p>Hints: Remember to use <code>as_tbl_graph</code> to change the network type, and to <code>activate</code> the edges dataframe.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Your code here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<section id="challenge-exercise" class="level3">
-<h3 class="anchored" data-anchor-id="challenge-exercise">Challenge Exercise</h3>
-<p>When we look at the <code>bkfrab</code> data, there are a lot of nodes with edge weight 10. Filter to just the edges whose weight is greater than 10, and map the <code>color</code> of the edges to their weight.</p>
-<p>Note that this will leave a lot of nodes without any edges. The default <code>'stress'</code> layout puts them along the bottom, which looks kind of odd. You may want to use a layout like <code>'fr'</code> instead.</p>
+</div>
+<ol start="2" type="1">
+<li>Load G and map the color of the nodes to <code>religion</code>, and the shape to <code>university</code>. (Hint: <code>as_factor</code>)</li>
+</ol>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Your code here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Using "stress" as default layout</code></pre>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="lab_5_aesthetics_in_ggraph_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<ol start="3" type="1">
+<li>Go back to your code from Lab 3 when we learned about <code>mutate</code> and figure out how to calculate the degree centrality for our network; save the centrality in a column called <code>degree</code> and change the <code>size</code> of nodes based on the <code>degree</code>.</li>
+</ol>
+<div class="cell">
+<div class="cell-output cell-output-stderr">
+<pre><code>Using "stress" as default layout</code></pre>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="lab_5_aesthetics_in_ggraph_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<ol start="4" type="1">
+<li>Load the <code>bkfrab</code> dataset (also from <code>networkdata</code>, so load it in the same way as the <code>ffe_friends</code> data above). This records how often pairs of subjects were seen talking to each other in a fraternity. Map the <code>alpha</code> of the edge to the <code>weight</code> in the <code>edges</code> dataframe.</li>
+</ol>
+<p>Hint: Remember to use <code>as_tbl_graph</code> to change the network type.</p>
+<div class="cell">
+<div class="cell-output cell-output-stderr">
+<pre><code>Using "stress" as default layout</code></pre>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="lab_5_aesthetics_in_ggraph_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<ol start="5" type="1">
+<li>When we look at the <code>bkfrab</code> data, there are a lot of nodes with edge weight 10. Filter to just the edges whose weight is greater than 10, and map the <code>color</code> of the edges to their weight.</li>
+</ol>
+<div class="cell">
+<div class="cell-output cell-output-stderr">
+<pre><code>Using "stress" as default layout</code></pre>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="lab_5_aesthetics_in_ggraph_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<ol start="6" type="1">
+<li>The last graph leaves a lot of nodes without any edges. The default <code>'stress'</code> layout puts them along the bottom, which looks kind of odd. There are a few ways to handle this. First, try changing the layout.</li>
+</ol>
+<p>You probably want a layout from <a href="https://igraph.org/c/doc/igraph-Layout.html">here</a>. This isn’t well documented anywhere, but you just use the end of the name of the layout function. For functions with two names, you just use the initials. For example, to use <code>igraph_layout_davidson_harel</code>, you would use <code>ggraph(layout='dh')</code>.</p>
+<p><strong>Note</strong>: I chose one of the layouts that I thought would look good, but yours will likely look different.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="lab_5_aesthetics_in_ggraph_files/figure-html/unnamed-chunk-12-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<ol start="7" type="1">
+<li>The other approach that you might take (depending on the data and your goals) is to filter out the nodes that don’t have any edges. In this case, there are so many isolates (nodes with degree 0) that this is probably the best choice.</li>
+</ol>
+<p>There are a few ways to do this, but one approach is to filter out the nodes with degree of 0. See if you can figure out how to do that.</p>
+<div class="cell">
+<div class="cell-output cell-output-stderr">
+<pre><code>Using "stress" as default layout</code></pre>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="lab_5_aesthetics_in_ggraph_files/figure-html/unnamed-chunk-13-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
 </div>
 <p>You now have all of the key skills to load in, <code>mutate</code> and <code>filter</code> networks, and to do some pretty cool visualizations with them. From here on out, we’ll mostly be reusing these skills in new ways.</p>
 
 
-</section>
 </section>
 
 </main> <!-- /main -->

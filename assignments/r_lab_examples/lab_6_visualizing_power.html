@@ -6,7 +6,7 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="author" content="Your name here">
+<meta name="author" content="Dr.&nbsp;Foote’s Example">
 
 <title>Communication and Social Networks - Power Visualization</title>
 <style>
@@ -155,21 +155,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#visualizing-centrality-using-ggraph" id="toc-visualizing-centrality-using-ggraph" class="nav-link active" data-scroll-target="#visualizing-centrality-using-ggraph">Visualizing centrality using ggraph</a>
   <ul class="collapse">
   <li><a href="#power-and-networks" id="toc-power-and-networks" class="nav-link" data-scroll-target="#power-and-networks">Power and networks</a></li>
-  <li><a href="#degree-centrality" id="toc-degree-centrality" class="nav-link" data-scroll-target="#degree-centrality">Degree centrality</a>
-  <ul class="collapse">
-  <li><a href="#exercise" id="toc-exercise" class="nav-link" data-scroll-target="#exercise">Exercise</a></li>
-  </ul></li>
-  <li><a href="#closeness-centrality" id="toc-closeness-centrality" class="nav-link" data-scroll-target="#closeness-centrality">Closeness Centrality</a>
-  <ul class="collapse">
-  <li><a href="#exercise-1" id="toc-exercise-1" class="nav-link" data-scroll-target="#exercise-1">Exercise</a></li>
-  </ul></li>
-  <li><a href="#betweenness-centrality" id="toc-betweenness-centrality" class="nav-link" data-scroll-target="#betweenness-centrality">Betweenness Centrality</a>
-  <ul class="collapse">
-  <li><a href="#exercise-2" id="toc-exercise-2" class="nav-link" data-scroll-target="#exercise-2">Exercise</a></li>
-  </ul></li>
+  <li><a href="#degree-centrality" id="toc-degree-centrality" class="nav-link" data-scroll-target="#degree-centrality">Degree centrality</a></li>
+  <li><a href="#closeness-centrality" id="toc-closeness-centrality" class="nav-link" data-scroll-target="#closeness-centrality">Closeness Centrality</a></li>
+  <li><a href="#betweenness-centrality" id="toc-betweenness-centrality" class="nav-link" data-scroll-target="#betweenness-centrality">Betweenness Centrality</a></li>
   <li><a href="#eigenvector-centrality" id="toc-eigenvector-centrality" class="nav-link" data-scroll-target="#eigenvector-centrality">Eigenvector centrality</a>
   <ul class="collapse">
-  <li><a href="#exercise-3" id="toc-exercise-3" class="nav-link" data-scroll-target="#exercise-3">Exercise</a></li>
+  <li><a href="#exercises" id="toc-exercises" class="nav-link" data-scroll-target="#exercises">Exercises</a></li>
   </ul></li>
   </ul></li>
   </ul>
@@ -198,26 +189,25 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Degree centrality is simply the number of connections that someone has. For directed networks, indegree can be interpreted as popularity and outdegree as gregariousness.</p>
 <p>Let’s look at different measures of power in the <code>ht_friends</code> network. There are a few new things going on here, so I’ll walk through each line:</p>
 <ul>
+<li><code>ht_friends |&gt; as_tbl_graph()</code>: Hopefully you know what these lines do—take the <code>ht_friends</code> network and make it into a <code>tidygraph</code> object.</li>
 <li><code>activate(nodes) |&gt; mutate(name = 1:nrow(.N()))</code> adds a column called <code>name</code> to the nodes, which starts at the number one and goes to the number of nodes (<code>nrow(.N())</code>).</li>
-<li><code>G |&gt; ggraph()</code>: Hopefully you know what these lines do—take our graph (<code>G</code>) and make it into a <code>ggraph</code></li>
 <li><code>geom_edge_fan(aes(alpha = stat(index)))</code>: This is where things get a bit tricky. This creates edges using the <code>geom_edge_fan</code> style and sets the transparency (<code>alpha</code>) of an edge so that it’s darkest closest to the <code>to</code> node. It’s for helping us see the direction of directed edges.</li>
 <li><code>geom_node_point(color = '#ceb888', size = 5)</code>: This should look familiar. It just sets a color and size for nodes</li>
 <li><code>geom_node_text(aes(label = name))</code>: This adds the labels we created earlier to the nodes. It just makes it easier for us to talk about individual nodes.</li>
-<li><code>scale_edge_alpha('Edge direction', guide = 'edge_direction')</code>: Finally, this lets you adjust the legend. We’ll see more examples today and later, but the <code>scale_</code> funcions let you change the title of a legend, change the colors used, etc.</li>
+<li><code>guides(edge_alpha = guide_edge_direction(title="Direction", labels = c('from', 'to')))</code> This adds a legend to the plot that tells us what the alpha (transparency) of the edges means.</li>
 </ul>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>G <span class="ot">&lt;-</span> ht_friends <span class="sc">|&gt;</span> </span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">upgrade_graph</span>() <span class="sc">|&gt;</span></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as_tbl_graph</span>() <span class="sc">|&gt;</span></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">activate</span>(nodes) <span class="sc">|&gt;</span></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">name=</span><span class="dv">1</span><span class="sc">:</span><span class="fu">nrow</span>(<span class="fu">.N</span>()))</span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>G <span class="sc">|&gt;</span></span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggraph</span>() <span class="sc">+</span> </span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_edge_fan</span>(<span class="fu">aes</span>(<span class="at">alpha =</span> <span class="fu">stat</span>(index))) <span class="sc">+</span> <span class="co"># This does gradients for directed edges</span></span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_node_point</span>(<span class="at">color =</span> <span class="st">'#ceb888'</span>, <span class="at">size =</span> <span class="dv">5</span>) <span class="sc">+</span> </span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_node_text</span>(<span class="fu">aes</span>(<span class="at">label =</span> name)) <span class="sc">+</span> <span class="co"># Adds labels to nodes</span></span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_edge_alpha</span>(<span class="st">'Edge direction'</span>, <span class="at">guide =</span> <span class="st">'edge_direction'</span>) <span class="co"># Adds the "Edge direction" legend</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as_tbl_graph</span>() <span class="sc">|&gt;</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">activate</span>(nodes) <span class="sc">|&gt;</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">name=</span><span class="dv">1</span><span class="sc">:</span><span class="fu">nrow</span>(<span class="fu">.N</span>()))</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>G <span class="sc">|&gt;</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggraph</span>() <span class="sc">+</span> </span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_edge_fan</span>(<span class="fu">aes</span>(<span class="at">alpha =</span> <span class="fu">stat</span>(index))) <span class="sc">+</span> <span class="co"># This does gradients for directed edges</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_node_point</span>(<span class="at">color =</span> <span class="st">'#ceb888'</span>, <span class="at">size =</span> <span class="dv">5</span>) <span class="sc">+</span> </span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_node_text</span>(<span class="fu">aes</span>(<span class="at">label =</span> name)) <span class="sc">+</span> <span class="co"># Adds labels to nodes</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">guides</span>(<span class="at">edge_alpha =</span> <span class="fu">guide_edge_direction</span>(<span class="at">title=</span><span class="st">"Direction"</span>, <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">'from'</span>, <span class="st">'to'</span>))) <span class="co"># Adds the "Edge direction" legend</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -235,11 +225,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_edge_fan</span>(<span class="fu">aes</span>(<span class="at">alpha =</span> <span class="fu">stat</span>(index))) <span class="sc">+</span> <span class="co"># This does gradients for directed edges</span></span>
 <span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_node_point</span>(<span class="fu">aes</span>(<span class="at">size =</span> degree), <span class="at">color =</span> <span class="st">'#ceb888'</span>) <span class="sc">+</span></span>
 <span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_node_text</span>(<span class="fu">aes</span>(<span class="at">label =</span> name, <span class="at">size=</span>degree <span class="sc">*</span><span class="fl">1.1</span>)) <span class="sc">+</span></span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_edge_alpha</span>(<span class="st">'Edge direction'</span>, <span class="at">guide =</span> <span class="st">'edge_direction'</span>) <span class="sc">+</span> <span class="co"># Adds the "Edge direction" legend</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">guides</span>(<span class="at">edge_alpha =</span> <span class="fu">guide_edge_direction</span>(<span class="at">title=</span><span class="st">"Direction"</span>, <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">'from'</span>, <span class="st">'to'</span>))) <span class="sc">+</span> <span class="co"># Adds the "Edge direction" legend</span></span>
 <span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_size</span>(<span class="at">name=</span><span class="st">'Total Degree'</span>) <span class="co"># Can you figure out what this is doing?</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Using "stress" as default layout</code></pre>
-</div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -250,18 +237,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <p>Note how this changes when we show indegree/popularity</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>G <span class="sc">|&gt;</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">activate</span>(nodes) <span class="sc">|&gt;</span></span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">degree =</span> <span class="fu">centrality_degree</span>(<span class="at">mode =</span> <span class="st">'in'</span>)) <span class="sc">|&gt;</span></span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggraph</span>() <span class="sc">+</span></span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_edge_fan</span>(<span class="fu">aes</span>(<span class="at">alpha =</span> <span class="fu">stat</span>(index))) <span class="sc">+</span> <span class="co"># This does gradients for directed edges</span></span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_node_point</span>(<span class="fu">aes</span>(<span class="at">size =</span> degree), <span class="at">color =</span> <span class="st">'#ceb888'</span>) <span class="sc">+</span></span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_node_text</span>(<span class="fu">aes</span>(<span class="at">label =</span> name, <span class="at">size=</span>degree <span class="sc">*</span> <span class="fl">1.1</span>)) <span class="sc">+</span></span>
-<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_edge_alpha</span>(<span class="st">'Edge direction'</span>, <span class="at">guide =</span> <span class="st">'edge_direction'</span>) <span class="sc">+</span> <span class="co"># Adds the "Edge direction" legend</span></span>
-<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_size_continuous</span>(<span class="at">name=</span><span class="st">'Indegree'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Using "stress" as default layout</code></pre>
-</div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>G <span class="sc">|&gt;</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">activate</span>(nodes) <span class="sc">|&gt;</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">degree =</span> <span class="fu">centrality_degree</span>(<span class="at">mode =</span> <span class="st">'in'</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggraph</span>() <span class="sc">+</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_edge_fan</span>(<span class="fu">aes</span>(<span class="at">alpha =</span> <span class="fu">stat</span>(index))) <span class="sc">+</span> <span class="co"># This does gradients for directed edges</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_node_point</span>(<span class="fu">aes</span>(<span class="at">size =</span> degree), <span class="at">color =</span> <span class="st">'#ceb888'</span>) <span class="sc">+</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_node_text</span>(<span class="fu">aes</span>(<span class="at">label =</span> name, <span class="at">size=</span>degree <span class="sc">*</span> <span class="fl">1.1</span>)) <span class="sc">+</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">guides</span>(<span class="at">edge_alpha =</span> <span class="fu">guide_edge_direction</span>(<span class="at">title=</span><span class="st">"Direction"</span>, <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">'from'</span>, <span class="st">'to'</span>))) <span class="sc">+</span> <span class="co"># Adds the "Edge direction" legend</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_size_continuous</span>(<span class="at">name=</span><span class="st">'Indegree'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -270,33 +254,49 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </div>
-<section id="exercise" class="level3">
-<h3 class="anchored" data-anchor-id="exercise">Exercise</h3>
-<p>Now it’s your turn. How would you edit the code above to show outdegree (or gregariousness)? What do you learn / notice based on comparing these three measures?</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># YOUR CODE HERE</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>YOUR ANSWER HERE</p>
-</section>
 </section>
 <section id="closeness-centrality" class="level2">
 <h2 class="anchored" data-anchor-id="closeness-centrality">Closeness Centrality</h2>
 <p>This measure tries to capture how much a node is literally in the center of a graph. It is a measure of the average distance to each other node.</p>
 <p>Note that there is a <code>mode</code> parameter that can be either ‘out’ for only outgoing distance, ‘in’, for incoming distance, or ‘all’, which we use, which ignores whether an edge is incoming or outgoing. If we don’t include the parameter, then it uses the default, which is ‘all’.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>G <span class="sc">|&gt;</span></span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">activate</span>(nodes) <span class="sc">|&gt;</span></span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">centrality =</span> <span class="fu">centrality_closeness</span>(<span class="at">mode=</span><span class="st">'all'</span>)) <span class="sc">|&gt;</span></span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">centrality =</span> <span class="fu">replace_na</span>(centrality, <span class="dv">0</span>)) <span class="sc">|&gt;</span></span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggraph</span>() <span class="sc">+</span> </span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_edge_fan</span>(<span class="fu">aes</span>(<span class="at">alpha =</span> <span class="fu">stat</span>(index))) <span class="sc">+</span> <span class="co"># This does gradients for directed edges</span></span>
-<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_node_point</span>(<span class="fu">aes</span>(<span class="at">size =</span> centrality), <span class="at">color =</span> <span class="st">'#ceb888'</span>) <span class="sc">+</span></span>
-<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_node_text</span>(<span class="fu">aes</span>(<span class="at">label =</span> name, <span class="at">size=</span>centrality <span class="sc">*</span> <span class="dv">1</span>)) <span class="sc">+</span></span>
-<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_edge_alpha</span>(<span class="st">'Edge direction'</span>, <span class="at">guide =</span> <span class="st">'edge_direction'</span>) <span class="sc">+</span> <span class="co"># Adds the "Edge direction" legend</span></span>
-<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_size_continuous</span>(<span class="at">name =</span> <span class="st">"Closeness Centrality"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Using "stress" as default layout</code></pre>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>G <span class="sc">|&gt;</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">activate</span>(nodes) <span class="sc">|&gt;</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">centrality =</span> <span class="fu">centrality_closeness</span>(<span class="at">mode=</span><span class="st">'all'</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">centrality =</span> <span class="fu">replace_na</span>(centrality, <span class="dv">0</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggraph</span>() <span class="sc">+</span> </span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_edge_fan</span>(<span class="fu">aes</span>(<span class="at">alpha =</span> <span class="fu">stat</span>(index))) <span class="sc">+</span> <span class="co"># This does gradients for directed edges</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_node_point</span>(<span class="fu">aes</span>(<span class="at">size =</span> centrality), <span class="at">color =</span> <span class="st">'#ceb888'</span>) <span class="sc">+</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_node_text</span>(<span class="fu">aes</span>(<span class="at">label=</span>name, <span class="at">size=</span>centrality)) <span class="sc">+</span></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">guides</span>(<span class="at">edge_alpha =</span> <span class="fu">guide_edge_direction</span>(<span class="at">title=</span><span class="st">"Direction"</span>, <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">'from'</span>, <span class="st">'to'</span>))) <span class="sc">+</span> <span class="co"># Adds the "Edge direction" legend</span></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_size_continuous</span>(<span class="at">name =</span> <span class="st">"Closeness Centrality"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="lab_6_visualizing_power_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
 </div>
+</div>
+</div>
+</section>
+<section id="betweenness-centrality" class="level2">
+<h2 class="anchored" data-anchor-id="betweenness-centrality">Betweenness Centrality</h2>
+<p>This measure counts the number of shortest paths that go through each node. This is based on the value of being in a “structural hole”.</p>
+</section>
+<section id="eigenvector-centrality" class="level2">
+<h2 class="anchored" data-anchor-id="eigenvector-centrality">Eigenvector centrality</h2>
+<p>The last important measure of centrality is eigenvector centrality. The calculation is complicated and based on matrix algebra but the concept is pretty simple: all else being equal, a node is more powerful if it’s connected to a node that’s well-connected.</p>
+<p>This is actually the basis of Google’s original search algorithm, and is part of what made it successful.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>G <span class="sc">|&gt;</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">activate</span>(nodes) <span class="sc">|&gt;</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">centrality =</span> <span class="fu">centrality_eigen</span>(<span class="at">directed =</span> <span class="cn">TRUE</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggraph</span>() <span class="sc">+</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_edge_fan</span>(<span class="fu">aes</span>(<span class="at">alpha =</span> <span class="fu">stat</span>(index))) <span class="sc">+</span> <span class="co"># This does gradients for directed edges</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_node_point</span>(<span class="fu">aes</span>(<span class="at">size =</span> centrality), <span class="at">color =</span> <span class="st">'#ceb888'</span>) <span class="sc">+</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_node_text</span>(<span class="fu">aes</span>(<span class="at">label =</span> name, <span class="at">size =</span> centrality <span class="sc">*</span> <span class="fl">1.2</span>)) <span class="sc">+</span></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">guides</span>(<span class="at">edge_alpha =</span> <span class="fu">guide_edge_direction</span>(<span class="at">title=</span><span class="st">"Direction"</span>, <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">'from'</span>, <span class="st">'to'</span>))) <span class="sc">+</span> <span class="co"># Adds the "Edge direction" legend</span></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_size_continuous</span>(<span class="at">name =</span> <span class="st">"Eigenvector Centrality"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -305,48 +305,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </div>
-<section id="exercise-1" class="level3">
-<h3 class="anchored" data-anchor-id="exercise-1">Exercise</h3>
-<p>What do you notice about what’s different here? What kind of power might someone with high closeness centrality have in a network?</p>
-<p>YOUR ANSWER HERE</p>
-</section>
-</section>
-<section id="betweenness-centrality" class="level2">
-<h2 class="anchored" data-anchor-id="betweenness-centrality">Betweenness Centrality</h2>
-<p>This measure counts the number of shortest paths that go through each node. This is based on the value of being in a “structural hole”.</p>
-<section id="exercise-2" class="level3">
-<h3 class="anchored" data-anchor-id="exercise-2">Exercise</h3>
-<p>Look again at the network and guess which nodes will have the highest betweenness centrality.</p>
-<p>YOUR ANSWER HERE</p>
-<p>After you’ve done that, turn this into a code block (by adding “{r}” after the backticks) and then find the bug in the code below so that it colors the nodes based on betweenness centrality (So far we’ve been using the size of the node to represent centrality, but color is the other common way of showing centrality).</p>
-<pre><code>G |&gt;
-  activate(nodes) |&gt;
-  mutate(centrality = centrality_betweenness()) |&gt;
-  ggraph() +
-  geom_edge_fan(aes(alpha = stat(index))) + # This does gradients for directed edges
-  geom_node_point(color = centrality, size = 4) +
-  geom_node_text(aes(label = name)) +
-  scale_edge_alpha('Edge direction', guide = 'edge_direction') + # Adds the "Edge direction" legend
-  scale_color_continuous(name = "Betweenness Centrality")</code></pre>
-</section>
-</section>
-<section id="eigenvector-centrality" class="level2">
-<h2 class="anchored" data-anchor-id="eigenvector-centrality">Eigenvector centrality</h2>
-<p>The last important measure of centrality is eigenvector centrality. The calculation is complicated and based on matrix algebra but the concept is pretty simple: all else being equal, a node is more powerful if it’s connected to a node that’s well-connected.</p>
-<p>This is actually the basis of Google’s original search algorithm, and is part of what made it successful.</p>
+<section id="exercises" class="level3">
+<h3 class="anchored" data-anchor-id="exercises">Exercises</h3>
+<ol type="1">
+<li>Now it’s your turn. How would you edit the code above to show outdegree centrality (or gregariousness)?</li>
+</ol>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>G <span class="sc">|&gt;</span></span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">activate</span>(nodes) <span class="sc">|&gt;</span></span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">centrality =</span> <span class="fu">centrality_eigen</span>(<span class="at">directed =</span> <span class="cn">TRUE</span>)) <span class="sc">|&gt;</span></span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggraph</span>() <span class="sc">+</span></span>
-<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_edge_fan</span>(<span class="fu">aes</span>(<span class="at">alpha =</span> <span class="fu">stat</span>(index))) <span class="sc">+</span> <span class="co"># This does gradients for directed edges</span></span>
-<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_node_point</span>(<span class="fu">aes</span>(<span class="at">size =</span> centrality), <span class="at">color =</span> <span class="st">'#ceb888'</span>) <span class="sc">+</span></span>
-<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_node_text</span>(<span class="fu">aes</span>(<span class="at">label =</span> name, <span class="at">size =</span> centrality <span class="sc">*</span> <span class="fl">1.2</span>)) <span class="sc">+</span></span>
-<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_edge_alpha</span>(<span class="st">'Edge direction'</span>, <span class="at">guide =</span> <span class="st">'edge_direction'</span>) <span class="sc">+</span> <span class="co"># Adds the "Edge direction" legend</span></span>
-<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_size_continuous</span>(<span class="at">name =</span> <span class="st">"Eigenvector Centrality"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Using "stress" as default layout</code></pre>
-</div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -354,10 +318,51 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </figure>
 </div>
 </div>
+<div class="cell-output cell-output-stdout">
+<pre><code>&lt;ScaleContinuous&gt;
+ Range:  
+ Limits:    0 --    1</code></pre>
 </div>
-<section id="exercise-3" class="level3">
-<h3 class="anchored" data-anchor-id="exercise-3">Exercise</h3>
-<p>Why does Node 12 have higher eigenvector centrality than Node 6? Why does node 10 have such low eigenvector centrality? What does eigenvector centrality measure about power that other measures miss?</p>
+</div>
+<p>What can we learn about this network by comparing indegree and outdegree centrality? What nodes appear differently in the two visualizations? What might that tell us about how these people operate in this group?</p>
+<p>YOUR ANSWER HERE</p>
+<ol start="2" type="1">
+<li>Look again at the graph of closeness centrality. Identify a few key differences in who has “power” in this network compared to the degree centrality networks. What kind of power might someone with high closeness centrality have in a network?</li>
+</ol>
+<p>YOUR ANSWER HERE</p>
+<ol start="3" type="1">
+<li>Look again at one of the network graphs and guess which nodes will have the highest betweenness centrality.</li>
+</ol>
+<p>YOUR ANSWER HERE</p>
+<ol start="4" type="1">
+<li>After you’ve done that, turn this into a code block (by adding “{r}” after the backticks) and then find the bug in the code below so that it colors the nodes based on betweenness centrality (So far we’ve been using the size of the node to represent centrality, but color is the other common way of showing centrality).</li>
+</ol>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="lab_6_visualizing_power_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<ol start="5" type="1">
+<li>In the eigenvector graph, why does Node 12 have higher eigenvector centrality than Node 6? Why does node 10 have such low eigenvector centrality? What does eigenvector centrality measure about power that other measures miss?</li>
+</ol>
+<p>YOUR ANSWER HERE</p>
+<ol start="6" type="1">
+<li>It can be instructive to combine measures of centrality with attributes of the nodes in the network. Show the eigenvector centrality graph again, but this time color the nodes based on their tenure at the company.</li>
+</ol>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="lab_6_visualizing_power_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>What does this visualization tell you about the relationship between tenure and power in this network?</p>
 <p>YOUR ANSWER HERE</p>
 
 

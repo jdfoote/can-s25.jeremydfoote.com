@@ -52,19 +52,10 @@ G |>
   geom_node_point(shape='triangle', size = 3)
 ```
 
-### Exercise
-
-Change the width of the edges to .5 and their color to "purple"
-
-```{r}
-
-# Your code here
-```
-
 
 ## "Mapping" aesthetics
 
-The second type of aesthetics maps some aspect of the data to some aspect of the visualization. For example, we might color nodes differently based on their major or size them differently based on their centrality.
+The second type of aesthetics "maps" some aspect of the data to some aspect of the visualization. For example, we might color nodes differently based on their major or size them differently based on their centrality.
 
 Let's start by figuring out what the attributes of the nodes are in this data.
 
@@ -74,9 +65,11 @@ G
 
 This is rich data! There are 26 different variables, some of which are clear (e.g, `birthdate`) and some of which are confusing (e.g., `topboards` or `igyear`). Let's choose one and visualize it.
 
-Usually, you would want to be guided by a question about the data which would inform your visualizations. Let's pretend like we really want to know whether people form friendships across religions. Let's visualize different religion as different shapes.
+Usually, you would want to be guided by a question about the data which would inform your visualizations. As our question, let's look into whether people form friendships across religions. Let's visualize different religions as different shapes.
 
-To do that, we "map" the shape of the nodes to the `religion` variable. The syntax to do this is to put the thing we want to change, then `=`, then the variable (column name) we want to use to change it. So, for changing shape to religion, it's `shape = religion`. We put that whole thing in `aes` (which stands for mapping aesthetic), and put it into the `geom_node_point` function.
+To do that, we "map" the shape of the nodes to the `religion` variable. The syntax to do this is `aesthetic=column name`. So, to change the shape based on the data in the religion column, it's `shape = religion`. We put that whole thing in `aes` (which stands for mapping aesthetic), and put it into the `geom_node_point` function.
+
+The key idea here is that things outside of `aes()` apply to all nodes or all edges, while things inside of `aes()` apply to nodes or edges differently based on some attribute of the data.
 
 ```{r}
 G |>
@@ -90,57 +83,79 @@ Note the line `mutate(religion = as_factor(religion))` Try commenting out that l
 
 You should get an error that is something like `A continuous variable can not be mapped to shape`. This is saying that in this data `religion` is a number and it doesn't make much sense to map a number to a shape, because usually numbers are ordered while shapes are unordered. So, we have to add the `mutate` step to change the `religion` variable type using `as_factor` which changes how R sees it from a number to a `factor`---in other words, a category (which is what religion really is, anyway!).
 
-### Exercise
-
-Instead of mapping their shape to `religion`, map the color of the nodes to `religion`.
-
-```{r}
-# Your code here
-
-```
-
-
-There are a number of node aesthetics that we can map variables to. The most common are: `shape`, `size`, and `color`. Let's do one more exercise to practice these.
-
-### Exercise
-
-Go back to your code from when we learned about `mutate` and figure out how to calculate `degree` centrality for our network; save the centrality in a column called `degree` and change the `size` of nodes based on the `degree`.
-
-```{r}
-# Your code here
-
-```
-
 ## Edge aesthetics
 
 We can also map the edge aesthetics to variables from our edgelist spreadsheet. The most common approaches are to map the type of the edge to color and the weight of the edge to the `width`, `color`, or `alpha` of the edge.
 
-Looking at our data, the edges don't have weights. For your exercise, we'll put together a few skills from the last few labs.
+Looking at our data, the edges don't have weights, so let's load in a dataset that does. The code below loads the fourth network from the `animal_13` data---edges represent how long ants spent near each other---and colors the edges based on their weight.
 
-## Exercise
+```{r}
 
-Load the `bkfrab` dataset (also from `networkdata`, so load it in the same way as the `ffe_friends` data above). This records how often pairs of subjects were seen talking to each other in a fraternity. Map the `alpha` of the edge to the `weight` in the `edges` dataframe.
+ants <- animal_13[[4]] |> as_tbl_graph()
+
+ants |>
+  ggraph() +
+  geom_edge_fan(aes(color=weight)) + 
+  geom_node_point()
+```
+
+
+## Exercises
+
+1. Load the `G` graph and change the width of the edges to .5 and their color to purple.
+
+```{r}
+
+# Your code here
+```
+
+2. Load G and map the color of the nodes to `religion`, and the shape to `university`.
+
+```{r}
+# Your code here
+
+```
+
+
+3. Go back to your code from Lab 3 when we learned about `mutate` and figure out how to calculate the degree centrality for our network; save the centrality in a column called `degree` and change the `size` of nodes based on the `degree`.
+
+```{r}
+# Your code here
+
+```
+
+4. Load the `bkfrab` dataset (also from `networkdata`, so load it in the same way as the `ffe_friends` data above). This records how often pairs of subjects were seen talking to each other in a fraternity. Map the `alpha` of the edge to the `weight` in the `edges` dataframe.
 
 Hints: Remember to use `as_tbl_graph` to change the network type, and to `activate` the edges dataframe.
 
+```{r}
+# Your code here
+
+```
+
+5. When we look at the `bkfrab` data, there are a lot of nodes with edge weight 10. Filter to just the edges whose weight is greater than 10, and map the `color` of the edges to their weight.
 
 ```{r}
 # Your code here
 
 ```
 
-### Challenge Exercise
+6. The last graph leaves a lot of nodes without any edges. The default `'stress'` layout puts them along the bottom, which looks kind of odd. There are a few ways to handle this. First, try changing the layout. 
 
-
-When we look at the `bkfrab` data, there are a lot of nodes with edge weight 10. Filter to just the edges whose weight is greater than 10, and map the `color` of the edges to their weight.
-
-Note that this will leave a lot of nodes without any edges. The default `'stress'` layout puts them along the bottom, which looks kind of odd. You may want to use a layout like `'fr'` instead.
+You probably want a layout from [here](https://igraph.org/c/doc/igraph-Layout.html). This isn't well documented anywhere, but you just use the end of the name of the layout function. For functions with two names, you just use the initials. For example, to use `igraph_layout_davidson_harel`, you would use `ggraph(layout='dh')`.
 
 ```{r}
 # Your code here
 
 ```
 
+7. The other approach that you might take (depending on the data and your goals) is to filter out the nodes that don't have any edges.
 
+There are a few ways to do this, but one approach is to filter out the nodes with degree of 0. See if you can figure out how to do that.
+
+```{r}
+# Your code here
+
+```
 
 You now have all of the key skills to load in, `mutate` and `filter` networks, and to do some pretty cool visualizations with them. From here on out, we'll mostly be reusing these skills in new ways.

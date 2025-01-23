@@ -6,7 +6,7 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="author" content="Your name here">
+<meta name="author" content="Dr.&nbsp;Foote’s Example">
 
 <title>Communication and Social Networks - Mutating and filtering</title>
 <style>
@@ -156,20 +156,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <ul class="collapse">
   <li><a href="#activating-a-table" id="toc-activating-a-table" class="nav-link" data-scroll-target="#activating-a-table">Activating a table</a></li>
   </ul></li>
-  <li><a href="#mutate" id="toc-mutate" class="nav-link" data-scroll-target="#mutate">Mutate</a>
-  <ul class="collapse">
-  <li><a href="#excercise" id="toc-excercise" class="nav-link" data-scroll-target="#excercise">Excercise</a></li>
-  <li><a href="#exercise" id="toc-exercise" class="nav-link" data-scroll-target="#exercise">Exercise</a></li>
-  </ul></li>
-  <li><a href="#filtering" id="toc-filtering" class="nav-link" data-scroll-target="#filtering">Filtering</a>
-  <ul class="collapse">
-  <li><a href="#exercise-1" id="toc-exercise-1" class="nav-link" data-scroll-target="#exercise-1">Exercise</a></li>
-  <li><a href="#challenge-exercise" id="toc-challenge-exercise" class="nav-link" data-scroll-target="#challenge-exercise">Challenge Exercise</a></li>
-  </ul></li>
-  <li><a href="#chaining-filtering-and-mutating" id="toc-chaining-filtering-and-mutating" class="nav-link" data-scroll-target="#chaining-filtering-and-mutating">Chaining Filtering and Mutating</a>
-  <ul class="collapse">
-  <li><a href="#exercise-2" id="toc-exercise-2" class="nav-link" data-scroll-target="#exercise-2">Exercise</a></li>
-  </ul></li>
+  <li><a href="#mutate" id="toc-mutate" class="nav-link" data-scroll-target="#mutate">Mutate</a></li>
+  <li><a href="#filtering" id="toc-filtering" class="nav-link" data-scroll-target="#filtering">Filtering</a></li>
+  <li><a href="#chaining-filtering-and-mutating" id="toc-chaining-filtering-and-mutating" class="nav-link" data-scroll-target="#chaining-filtering-and-mutating">Chaining Filtering and Mutating</a></li>
+  <li><a href="#excercises" id="toc-excercises" class="nav-link" data-scroll-target="#excercises">Excercises</a></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/jdfoote/can-s25.jeremydfoote.com/edit/main/assignments/r_lab_examples/lab_3_mutating_and_filtering.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/jdfoote/can-s25.jeremydfoote.com/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div><div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="lab_3_mutating_and_filtering.pdf"><i class="bi bi-file-pdf"></i>PDF</a></li></ul></div></nav>
     </div>
@@ -222,13 +212,46 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h2 class="anchored" data-anchor-id="getting-to-the-data">Getting to the data</h2>
 <section id="activating-a-table" class="level3">
 <h3 class="anchored" data-anchor-id="activating-a-table">Activating a table</h3>
-<p>Because a network object is really composed of two tables, we have to let R know which table we want to manipulate. This is done using <code>activate(nodes)</code> or <code>activate(edges)</code>.</p>
-<p>For example, the code below activates the node table and then uses <code>mutate</code> (which we will talk more about further down) to create a variable called <code>degree</code> in the nodes table.</p>
+<p>Because a network object is really composed of two tables, we have to let R know which table we want to manipulate. This is done using <code>activate(nodes)</code> or <code>activate(edges)</code>. You will see lots of examples of this later in this tutorial.</p>
+</section>
+</section>
+<section id="mutate" class="level2">
+<h2 class="anchored" data-anchor-id="mutate">Mutate</h2>
+<p><code>mutate</code> is a function that creates a new column in a spreadsheet/dataframe (in our case, either the spreadsheet for the nodes or the one for the edges).</p>
+<p>Often, we will want to calculate some network statistic about the nodes or edges. However, you can also create other kinds of columns. For example, you could use <code>mutate</code> to give names to each of the nodes. The code below creates a small network and adds names to it. (The <code>c</code> is how we create a list of things in R)</p>
 <p>(Note that the code throughout this tutorial uses “<a href="https://r4ds.had.co.nz/pipes.html?q=pipe#pipes">pipes</a>”. Pipes (<code>|&gt;</code>) let you express a sequence of operations, by taking the output of the previous operation and using it as the input of the next operation.)</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>G <span class="sc">|&gt;</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">activate</span>(nodes) <span class="sc">|&gt;</span></span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">degree =</span> <span class="fu">centrality_degree</span>())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">play_gnp</span>(<span class="dv">5</span>, .<span class="dv">5</span>) <span class="sc">|&gt;</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">activate</span>(nodes) <span class="sc">|&gt;</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">names =</span> <span class="fu">c</span>(<span class="st">'Alfred'</span>,<span class="st">'Bonnie'</span>, <span class="st">'Clyde'</span>, <span class="st">'Doug'</span>,<span class="st">'Enola'</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tbl_graph: 5 nodes and 11 edges
+#
+# A directed simple graph with 1 component
+#
+# Node Data: 5 × 1 (active)
+  names 
+  &lt;chr&gt; 
+1 Alfred
+2 Bonnie
+3 Clyde 
+4 Doug  
+5 Enola 
+#
+# Edge Data: 11 × 2
+   from    to
+  &lt;int&gt; &lt;int&gt;
+1     1     5
+2     2     1
+3     4     1
+# ℹ 8 more rows</code></pre>
+</div>
+</div>
+<p>The example below also uses mutate, but this time it calculates the degree of each node in the network and saves it in a new column called <code>degree</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>G <span class="sc">|&gt;</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">activate</span>(nodes) <span class="sc">|&gt;</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">degree =</span> <span class="fu">centrality_degree</span>())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tbl_graph: 34 nodes and 78 edges
 #
@@ -258,48 +281,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 # ℹ 75 more rows</code></pre>
 </div>
 </div>
-</section>
-</section>
-<section id="mutate" class="level2">
-<h2 class="anchored" data-anchor-id="mutate">Mutate</h2>
-<p><code>mutate</code> is a function that just creates a new column in a spreadsheet/dataframe (in our case, either the one for the nodes or the one for the edges). Often, we will want to calculate some network statistic (for example, the code above calculates the degree for each node).</p>
-<p>However, you can also create other kinds of columns. For example, you could use <code>mutate</code> to give names to each of the nodes. The code below creates a small network and adds names to it. (The <code>c</code> is how we create a list of things in R)</p>
+<p>However, note that if we look at <code>G</code> again, the <code>degree</code> column that we created no longer appears.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">play_gnp</span>(<span class="dv">5</span>, .<span class="dv">5</span>) <span class="sc">|&gt;</span></span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">activate</span>(nodes) <span class="sc">|&gt;</span></span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">names =</span> <span class="fu">c</span>(<span class="st">'Alfred'</span>,<span class="st">'Bonnie'</span>, <span class="st">'Clyde'</span>, <span class="st">'Doug'</span>,<span class="st">'Enola'</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tbl_graph: 5 nodes and 8 edges
-#
-# A directed simple graph with 1 component
-#
-# Node Data: 5 × 1 (active)
-  names 
-  &lt;chr&gt; 
-1 Alfred
-2 Bonnie
-3 Clyde 
-4 Doug  
-5 Enola 
-#
-# Edge Data: 8 × 2
-   from    to
-  &lt;int&gt; &lt;int&gt;
-1     2     1
-2     4     1
-3     5     1
-# ℹ 5 more rows</code></pre>
-</div>
-</div>
-<section id="excercise" class="level3">
-<h3 class="anchored" data-anchor-id="excercise">Excercise</h3>
-<p>Modify the code on lines 50-54 to calculate the betweenness centrality instead of the degree of <code>G</code>. Name the column <code>betweenness</code> (Hint: use the <code>centrality_betweenness()</code> function. (<a href="https://tidygraph.data-imaginist.com/reference/centrality.html">Here is the list of all centrality functions</a>.)</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Your code here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>Note that if we look at <code>G</code> again, the <code>degree</code> and <code>betweenness</code> columns that we created no longer appear.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>G</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>G</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tbl_graph: 34 nodes and 78 edges
 #
@@ -316,15 +300,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 # ℹ 75 more rows</code></pre>
 </div>
 </div>
-<p>This is because we didn’t save them; by default mutate will just produce a temporary version of the new column. But don’t worry—saving it is super easy; we can just re-save it as G like this.</p>
+<p>This is because we didn’t save it; by default mutate will just produce a temporary version of the new column. But don’t worry—saving it is super easy; we can just re-save it as G like this.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>G <span class="ot">&lt;-</span> G <span class="sc">|&gt;</span></span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">activate</span>(nodes) <span class="sc">|&gt;</span></span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">degree =</span> <span class="fu">centrality_degree</span>())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>G <span class="ot">&lt;-</span> G <span class="sc">|&gt;</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">activate</span>(nodes) <span class="sc">|&gt;</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">degree =</span> <span class="fu">centrality_degree</span>())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>The <code>&lt;-</code> means take whatever is on the right side, and save it to the variable name on the left side. So, this takes all of the output of the <code>mutate</code> operation and saves it. Now, when we look at <code>G</code>, we’ll see the <code>degree</code> column.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>G</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>G</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tbl_graph: 34 nodes and 78 edges
 #
@@ -355,14 +339,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </section>
-<section id="exercise" class="level3">
-<h3 class="anchored" data-anchor-id="exercise">Exercise</h3>
-<p>Do this yourself - add the <code>betweenness</code> column to <code>G</code>. When you’re done, the nodes spreadsheet of <code>G</code> should have two new columns - <code>degree</code> and <code>betweenness</code>.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Your code here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-</section>
-</section>
 <section id="filtering" class="level2">
 <h2 class="anchored" data-anchor-id="filtering">Filtering</h2>
 <p>The one other thing we’re going to learn about today is filtering. Sometimes we may want to know about some subset of the nodes or edges in a network.</p>
@@ -370,7 +346,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Let’s load in a richer network from the <code>networkdata</code> library. (See R Lab 2 for instructions on how to install it if this code doesn’t work.)</p>
 <p>This code loads the <code>networkdata</code> library and loads the <code>ht_advice</code> network. It then changes it from an <code>igraph</code> network to a <code>tbl_graph</code> network object.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(networkdata)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(networkdata)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>
 Attaching package: 'networkdata'</code></pre>
@@ -380,9 +356,9 @@ Attaching package: 'networkdata'</code></pre>
 
     starwars</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>ht_advice <span class="ot">&lt;-</span> ht_advice <span class="sc">|&gt;</span> <span class="fu">as_tbl_graph</span>()</span>
-<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>ht_advice</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>ht_advice <span class="ot">&lt;-</span> ht_advice <span class="sc">|&gt;</span> <span class="fu">as_tbl_graph</span>()</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>ht_advice</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tbl_graph: 21 nodes and 190 edges
 #
@@ -414,11 +390,11 @@ Attaching package: 'networkdata'</code></pre>
 </div>
 <p>We can see that there are 21 nodes with four attributes: <code>age</code>, <code>tenure</code>, <code>level</code>, and <code>dept</code>. These nodes have 190 edges. Let’s plot the network.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(ht_advice)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(ht_advice)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="lab_3_mutating_and_filtering_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="lab_3_mutating_and_filtering_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -426,11 +402,11 @@ Attaching package: 'networkdata'</code></pre>
 <p>Now we’re going to filter the graph. Maybe we just want to see the network from the Sales department. Let’s pretend like that’s department two, and filter to just those nodes.</p>
 <p>Remember, we first <code>activate</code> the <code>nodes</code>. Then, we use <code>filter</code> to write a condition or set of conditions that will evaluate to True for each of the nodes that we want to keep. Usually, this will involve one node attribute (like <code>dept</code>) and a comparison, like <code>&lt;</code>, <code>&gt;</code>, or <code>==</code>. Note that when we are testing <em>if</em> things are equal, we use two equal signs in R. This is because one equals sign can be used to assign something to a variable.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>ht_advice <span class="sc">|&gt;</span></span>
-<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">activate</span>(nodes) <span class="sc">|&gt;</span></span>
-<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(dept <span class="sc">==</span> <span class="dv">2</span>) <span class="sc">|&gt;</span> <span class="co"># Filter to just nodes in dept 2</span></span>
-<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>() <span class="sc">|&gt;</span> <span class="co"># We can throw in print() and it will print the output of the last step. In this case, the filtered graph object.</span></span>
-<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>ht_advice <span class="sc">|&gt;</span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">activate</span>(nodes) <span class="sc">|&gt;</span></span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(dept <span class="sc">==</span> <span class="dv">2</span>) <span class="sc">|&gt;</span> <span class="co"># Filter to just nodes in dept 2</span></span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>() <span class="sc">|&gt;</span> <span class="co"># We can throw in print() and it will print the output of the last step. In this case, the filtered graph object.</span></span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tbl_graph: 8 nodes and 25 edges
 #
@@ -459,38 +435,21 @@ Attaching package: 'networkdata'</code></pre>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="lab_3_mutating_and_filtering_files/figure-html/unnamed-chunk-12-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="lab_3_mutating_and_filtering_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
 </div>
-<section id="exercise-1" class="level3">
-<h3 class="anchored" data-anchor-id="exercise-1">Exercise</h3>
-<p>Filter the <code>ht_advice</code> network to just the people who are older than 35.</p>
-<p>How many nodes are there?</p>
-<p>How many edges?</p>
-<p>(Hint: you can use <code>print</code> like I do above to print information about the graph before you plot it)</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Your code here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-</section>
-<section id="challenge-exercise" class="level3">
-<h3 class="anchored" data-anchor-id="challenge-exercise">Challenge Exercise</h3>
-<p>Filter the <code>ht_advice</code> network to only those nodes whose <code>tenure</code> is less than the median value for <code>tenure</code>. Plot the graph.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Your code here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-</section>
 </section>
 <section id="chaining-filtering-and-mutating" class="level2">
 <h2 class="anchored" data-anchor-id="chaining-filtering-and-mutating">Chaining Filtering and Mutating</h2>
 <p>Finally, we can use <code>mutate</code> and <code>filter</code> together in powerful ways.</p>
 <p>For example, we may want to get the betweenness centrality of just the Sales department.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>ht_advice <span class="sc">|&gt;</span></span>
-<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">activate</span>(nodes) <span class="sc">|&gt;</span></span>
-<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(dept <span class="sc">==</span> <span class="dv">2</span>) <span class="sc">|&gt;</span></span>
-<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">betweenness =</span> <span class="fu">centrality_betweenness</span>())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>ht_advice <span class="sc">|&gt;</span></span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">activate</span>(nodes) <span class="sc">|&gt;</span></span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(dept <span class="sc">==</span> <span class="dv">2</span>) <span class="sc">|&gt;</span></span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">betweenness =</span> <span class="fu">centrality_betweenness</span>())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tbl_graph: 8 nodes and 25 edges
 #
@@ -518,15 +477,159 @@ Attaching package: 'networkdata'</code></pre>
 </div>
 </div>
 <p>Remember that the order matters - if we ran <code>mutate</code> before <code>filter</code> then it would calculate the betweenness centrality <em>before</em> filtering.</p>
-<section id="exercise-2" class="level3">
-<h3 class="anchored" data-anchor-id="exercise-2">Exercise</h3>
-<p>Sometimes, that’s what we want. For the last exercise, calculate the degree centrality for <code>ht_advice</code>, save it in a column called <code>degree</code>, and then filter to just the nodes with <code>degree</code> of at least 2.</p>
+</section>
+<section id="excercises" class="level2">
+<h2 class="anchored" data-anchor-id="excercises">Excercises</h2>
+<ol type="1">
+<li>Modify the code on lines 49-53 to calculate the betweenness centrality instead of the degree of <code>G</code>. Name the column <code>betweenness</code> (Hint: use the <code>centrality_betweenness()</code> function. (<a href="https://tidygraph.data-imaginist.com/reference/centrality.html">Here is the list of all centrality functions</a>.)</li>
+</ol>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Your code here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tbl_graph: 34 nodes and 78 edges
+#
+# An undirected simple graph with 1 component
+#
+# Node Data: 34 × 2 (active)
+   degree betweenness
+    &lt;dbl&gt;       &lt;dbl&gt;
+ 1     16     231.   
+ 2      9      28.5  
+ 3     10      75.9  
+ 4      6       6.29 
+ 5      3       0.333
+ 6      4      15.8  
+ 7      4      15.8  
+ 8      4       0    
+ 9      5      29.5  
+10      2       0.448
+# ℹ 24 more rows
+#
+# Edge Data: 78 × 2
+   from    to
+  &lt;int&gt; &lt;int&gt;
+1     1     2
+2     1     3
+3     1     4
+# ℹ 75 more rows</code></pre>
+</div>
+</div>
+<ol start="2" type="1">
+<li>Now, modify your code above to save the <code>betweenness</code> column to <code>G</code>. When you’re done, the nodes spreadsheet of <code>G</code> should have two new columns - <code>degree</code> and <code>betweenness</code>. Display G (by just typing <code>G</code> at the end of the code block) to make sure it worked.</li>
+</ol>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>G</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tbl_graph: 34 nodes and 78 edges
+#
+# An undirected simple graph with 1 component
+#
+# Node Data: 34 × 2 (active)
+   degree betweenness
+    &lt;dbl&gt;       &lt;dbl&gt;
+ 1     16     231.   
+ 2      9      28.5  
+ 3     10      75.9  
+ 4      6       6.29 
+ 5      3       0.333
+ 6      4      15.8  
+ 7      4      15.8  
+ 8      4       0    
+ 9      5      29.5  
+10      2       0.448
+# ℹ 24 more rows
+#
+# Edge Data: 78 × 2
+   from    to
+  &lt;int&gt; &lt;int&gt;
+1     1     2
+2     1     3
+3     1     4
+# ℹ 75 more rows</code></pre>
+</div>
+</div>
+<ol start="3" type="1">
+<li>It’s more common that we mutate the nodes, but sometimes we want to mutate the edges. For example, <code>centrality_edge_betweenness()</code> is one measure of how important each edge in a network is. Use <code>mutate</code> to calculate the edge betweenness of each edge in <code>G</code>.</li>
+</ol>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code># A tbl_graph: 34 nodes and 78 edges
+#
+# An undirected simple graph with 1 component
+#
+# Edge Data: 78 × 3 (active)
+    from    to edge_betweenness
+   &lt;int&gt; &lt;int&gt;            &lt;dbl&gt;
+ 1     1     2             14.2
+ 2     1     3             43.6
+ 3     1     4             11.5
+ 4     1     5             29.3
+ 5     1     6             43.8
+ 6     1     7             43.8
+ 7     1     8             12.8
+ 8     1     9             41.6
+ 9     1    11             29.3
+10     1    12             33  
+# ℹ 68 more rows
+#
+# Node Data: 34 × 2
+  degree betweenness
+   &lt;dbl&gt;       &lt;dbl&gt;
+1     16       231. 
+2      9        28.5
+3     10        75.9
+# ℹ 31 more rows</code></pre>
+</div>
+</div>
+<ol start="4" type="1">
+<li>Filter the <code>ht_advice</code> network to just the people who are older than 35. How many nodes are there? How many edges? (Hint: you can use <code>print</code> like I do in the example above to print information about the graph before you plot it)</li>
+</ol>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="lab_3_mutating_and_filtering_files/figure-html/unnamed-chunk-16-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<ol start="5" type="1">
+<li>Filter the <code>ht_advice</code> network to only those nodes whose <code>tenure</code> is less than the median value for <code>tenure</code>. Plot the graph.</li>
+</ol>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="lab_3_mutating_and_filtering_files/figure-html/unnamed-chunk-17-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<ol start="6" type="1">
+<li>Sometimes we want to filter before calculating statistics, and sometimes we want to calculate statistics first. Calculate the degree centrality for <code>ht_advice</code>, save it in a column called <code>degree</code>, and then filter to just the nodes with <code>degree</code> of at least 2, and plot the network.</li>
+</ol>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="lab_3_mutating_and_filtering_files/figure-html/unnamed-chunk-18-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<ol start="7" type="1">
+<li>Let’s go crazy. Take the <code>ht_advice</code> network, filter to just the nodes with <code>dept</code> equal to 2, and then calculate the degree centrality. Then, filter to just the nodes with a degree centrality of at least 3. Finally, plot the network.</li>
+</ol>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="lab_3_mutating_and_filtering_files/figure-html/unnamed-chunk-19-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
 </div>
 
 
-</section>
 </section>
 
 </main> <!-- /main -->
