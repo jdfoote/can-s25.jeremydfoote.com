@@ -1,6 +1,6 @@
 ---
 title: "Groups in Networks"
-author: "Your name here"
+author: "Dr. Foote's Example"
 format: pdf
 ---
 
@@ -70,7 +70,13 @@ Finally, we can color the nodes by their group.
 Make a network figure that colors the nodes by the `Group` node attribute (Hint: they will look a lot better if you use `as_factor`).
 
 ```{r}
-## YOUR code HERE
+
+UK |>
+  activate(nodes) |>
+  mutate(Group = as_factor(Group)) |>
+  ggraph() +
+  geom_edge_fan(alpha=.4) +
+  geom_node_point(aes(color=Group))
 
 ```
 
@@ -197,9 +203,20 @@ Basically, nodes with a high coreness number are connected to lots of others who
 
 1. The layout also helps to show groups. Change the layout of this graph to a few of the others found at the bottom of [this page](https://igraph.org/r/doc/layout_with_kk.html). See if you can find one that you think does a better job of showing group structure.
 
-```{r}
+**NOTE**: Here's my example, with the `fr` layout and the `group_fast_greedy` community detection algorithm. Try some others!
+
+```{r echo=F}
+
+knitr::opts_chunk$set(echo = F)
 
 # Your code here
+
+UK |>
+  activate(nodes) |>
+  mutate(group = as.factor(group_fast_greedy())) |>
+  ggraph(layout='fr') +
+  geom_edge_fan(alpha=.4) +
+  geom_node_point()
 
 ```
 
@@ -208,12 +225,19 @@ Basically, nodes with a high coreness number are connected to lots of others who
 ```{r}
 
 # Your code here
+UK |>
+  activate(nodes) |>
+  mutate(group = as.factor(group_louvain())) |>
+  ggraph() +
+  geom_edge_fan(alpha=.4) +
+  geom_node_point(aes(shape=group)) 
 
 ```
 
 
 3. Go back to your Visualization Challenge project and add a visualization of group structure. (Note: you will need to load in the data in this file)
 
+**NOTE**: No example given since your projects/data will be different.
 
 ```{r}
 
@@ -226,5 +250,16 @@ Basically, nodes with a high coreness number are connected to lots of others who
 ```{r}
 
 # Your code here
+
+UK |>
+  activate(nodes) |>
+  mutate(coreness = node_coreness()) |>
+  filter(coreness >= 4) |>
+  mutate(betweenness = centrality_betweenness()) |>
+  ggraph() +
+  geom_edge_fan(alpha=.4) +
+  geom_node_point(aes(size=betweenness, color=coreness)) +
+  scale_color_viridis(name='Coreness')
+
 
 ```

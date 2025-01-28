@@ -61,8 +61,14 @@ One astronaut says to another, "I can’t find any milk for my coffee"
 
 ## Discussion Questions
 
+> - Baseline vs. inbreeding homophily
+> - Isomorphism
 
 ## Homework review
+
+> - Installing packages vs. loading libraries
+> - .qmd files
+
 
 ## Thursday
 
