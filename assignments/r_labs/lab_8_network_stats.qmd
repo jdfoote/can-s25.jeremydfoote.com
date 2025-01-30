@@ -48,14 +48,6 @@ Centralization:
 G |> centralization.degree()
 ```
 
-### Exercise
-
-Figure out how to calculate the betweenness centralization
-
-```{r}
-
-## Your code here
-```
 
 ## Identifying the most central nodes
 
@@ -72,14 +64,6 @@ G |>
   arrange(-bw_centrality) |>
   head(10)
 
-```
-
-### Exercise
-
-Calculate the closeness centrality and save it as `close_centrality`; add it to the table so that it shows both types of centrality, and sort by closeness centrality.
-
-```{r}
-## Your code here
 ```
 
 
@@ -122,31 +106,6 @@ G |>
   theme_minimal()
 ```
 
-### Exercise
-
-Visualize the betweenness centrality of the `bkfrab` dataset as a histogram.
-
-Hint: You need to load the data using `as_tbl_graph`
-
-
-```{r}
-
-# Your code here 
-
-```
-
-### Challenge Exercise
-
-Visualize the edge `weight` variable from `bkfrab` as a histogram.
-
-Hint: Remember to activate the edges spreadsheet.
-
-```{r}
-
-# Your code here
-
-```
-
 
 ### Boxplots
 
@@ -155,7 +114,7 @@ The other thing we might want to do is compare the distributions of some network
 For example, this shows the degree distribution for each of the different religions in the `ffe_elite` dataset. 
 
 ```{r}
-ffe_elite |> as_tbl_graph() |>
+G |>
   activate(nodes) |>
   mutate(degree = centrality_degree(mode='all')) |>
   mutate(religion = as_factor(religion)) |> # Change religion to a factor
@@ -166,19 +125,45 @@ ffe_elite |> as_tbl_graph() |>
 
 ```
 
-### Exercise
+### Exercises
 
-Visualize the betweenness centrality of the `ffe_elite` data by the university that people attended, as boxplots.
+1. Figure out how to calculate the betweenness centralization for `G` and print it out.
 
+```{r}
+
+## Your code here
+```
+
+2. Visualize the betweenness centrality of the `bkfrab` dataset as a histogram. Hint: You need to load the data using `as_tbl_graph`
+
+```{r}
+
+# Your code here 
+
+```
+
+3. Visualize the edge variable `weight` from `bkfrab` as a histogram. Hint: Remember to activate the edges spreadsheet.
+
+```{r}
+
+# Your code here
+
+```
+
+4. Calculate the closeness centrality and betweenness centrality of the `ffe_elite` network; add them to a table that shows the `vertex.names`, `birthdate`, and both kinds of centrality for each node, sorted by closeness centrality (descending).
+
+```{r}
+## Your code here
+```
+
+5. Visualize the betweenness centrality of the `ffe_elite` data by the university that people attended, displayed as boxplots.
 
 ```{r}
 
 ```
 
 
-### Challenge exercise
-
-Come up with something else that you want to visualize, either as a histogram or as boxplots and create a visualization below.
+5. Come up with something else that you want to visualize, either as a histogram or as boxplots and create a visualization below.
 
 ```{r}
 

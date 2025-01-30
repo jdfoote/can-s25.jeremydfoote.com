@@ -6,7 +6,7 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="author" content="Your name here">
+<meta name="author" content="Dr.&nbsp;Foote’s Example">
 
 <title>Communication and Social Networks - Groups in Networks</title>
 <style>
@@ -160,11 +160,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <ul class="collapse">
   <li><a href="#components" id="toc-components" class="nav-link" data-scroll-target="#components">Components</a></li>
   <li><a href="#cliques" id="toc-cliques" class="nav-link" data-scroll-target="#cliques">Cliques</a></li>
-  <li><a href="#community-detection" id="toc-community-detection" class="nav-link" data-scroll-target="#community-detection">Community detection</a>
+  <li><a href="#community-detection" id="toc-community-detection" class="nav-link" data-scroll-target="#community-detection">Community detection</a></li>
+  <li><a href="#k-cores" id="toc-k-cores" class="nav-link" data-scroll-target="#k-cores">K-cores</a>
   <ul class="collapse">
   <li><a href="#exercises" id="toc-exercises" class="nav-link" data-scroll-target="#exercises">Exercises</a></li>
   </ul></li>
-  <li><a href="#k-cores" id="toc-k-cores" class="nav-link" data-scroll-target="#k-cores">K-cores</a></li>
   </ul></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/jdfoote/can-s25.jeremydfoote.com/edit/main/assignments/r_lab_examples/lab_7_groups_in_networks.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/jdfoote/can-s25.jeremydfoote.com/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div><div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="lab_7_groups_in_networks.pdf"><i class="bi bi-file-pdf"></i>PDF</a></li></ul></div></nav>
@@ -271,7 +271,22 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h3 class="anchored" data-anchor-id="exercise">Exercise</h3>
 <p>Make a network figure that colors the nodes by the <code>Group</code> node attribute (Hint: they will look a lot better if you use <code>as_factor</code>).</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="do">## YOUR code HERE</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>UK <span class="sc">|&gt;</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">activate</span>(nodes) <span class="sc">|&gt;</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">Group =</span> <span class="fu">as_factor</span>(Group)) <span class="sc">|&gt;</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggraph</span>() <span class="sc">+</span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_edge_fan</span>(<span class="at">alpha=</span>.<span class="dv">4</span>) <span class="sc">+</span></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_node_point</span>(<span class="fu">aes</span>(<span class="at">color=</span>Group))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Using "stress" as default layout</code></pre>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="lab_7_groups_in_networks_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
 </div>
 <p>We can use the known group to compare different approaches for identifying groups in networks.</p>
 </section>
@@ -284,18 +299,18 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>The following visualizations show random graphs as they go from 2% density to 10% density. Even at only 8% or 10% density almost any random graph will be a single, large component (with maybe a few isolates).</p>
 <p>This attribute of networks means that components are rarely very interesting as a way of grouping nodes.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Don't worry about understanding this code - it's basically just plotting </span></span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="co"># different densities of random graphs</span></span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="co">#set.seed(12)</span></span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(p <span class="cf">in</span> <span class="fu">c</span>(.<span class="dv">02</span>, .<span class="dv">05</span>, .<span class="dv">08</span>, .<span class="dv">10</span>)){</span>
-<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>  G <span class="ot">=</span> <span class="fu">random.graph.game</span>(<span class="dv">50</span>, p) <span class="sc">|&gt;</span> <span class="fu">as_tbl_graph</span>()</span>
-<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>  plot <span class="ot">&lt;-</span> G <span class="sc">|&gt;</span></span>
-<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggraph</span>(<span class="at">layout=</span><span class="st">'fr'</span>) <span class="sc">+</span></span>
-<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_edge_fan</span>(<span class="at">alpha =</span> .<span class="dv">5</span>) <span class="sc">+</span></span>
-<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_node_point</span>() <span class="sc">+</span></span>
-<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">title=</span><span class="fu">paste0</span>(<span class="st">"Random graph with "</span>, p<span class="sc">*</span><span class="dv">100</span>, <span class="st">"% of edges"</span>))</span>
-<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(plot)</span>
-<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Don't worry about understanding this code - it's basically just plotting </span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="co"># different densities of random graphs</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="co">#set.seed(12)</span></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(p <span class="cf">in</span> <span class="fu">c</span>(.<span class="dv">02</span>, .<span class="dv">05</span>, .<span class="dv">08</span>, .<span class="dv">10</span>)){</span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>  G <span class="ot">=</span> <span class="fu">random.graph.game</span>(<span class="dv">50</span>, p) <span class="sc">|&gt;</span> <span class="fu">as_tbl_graph</span>()</span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>  plot <span class="ot">&lt;-</span> G <span class="sc">|&gt;</span></span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggraph</span>(<span class="at">layout=</span><span class="st">'fr'</span>) <span class="sc">+</span></span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_edge_fan</span>(<span class="at">alpha =</span> .<span class="dv">5</span>) <span class="sc">+</span></span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_node_point</span>() <span class="sc">+</span></span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">title=</span><span class="fu">paste0</span>(<span class="st">"Random graph with "</span>, p<span class="sc">*</span><span class="dv">100</span>, <span class="st">"% of edges"</span>))</span>
+<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(plot)</span>
+<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -331,76 +346,76 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>The next simplest idea is a clique—this identifies groups of nodes where everyone is connected to everyone else in the group.</p>
 <p>Let’s find the largest cliques in this network, using the <code>largest_cliques</code> function</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Find the largest clique(s)</span></span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>UK <span class="sc">|&gt;</span> </span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">largest_cliques</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Find the largest clique(s)</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>UK <span class="sc">|&gt;</span> </span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">largest_cliques</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[[1]]
-+ 9/81 vertices, from 85a8476:
++ 9/81 vertices, from fa2b0a2:
 [1] 49 69 77  5 27 10 68 23 13
 
 [[2]]
-+ 9/81 vertices, from 85a8476:
++ 9/81 vertices, from fa2b0a2:
 [1] 49 69 77  5 27 10 68 23 42
 
 [[3]]
-+ 9/81 vertices, from 85a8476:
++ 9/81 vertices, from fa2b0a2:
 [1] 49 69 77 33 27 10 68 23 13
 
 [[4]]
-+ 9/81 vertices, from 85a8476:
++ 9/81 vertices, from fa2b0a2:
 [1] 49 69 77 33 27 10 68 23 42
 
 [[5]]
-+ 9/81 vertices, from 85a8476:
++ 9/81 vertices, from fa2b0a2:
 [1] 57 29 79 37 15 43 35  2 31
 
 [[6]]
-+ 9/81 vertices, from 85a8476:
++ 9/81 vertices, from fa2b0a2:
 [1] 57 29 79 37 15 43 35  2 18
 
 [[7]]
-+ 9/81 vertices, from 85a8476:
++ 9/81 vertices, from fa2b0a2:
 [1] 57 29 79 46 18 15 43 35  2
 
 [[8]]
-+ 9/81 vertices, from 85a8476:
++ 9/81 vertices, from fa2b0a2:
 [1] 57 29 79 46 31 15 43 35  2
 
 [[9]]
-+ 9/81 vertices, from 85a8476:
++ 9/81 vertices, from fa2b0a2:
 [1] 77 69  7 27 23 10  5 68 13
 
 [[10]]
-+ 9/81 vertices, from 85a8476:
++ 9/81 vertices, from fa2b0a2:
 [1] 77 69  7 27 23 10  5 68 40
 
 [[11]]
-+ 9/81 vertices, from 85a8476:
++ 9/81 vertices, from fa2b0a2:
 [1] 77 69  7 27 23 10  5 68 42
 
 [[12]]
-+ 9/81 vertices, from 85a8476:
++ 9/81 vertices, from fa2b0a2:
 [1] 21 29 31 15 79  2 37 43 35
 
 [[13]]
-+ 9/81 vertices, from 85a8476:
++ 9/81 vertices, from fa2b0a2:
 [1] 21 29 31 15 79  2 46 43 35</code></pre>
 </div>
 </div>
 <p>This network has a bunch of cliques of size 9—that means that each person in the clique is connected to each of the other 8 people.</p>
 <p>Let’s visualize this by coloring the first of these cliques.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># First, get the list of nodes in the first clique</span></span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>clique_nodes <span class="ot">&lt;-</span> <span class="fu">largest_cliques</span>(UK)[[<span class="dv">1</span>]]</span>
-<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>UK <span class="sc">|&gt;</span> </span>
-<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">activate</span>(nodes) <span class="sc">|&gt;</span></span>
-<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">idx =</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">nrow</span>(<span class="fu">.N</span>())) <span class="sc">|&gt;</span> <span class="co"># Create an index for the nodes</span></span>
-<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">in_clique =</span> idx <span class="sc">%in%</span> clique_nodes) <span class="sc">|&gt;</span> <span class="co"># If the index is one of the clique nodes</span></span>
-<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a><span class="fu">ggraph</span>(<span class="at">layout =</span> <span class="st">'stress'</span>) <span class="sc">+</span></span>
-<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_edge_fan</span>(<span class="at">alpha=</span>.<span class="dv">1</span>) <span class="sc">+</span></span>
-<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_node_point</span>(<span class="fu">aes</span>(<span class="at">color=</span>in_clique)) <span class="sc">+</span> <span class="co"># Color by whether the node is in the clique</span></span>
-<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_discrete</span>(<span class="at">name=</span><span class="st">'In largest clique'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># First, get the list of nodes in the first clique</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>clique_nodes <span class="ot">&lt;-</span> <span class="fu">largest_cliques</span>(UK)[[<span class="dv">1</span>]]</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>UK <span class="sc">|&gt;</span> </span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">activate</span>(nodes) <span class="sc">|&gt;</span></span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">idx =</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">nrow</span>(<span class="fu">.N</span>())) <span class="sc">|&gt;</span> <span class="co"># Create an index for the nodes</span></span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">in_clique =</span> idx <span class="sc">%in%</span> clique_nodes) <span class="sc">|&gt;</span> <span class="co"># If the index is one of the clique nodes</span></span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a><span class="fu">ggraph</span>(<span class="at">layout =</span> <span class="st">'stress'</span>) <span class="sc">+</span></span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_edge_fan</span>(<span class="at">alpha=</span>.<span class="dv">1</span>) <span class="sc">+</span></span>
+<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_node_point</span>(<span class="fu">aes</span>(<span class="at">color=</span>in_clique)) <span class="sc">+</span> <span class="co"># Color by whether the node is in the clique</span></span>
+<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_discrete</span>(<span class="at">name=</span><span class="st">'In largest clique'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -420,13 +435,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>I’ll show you how to visualize a couple of these in ggraph</p>
 <p>First, a modularity approach, using the “fast greedy” algorithm</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>UK <span class="sc">|&gt;</span></span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">activate</span>(nodes) <span class="sc">|&gt;</span></span>
-<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">community =</span> <span class="fu">as.factor</span>(<span class="fu">group_fast_greedy</span>())) <span class="sc">|&gt;</span></span>
-<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a><span class="fu">ggraph</span>(<span class="at">layout =</span> <span class="st">'stress'</span>) <span class="sc">+</span></span>
-<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_edge_fan</span>(<span class="at">alpha=</span>.<span class="dv">1</span>) <span class="sc">+</span></span>
-<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_node_point</span>(<span class="fu">aes</span>(<span class="at">color=</span>community)) <span class="sc">+</span></span>
-<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_viridis_d</span>(<span class="at">name=</span><span class="st">'Fast Greedy Communities'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>UK <span class="sc">|&gt;</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">activate</span>(nodes) <span class="sc">|&gt;</span></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">community =</span> <span class="fu">as.factor</span>(<span class="fu">group_fast_greedy</span>())) <span class="sc">|&gt;</span></span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a><span class="fu">ggraph</span>(<span class="at">layout =</span> <span class="st">'stress'</span>) <span class="sc">+</span></span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_edge_fan</span>(<span class="at">alpha=</span>.<span class="dv">1</span>) <span class="sc">+</span></span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_node_point</span>(<span class="fu">aes</span>(<span class="at">color=</span>community)) <span class="sc">+</span></span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_viridis_d</span>(<span class="at">name=</span><span class="st">'Fast Greedy Communities'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -438,13 +453,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>As you can see, this is pretty good. It groups things pretty similarly to the actual departments.</p>
 <p>Here is a label propagation approach, which is similar to random walks:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>UK <span class="sc">|&gt;</span> <span class="fu">as_tbl_graph</span>() <span class="sc">|&gt;</span></span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">activate</span>(nodes) <span class="sc">|&gt;</span></span>
-<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">community =</span> <span class="fu">as.factor</span>(<span class="fu">group_louvain</span>())) <span class="sc">|&gt;</span></span>
-<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a><span class="fu">ggraph</span>(<span class="at">layout =</span> <span class="st">'stress'</span>) <span class="sc">+</span></span>
-<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_edge_fan</span>(<span class="at">alpha=</span>.<span class="dv">1</span>) <span class="sc">+</span></span>
-<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_node_point</span>(<span class="fu">aes</span>(<span class="at">color=</span>community)) <span class="sc">+</span></span>
-<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_viridis_d</span>(<span class="at">name=</span><span class="st">'Louvain Communities'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>UK <span class="sc">|&gt;</span> <span class="fu">as_tbl_graph</span>() <span class="sc">|&gt;</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">activate</span>(nodes) <span class="sc">|&gt;</span></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">community =</span> <span class="fu">as.factor</span>(<span class="fu">group_louvain</span>())) <span class="sc">|&gt;</span></span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a><span class="fu">ggraph</span>(<span class="at">layout =</span> <span class="st">'stress'</span>) <span class="sc">+</span></span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_edge_fan</span>(<span class="at">alpha=</span>.<span class="dv">1</span>) <span class="sc">+</span></span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_node_point</span>(<span class="fu">aes</span>(<span class="at">color=</span>community)) <span class="sc">+</span></span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_viridis_d</span>(<span class="at">name=</span><span class="st">'Louvain Communities'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -454,50 +469,73 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <p>This is also pretty good, and looks quite similar. For many networks, different modern community detection approaches give fairly similar results.</p>
-<section id="exercises" class="level3">
-<h3 class="anchored" data-anchor-id="exercises">Exercises</h3>
-<ol type="1">
-<li>The layout also helps to show groups. Change the layout of this graph to a few of the others found at the bottom of <a href="https://igraph.org/r/doc/layout_with_kk.html">this page</a>. See if you can find one that you think does a better job of showing group structure.</li>
-</ol>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Your code here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<ol start="2" type="1">
-<li>I have used coloring of nodes as a way to identify different groups in a network. I think that this is a good way of visualizing groups, but there are other options. Come up with a different way of visualizing groups and either draw a picture of your idea or actually code it in ggraph.</li>
-</ol>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Your code here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<ol start="3" type="1">
-<li>Go back to your Visualization Challenge project and add a visualization of group structure. (Note: you will need to load in the data in this file)</li>
-</ol>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Your code here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-</section>
 </section>
 <section id="k-cores" class="level2">
 <h2 class="anchored" data-anchor-id="k-cores">K-cores</h2>
 <p>Finally, it’s worth mentioning a related concept, called “coreness”. This isn’t quite the same as identifying the group a node is in; the idea is to identify “central” and “peripheral” parts of a network. Each node gets a “coreness” number, which is the largest k for which it exists in a subgraph where all nodes are connected with at least k edges. This sounds super confusing, but it makes a bit more sense when plotted. Here is some sample code for visualizing coreness.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>UK <span class="sc">|&gt;</span></span>
-<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">activate</span>(nodes) <span class="sc">|&gt;</span></span>
-<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">coreness =</span> <span class="fu">node_coreness</span>()) <span class="sc">|&gt;</span></span>
-<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a><span class="fu">ggraph</span>(<span class="at">layout=</span><span class="st">'stress'</span>) <span class="sc">+</span></span>
-<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_edge_fan</span>(<span class="at">alpha=</span>.<span class="dv">1</span>) <span class="sc">+</span></span>
-<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_node_point</span>(<span class="fu">aes</span>(<span class="at">color=</span>coreness)) <span class="sc">+</span></span>
-<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_viridis</span>(<span class="at">name=</span><span class="st">'Coreness'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>UK <span class="sc">|&gt;</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">activate</span>(nodes) <span class="sc">|&gt;</span></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">coreness =</span> <span class="fu">node_coreness</span>()) <span class="sc">|&gt;</span></span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a><span class="fu">ggraph</span>(<span class="at">layout=</span><span class="st">'stress'</span>) <span class="sc">+</span></span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_edge_fan</span>(<span class="at">alpha=</span>.<span class="dv">1</span>) <span class="sc">+</span></span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_node_point</span>(<span class="fu">aes</span>(<span class="at">color=</span>coreness)) <span class="sc">+</span></span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_viridis</span>(<span class="at">name=</span><span class="st">'Coreness'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="lab_7_groups_in_networks_files/figure-html/unnamed-chunk-14-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="lab_7_groups_in_networks_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
 </div>
 <p>Basically, nodes with a high coreness number are connected to lots of others who are themselves well-connected. This is a great measure for identifying groups that hold important, central positions.</p>
+<section id="exercises" class="level3">
+<h3 class="anchored" data-anchor-id="exercises">Exercises</h3>
+<ol type="1">
+<li>The layout also helps to show groups. Change the layout of this graph to a few of the others found at the bottom of <a href="https://igraph.org/r/doc/layout_with_kk.html">this page</a>. See if you can find one that you think does a better job of showing group structure.</li>
+</ol>
+<p><strong>NOTE</strong>: Here’s my example, with the <code>fr</code> layout and the <code>group_fast_greedy</code> community detection algorithm. Try some others!</p>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="lab_7_groups_in_networks_files/figure-html/unnamed-chunk-12-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<ol start="2" type="1">
+<li>I have used coloring of nodes as a way to identify different groups in a network. I think that this is a good way of visualizing groups, but there are other options. Shape is probably the most common alternative. Show the louvain communities with different shapes for each group.</li>
+</ol>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="lab_7_groups_in_networks_files/figure-html/unnamed-chunk-13-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<ol start="3" type="1">
+<li>Go back to your Visualization Challenge project and add a visualization of group structure. (Note: you will need to load in the data in this file)</li>
+</ol>
+<p><strong>NOTE</strong>: No example given since your projects/data will be different.</p>
+<ol start="4" type="1">
+<li>Let’s combine a few ideas from the last few labs. Imagine you have a group with a strong core-periphery structure, and you want to figure out who is most influential, but only among those in the core. Take the <code>UK</code> network and filter it to only nodes with a coreness of 4 or more. <em>After filtering</em>, calculate the betweenness centrality of these nodes. Finally, visualize the network with node size as betweenness centrality and color as coreness.</li>
+</ol>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="lab_7_groups_in_networks_files/figure-html/unnamed-chunk-15-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
 
 
+</section>
 </section>
 </section>
 

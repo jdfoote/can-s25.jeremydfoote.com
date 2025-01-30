@@ -114,6 +114,7 @@ Let's find the largest cliques in this network, using the `largest_cliques` func
 UK |> 
   largest_cliques()
 ```
+
 This network has a bunch of cliques of size 9---that means that each person in the clique is connected to each of the other 8 people.
 
 Let's visualize this by coloring the first of these cliques.
@@ -174,36 +175,6 @@ ggraph(layout = 'stress') +
 
 This is also pretty good, and looks quite similar. For many networks, different modern community detection approaches give fairly similar results.
 
-
-### Exercises
-
-1. The layout also helps to show groups. Change the layout of this graph to a few of the others found at the bottom of [this page](https://igraph.org/r/doc/layout_with_kk.html). See if you can find one that you think does a better job of showing group structure.
-
-```{r}
-
-# Your code here
-
-```
-
-2. I have used coloring of nodes as a way to identify different groups in a network. I think that this is a good way of visualizing groups, but there are other options. Come up with a different way of visualizing groups and either draw a picture of your idea or actually code it in ggraph.
-
-```{r}
-
-# Your code here
-
-```
-
-
-3. Go back to your Visualization Challenge project and add a visualization of group structure. (Note: you will need to load in the data in this file)
-
-
-```{r}
-
-# Your code here
-
-```
-
-
 ## K-cores
 
 Finally, it's worth mentioning a related concept, called "coreness". This isn't quite the same as identifying the group a node is in; the idea is to identify "central" and "peripheral" parts of a network. Each node gets a "coreness" number, which is the largest k for which it exists in a subgraph where all nodes are connected with at least k edges. This sounds super confusing, but it makes a bit more sense when plotted. Here is some sample code for visualizing coreness.
@@ -221,3 +192,39 @@ ggraph(layout='stress') +
 ```
 
 Basically, nodes with a high coreness number are connected to lots of others who are themselves well-connected. This is a great measure for identifying groups that hold important, central positions.
+
+### Exercises
+
+1. The layout also helps to show groups. Change the layout of this graph to a few of the others found at the bottom of [this page](https://igraph.org/r/doc/layout_with_kk.html). See if you can find one that you think does a better job of showing group structure.
+
+```{r}
+
+# Your code here
+
+```
+
+2. I have used coloring of nodes as a way to identify different groups in a network. I think that this is a good way of visualizing groups, but there are other options. Shape is probably the most common alternative. Show the louvain communities with different shapes for each group. 
+
+```{r}
+
+# Your code here
+
+```
+
+
+3. Go back to your Visualization Challenge project and add a visualization of group structure. (Note: you will need to load in the data in this file)
+
+
+```{r}
+
+# Your code here
+
+```
+
+4. Let's combine a few ideas from the last few labs. Imagine you have a group with a strong core-periphery structure, and you want to figure out who is most influential, but only among those in the core. Take the  `UK` network and filter it to only nodes with a coreness of 4 or more. *After filtering*, calculate the betweenness centrality of these nodes. Finally, visualize the network with node size as betweenness centrality and color as coreness.
+
+```{r}
+
+# Your code here
+
+```
