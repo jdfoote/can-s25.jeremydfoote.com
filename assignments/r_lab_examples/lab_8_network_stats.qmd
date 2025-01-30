@@ -1,6 +1,6 @@
 ---
 title: "Calculating Network Statistics"
-author: "Your Name Here"
+author: "Dr. Foote's Examples"
 format: pdf
 ---
 
@@ -129,16 +129,26 @@ G |>
 
 1. Figure out how to calculate the betweenness centralization for `G` and print it out.
 
-```{r}
+```{r echo=FALSE}
 
-## Your code here
+knitr::opts_chunk$set(echo = F, warn=F, message=F)
+
+G |> centralization.betweenness()
+
 ```
 
 2. Visualize the betweenness centrality of the `bkfrab` dataset as a histogram. Hint: You need to load the data using `as_tbl_graph`
 
 ```{r}
 
-# Your code here 
+bkfrab <- bkfrab |> as_tbl_graph()
+
+bkfrab |>
+  mutate(bw_centrality = centrality_betweenness()) |>
+  as_tibble() |>
+  ggplot() +
+  geom_histogram(aes(x=bw_centrality)) +
+  theme_minimal()
 
 ```
 
@@ -147,18 +157,38 @@ G |>
 ```{r}
 
 # Your code here
+bkfrab |>
+  activate(edges) |>
+  as_tibble() |>
+  ggplot() +
+  geom_histogram(aes(x=weight)) +
+  theme_minimal()
 
 ```
 
 4. Calculate the closeness centrality and betweenness centrality of the `ffe_elite` network; add them to a table that shows the `vertex.names`, `birthdate`, and both kinds of centrality for each node, sorted by closeness centrality (descending).
 
 ```{r}
-## Your code here
+G |>
+  activate(nodes) |>
+  mutate(closeness = centrality_closeness()) |>
+  mutate(betweenness = centrality_betweenness()) |>
+  as_tibble() |>
+  arrange(-closeness)
 ```
 
 5. Visualize the betweenness centrality of the `ffe_elite` data by the university that people attended, displayed as boxplots.
 
 ```{r}
+
+G |>
+  activate(nodes) |>
+  mutate(betweenness = centrality_betweenness()) |>
+  mutate(university = as_factor(university)) |>
+  as_tibble() |>
+  ggplot() +
+  geom_boxplot(aes(x=university, fill=university, y=betweenness)) +
+  theme_minimal()
 
 ```
 

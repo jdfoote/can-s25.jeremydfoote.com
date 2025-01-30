@@ -207,7 +207,7 @@ Basically, nodes with a high coreness number are connected to lots of others who
 
 ```{r echo=F}
 
-knitr::opts_chunk$set(echo = F)
+knitr::opts_chunk$set(echo = F, warn=F, message=F)
 
 # Your code here
 
