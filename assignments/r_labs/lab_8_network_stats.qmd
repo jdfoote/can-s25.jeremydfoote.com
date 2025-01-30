@@ -45,7 +45,7 @@ G |> activate(edges) |> filter(edge_is_mutual()) |> gsize()
 Centralization:
 
 ```{r}
-G |> centralization.degree()
+G |> centr_degree()
 ```
 
 

@@ -142,7 +142,7 @@ G |>
 
 ```{r echo=F}
 
-knitr::opts_chunk$set(echo = F)
+knitr::opts_chunk$set(echo = F, message=F, warn=F)
 
 G |>
   activate(nodes) |>
@@ -151,7 +151,7 @@ G |>
   geom_edge_fan(aes(alpha = stat(index))) +
   geom_node_point(aes(size = degree), color = '#ceb888') +
   geom_node_text(aes(label = name, size=degree)) +
-  guides(edge_alpha = guide_edge_direction(title="Direction", labels = c('from', 'to')))
+  guides(edge_alpha = guide_edge_direction(title="Direction", labels = c('from', 'to'))) +
   scale_size_continuous(name='Outdegree')
 
 ```

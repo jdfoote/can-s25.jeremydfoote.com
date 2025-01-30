@@ -215,8 +215,9 @@ UK |>
   activate(nodes) |>
   mutate(group = as.factor(group_fast_greedy())) |>
   ggraph(layout='fr') +
-  geom_edge_fan(alpha=.4) +
-  geom_node_point()
+  geom_edge_fan(alpha=.3) +
+  geom_node_point(aes(color=group)) +
+  scale_color_viridis_d(name='Fast Greedy Communities')
 
 ```
 
@@ -229,7 +230,7 @@ UK |>
   activate(nodes) |>
   mutate(group = as.factor(group_louvain())) |>
   ggraph() +
-  geom_edge_fan(alpha=.4) +
+  geom_edge_fan(alpha=.3) +
   geom_node_point(aes(shape=group)) 
 
 ```

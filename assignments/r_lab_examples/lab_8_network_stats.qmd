@@ -45,7 +45,7 @@ G |> activate(edges) |> filter(edge_is_mutual()) |> gsize()
 Centralization:
 
 ```{r}
-G |> centralization.degree()
+G |> centr_degree()
 ```
 
 
@@ -133,7 +133,7 @@ G |>
 
 knitr::opts_chunk$set(echo = F, warn=F, message=F)
 
-G |> centralization.betweenness()
+G |> centr_betweenness()
 
 ```
 
