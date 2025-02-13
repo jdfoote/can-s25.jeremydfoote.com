@@ -793,7 +793,7 @@
     "href": "lectures/class_lectures/week_4.html#housekeeping",
     "title": "Week 4 - Small Group Networks",
     "section": "Housekeeping",
-    "text": "Housekeeping\n\nPractice asking a question on Discord\nPlan for discussion questions. Slido? PollEverywhere?\nTech suggestions - laptops down during group discussions?"
+    "text": "Housekeeping\n\nPractice asking a question on Discord"
   },
   {
     "objectID": "lectures/class_lectures/week_4.html#housekeeping-1",
@@ -821,21 +821,35 @@
     "href": "lectures/class_lectures/week_4.html#review-questions",
     "title": "Week 4 - Small Group Networks",
     "section": "Review Questions",
-    "text": "Review Questions\n\nWhat is centralization?\nWhen is a centralized network better?\nWhat is “transactive memory”?\nAccording to the Informal Networks article, why is it important to identify different kinds of networks?\nWhat sorts of information can be learned from an advice network?\n\nA trust network?\n\nHave you thought about the groups that you are in from a network perspective? What insights have you had?"
+    "text": "Review Questions\n\nWhat is centralization?\nWhen is a centralized network better?\nWhat does “embedded” mean in the context of a network?\nWhat is “transactive memory”?"
+  },
+  {
+    "objectID": "lectures/class_lectures/week_4.html#review-questions-1",
+    "href": "lectures/class_lectures/week_4.html#review-questions-1",
+    "title": "Week 4 - Small Group Networks",
+    "section": "Review Questions",
+    "text": "Review Questions\n\nAccording to the Informal Networks article, why is it important to identify different kinds of networks?\nWhat sorts of information can be learned from an advice network?\n\nA trust network?\n\nHave you thought about the groups that you are in from a network perspective? What insights have you had?"
+  },
+  {
+    "objectID": "lectures/class_lectures/week_4.html#review-questions-2",
+    "href": "lectures/class_lectures/week_4.html#review-questions-2",
+    "title": "Week 4 - Small Group Networks",
+    "section": "Review Questions",
+    "text": "Review Questions\n\nWhat is hierarchy?\nWhat is a core-periphery structure?\nWhat is a structural hole?\nWhat is multiplexity?"
   },
   {
     "objectID": "lectures/class_lectures/week_4.html#discussion-questions",
     "href": "lectures/class_lectures/week_4.html#discussion-questions",
     "title": "Week 4 - Small Group Networks",
     "section": "Discussion Questions",
-    "text": "Discussion Questions"
+    "text": "Discussion Questions\n\nHow can organizations intentionally foster beneficial informal networks without making them feel forced or artificial?\nAre strong ties always better than weak ties for productivity?"
   },
   {
     "objectID": "lectures/class_lectures/week_4.html#thursday",
     "href": "lectures/class_lectures/week_4.html#thursday",
     "title": "Week 4 - Small Group Networks",
     "section": "Thursday",
-    "text": "Thursday\n\nNo class\nWork on R Lab 3 - Mutating and filtering"
+    "text": "Thursday\n\nR Review\nWork on R Lab 3 - Mutating and filtering"
   },
   {
     "objectID": "lectures/class_lectures/week_2.html#todays-dad-joke",
@@ -1199,7 +1213,7 @@
     "href": "assignments/r_lab_examples/lab_8_network_stats.html#network-statistics",
     "title": "Calculating Network Statistics",
     "section": "Network statistics",
-    "text": "Network statistics\nThere are a lot of statistics that we might care about, and tidygraph and igraph have a number of functions to calculate them.\nLet’s start with some simple graph-level measures, for our ffe_elite network.\n\nG &lt;- ffe_elite |&gt; as_tbl_graph()\n\nNumber of nodes:\n\nG |&gt; gorder()\n\n[1] 28\n\n\nNumber of edges:\n\nG |&gt; gsize()\n\n[1] 330\n\n\nNumber of mutual edges:\n\nG |&gt; activate(edges) |&gt; filter(edge_is_mutual()) |&gt; gsize()\n\n[1] 160\n\n\nCentralization:\n\nG |&gt; centralization.degree()\n\nWarning: `centralization.degree()` was deprecated in igraph 2.0.0.\nℹ Please use `centr_degree()` instead.\n\n\n$res\n [1] 11 41 34  8 16 15 33 29 21 25 31  8 28 27 27 26 25 24 29  4 32 21 17 26 35\n[26] 27 37  3\n\n$centralization\n[1] 0.3347051\n\n$theoretical_max\n[1] 1458"
+    "text": "Network statistics\nThere are a lot of statistics that we might care about, and tidygraph and igraph have a number of functions to calculate them.\nLet’s start with some simple graph-level measures, for our ffe_elite network.\n\nG &lt;- ffe_elite |&gt; as_tbl_graph()\n\nNumber of nodes:\n\nG |&gt; gorder()\n\n[1] 28\n\n\nNumber of edges:\n\nG |&gt; gsize()\n\n[1] 330\n\n\nNumber of mutual edges:\n\nG |&gt; activate(edges) |&gt; filter(edge_is_mutual()) |&gt; gsize()\n\n[1] 160\n\n\nCentralization:\n\nG |&gt; centr_degree()\n\n$res\n [1] 11 41 34  8 16 15 33 29 21 25 31  8 28 27 27 26 25 24 29  4 32 21 17 26 35\n[26] 27 37  3\n\n$centralization\n[1] 0.3347051\n\n$theoretical_max\n[1] 1458"
   },
   {
     "objectID": "assignments/r_lab_examples/lab_8_network_stats.html#identifying-the-most-central-nodes",
@@ -1213,14 +1227,14 @@
     "href": "assignments/r_lab_examples/lab_8_network_stats.html#visualizing-node-or-edge-level-statistics",
     "title": "Calculating Network Statistics",
     "section": "Visualizing node or edge-level statistics",
-    "text": "Visualizing node or edge-level statistics\nThe other thing I want to show you how to do is to visualize attributes of the nodes or the edges. There are entire courses on visualizations, but I want to show you how to do a few.\n\nHistograms\nWe may want to visualize the distribution of attributes or network statistics.\nWe’ll use tibbles again, and then instead of using ggraph, we use ggplot, which is one of R’s general plotting packages.\ngeom_histogram tells it to create a histogram, in this case with the x axis mapped to the birthdate variable.\nFinally, theme_minimal() adds the axes and tick marks to the graph (try it without that line to see what I mean).\n\nG |&gt;\n  activate(nodes) |&gt;\n  as_tibble() |&gt;\n  ggplot() +\n  geom_histogram(aes(x=birthdate), binwidth=1) + \n  theme_minimal()\n\n\n\n\n\n\n\n\nIf we want to visualize how centralized a network is, a good way to do that is to show the distribution of degree (or betweenness or another centrality measure.) As we have done in a few previous labs, we’ll first need to create the column using mutate and then we’ll visualize it in the same way, using ggplot and geom_histogram.\nNote: You’ll need to calculate networks statistics before calling as_tibble. R knows how to get the centrality of a node spreadsheet, but once it’s converted to a tibble, it doesn’t know what to do.\n\nG |&gt;\n  activate(nodes) |&gt;\n  mutate(degree = centrality_degree(mode='all')) |&gt; \n  as_tibble() |&gt;\n  ggplot() +\n  geom_histogram(aes(x=degree)) + \n  theme_minimal()\n\n`stat_bin()` using `bins = 30`. Pick better value with `binwidth`.\n\n\n\n\n\n\n\n\n\n\n\nBoxplots\nThe other thing we might want to do is compare the distributions of some network measure for different groups. There are lots of ways to do this, but the one I’ll show here is a “boxplot”. This shows where the “typical” values are for each group.\nFor example, this shows the degree distribution for each of the different religions in the ffe_elite dataset.\n\nG |&gt;\n  activate(nodes) |&gt;\n  mutate(degree = centrality_degree(mode='all')) |&gt;\n  mutate(religion = as_factor(religion)) |&gt; # Change religion to a factor\n  as_tibble() |&gt; # convert to a tibble\n  ggplot() + \n  geom_boxplot(aes(x=religion, fill=religion, y=degree)) + # `fill` changes the filled in color. Try changing this to `color` instead\n  theme_minimal()\n\n\n\n\n\n\n\n\n\n\nExercises\n\nFigure out how to calculate the betweenness centralization for G and print it out.\n\n\n\nWarning: `centralization.betweenness()` was deprecated in igraph 2.0.0.\nℹ Please use `centr_betw()` instead.\n\n\n$res\n [1]  0.00000000 46.18684094 15.91020646  0.00000000  0.00000000  0.07692308\n [7]  9.21303141 12.06143301  3.21816794  5.26654457 12.60273893  0.00000000\n[13]  7.23411311  8.73725164  6.88686591  6.46853979  4.23056666  5.20114053\n[19] 15.63770951  0.00000000  9.39394772  0.00000000  0.28095238  6.42109002\n[25] 26.11811799  6.58051671 31.27330170  0.00000000\n\n$centralization\n[1] 0.05562053\n\n$theoretical_max\n[1] 18954\n\n\n\nVisualize the betweenness centrality of the bkfrab dataset as a histogram. Hint: You need to load the data using as_tbl_graph\n\n\n\n\n\n\n\n\n\n\n\nVisualize the edge variable weight from bkfrab as a histogram. Hint: Remember to activate the edges spreadsheet.\n\n\n\n\n\n\n\n\n\n\n\nCalculate the closeness centrality and betweenness centrality of the ffe_elite network; add them to a table that shows the vertex.names, birthdate, and both kinds of centrality for each node, sorted by closeness centrality (descending).\n\n\n\n# A tibble: 28 × 28\n   birthdate birthplace cabinet clubs eliteprom elitevote   ena enayear\n       &lt;dbl&gt;      &lt;dbl&gt;   &lt;dbl&gt; &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt;\n 1      1935          2       2     3         1        52     2      NA\n 2      1929          2       2     3         1        34     1    1955\n 3      1928          1       1     2         1        39     1    1953\n 4      1950          2       1     0         1        23     1    1975\n 5      1934          1       1     3         1        36     1    1961\n 6      1924          1       2     1         1        45     2      NA\n 7      1935          1       2     3         1        23     2      NA\n 8      1943          2       1     1         1        31     1    1969\n 9      1931          1       2     3         1        34     2      NA\n10      1911          2       2     0         0        13     2      NA\n# ℹ 18 more rows\n# ℹ 20 more variables: fathers.lev &lt;dbl&gt;, finance.min &lt;dbl&gt;, igyear &lt;dbl&gt;,\n#   inspec.gen &lt;dbl&gt;, masons &lt;dbl&gt;, na &lt;lgl&gt;, normal.sch &lt;dbl&gt;, party &lt;dbl&gt;,\n#   polytech &lt;dbl&gt;, polyyear &lt;dbl&gt;, prestige &lt;dbl&gt;, religion &lt;dbl&gt;,\n#   sciencepoly &lt;dbl&gt;, socialreg &lt;dbl&gt;, topboards &lt;dbl&gt;, university &lt;dbl&gt;,\n#   vertex.names &lt;chr&gt;, zipcode &lt;dbl&gt;, closeness &lt;dbl&gt;, betweenness &lt;dbl&gt;\n\n\n\nVisualize the betweenness centrality of the ffe_elite data by the university that people attended, displayed as boxplots.\n\n\n\n\n\n\n\n\n\n\n\nCome up with something else that you want to visualize, either as a histogram or as boxplots and create a visualization below."
+    "text": "Visualizing node or edge-level statistics\nThe other thing I want to show you how to do is to visualize attributes of the nodes or the edges. There are entire courses on visualizations, but I want to show you how to do a few.\n\nHistograms\nWe may want to visualize the distribution of attributes or network statistics.\nWe’ll use tibbles again, and then instead of using ggraph, we use ggplot, which is one of R’s general plotting packages.\ngeom_histogram tells it to create a histogram, in this case with the x axis mapped to the birthdate variable.\nFinally, theme_minimal() adds the axes and tick marks to the graph (try it without that line to see what I mean).\n\nG |&gt;\n  activate(nodes) |&gt;\n  as_tibble() |&gt;\n  ggplot() +\n  geom_histogram(aes(x=birthdate), binwidth=1) + \n  theme_minimal()\n\n\n\n\n\n\n\n\nIf we want to visualize how centralized a network is, a good way to do that is to show the distribution of degree (or betweenness or another centrality measure.) As we have done in a few previous labs, we’ll first need to create the column using mutate and then we’ll visualize it in the same way, using ggplot and geom_histogram.\nNote: You’ll need to calculate networks statistics before calling as_tibble. R knows how to get the centrality of a node spreadsheet, but once it’s converted to a tibble, it doesn’t know what to do.\n\nG |&gt;\n  activate(nodes) |&gt;\n  mutate(degree = centrality_degree(mode='all')) |&gt; \n  as_tibble() |&gt;\n  ggplot() +\n  geom_histogram(aes(x=degree)) + \n  theme_minimal()\n\n`stat_bin()` using `bins = 30`. Pick better value with `binwidth`.\n\n\n\n\n\n\n\n\n\n\n\nBoxplots\nThe other thing we might want to do is compare the distributions of some network measure for different groups. There are lots of ways to do this, but the one I’ll show here is a “boxplot”. This shows where the “typical” values are for each group.\nFor example, this shows the degree distribution for each of the different religions in the ffe_elite dataset.\n\nG |&gt;\n  activate(nodes) |&gt;\n  mutate(degree = centrality_degree(mode='all')) |&gt;\n  mutate(religion = as_factor(religion)) |&gt; # Change religion to a factor\n  as_tibble() |&gt; # convert to a tibble\n  ggplot() + \n  geom_boxplot(aes(x=religion, fill=religion, y=degree)) + # `fill` changes the filled in color. Try changing this to `color` instead\n  theme_minimal()\n\n\n\n\n\n\n\n\n\n\nExercises\n\nFigure out how to calculate the betweenness centralization for G and print it out.\n\n\n\n$res\n [1]  0.00000000 46.18684094 15.91020646  0.00000000  0.00000000  0.07692308\n [7]  9.21303141 12.06143301  3.21816794  5.26654457 12.60273893  0.00000000\n[13]  7.23411311  8.73725164  6.88686591  6.46853979  4.23056666  5.20114053\n[19] 15.63770951  0.00000000  9.39394772  0.00000000  0.28095238  6.42109002\n[25] 26.11811799  6.58051671 31.27330170  0.00000000\n\n$centralization\n[1] 0.05562053\n\n$theoretical_max\n[1] 18954\n\n\n\nVisualize the betweenness centrality of the bkfrab dataset as a histogram. Hint: You need to load the data using as_tbl_graph\n\n\n\n\n\n\n\n\n\n\n\nVisualize the edge variable weight from bkfrab as a histogram. Hint: Remember to activate the edges spreadsheet.\n\n\n\n\n\n\n\n\n\n\n\nCalculate the closeness centrality and betweenness centrality of the ffe_elite network; add them to a table that shows the vertex.names, birthdate, and both kinds of centrality for each node, sorted by closeness centrality (descending).\n\n\n\n# A tibble: 28 × 28\n   birthdate birthplace cabinet clubs eliteprom elitevote   ena enayear\n       &lt;dbl&gt;      &lt;dbl&gt;   &lt;dbl&gt; &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt;\n 1      1935          2       2     3         1        52     2      NA\n 2      1929          2       2     3         1        34     1    1955\n 3      1928          1       1     2         1        39     1    1953\n 4      1950          2       1     0         1        23     1    1975\n 5      1934          1       1     3         1        36     1    1961\n 6      1924          1       2     1         1        45     2      NA\n 7      1935          1       2     3         1        23     2      NA\n 8      1943          2       1     1         1        31     1    1969\n 9      1931          1       2     3         1        34     2      NA\n10      1911          2       2     0         0        13     2      NA\n# ℹ 18 more rows\n# ℹ 20 more variables: fathers.lev &lt;dbl&gt;, finance.min &lt;dbl&gt;, igyear &lt;dbl&gt;,\n#   inspec.gen &lt;dbl&gt;, masons &lt;dbl&gt;, na &lt;lgl&gt;, normal.sch &lt;dbl&gt;, party &lt;dbl&gt;,\n#   polytech &lt;dbl&gt;, polyyear &lt;dbl&gt;, prestige &lt;dbl&gt;, religion &lt;dbl&gt;,\n#   sciencepoly &lt;dbl&gt;, socialreg &lt;dbl&gt;, topboards &lt;dbl&gt;, university &lt;dbl&gt;,\n#   vertex.names &lt;chr&gt;, zipcode &lt;dbl&gt;, closeness &lt;dbl&gt;, betweenness &lt;dbl&gt;\n\n\n\nVisualize the betweenness centrality of the ffe_elite data by the university that people attended, displayed as boxplots.\n\n\n\n\n\n\n\n\n\n\n\nCome up with something else that you want to visualize, either as a histogram or as boxplots and create a visualization below."
   },
   {
     "objectID": "assignments/r_lab_examples/lab_6_visualizing_power.html",
     "href": "assignments/r_lab_examples/lab_6_visualizing_power.html",
     "title": "Power Visualization",
     "section": "",
-    "text": "You have been building up skills and understanding about how ggraph works and now we’re ready to start building complex visualizations. Today we’ll work on different ways of showing power.\n\n\nPower has long been a central concern of social scientists. The famous sociologist Max Weber defined it as the ability to control others or resources—to realize one’s will.\nSome of this power comes in the form of “social capital”—the idea that there is power in our relationships—through mobilizing the resources of those we are connected to.\nThe construct of network power has many facets and over the years social network analysts have come up with a number of different algorithms for measuring different aspects of power in networks. These are usually called “centrality measures”. The intuition is that those in the center of a visualized network are typically those with the most power.\n\n\n\nDegree centrality is simply the number of connections that someone has. For directed networks, indegree can be interpreted as popularity and outdegree as gregariousness.\nLet’s look at different measures of power in the ht_friends network. There are a few new things going on here, so I’ll walk through each line:\n\nht_friends |&gt; as_tbl_graph(): Hopefully you know what these lines do—take the ht_friends network and make it into a tidygraph object.\nactivate(nodes) |&gt; mutate(name = 1:nrow(.N())) adds a column called name to the nodes, which starts at the number one and goes to the number of nodes (nrow(.N())).\ngeom_edge_fan(aes(alpha = stat(index))): This is where things get a bit tricky. This creates edges using the geom_edge_fan style and sets the transparency (alpha) of an edge so that it’s darkest closest to the to node. It’s for helping us see the direction of directed edges.\ngeom_node_point(color = '#ceb888', size = 5): This should look familiar. It just sets a color and size for nodes\ngeom_node_text(aes(label = name)): This adds the labels we created earlier to the nodes. It just makes it easier for us to talk about individual nodes.\nguides(edge_alpha = guide_edge_direction(title=\"Direction\", labels = c('from', 'to'))) This adds a legend to the plot that tells us what the alpha (transparency) of the edges means.\n\n\nG &lt;- ht_friends |&gt; \n  as_tbl_graph() |&gt;\n  activate(nodes) |&gt;\n  mutate(name=1:nrow(.N()))\n\nG |&gt;\n  ggraph() + \n  geom_edge_fan(aes(alpha = stat(index))) + # This does gradients for directed edges\n  geom_node_point(color = '#ceb888', size = 5) + \n  geom_node_text(aes(label = name)) + # Adds labels to nodes\n  guides(edge_alpha = guide_edge_direction(title=\"Direction\", labels = c('from', 'to'))) # Adds the \"Edge direction\" legend\n\n\n\n\n\n\n\n\nNow, let’s show the degree centrality by changing the size of nodes. Here is the total degree centrality. Note that we are using mutate to create the degree column, and then using it to adjust the size of the nodes.\n\nG |&gt;\n  activate(nodes) |&gt;\n  mutate(degree = centrality_degree(mode = 'all')) |&gt;\n  ggraph() +\n  geom_edge_fan(aes(alpha = stat(index))) + # This does gradients for directed edges\n  geom_node_point(aes(size = degree), color = '#ceb888') +\n  geom_node_text(aes(label = name, size=degree *1.1)) +\n  guides(edge_alpha = guide_edge_direction(title=\"Direction\", labels = c('from', 'to'))) + # Adds the \"Edge direction\" legend\n  scale_size(name='Total Degree') # Can you figure out what this is doing?\n\n\n\n\n\n\n\n\nNote how this changes when we show indegree/popularity\n\nG |&gt;\n  activate(nodes) |&gt;\n  mutate(degree = centrality_degree(mode = 'in')) |&gt;\n  ggraph() +\n  geom_edge_fan(aes(alpha = stat(index))) + # This does gradients for directed edges\n  geom_node_point(aes(size = degree), color = '#ceb888') +\n  geom_node_text(aes(label = name, size=degree * 1.1)) +\n  guides(edge_alpha = guide_edge_direction(title=\"Direction\", labels = c('from', 'to'))) + # Adds the \"Edge direction\" legend\n  scale_size_continuous(name='Indegree')\n\n\n\n\n\n\n\n\n\n\n\nThis measure tries to capture how much a node is literally in the center of a graph. It is a measure of the average distance to each other node.\nNote that there is a mode parameter that can be either ‘out’ for only outgoing distance, ‘in’, for incoming distance, or ‘all’, which we use, which ignores whether an edge is incoming or outgoing. If we don’t include the parameter, then it uses the default, which is ‘all’.\n\nG |&gt;\n  activate(nodes) |&gt;\n  mutate(centrality = centrality_closeness(mode='all')) |&gt;\n  mutate(centrality = replace_na(centrality, 0)) |&gt;\n  ggraph() + \n  geom_edge_fan(aes(alpha = stat(index))) + # This does gradients for directed edges\n  geom_node_point(aes(size = centrality), color = '#ceb888') +\n  geom_node_text(aes(label=name, size=centrality)) +\n  guides(edge_alpha = guide_edge_direction(title=\"Direction\", labels = c('from', 'to'))) + # Adds the \"Edge direction\" legend\n  scale_size_continuous(name = \"Closeness Centrality\")\n\n\n\n\n\n\n\n\n\n\n\nThis measure counts the number of shortest paths that go through each node. This is based on the value of being in a “structural hole”.\n\n\n\nThe last important measure of centrality is eigenvector centrality. The calculation is complicated and based on matrix algebra but the concept is pretty simple: all else being equal, a node is more powerful if it’s connected to a node that’s well-connected.\nThis is actually the basis of Google’s original search algorithm, and is part of what made it successful.\n\nG |&gt;\n  activate(nodes) |&gt;\n  mutate(centrality = centrality_eigen(directed = TRUE)) |&gt;\n  ggraph() +\n  geom_edge_fan(aes(alpha = stat(index))) + # This does gradients for directed edges\n  geom_node_point(aes(size = centrality), color = '#ceb888') +\n  geom_node_text(aes(label = name, size = centrality * 1.2)) +\n  guides(edge_alpha = guide_edge_direction(title=\"Direction\", labels = c('from', 'to'))) + # Adds the \"Edge direction\" legend\n  scale_size_continuous(name = \"Eigenvector Centrality\")\n\n\n\n\n\n\n\n\n\n\n\nNow it’s your turn. How would you edit the code above to show outdegree centrality (or gregariousness)?\n\n\n\n\n\n\n\n\n\n\n&lt;ScaleContinuous&gt;\n Range:  \n Limits:    0 --    1\n\n\nWhat can we learn about this network by comparing indegree and outdegree centrality? What nodes appear differently in the two visualizations? What might that tell us about how these people operate in this group?\nYOUR ANSWER HERE\n\nLook again at the graph of closeness centrality. Identify a few key differences in who has “power” in this network compared to the degree centrality networks. What kind of power might someone with high closeness centrality have in a network?\n\nYOUR ANSWER HERE\n\nLook again at one of the network graphs and guess which nodes will have the highest betweenness centrality.\n\nYOUR ANSWER HERE\n\nAfter you’ve done that, turn this into a code block (by adding “{r}” after the backticks) and then find the bug in the code below so that it colors the nodes based on betweenness centrality (So far we’ve been using the size of the node to represent centrality, but color is the other common way of showing centrality).\n\n\n\n\n\n\n\n\n\n\n\nIn the eigenvector graph, why does Node 12 have higher eigenvector centrality than Node 6? Why does node 10 have such low eigenvector centrality? What does eigenvector centrality measure about power that other measures miss?\n\nYOUR ANSWER HERE\n\nIt can be instructive to combine measures of centrality with attributes of the nodes in the network. Show the eigenvector centrality graph again, but this time color the nodes based on their tenure at the company.\n\n\n\n\n\n\n\n\n\n\nWhat does this visualization tell you about the relationship between tenure and power in this network?\nYOUR ANSWER HERE"
+    "text": "You have been building up skills and understanding about how ggraph works and now we’re ready to start building complex visualizations. Today we’ll work on different ways of showing power.\n\n\nPower has long been a central concern of social scientists. The famous sociologist Max Weber defined it as the ability to control others or resources—to realize one’s will.\nSome of this power comes in the form of “social capital”—the idea that there is power in our relationships—through mobilizing the resources of those we are connected to.\nThe construct of network power has many facets and over the years social network analysts have come up with a number of different algorithms for measuring different aspects of power in networks. These are usually called “centrality measures”. The intuition is that those in the center of a visualized network are typically those with the most power.\n\n\n\nDegree centrality is simply the number of connections that someone has. For directed networks, indegree can be interpreted as popularity and outdegree as gregariousness.\nLet’s look at different measures of power in the ht_friends network. There are a few new things going on here, so I’ll walk through each line:\n\nht_friends |&gt; as_tbl_graph(): Hopefully you know what these lines do—take the ht_friends network and make it into a tidygraph object.\nactivate(nodes) |&gt; mutate(name = 1:nrow(.N())) adds a column called name to the nodes, which starts at the number one and goes to the number of nodes (nrow(.N())).\ngeom_edge_fan(aes(alpha = stat(index))): This is where things get a bit tricky. This creates edges using the geom_edge_fan style and sets the transparency (alpha) of an edge so that it’s darkest closest to the to node. It’s for helping us see the direction of directed edges.\ngeom_node_point(color = '#ceb888', size = 5): This should look familiar. It just sets a color and size for nodes\ngeom_node_text(aes(label = name)): This adds the labels we created earlier to the nodes. It just makes it easier for us to talk about individual nodes.\nguides(edge_alpha = guide_edge_direction(title=\"Direction\", labels = c('from', 'to'))) This adds a legend to the plot that tells us what the alpha (transparency) of the edges means.\n\n\nG &lt;- ht_friends |&gt; \n  as_tbl_graph() |&gt;\n  activate(nodes) |&gt;\n  mutate(name=1:nrow(.N()))\n\nG |&gt;\n  ggraph() + \n  geom_edge_fan(aes(alpha = stat(index))) + # This does gradients for directed edges\n  geom_node_point(color = '#ceb888', size = 5) + \n  geom_node_text(aes(label = name)) + # Adds labels to nodes\n  guides(edge_alpha = guide_edge_direction(title=\"Direction\", labels = c('from', 'to'))) # Adds the \"Edge direction\" legend\n\n\n\n\n\n\n\n\nNow, let’s show the degree centrality by changing the size of nodes. Here is the total degree centrality. Note that we are using mutate to create the degree column, and then using it to adjust the size of the nodes.\n\nG |&gt;\n  activate(nodes) |&gt;\n  mutate(degree = centrality_degree(mode = 'all')) |&gt;\n  ggraph() +\n  geom_edge_fan(aes(alpha = stat(index))) + # This does gradients for directed edges\n  geom_node_point(aes(size = degree), color = '#ceb888') +\n  geom_node_text(aes(label = name, size=degree *1.1)) +\n  guides(edge_alpha = guide_edge_direction(title=\"Direction\", labels = c('from', 'to'))) + # Adds the \"Edge direction\" legend\n  scale_size(name='Total Degree') # Can you figure out what this is doing?\n\n\n\n\n\n\n\n\nNote how this changes when we show indegree/popularity\n\nG |&gt;\n  activate(nodes) |&gt;\n  mutate(degree = centrality_degree(mode = 'in')) |&gt;\n  ggraph() +\n  geom_edge_fan(aes(alpha = stat(index))) + # This does gradients for directed edges\n  geom_node_point(aes(size = degree), color = '#ceb888') +\n  geom_node_text(aes(label = name, size=degree * 1.1)) +\n  guides(edge_alpha = guide_edge_direction(title=\"Direction\", labels = c('from', 'to'))) + # Adds the \"Edge direction\" legend\n  scale_size_continuous(name='Indegree')\n\n\n\n\n\n\n\n\n\n\n\nThis measure tries to capture how much a node is literally in the center of a graph. It is a measure of the average distance to each other node.\nNote that there is a mode parameter that can be either ‘out’ for only outgoing distance, ‘in’, for incoming distance, or ‘all’, which we use, which ignores whether an edge is incoming or outgoing. If we don’t include the parameter, then it uses the default, which is ‘all’.\n\nG |&gt;\n  activate(nodes) |&gt;\n  mutate(centrality = centrality_closeness(mode='all')) |&gt;\n  mutate(centrality = replace_na(centrality, 0)) |&gt;\n  ggraph() + \n  geom_edge_fan(aes(alpha = stat(index))) + # This does gradients for directed edges\n  geom_node_point(aes(size = centrality), color = '#ceb888') +\n  geom_node_text(aes(label=name, size=centrality)) +\n  guides(edge_alpha = guide_edge_direction(title=\"Direction\", labels = c('from', 'to'))) + # Adds the \"Edge direction\" legend\n  scale_size_continuous(name = \"Closeness Centrality\")\n\n\n\n\n\n\n\n\n\n\n\nThis measure counts the number of shortest paths that go through each node. This is based on the value of being in a “structural hole”.\n\n\n\nThe last important measure of centrality is eigenvector centrality. The calculation is complicated and based on matrix algebra but the concept is pretty simple: all else being equal, a node is more powerful if it’s connected to a node that’s well-connected.\nThis is actually the basis of Google’s original search algorithm, and is part of what made it successful.\n\nG |&gt;\n  activate(nodes) |&gt;\n  mutate(centrality = centrality_eigen(directed = TRUE)) |&gt;\n  ggraph() +\n  geom_edge_fan(aes(alpha = stat(index))) + # This does gradients for directed edges\n  geom_node_point(aes(size = centrality), color = '#ceb888') +\n  geom_node_text(aes(label = name, size = centrality * 1.2)) +\n  guides(edge_alpha = guide_edge_direction(title=\"Direction\", labels = c('from', 'to'))) + # Adds the \"Edge direction\" legend\n  scale_size_continuous(name = \"Eigenvector Centrality\")\n\n\n\n\n\n\n\n\n\n\n\nNow it’s your turn. How would you edit the code above to show outdegree centrality (or gregariousness)?\n\n\n\n\n\n\n\n\n\n\nWhat can we learn about this network by comparing indegree and outdegree centrality? What nodes appear differently in the two visualizations? What might that tell us about how these people operate in this group?\nYOUR ANSWER HERE\n\nLook again at the graph of closeness centrality. Identify a few key differences in who has “power” in this network compared to the degree centrality networks. What kind of power might someone with high closeness centrality have in a network?\n\nYOUR ANSWER HERE\n\nLook again at one of the network graphs and guess which nodes will have the highest betweenness centrality.\n\nYOUR ANSWER HERE\n\nAfter you’ve done that, turn this into a code block (by adding “{r}” after the backticks) and then find the bug in the code below so that it colors the nodes based on betweenness centrality (So far we’ve been using the size of the node to represent centrality, but color is the other common way of showing centrality).\n\n\n\n\n\n\n\n\n\n\n\nIn the eigenvector graph, why does Node 12 have higher eigenvector centrality than Node 6? Why does node 10 have such low eigenvector centrality? What does eigenvector centrality measure about power that other measures miss?\n\nYOUR ANSWER HERE\n\nIt can be instructive to combine measures of centrality with attributes of the nodes in the network. Show the eigenvector centrality graph again, but this time color the nodes based on their tenure at the company.\n\n\n\n\n\n\n\n\n\n\nWhat does this visualization tell you about the relationship between tenure and power in this network?\nYOUR ANSWER HERE"
   },
   {
     "objectID": "assignments/r_lab_examples/lab_6_visualizing_power.html#power-and-networks",
@@ -1255,7 +1269,7 @@
     "href": "assignments/r_lab_examples/lab_6_visualizing_power.html#eigenvector-centrality",
     "title": "Power Visualization",
     "section": "",
-    "text": "The last important measure of centrality is eigenvector centrality. The calculation is complicated and based on matrix algebra but the concept is pretty simple: all else being equal, a node is more powerful if it’s connected to a node that’s well-connected.\nThis is actually the basis of Google’s original search algorithm, and is part of what made it successful.\n\nG |&gt;\n  activate(nodes) |&gt;\n  mutate(centrality = centrality_eigen(directed = TRUE)) |&gt;\n  ggraph() +\n  geom_edge_fan(aes(alpha = stat(index))) + # This does gradients for directed edges\n  geom_node_point(aes(size = centrality), color = '#ceb888') +\n  geom_node_text(aes(label = name, size = centrality * 1.2)) +\n  guides(edge_alpha = guide_edge_direction(title=\"Direction\", labels = c('from', 'to'))) + # Adds the \"Edge direction\" legend\n  scale_size_continuous(name = \"Eigenvector Centrality\")\n\n\n\n\n\n\n\n\n\n\n\nNow it’s your turn. How would you edit the code above to show outdegree centrality (or gregariousness)?\n\n\n\n\n\n\n\n\n\n\n&lt;ScaleContinuous&gt;\n Range:  \n Limits:    0 --    1\n\n\nWhat can we learn about this network by comparing indegree and outdegree centrality? What nodes appear differently in the two visualizations? What might that tell us about how these people operate in this group?\nYOUR ANSWER HERE\n\nLook again at the graph of closeness centrality. Identify a few key differences in who has “power” in this network compared to the degree centrality networks. What kind of power might someone with high closeness centrality have in a network?\n\nYOUR ANSWER HERE\n\nLook again at one of the network graphs and guess which nodes will have the highest betweenness centrality.\n\nYOUR ANSWER HERE\n\nAfter you’ve done that, turn this into a code block (by adding “{r}” after the backticks) and then find the bug in the code below so that it colors the nodes based on betweenness centrality (So far we’ve been using the size of the node to represent centrality, but color is the other common way of showing centrality).\n\n\n\n\n\n\n\n\n\n\n\nIn the eigenvector graph, why does Node 12 have higher eigenvector centrality than Node 6? Why does node 10 have such low eigenvector centrality? What does eigenvector centrality measure about power that other measures miss?\n\nYOUR ANSWER HERE\n\nIt can be instructive to combine measures of centrality with attributes of the nodes in the network. Show the eigenvector centrality graph again, but this time color the nodes based on their tenure at the company.\n\n\n\n\n\n\n\n\n\n\nWhat does this visualization tell you about the relationship between tenure and power in this network?\nYOUR ANSWER HERE"
+    "text": "The last important measure of centrality is eigenvector centrality. The calculation is complicated and based on matrix algebra but the concept is pretty simple: all else being equal, a node is more powerful if it’s connected to a node that’s well-connected.\nThis is actually the basis of Google’s original search algorithm, and is part of what made it successful.\n\nG |&gt;\n  activate(nodes) |&gt;\n  mutate(centrality = centrality_eigen(directed = TRUE)) |&gt;\n  ggraph() +\n  geom_edge_fan(aes(alpha = stat(index))) + # This does gradients for directed edges\n  geom_node_point(aes(size = centrality), color = '#ceb888') +\n  geom_node_text(aes(label = name, size = centrality * 1.2)) +\n  guides(edge_alpha = guide_edge_direction(title=\"Direction\", labels = c('from', 'to'))) + # Adds the \"Edge direction\" legend\n  scale_size_continuous(name = \"Eigenvector Centrality\")\n\n\n\n\n\n\n\n\n\n\n\nNow it’s your turn. How would you edit the code above to show outdegree centrality (or gregariousness)?\n\n\n\n\n\n\n\n\n\n\nWhat can we learn about this network by comparing indegree and outdegree centrality? What nodes appear differently in the two visualizations? What might that tell us about how these people operate in this group?\nYOUR ANSWER HERE\n\nLook again at the graph of closeness centrality. Identify a few key differences in who has “power” in this network compared to the degree centrality networks. What kind of power might someone with high closeness centrality have in a network?\n\nYOUR ANSWER HERE\n\nLook again at one of the network graphs and guess which nodes will have the highest betweenness centrality.\n\nYOUR ANSWER HERE\n\nAfter you’ve done that, turn this into a code block (by adding “{r}” after the backticks) and then find the bug in the code below so that it colors the nodes based on betweenness centrality (So far we’ve been using the size of the node to represent centrality, but color is the other common way of showing centrality).\n\n\n\n\n\n\n\n\n\n\n\nIn the eigenvector graph, why does Node 12 have higher eigenvector centrality than Node 6? Why does node 10 have such low eigenvector centrality? What does eigenvector centrality measure about power that other measures miss?\n\nYOUR ANSWER HERE\n\nIt can be instructive to combine measures of centrality with attributes of the nodes in the network. Show the eigenvector centrality graph again, but this time color the nodes based on their tenure at the company.\n\n\n\n\n\n\n\n\n\n\nWhat does this visualization tell you about the relationship between tenure and power in this network?\nYOUR ANSWER HERE"
   },
   {
     "objectID": "assignments/r_lab_examples/lab_4_intro_to_ggraph.html",
@@ -1349,390 +1363,235 @@
     "text": "Exercises\n\nSee if you can figure out how to add another person to the network you created, following all of the steps above. Do this by creating new spreadsheets in Excel, something like edgelist_2.xlsx and node_atts_2.xlsx. Make sure to give the new person node attributes and at least one edge. Use graph_from_data_frame to create a new network object and as_tbl_graph to change it into a tidygraph network object.\n\nFinally, create a new network plot with the new person.\n\n\n\n\n\n\n\n\n\n\nAbove, we loaded the ht_advice network. Figure out how to load the ffe_elite network from newtorkdata as a tidygraph object, and plot it.\n\n\n\n\n\n\n\n\n\n\n\nThe play_gnp() function above has two parameters, which have the values 20 and .4. Try changing the values and observing the result. What do you think each of these parameters do?\n\nYOUR ANSWER HERE\n\nA list of a bunch of possible random graphs is listed at https://tidygraph.data-imaginist.com/reference/index.html under “Graph Creation”. See if you can figure out how to make a ring graph with 20 nodes."
   },
   {
-    "objectID": "assignments/r_lab_8_–_network_stats.html",
-    "href": "assignments/r_lab_8_–_network_stats.html",
-    "title": "R Lab 8 – Network Stats",
+    "objectID": "assignments/r_lab_examples/ego_analysis.html",
+    "href": "assignments/r_lab_examples/ego_analysis.html",
+    "title": "Ego Networks Activity",
     "section": "",
-    "text": "Download Assignment (right-click and save)",
-    "crumbs": [
-      "Assignments",
-      "R Labs",
-      "R Lab 8 – Network Stats"
-    ]
+    "text": "We read about the ego networks of Americans. In this exercise, you’ll create your own ego network and visualize it, using the skills that we’ve been working on in R.\nFirst, you should create your network spreadsheets in Excel. Start by making a node attributes file with a row for each person that you have “discussed important matters with” over the last 6 months.\nThe columns of the spreadsheet should be: - name - sex - education (years of education) - race - age - is.kin (are they related to you?)\nThen, make a spreadsheet that’s an edgelist with a row for each connection in your network. For each edge, put the edge weight as 0 if they are strangers, 1 if they are especially close, or .5 if they are somewhere in between.\nChange the code below so that the path points to where you saved the edgelist and node attribute files.\nedges &lt;- read_excel('/home/jeremy/Teaching/can-s25.jeremydfoote.com/assignments/r_lab_examples/ego_edges.xlsx')\nnodes &lt;- read_excel('/home/jeremy/Teaching/can-s25.jeremydfoote.com/assignments/r_lab_examples/ego_atts.xlsx')\nCode to load the file into R and make it into a network object.\nG &lt;- graph_from_data_frame(d=edges, vertices = nodes, directed = F) |&gt; as_tbl_graph()\nCode to filter out the edges that have a weight of 0.\nG &lt;- G |&gt;\n  activate(edges) |&gt;\n  filter(!is.na(weight)) |&gt;\n  filter(weight != 0)\nThis code will make a plot of the network. You’ll learn soon how to do this on your own.\nG |&gt;\n  ggraph(layout = 'stress') +\n  geom_edge_fan(aes(width = weight), alpha = .3) +\n  geom_node_point(aes(color = is.kin), size = 3) +\n  geom_node_text(aes(label = name), repel = TRUE, size = 4) +\n  scale_color_viridis_d() +\n  scale_edge_width(range = c(1, 3))"
   },
   {
-    "objectID": "assignments/r_lab_8_–_network_stats.html#assignment-file",
-    "href": "assignments/r_lab_8_–_network_stats.html#assignment-file",
-    "title": "R Lab 8 – Network Stats",
-    "section": "",
-    "text": "Download Assignment (right-click and save)",
-    "crumbs": [
-      "Assignments",
-      "R Labs",
-      "R Lab 8 – Network Stats"
-    ]
+    "objectID": "assignments/r_lab_examples/ego_analysis.html#exercises",
+    "href": "assignments/r_lab_examples/ego_analysis.html#exercises",
+    "title": "Ego Networks Activity",
+    "section": "Exercises",
+    "text": "Exercises\nCalculate the following for your network. Use Google to find the code to do this. I’ll give you the first one.\n\nThe number of nodes\n\n\nG |&gt;\n  vcount()\n\n[1] 11\n\n\n\nThe number of nodes who are kin (use the filter function)\n\n\n\n[1] 8\n\n\n\nThe number of nodes who are non-kin\n\n\n\n[1] 3\n\n\n\nThe density of the network\n\n\n\n[1] 0.6909091\n\n\n\nThe standard deviation of age in your network.\n\nAs a hint, here’s how you would get the standard deviation of education\n\nG |&gt;\n  activate(nodes) |&gt;\n  as_tibble() |&gt;\n  summarize(education_sd = sd(education))\n\n# A tibble: 1 × 1\n  education_sd\n         &lt;dbl&gt;\n1         5.35\n\n\n\n\n# A tibble: 1 × 1\n  age_sd\n   &lt;dbl&gt;\n1   16.5"
   },
   {
-    "objectID": "assignments/r_lab_8_–_network_stats.html#example-solution",
-    "href": "assignments/r_lab_8_–_network_stats.html#example-solution",
-    "title": "R Lab 8 – Network Stats",
-    "section": "Example Solution",
-    "text": "Example Solution\nView Example Solution",
-    "crumbs": [
-      "Assignments",
-      "R Labs",
-      "R Lab 8 – Network Stats"
-    ]
-  },
-  {
-    "objectID": "assignments/r_lab_6_–_visualizing_power.html#assignment-file",
-    "href": "assignments/r_lab_6_–_visualizing_power.html#assignment-file",
-    "title": "R Lab 6 – Visualizing Power",
+    "objectID": "assignments/r_lab_7_–_groups_in_networks.html#assignment-file",
+    "href": "assignments/r_lab_7_–_groups_in_networks.html#assignment-file",
+    "title": "R Lab 7 – Groups in Networks",
     "section": "Assignment File",
     "text": "Assignment File\nDownload Assignment (right-click and save)",
     "crumbs": [
       "Assignments",
       "R Labs",
-      "R Lab 6 – Visualizing Power"
+      "R Lab 7 – Groups in Networks"
     ]
   },
   {
-    "objectID": "assignments/r_lab_6_–_visualizing_power.html#example-solution",
-    "href": "assignments/r_lab_6_–_visualizing_power.html#example-solution",
-    "title": "R Lab 6 – Visualizing Power",
+    "objectID": "assignments/r_lab_7_–_groups_in_networks.html#example-solution",
+    "href": "assignments/r_lab_7_–_groups_in_networks.html#example-solution",
+    "title": "R Lab 7 – Groups in Networks",
     "section": "Example Solution",
     "text": "Example Solution\nView Example Solution",
     "crumbs": [
       "Assignments",
       "R Labs",
-      "R Lab 6 – Visualizing Power"
+      "R Lab 7 – Groups in Networks"
     ]
   },
   {
-    "objectID": "assignments/r_lab_4_–_intro_to_ggraph.html#assignment-file",
-    "href": "assignments/r_lab_4_–_intro_to_ggraph.html#assignment-file",
-    "title": "R Lab 4 – Intro to ggraph",
+    "objectID": "assignments/r_lab_5_–_aesthetics_in_ggraph.html#assignment-file",
+    "href": "assignments/r_lab_5_–_aesthetics_in_ggraph.html#assignment-file",
+    "title": "R Lab 5 – Aesthetics in ggraph",
     "section": "Assignment File",
     "text": "Assignment File\nDownload Assignment (right-click and save)",
     "crumbs": [
       "Assignments",
       "R Labs",
-      "R Lab 4 – Intro to ggraph"
+      "R Lab 5 – Aesthetics in ggraph"
     ]
   },
   {
-    "objectID": "assignments/r_lab_4_–_intro_to_ggraph.html#example-solution",
-    "href": "assignments/r_lab_4_–_intro_to_ggraph.html#example-solution",
-    "title": "R Lab 4 – Intro to ggraph",
+    "objectID": "assignments/r_lab_5_–_aesthetics_in_ggraph.html#example-solution",
+    "href": "assignments/r_lab_5_–_aesthetics_in_ggraph.html#example-solution",
+    "title": "R Lab 5 – Aesthetics in ggraph",
     "section": "Example Solution",
     "text": "Example Solution\nView Example Solution",
     "crumbs": [
       "Assignments",
       "R Labs",
-      "R Lab 4 – Intro to ggraph"
+      "R Lab 5 – Aesthetics in ggraph"
     ]
   },
   {
-    "objectID": "assignments/r_lab_2_–_creating_networks.html#assignment-file",
-    "href": "assignments/r_lab_2_–_creating_networks.html#assignment-file",
-    "title": "R Lab 2 – Creating Networks",
+    "objectID": "assignments/r_lab_3_–_mutating_and_filtering.html#assignment-file",
+    "href": "assignments/r_lab_3_–_mutating_and_filtering.html#assignment-file",
+    "title": "R Lab 3 – Mutating and Filtering",
     "section": "Assignment File",
     "text": "Assignment File\nDownload Assignment (right-click and save)",
     "crumbs": [
       "Assignments",
       "R Labs",
-      "R Lab 2 – Creating Networks"
+      "R Lab 3 – Mutating and Filtering"
     ]
   },
   {
-    "objectID": "assignments/r_lab_2_–_creating_networks.html#example-solution",
-    "href": "assignments/r_lab_2_–_creating_networks.html#example-solution",
-    "title": "R Lab 2 – Creating Networks",
+    "objectID": "assignments/r_lab_3_–_mutating_and_filtering.html#example-solution",
+    "href": "assignments/r_lab_3_–_mutating_and_filtering.html#example-solution",
+    "title": "R Lab 3 – Mutating and Filtering",
     "section": "Example Solution",
     "text": "Example Solution\nView Example Solution",
     "crumbs": [
       "Assignments",
       "R Labs",
-      "R Lab 2 – Creating Networks"
+      "R Lab 3 – Mutating and Filtering"
     ]
   },
   {
-    "objectID": "assignments/final_project/rough-draft.html",
-    "href": "assignments/final_project/rough-draft.html",
-    "title": "Final Project Rough Draft",
+    "objectID": "assignments/r_lab_1_-_installation.html",
+    "href": "assignments/r_lab_1_-_installation.html",
+    "title": "R Lab 1 - Setting up your environment",
     "section": "",
-    "text": "Each of the final project options includes a written report. While the format of these differs somewhat, they all include both network concepts and network visualizations.\nThis rough draft is designed to help you to get feedback before the final version is submitted. Ideally, it should be basically complete at this point. Everyone in the class will be placed in groups of ~3 people to provide feedback on each other’s projects.\nYou should submit your rough draft to Brightspace and also send it to your group members, probably through Discord.",
+    "text": "This lab has three goals:\n\nGet your R environment is set up correctly\nIntroduce you to the idea of Quarto files\nCreate your first network graph\n\nWe will be using VSCode as our development environment. This is a popular, open source Integrated Development Environment. This is the software that you will actual open and use to do all of your work.\nUnder the hood, VSCode will use Quarto and R. Quarto is a tool that lets you write code and text in the same document, and then convert it to a variety of formats, including PDF, HTML, and Word. R is even lower level, and is the engine that actually runs the code that you write.\nFor the first step, you will need to download and install the three main piece of software that we will be using: Quarto, VSCode, and R.\n\nInstall Quarto\n\nInstall Quarto\n\n\n\nInstall VSCode\n\nInstall VSCode\n\n\n\nInstall R\n\nInstall R. This is a really old, janky-looking site, but I promise it’s real.\n\n\n\nTry to run the lab\n\nCreate a folder on your computer called COM_411_Labs\nRight-click on this link to Lab 1 and save it into the COM_411_Labs folder\nOpen VSCode\nClick on the Extensions icon on the left (it’s 3 attached squares and one floating square)\nSearch for “quarto” and install the quarto extension\nSearch for “R” and install the R extension\nIn VSCode, Click File &gt; Open Folder; Navigate to the COM_411_Labs folder that you created earlier and open it. You should see the lab_1\nClick on the lab_1_quarto.qmd file, and it should open in the main window of VSCode. At this point, it may ask if you want to install “languageserver”. You can click “Install” if it asks.\nScroll down to line 36. You should see a little button that says “Run Cell”. Push that button, and a terminal will open at the bottom of the screen. This will run the R code in the cell.\nIn the R shell at the bottom of VSCode, paste the following:\n\ninstall.packages(c(\"rmarkdown\",\"tidyverse\",\"ggraph\",\"tidygraph\",\"igraphdata\"))\nIt will ask you what CRAN mirror you’d like to use. You can choose something in the US.\nIf it asks if you want to install from source, you can type “no”\nThis will show a bunch of crazy messages for a while. You can probably ignore them.\nWINDOWS USERS: There’s a chance that this won’t work because VSCode doesn’t know where R is. This page has some instructions on how to fix it. Look under “Connect R”. If you can’t get it to work, ask a neighbor (or me) for help.\n\nInstall tinytex. Click the Quarto Preview terminal (in the bottom right) and type:\n\nquarto install tinytex\n\nClick the “Preview” icon at the top right, and hopefully it works!\nRead the document, do the exercises at the bottom, and then preview the document again. Notice that there is a new PDF file in the folder.\nUpload the PDF to Brightspace! You did it!!\n\nIf things aren’t working then ask a neighbor for help.\n\n\nVideo Walkthrough\nThis was from an older version of VSCode, but should still be helpful:\n\n\n\nSet up Github Copilot\nIf you want to use Github Copilot\n\nSign up for an account at Github education\nInstall the GitHub Copilot extension in VSCode\nAuthenticate using the popup that shows up in the bottom right\n\nWe will talk more about how to use Copilot in class.",
+    "crumbs": [
+      "Assignments",
+      "R Labs",
+      "R Lab 1 - Setting up your environment"
+    ]
+  },
+  {
+    "objectID": "assignments/final_project/project-idea.html",
+    "href": "assignments/final_project/project-idea.html",
+    "title": "Project Idea",
+    "section": "",
+    "text": "Some of the projects require ongoing work during the semester, such as doing a network-based intervention or gathering network data.\nTo help you to be well-prepared for the final project, you should start thinking about your project idea early. For this assignment, you will submit a brief (~1 page) description of your project idea. This should include the following:\n\nWhich project option you are planning to do\nA brief description of the data you will use\nA brief description of the network concepts you will use\n\nTurn this in on Brightspace.",
     "crumbs": [
       "Assignments",
       "Final Project",
-      "Final Project Rough Draft"
+      "Project Idea"
     ]
   },
   {
-    "objectID": "assignments/final_project/peer-feedback.html",
-    "href": "assignments/final_project/peer-feedback.html",
-    "title": "Peer Feedback",
+    "objectID": "assignments/final_project/Final-project.html",
+    "href": "assignments/final_project/Final-project.html",
+    "title": "Final project",
     "section": "",
-    "text": "Write a ~1 page response for each of the rough drafts from your group members. For each response, you should provide feedback on the following:\n\nHow well does the paper explain the goals of the project?\nHow well does the paper incorporate network concepts?\nAre the visualizations clear, informative, and professional-looking? Do they help to further the arguments of the paper?\n\nYou can also provide feedback on other aspects of the paper, such as the writing style, organization, or any other aspects that you think could be improved or that you think are particularly strong."
-  },
-  {
-    "objectID": "assignments/ego_networks_activity.html",
-    "href": "assignments/ego_networks_activity.html",
-    "title": "Ego Networks Activity",
-    "section": "",
-    "text": "Download Assignment (right-click and save)",
+    "text": "You can choose a final project from one of the following options:\n\nNetwork Intervention\nNetwork Analysis\nCompany Pitch\n\nMore information about each option is below. For each project, you will produce a research report of some kind. You should write this in a Quarto file, and then export it to a PDF.\n\n\nIn teams of 3 or 4, you will design, carry out, and measure a network intervention, using principles from this class, like diffusion, contagion, social capital, etc. You will identify a message/product/idea/etc and try to spread it, either within or beyond Purdue.\nI would encourage you to identify a goal that is meaningful to your group; projects should be creative, courageous, and challenging. We will evaluate your work not based on whether your are ultimately successful, but how innovate your approach is, and how grounded it is in the network theories we have learned about.\n\n\nBrooke Foucault-Welles has run a similar project in her class. Examples of well-designed projects in her class include:\n\nA comparison of the diffusion on Twitter of a plain-text and image-and-text message about feminism.\nAn alteration intervention that aimed to boost morale in a student organization by creating cross-cohort (year in school) friendship ties.\nA marketing campaign that leveraged the friendship paradox to spread the word about a new student group.\nAn intervention that targeted student leaders to lobby University Health and Counseling Services to bring therapy animals to campus during finals week.\n\n\n\n\nThe key component of this assignment is a 5-6 page executive report. This report should have the following sections:\n\nIntroduction\n\nIn the introduction you will describe the motivation for your intervention. You will explain what you did, and why you chose that approach.\n\nNetwork Theory\n\nIn your introduction, you will likely mention some network theories that helped to motivate your intervention. In this section, you will provide more detail about the theories that guide your work. You should include at least three references to support your approach and analyses.\n\nApproach\n\nIn the introduction you will give a high-level explanation of your intervention. Here you will provide a more detailed description, together with a more extended argument about why this is a good approach to meet your goals.\n\nAnalysis\n\nYou will analyze the effect of your intervention. The data to do this can take different forms - e.g., you may survey people to learn about awareness or beliefs, or you might gather data from the web or gather network data. At some point in your report you should include 1) a network analysis and 2) at least 1-2 network visualizations. It’s possible that these may come earlier. For example, you might use existing data or simulated data to explain a network theory or to motivate your approach. If you are able to gather network data, then the network analysis and visualizations would probably be part of this Analysis section.\n\nConclusion\n\nFinally, write a few paragraphs reflecting on what was learned from your work.\n\n\n\n\n\n\nEither alone or in groups of up to 4, you will design and carry out a research project based on existing or novel network data. Group projects are expected to be more ambitious than individual projects.\nBasically, you will identify a network and a set of hypotheses/research questions that you would like to answer using data from that network. You will use network analysis and network visualization tools to answer those questions, and then you will report on and discuss your findings.\n\n\nThere are a number of repositories of network datasets. Probably the simplest to use are those found in the networkdata package, which we have already been using. If you look at the homepage of the package, you can see descriptions of the datasets that are included.\nAnother repository I really like is the Index of Complex Networks. You can filter by type of network, size, etc. One thing to note about these networks is that you will need to load them into R (unlike networkdata). They are in different formats, and you will likely need to do some work to get them to be igraph/tidygraph networks.\nFortunately, there are a number of tools in igraph designed to help you to import different file types. This page gives a great overview.\nYou can also create a network from your own data. For example, students have created friendship networks of their coworkers or within their sorority, or have analyzed network data from some of the activities we have done in class.\nEarly in the semester you should identify the network you want to work with and make sure that 1) it has the attributes you need to answer the questions you want to answer and 2) you are able to load it into tidygraph format.\n\n\n\nYou will prepare a ~5 page report, with the following sections:\n\nIntroduction\n\nGive a compelling introduction to the project: why is this something worth studying? You may also want to preview some of the results of your research.\n\nNetwork Theory\n\nIn your introduction, you will likely mention some network theories that helped to motivate your research. In this section, you will provide more detail about the theories, leading up to the development of 2-5 hypotheses or research questions. You should include at least three references to support your arguments.\n\nMethod and Data\n\nYou will explain how you are going to answer your research questions / hypotheses. Explain what data you will be using, and describe what analyses you will do, and why those are appropriate for answering your questions.\n\nAnalysis\n\nFor each hypothesis / research question, you will perform some sort of analysis. For some questions, this will be an analysis of network measures. For others, this might be a network visualization. Your analysis can include other types of analyses (e.g., statistical analyses) but it should include at least one network analysis and at least one visualization.\n\nDiscussion and Conclusion\n\nFinally, write a few paragraphs 1) summarizing the findings from your analyses and 2) reflecting on how your findings fit in (or don't) with network theories you learned about in the class.\n\n\n\n\n\n\nBased on your work in this class, you will craft a pitch to help an organization (business, club, fraternity, church, etc.) make sense of their own social networks and craft a portfolio of your work with data drawing on the previous labs and readings to support your pitch.\n\nSelect a potential organization, and research them to identify the pressing organizational issues facing them as a company.\nWrite a document for the organization that\n\nIntroduces you and states your professional objectives. (1 paragraph)\nMakes the case for the most important problems facing this organization or industry based on your research. Be sure to cite any literature that you use. (1 paragraph)\nExplains how a network approach and your expertise in particular can help address the sorts of problems facing their organization and industry\n\nInclude at least three distinctive insights (e.g., my expertise in network analysis can help you identify opinion leaders in this organization).\nInclude example visualizations of each insight from your own work (or create new visualizations).\nInclude ideas from and references to the class readings to make your case.\n\nCloses with a request for a meeting to learn more about their organization.\n\nCompile and submit your document on Brightspace\n\nWhile I want everyone to write and turn in their own document, I encourage you to help each other with the visualization portions and to ask questions on the group Discord channel. I expect that the final document will be ~5 pages long (maybe longer if you want to showcase a lot of visualizations).\n\n\nIf you would like, you can use data from a real organization. There are some great options of network data files already in igraph format at https://github.com/schochastics/networkdata.\nI created an example of how to load this data, and how to run some simple network metrics and visualizations. There's an RMarkdown file here and the HTML output here.\n\n\n\nThis project is similar to a final project that Josh Barbour assigns to his class. You can find examples of their projects on Brightspace.",
     "crumbs": [
       "Assignments",
-      "Ego Networks Activity"
+      "Final Project",
+      "Final project"
     ]
   },
   {
-    "objectID": "assignments/ego_networks_activity.html#assignment-file",
-    "href": "assignments/ego_networks_activity.html#assignment-file",
-    "title": "Ego Networks Activity",
+    "objectID": "assignments/final_project/Final-project.html#project-options",
+    "href": "assignments/final_project/Final-project.html#project-options",
+    "title": "Final project",
     "section": "",
-    "text": "Download Assignment (right-click and save)",
+    "text": "You can choose a final project from one of the following options:\n\nNetwork Intervention\nNetwork Analysis\nCompany Pitch\n\nMore information about each option is below. For each project, you will produce a research report of some kind. You should write this in a Quarto file, and then export it to a PDF.\n\n\nIn teams of 3 or 4, you will design, carry out, and measure a network intervention, using principles from this class, like diffusion, contagion, social capital, etc. You will identify a message/product/idea/etc and try to spread it, either within or beyond Purdue.\nI would encourage you to identify a goal that is meaningful to your group; projects should be creative, courageous, and challenging. We will evaluate your work not based on whether your are ultimately successful, but how innovate your approach is, and how grounded it is in the network theories we have learned about.\n\n\nBrooke Foucault-Welles has run a similar project in her class. Examples of well-designed projects in her class include:\n\nA comparison of the diffusion on Twitter of a plain-text and image-and-text message about feminism.\nAn alteration intervention that aimed to boost morale in a student organization by creating cross-cohort (year in school) friendship ties.\nA marketing campaign that leveraged the friendship paradox to spread the word about a new student group.\nAn intervention that targeted student leaders to lobby University Health and Counseling Services to bring therapy animals to campus during finals week.\n\n\n\n\nThe key component of this assignment is a 5-6 page executive report. This report should have the following sections:\n\nIntroduction\n\nIn the introduction you will describe the motivation for your intervention. You will explain what you did, and why you chose that approach.\n\nNetwork Theory\n\nIn your introduction, you will likely mention some network theories that helped to motivate your intervention. In this section, you will provide more detail about the theories that guide your work. You should include at least three references to support your approach and analyses.\n\nApproach\n\nIn the introduction you will give a high-level explanation of your intervention. Here you will provide a more detailed description, together with a more extended argument about why this is a good approach to meet your goals.\n\nAnalysis\n\nYou will analyze the effect of your intervention. The data to do this can take different forms - e.g., you may survey people to learn about awareness or beliefs, or you might gather data from the web or gather network data. At some point in your report you should include 1) a network analysis and 2) at least 1-2 network visualizations. It’s possible that these may come earlier. For example, you might use existing data or simulated data to explain a network theory or to motivate your approach. If you are able to gather network data, then the network analysis and visualizations would probably be part of this Analysis section.\n\nConclusion\n\nFinally, write a few paragraphs reflecting on what was learned from your work.\n\n\n\n\n\n\nEither alone or in groups of up to 4, you will design and carry out a research project based on existing or novel network data. Group projects are expected to be more ambitious than individual projects.\nBasically, you will identify a network and a set of hypotheses/research questions that you would like to answer using data from that network. You will use network analysis and network visualization tools to answer those questions, and then you will report on and discuss your findings.\n\n\nThere are a number of repositories of network datasets. Probably the simplest to use are those found in the networkdata package, which we have already been using. If you look at the homepage of the package, you can see descriptions of the datasets that are included.\nAnother repository I really like is the Index of Complex Networks. You can filter by type of network, size, etc. One thing to note about these networks is that you will need to load them into R (unlike networkdata). They are in different formats, and you will likely need to do some work to get them to be igraph/tidygraph networks.\nFortunately, there are a number of tools in igraph designed to help you to import different file types. This page gives a great overview.\nYou can also create a network from your own data. For example, students have created friendship networks of their coworkers or within their sorority, or have analyzed network data from some of the activities we have done in class.\nEarly in the semester you should identify the network you want to work with and make sure that 1) it has the attributes you need to answer the questions you want to answer and 2) you are able to load it into tidygraph format.\n\n\n\nYou will prepare a ~5 page report, with the following sections:\n\nIntroduction\n\nGive a compelling introduction to the project: why is this something worth studying? You may also want to preview some of the results of your research.\n\nNetwork Theory\n\nIn your introduction, you will likely mention some network theories that helped to motivate your research. In this section, you will provide more detail about the theories, leading up to the development of 2-5 hypotheses or research questions. You should include at least three references to support your arguments.\n\nMethod and Data\n\nYou will explain how you are going to answer your research questions / hypotheses. Explain what data you will be using, and describe what analyses you will do, and why those are appropriate for answering your questions.\n\nAnalysis\n\nFor each hypothesis / research question, you will perform some sort of analysis. For some questions, this will be an analysis of network measures. For others, this might be a network visualization. Your analysis can include other types of analyses (e.g., statistical analyses) but it should include at least one network analysis and at least one visualization.\n\nDiscussion and Conclusion\n\nFinally, write a few paragraphs 1) summarizing the findings from your analyses and 2) reflecting on how your findings fit in (or don't) with network theories you learned about in the class.\n\n\n\n\n\n\nBased on your work in this class, you will craft a pitch to help an organization (business, club, fraternity, church, etc.) make sense of their own social networks and craft a portfolio of your work with data drawing on the previous labs and readings to support your pitch.\n\nSelect a potential organization, and research them to identify the pressing organizational issues facing them as a company.\nWrite a document for the organization that\n\nIntroduces you and states your professional objectives. (1 paragraph)\nMakes the case for the most important problems facing this organization or industry based on your research. Be sure to cite any literature that you use. (1 paragraph)\nExplains how a network approach and your expertise in particular can help address the sorts of problems facing their organization and industry\n\nInclude at least three distinctive insights (e.g., my expertise in network analysis can help you identify opinion leaders in this organization).\nInclude example visualizations of each insight from your own work (or create new visualizations).\nInclude ideas from and references to the class readings to make your case.\n\nCloses with a request for a meeting to learn more about their organization.\n\nCompile and submit your document on Brightspace\n\nWhile I want everyone to write and turn in their own document, I encourage you to help each other with the visualization portions and to ask questions on the group Discord channel. I expect that the final document will be ~5 pages long (maybe longer if you want to showcase a lot of visualizations).\n\n\nIf you would like, you can use data from a real organization. There are some great options of network data files already in igraph format at https://github.com/schochastics/networkdata.\nI created an example of how to load this data, and how to run some simple network metrics and visualizations. There's an RMarkdown file here and the HTML output here.\n\n\n\nThis project is similar to a final project that Josh Barbour assigns to his class. You can find examples of their projects on Brightspace.",
     "crumbs": [
       "Assignments",
-      "Ego Networks Activity"
+      "Final Project",
+      "Final project"
     ]
   },
   {
-    "objectID": "assignments/ego_networks_activity.html#example-solution",
-    "href": "assignments/ego_networks_activity.html#example-solution",
-    "title": "Ego Networks Activity",
-    "section": "Example Solution",
-    "text": "Example Solution\nView Example Solution",
+    "objectID": "assignments/final_project/Final-project.html#final-project-deliverables",
+    "href": "assignments/final_project/Final-project.html#final-project-deliverables",
+    "title": "Final project",
+    "section": "Final Project Deliverables",
+    "text": "Final Project Deliverables\n\nWritten Component\nThe written component of your final project should be turned in on Brightspace. This includes the .qmd file as well as a PDF of your report. For the PDF export, make sure to set echo=FALSE so that it doesn’t include all of your code, and just looks like a nice report.\n\n\nClass Presentation\nThe last week of class, we will have presentations. You will have 5 minutes to present your project to the class (a few minutes extra for group projects), with three minutes for questions. You should prepare a slide deck for this presentation.",
     "crumbs": [
       "Assignments",
-      "Ego Networks Activity"
+      "Final Project",
+      "Final project"
     ]
   },
   {
-    "objectID": "assignments/advanced_visualizations.html",
-    "href": "assignments/advanced_visualizations.html",
-    "title": "Advanced Visualization Techniques",
-    "section": "",
-    "text": "No exercises in this one - I’m just going to show you a few advanced techniques in ggraph in case you want to use them in your final projects.\nFor each of these, we’ll use the ffe_elite network as an example.\nG = ffe_elite |&gt; as_tbl_graph()"
-  },
-  {
-    "objectID": "assignments/advanced_visualizations.html#faceting",
-    "href": "assignments/advanced_visualizations.html#faceting",
-    "title": "Advanced Visualization Techniques",
-    "section": "Faceting",
-    "text": "Faceting\nThe first is faceting. This lets you break a network apart based on some variable. For example, this shows different networks based on the university that a person attended.\n\nG |&gt;\n  ggraph() + \n  geom_edge_fan() + \n  geom_node_point() +\n  facet_nodes(~university)\n\nUsing \"stress\" as default layout\n\n\n\n\n\n\n\n\n\nThere are a few different options - facet_nodes as used above, splits a network based on node attributes. facet_edges keeps the nodes in the same position, and filters the edges based on some attribute of the edges. For example, this shows reciprocated and non-reciprocated edges.\n\nG |&gt;\n  activate(edges) |&gt;\n  mutate(mutual = edge_is_mutual()) |&gt;\n  ggraph() +\n  geom_edge_fan(alpha  = .3) + \n  geom_node_point() + \n  facet_edges(~mutual)\n\nUsing \"stress\" as default layout\n\n\n\n\n\n\n\n\n\nFinally, facet_graph lets you facet by node and edge attributes at the same time.\nLet’s just combine the two above and facet by university and whether edges are mutual.\n\nG |&gt;\n  activate(edges) |&gt;\n  mutate(mutual = edge_is_mutual()) |&gt;\n  ggraph() +\n  geom_edge_fan(alpha  = .3) + \n  geom_node_point() + \n  facet_graph(mutual~university)\n\nUsing \"stress\" as default layout"
-  },
-  {
-    "objectID": "assignments/advanced_visualizations.html#calculating-group-statistics",
-    "href": "assignments/advanced_visualizations.html#calculating-group-statistics",
-    "title": "Advanced Visualization Techniques",
-    "section": "Calculating group statistics",
-    "text": "Calculating group statistics\nSometimes we might want to calculate group-level statistics and then compare each node to the group they are in. This is a bit complicated, and takes some practice to do different things. This is just one example, but there are lots of different approaches you can do with grouping.\nHere, we group the network by university. Then, we calculate the median birth year for people who attended each university, and create the variable older_at_univ which measures whether they are older or younger than the median for their university, and color the nodes by that measure.\nThis is a bit of a silly measure for this network, but you might want to do something like adjusting for gender when visualizing some variable.\n\nG |&gt;\n  activate(nodes) |&gt;\n  group_by(university) |&gt;\n  mutate(older_at_univ = birthdate &lt; median(birthdate)) |&gt;\n  ggraph() + \n  geom_edge_fan(alpha=.2) + \n  geom_node_point(aes(color = older_at_univ), size= 3)\n\nUsing \"stress\" as default layout"
-  },
-  {
-    "objectID": "assignments/advanced_visualizations.html#calculating-network-level-statistics-for-groups",
-    "href": "assignments/advanced_visualizations.html#calculating-network-level-statistics-for-groups",
-    "title": "Advanced Visualization Techniques",
-    "section": "Calculating network-level statistics for groups",
-    "text": "Calculating network-level statistics for groups\nA related, but even trickier approach is to create network-level statistics for groups. For example, you might want to show the difference in density for each of the universities. To do that, we have to use morph from tidygraph. This makes a temporary representation of a graph, in our case, a temporary set of graphs split by university. We can then use the temporary representations to calculate statistics and then unmorph the statistics back into the original graph.\n\nG = G |&gt; \n  morph(to_split, university) |&gt; \n  mutate(university_density = edge_density(.G())) |&gt; \n  unmorph()\n\nSplitting by nodes\n\n\nThis is a bit silly, as now we have a university_density entry for each node, which is the same for every node that went to the same university. However, we can use it, for example, to create a bar graph for the density of each university. Again, this is beyond what we covered in class, but basically I’m just getting the density values for each university and plotting them.\n\nG |&gt;\n  activate(nodes) |&gt;\n  mutate(university = as_factor(university)) |&gt;\n  as_tibble() |&gt;\n  group_by(university) |&gt;\n  summarize(university_density = mean(university_density)) |&gt;\n  ggplot() + \n  geom_col(aes(x = university, y = university_density, fill = university)) + \n  theme_minimal()"
-  },
-  {
-    "objectID": "assignments/advanced_visualizations.html#homophily",
-    "href": "assignments/advanced_visualizations.html#homophily",
-    "title": "Advanced Visualization Techniques",
-    "section": "Homophily",
-    "text": "Homophily\nOne visualization that I really like colors the edges based on how similar two nodes are. For example, we may want to show whether people have similar ages as their neighbors.\nSo, we use mutate to create a new edge variable based on the absolute distance between birthdates for the two nodes on either side of the edge.\n\nG |&gt;\n  activate(edges) |&gt;\n  mutate(age_diff = abs(.N()$birthdate[from] - .N()$birthdate[to])) |&gt;\n  ggraph(layout = 'stress') + \n  geom_edge_fan(aes(color = age_diff), alpha = .4) +\n  geom_node_point(aes(color=birthdate), size = 3) +\n  scale_edge_color_gradient2()\n\n\n\n\n\n\n\n\nThis is tricky to understand.\nBasically, we need to create an edge variable based on something about the nodes. However, when we activate the edge table we don’t have information about the nodes. .N() lets us access the nodes table from the edge table, and from and to refer to the node that an edge is coming from and the node it is going to, respectively.\nSo, .N()$birthdate refers to the birthdate column in the nodes table, and .N()$birthdate[from] refers to the value of birthdate for the from node.\nPutting it all together, abs(.N()$birthdate[from] - .N()$birthdate[to]) subtracts the birthdate of the “to” node from that of the “from” node, and takes the absolute value. It saves that as age_diff and then colors edges based on that."
-  },
-  {
-    "objectID": "assignments/advanced_visualizations.html#changing-color-palettes",
-    "href": "assignments/advanced_visualizations.html#changing-color-palettes",
-    "title": "Advanced Visualization Techniques",
-    "section": "Changing color palettes",
-    "text": "Changing color palettes\nYou may want to use different color palettes than R’s defaults. One of my favorites is the viridis palette which is prettier and easier to read.\nIn order to change the color palette, you use scale_ functions. There are two functions - one for nodes (scale_color_X) and one for edges (scale_edge_color_X).\nFirst, I’ll show how to change colors using a pre-existing palette (viridis)\n\nG |&gt;\n  ggraph(layout = 'stress') + \n  geom_edge_fan(alpha = .2) + \n  geom_node_point(aes(color = religion), size = 3) + \n  scale_color_viridis()\n\n\n\n\n\n\n\n\nIf we want to explicitly treat a variable as a factor, then we need to tell the scale that this is a discrete variable, like so:\n\nG |&gt;\n  ggraph(layout = 'stress') + \n  geom_edge_fan(alpha = .2) + \n  geom_node_point(aes(color = as_factor(religion)), size = 3) + \n  scale_color_viridis(discrete = TRUE)\n\n\n\n\n\n\n\n\nYou can also create a manual scale, where you provide specific colors for each value, like so:\n\nG |&gt;\n  ggraph(layout = 'stress') + \n  geom_edge_fan(alpha = .2) + \n  geom_node_point(aes(color = as_factor(religion)), size = 3) + \n  scale_color_manual(values = c(\"2\" = \"green\", \"3\" = \"orange\", \"4\" = \"blue\"))\n\n\n\n\n\n\n\n\nFinally, you may want to look into scale_color_brewer, which gives access to a bunch of great palettes. You can try them out by changing the palette parameter. More info here.\nHere’s a quick example - try changing the palette to different numbers.\n\nG |&gt;\n  ggraph(layout = 'stress') + \n  geom_edge_fan(alpha = .2) + \n  geom_node_point(aes(color = as_factor(religion)), size = 3) + \n  scale_color_brewer(palette = 1)"
-  },
-  {
-    "objectID": "assignments/advanced_visualizations.html#changing-legend-titles",
-    "href": "assignments/advanced_visualizations.html#changing-legend-titles",
-    "title": "Advanced Visualization Techniques",
-    "section": "Changing legend titles",
-    "text": "Changing legend titles\nA lot of the plots above have really ugly legend titles. It’s super easy to change those - it’s just the name parameter in scale_ functions.\n\nG |&gt;\n  ggraph(layout = 'stress') + \n  geom_edge_fan(alpha = .2) + \n  geom_node_point(aes(color = as_factor(religion)), size = 3) + \n  scale_color_viridis(discrete = TRUE, name='Religion')\n\n\n\n\n\n\n\n\nWe can also add a title to the whole plot if we want. This is another layer.\n\nG |&gt;\n  ggraph(layout = 'stress') + \n  geom_edge_fan(alpha = .2) + \n  geom_node_point(aes(color = as_factor(religion)), size = 3) + \n  scale_color_viridis(discrete = TRUE, name='Religion') + \n  labs(title=\"French Financial Elite Network\")"
-  },
-  {
-    "objectID": "assignments/advanced_visualizations.html#changing-variable-values",
-    "href": "assignments/advanced_visualizations.html#changing-variable-values",
-    "title": "Advanced Visualization Techniques",
-    "section": "Changing variable values",
-    "text": "Changing variable values\nFinally(!), we might want to change the variable names to make them more descriptive. For example, maybe we know that religion 2 is Catholic, 3 is Protestant, and 4 is non-religious. There are a few ways to change the labels. One is to actually change the data. We may want to do this if we want to display it in multiple plots. We can also just change the labels, in the scale function.\n\nG |&gt;\n  ggraph(layout = 'stress') + \n  geom_edge_fan(alpha = .2) + \n  geom_node_point(aes(color = as_factor(religion)), size = 3) + \n  scale_color_viridis(discrete = TRUE, name='Religion', labels=c(\"2\" = \"Catholic\", \"3\" = \"Protestant\", \"4\" = \"Non-religious\")) + \n  labs(title=\"French Financial Elite Network\")\n\n\n\n\n\n\n\n\nThat is not a bad-looking plot!"
-  },
-  {
-    "objectID": "assignments/Social-Search-Assignment.html",
-    "href": "assignments/Social-Search-Assignment.html",
-    "title": "Social Search Assignment",
-    "section": "",
-    "text": "We’ve read about how people in Stanley Milgram’s experiments used their personal networks to find a target person. You’re going to use your personal networks to find a Purdue student who has a driver’s license from Hawaii. If you personally have one, you’ll need to find someone else that has one too.\nThe rules:\n\nYou can only ask one person at a time (i.e., no using social media or group texts)\nYou can only contact people that you know on a first-name basis and who know you on a first-name basis\nYou can’t contact other people in this class\nFor those you ask, ask them who they asked and build a diagram of your network search\nOnce your network finds someone, trace that entire path\n\nWrite up a brief report of your experience, including the following information:\n\nInclude your search diagram.\nHow many fresh starts were there in your search?\nHow many people were involved in total?\nWhat was the longest search chain that you had?\nHow long was the chain – measured in links – that ultimately lead you to a target person?\nWhat strategy did you use in your search? When writing up your search strategy, try to describe them in terms of ideas that we have learned about in class.",
+    "objectID": "assignments/final_project/Final-project.html#timeline",
+    "href": "assignments/final_project/Final-project.html#timeline",
+    "title": "Final project",
+    "section": "Timeline",
+    "text": "Timeline\n\nMarch 11: Final Project Idea\nApril 24: Rough Draft\nApril 26: Peer Feedback\nApril 29 / May 1: Presentations\nMay 2: Final Project Due",
     "crumbs": [
       "Assignments",
-      "Social Search Assignment"
+      "Final Project",
+      "Final project"
     ]
   },
   {
-    "objectID": "assignments/Social-Search-Assignment.html#social_search",
-    "href": "assignments/Social-Search-Assignment.html#social_search",
-    "title": "Social Search Assignment",
+    "objectID": "assignments/assignments.html",
+    "href": "assignments/assignments.html",
+    "title": "Overview of Assignments",
     "section": "",
-    "text": "We’ve read about how people in Stanley Milgram’s experiments used their personal networks to find a target person. You’re going to use your personal networks to find a Purdue student who has a driver’s license from Hawaii. If you personally have one, you’ll need to find someone else that has one too.\nThe rules:\n\nYou can only ask one person at a time (i.e., no using social media or group texts)\nYou can only contact people that you know on a first-name basis and who know you on a first-name basis\nYou can’t contact other people in this class\nFor those you ask, ask them who they asked and build a diagram of your network search\nOnce your network finds someone, trace that entire path\n\nWrite up a brief report of your experience, including the following information:\n\nInclude your search diagram.\nHow many fresh starts were there in your search?\nHow many people were involved in total?\nWhat was the longest search chain that you had?\nHow long was the chain – measured in links – that ultimately lead you to a target person?\nWhat strategy did you use in your search? When writing up your search strategy, try to describe them in terms of ideas that we have learned about in class.",
+    "text": "Here’s where you will find all of the assignments. Most of them are R Labs, which will include a Quarto (.qmd) file which you should download and open in VSCode. The first homework includes instructions on how to download and install Quarto and VSCode.\nMost of the assignments have video walkthroughs to help explain them and get you set up.",
     "crumbs": [
       "Assignments",
-      "Social Search Assignment"
+      "Overview"
     ]
   },
   {
-    "objectID": "assignments/Self-Assessment-Reflection.html",
-    "href": "assignments/Self-Assessment-Reflection.html",
-    "title": "Self-Assessment Reflection",
+    "objectID": "assignments/Visualization-challenge.html",
+    "href": "assignments/Visualization-challenge.html",
+    "title": "Visualization challenge",
     "section": "",
-    "text": "Answer the following questions about your learning and participation thus far. Please note that there are a lot of questions. I am not expecting extensive essays for these. Some may be answered in a single sentence, while others may inspire more detail. Remember, also, that the grade you assign here is not some element of a permanent calculation - this is for us to align our expectations and set goals. So, if you absolutely want to earn an A in the class, but you assign yourself a B- for your work thus far, you can absolutely still earn an A by setting and meeting higher goals for the remainder of the course.\n\nWhat have you done to ensure that you understand the material and concepts?\nHow have you addressed challenges and/or feedback?\nWhat have you done to apply the concepts we’ve been learning to your own experiences?\nHow have you used AI in this class (ChatGPT, Claude.AI, etc)?\nHow have you helped others in the class to learn?\nWhat is something you could improve on related to the class?\nWhat are your goals for the rest of class?\nWhat else would you like to share?\nWhat would you like feedback on?\nBased on your answers above, the work you have done, and the guidelines in the syllabus, what grade would you assign yourself thus far? Why?\n\nFinally, some feedback for me.\nI have learned that feedback is more honest (and therefore more helpful!) if given anonymously, so I would encourage you to fill out this survey.",
+    "text": "So far, the exercises have done a lot of hand-holding in helping you to import and visualize networks. For this project, you will identify a network-based question that you think a visualization could help to answer, and create a visualization.\nThere are three parts of the assignment:\n\nFirst, I want you to think about a question and draw on a piece of paper what you want the outcome to look like. For example, if you want to visualize whether people who have a certain attribute are more popular, you may decide to color nodes by in-degree and change their size or shape based on that attribute.\nSecond, you will do your best to recreate your idea using tidygraph and ggraph. I would like you to turn in both your drawing and your visualization.\nWrite a paragraph or two explaining what the visualization tells us about the question that you asked.\n\nYou are welcome to work with a partner if you would like. Just make it clear who you worked with and I would encourage you to be a bit more ambitious in what you try to do.",
     "crumbs": [
       "Assignments",
-      "Self-Assessment Reflection"
+      "Visualization challenge"
     ]
   },
   {
-    "objectID": "assignments/Final-Self-Assessment-Reflection.html",
-    "href": "assignments/Final-Self-Assessment-Reflection.html",
-    "title": "Final Self-Assessment Reflection",
+    "objectID": "assignments/Visualization-challenge.html#the_goal",
+    "href": "assignments/Visualization-challenge.html#the_goal",
+    "title": "Visualization challenge",
     "section": "",
-    "text": "Answer the following questions about your learning and participation thus far. Please note that there are a lot of questions. I am not expecting extensive essays for these. Some may be answered in a single sentence, while others may inspire more detail.\n\nWhat have you done to ensure that you understand the material and concepts?\nHow have you addressed previous goals, challenges, and/or feedback?\nWhat have you done to apply the concepts we’ve been learning to your own experiences?\nWhat have you learned in this class that you will take with you?\nWhat obstacles have you overcome?\nWhat else would you like to share?\n\nNext, I’d like you to look on Brightspace and Discord and review the work you’ve done, and think about your participation in class. I’d also like you to review the expectations for each grade in this class.\n\nBased on your answers above, the work you have done, and the guidelines in the syllabus, what grade would you assign yourself in the class? Why?\n\nFinally, some feedback for me (feel free to submit this at https://forms.gle/ZQbTXHiaqy7WrxFj7 if you’d prefer to be anonymous):\n\nWhat did you enjoy about this class?\nWhat are two ways in which this class could be better?",
+    "text": "So far, the exercises have done a lot of hand-holding in helping you to import and visualize networks. For this project, you will identify a network-based question that you think a visualization could help to answer, and create a visualization.\nThere are three parts of the assignment:\n\nFirst, I want you to think about a question and draw on a piece of paper what you want the outcome to look like. For example, if you want to visualize whether people who have a certain attribute are more popular, you may decide to color nodes by in-degree and change their size or shape based on that attribute.\nSecond, you will do your best to recreate your idea using tidygraph and ggraph. I would like you to turn in both your drawing and your visualization.\nWrite a paragraph or two explaining what the visualization tells us about the question that you asked.\n\nYou are welcome to work with a partner if you would like. Just make it clear who you worked with and I would encourage you to be a bit more ambitious in what you try to do.",
     "crumbs": [
       "Assignments",
-      "Final Self-Assessment Reflection"
+      "Visualization challenge"
     ]
   },
   {
-    "objectID": "activities/troubled_lands/troubled_lands.html#troubled-lands-explainer",
-    "href": "activities/troubled_lands/troubled_lands.html#troubled-lands-explainer",
-    "title": "Troubled Lands Activity",
-    "section": "Troubled Lands Explainer",
-    "text": "Troubled Lands Explainer"
+    "objectID": "assignments/Visualization-challenge.html#dutch_school_data",
+    "href": "assignments/Visualization-challenge.html#dutch_school_data",
+    "title": "Visualization challenge",
+    "section": "Dutch School Data",
+    "text": "Dutch School Data\nIn 2003 and 2004, researchers repeatedly surveyed a number of Dutch school students about their friendships and their behavior. They were particularly interested in the relationship between friendships and drinking behavior. They recorded information about alcohol use, gender, age, ethnicity (whether Dutch or not), and religion.\nYou may want to ask questions like:\n\nAre people who drink more more popular?\nAre males or females more likely to have the same drinking behavior as their friends?\nAre people of the dominant religion more likely to be popular? More likely to be friends with each other?\n\n\nResources\nThe Introduction to ggraph and tidygraph reading actually uses this dataset. You can look to that for examples to build on.\nData:\n\nNode data\nEdge data\n\nDescriptions of what each measure means are at this site, maintained by the people who collected the data.\nTo import the data you can right-click on and save the edge and node data files above to your computer and then import them into R.\nAlternatively, the following code will download the files and create a graph object. You are welcome to reuse it.\nlibrary(tidyverse)\nlibrary(igraph)\nlibrary(tidygraph)\nlibrary(ggraph)\n\nnodes = read_csv('https://can-s25.jeremydfoote.com/resources/school_graph_nodes.csv')\nedges = read_csv('https://can-s25.jeremydfoote.com/resources/school_graph_edges.csv')\n\nG = graph_from_data_frame(d=edges, v=nodes) %&gt;% as_tbl_graph()",
+    "crumbs": [
+      "Assignments",
+      "Visualization challenge"
+    ]
   },
   {
-    "objectID": "activities/troubled_lands/troubled_lands.html#troubled-lands",
-    "href": "activities/troubled_lands/troubled_lands.html#troubled-lands",
-    "title": "Troubled Lands Activity",
-    "section": "Troubled Lands",
-    "text": "Troubled Lands\n\nRules\n\nTalking is fine\nNo talking/interacting with other groups\nCan see other people’s cards\nEach person does one thing each turn (before drawing the weather card)\nEroded -&gt; Fallow -&gt; Forest/Fields/Pasture\nWeather are 1-10 (plus extra 6,8), sorted randomly\n6/9 are tough to distinguish - make sure raindrops are falling down"
+    "objectID": "assignments/Visualization-challenge.html#harry_potter_data",
+    "href": "assignments/Visualization-challenge.html#harry_potter_data",
+    "title": "Visualization challenge",
+    "section": "Harry Potter Data",
+    "text": "Harry Potter Data\nThe authors of this paper coded all of the peer support relationships in Harry Potter books. For each student, they also recorded their school year, gender and house.\nYou may want to ask questions like:\n\nAre students of the same gender more likely to provide support?\nAre Slytherins less likely to provide support?\nAre older students more likely to provide support to younger students?\n\nAs with the Dutch school data, I’ve prepared some files and some code to get you started. These data files are for the fifth book. You may want to remove nodes who don’t have any edges (since they might not even appear in the book).\nlibrary(tidyverse)\nlibrary(igraph)\nlibrary(tidygraph)\nlibrary(ggraph)\n\nnodes = read_csv('https://can-s25.jeremydfoote.com/resources/harry_potter/hp_node_atts.csv')\nedges = read_csv('https://can-s25.jeremydfoote.com/resources/harry_potter/hp_edgelist.csv')\n\nG = graph_from_data_frame(d=edges, v=nodes) %&gt;% as_tbl_graph()",
+    "crumbs": [
+      "Assignments",
+      "Visualization challenge"
+    ]
   },
   {
-    "objectID": "activities/troubled_lands/troubled_lands.html#round-1---collaborative",
-    "href": "activities/troubled_lands/troubled_lands.html#round-1---collaborative",
-    "title": "Troubled Lands Activity",
-    "section": "Round 1 - Collaborative",
-    "text": "Round 1 - Collaborative\n\n8 turns\nGroup with highest total score wins\nWhen done, bring weather cards to me for reshuffling and write your score on the board"
+    "objectID": "assignments/Six-Degrees-of-Wikipedia-Activity.html",
+    "href": "assignments/Six-Degrees-of-Wikipedia-Activity.html",
+    "title": "Six Degrees of Wikipedia Activity",
+    "section": "",
+    "text": "So far we have read about how social networks often have short average path lengths, and we are all much closer than we might assume. To an even greater extent than human networks, online networks display small world properties, in that there is high clustering but also short average path lengths. In this assignment, you will explore the network of links between Wikipedia pages.\nFor this assignment you will look for those short paths in the links between entries in Wikipedia. For example, imagine trying to get from the page of Purdue University to the page Brigham Young University (my alma mater) moving only through links on Wikipedia. That is pretty straight forward. One path is:\n Purdue University → NCAA → West Coast Conference → Brigham Young University\nThis path has 3 links. In general, there may be many paths, but always try to find the shortest. Finding a path between two universities is pretty easy. Sometimes things are harder and you make wrong turns. For example, if you tried to go from West Lafayette, Indiana to Abraham Lincoln you might go:\n West Lafayette, Indiana → Purdue University → West Lafayette, Indiana → Indiana → Illinois → Abraham Lincoln\nNote that you can go backwards in your search, as above. This path had 5 links.\nPlease describe the paths that you find for the following pairs (and keep track of wrong turns).\n\nPurdue University → Kevin Bacon\nKevin Bacon → Purdue University\nPurdue University → Henry VIII of England\nHenry VIII of England → Purdue University\nPurdue University → Moon\nMoon → Purdue University\nPurdue University → Reno, Nevada (my hometown)\nReno, Nevada → Purdue University\n\nGo to the website Six Degrees of Wikipedia and find the actual shortest paths.\nWork together with your partner to discuss and write brief answers for the following questions:\n\nWere you closer to the true shortest paths when you going from Purdue University or when you were going to Purdue University? Be specific and cite data.\nTravers and Milgram (1969) noted that of the 64 chains that reached the target 16 were sent by Mr. Jacobs, a clothing merchant in the town.\n\nDid you observe funneling in your searches to Purdue University? Why do you think this happened?\nDid you funnel in your searches from Purdue University? Why do you think this happened?\n\nImagine that you were going to advise a friend about how to get to the Purdue University page from a random Wikipedia page. What algorithm/strategy/approach would you advise them to use?\nThe diameter of a graph is the longest possible shortest path in a graph. For example, if you calculated the shortest path between all points on Wikipedia, the diameter would be the longest of these shortest paths. Try to find two pages that have a very long shortest path connecting them (remember you can find the degrees of separation here). However, there are a few rules: you can’t use the pages of asteroids; you can’t use any of the paths that are already listed on the web; and you can’t use brute force trial and error (i.e., just trying lots and lots of different random pages).\n\nWhat is the longest path you found?\nWhat was the process you went through to find this pair?"
   },
   {
-    "objectID": "activities/troubled_lands/troubled_lands.html#reminder",
-    "href": "activities/troubled_lands/troubled_lands.html#reminder",
-    "title": "Troubled Lands Activity",
-    "section": "Reminder",
-    "text": "Reminder\n\nStart with:\n\n6 Forest\n2 Fallows\n2 Fields\n2 Pasture\n\nEroded if more rain than forests\n\n2 become eroded\nErosion order: Fallows, field, pasture, forest\n\n\nCan’t plant on eroded, have to turn it to fallows first"
-  },
-  {
-    "objectID": "activities/troubled_lands/troubled_lands.html#round-2---within-group-competition",
-    "href": "activities/troubled_lands/troubled_lands.html#round-2---within-group-competition",
-    "title": "Troubled Lands Activity",
-    "section": "Round 2 - Within-group competition",
-    "text": "Round 2 - Within-group competition\n\n8 turns\nPerson in group with highest score wins\nWhen done, bring weather cards to me for reshuffling\nWrite your score and role on the board"
-  },
-  {
-    "objectID": "activities/troubled_lands/troubled_lands.html#round-3---within-role-competition",
-    "href": "activities/troubled_lands/troubled_lands.html#round-3---within-role-competition",
-    "title": "Troubled Lands Activity",
-    "section": "Round 3 - Within-role competition",
-    "text": "Round 3 - Within-role competition\n\nPerson of each type with highest score wins"
-  },
-  {
-    "objectID": "activities/troubled_lands/troubled_lands.html#take-a-few-minutes-to-thinkwrite-about",
-    "href": "activities/troubled_lands/troubled_lands.html#take-a-few-minutes-to-thinkwrite-about",
-    "title": "Troubled Lands Activity",
-    "section": "Take a few minutes to think/write about:",
-    "text": "Take a few minutes to think/write about:\n\nHow did you play differently in different versions?\nWhat in real life is similar to each version of the game?\nHow did you decide whether or not to help others?\nWhat does this have to do with social networks and social capital?!"
-  },
-  {
-    "objectID": "activities/troubled_lands/troubled_lands.html#debrief",
-    "href": "activities/troubled_lands/troubled_lands.html#debrief",
-    "title": "Troubled Lands Activity",
-    "section": "Debrief",
-    "text": "Debrief\n\nWhat did you think about while playing?\nHow did you feel as you played? Did those feeling change across different versions of the game?\nWhen do you help others in real life?"
-  },
-  {
-    "objectID": "activities/troubled_lands/troubled_lands.html#debrief-1",
-    "href": "activities/troubled_lands/troubled_lands.html#debrief-1",
-    "title": "Troubled Lands Activity",
-    "section": "Debrief",
-    "text": "Debrief\n\nWere resources and abilities distributed fairly?\nHow should resources be distributed in the real world?\nWhat role did communication play? How did your group make decisions?\nDid you work to make things equal? Why or why not?\nWhat kinds of inequality appeared in the game?"
-  },
-  {
-    "objectID": "activities/troubled_lands/troubled_lands.html#debrief-2",
-    "href": "activities/troubled_lands/troubled_lands.html#debrief-2",
-    "title": "Troubled Lands Activity",
-    "section": "Debrief",
-    "text": "Debrief\n\nDid anyone sanction someone else? Why?"
-  },
-  {
-    "objectID": "activities/network_simulation/resource_game.html#discord-signup",
-    "href": "activities/network_simulation/resource_game.html#discord-signup",
-    "title": "The Resource Game",
-    "section": "Discord signup",
-    "text": "Discord signup\nhttps://discord.gg/WSc5J7stgg"
-  },
-  {
-    "objectID": "activities/network_simulation/resource_game.html#the-game",
-    "href": "activities/network_simulation/resource_game.html#the-game",
-    "title": "The Resource Game",
-    "section": "The game",
-    "text": "The game\nEach of you needs things that other people in the room have. These resources are represented by letters.\nHowever, you are only “friends” with a small number of people. These are the people that you can communicate with, ask for resources, and give resources to.\nThe goal is to get the resources that you need as quickly as possible."
-  },
-  {
-    "objectID": "activities/network_simulation/resource_game.html#rules",
-    "href": "activities/network_simulation/resource_game.html#rules",
-    "title": "The Resource Game",
-    "section": "Rules",
-    "text": "Rules\n\nOnly communicate through written messages, to neighbors\nGive resources by sending ‘$give jdfoote A’ to the NetworkGameBot\nIf you forget what you have/need, send ‘$status’\nIf you are an observer, send ‘$status’ to get an updated network graph\nYou can continue playing after you have all resources, if you want"
-  },
-  {
-    "objectID": "activities/network_simulation/resource_game.html#how-did-it-go",
-    "href": "activities/network_simulation/resource_game.html#how-did-it-go",
-    "title": "The Resource Game",
-    "section": "How did it go?",
-    "text": "How did it go?\n\nWhat worked well?\nWhat didn’t?\nWho was fastest? Why?\nWhat was the longest path a resource traveled?"
-  },
-  {
-    "objectID": "activities/network_simulation/resource_game.html#global-network",
-    "href": "activities/network_simulation/resource_game.html#global-network",
-    "title": "The Resource Game",
-    "section": "Global network",
-    "text": "Global network"
-  },
-  {
-    "objectID": "activities/network_simulation/resource_game.html#debrief-topics-to-cover",
-    "href": "activities/network_simulation/resource_game.html#debrief-topics-to-cover",
-    "title": "The Resource Game",
-    "section": "Debrief topics to cover",
-    "text": "Debrief topics to cover\n\nDegree centrality\nReciprocity\nSocial capital\nStructural holes\nReputation and deceit\nPosition and power\nMultiplexity\nNumber vs. type of ties (centrality measures)"
-  },
-  {
-    "objectID": "activities/network_simulation/resource_game.html#debrief-topics-to-cover-1",
-    "href": "activities/network_simulation/resource_game.html#debrief-topics-to-cover-1",
-    "title": "The Resource Game",
-    "section": "Debrief topics to cover",
-    "text": "Debrief topics to cover\n\nGlobal/local networks\nTie maintenance\nSponsorship\nNorms and social conventions"
-  },
-  {
-    "objectID": "activities/network_simulation/resource_game.html#meta-discussion",
-    "href": "activities/network_simulation/resource_game.html#meta-discussion",
-    "title": "The Resource Game",
-    "section": "Meta discussion",
-    "text": "Meta discussion\n\nHow does this differ from real-world networks?\nWhat does this make you see differently?"
+    "objectID": "assignments/Homework-1.html",
+    "href": "assignments/Homework-1.html",
+    "title": "Homework 1",
+    "section": "",
+    "text": "Before starting, read through Individuals versus Networks by James Cook. This will help you to finish the assignment.\n\nDefine a set of people who you consider to be your \"family.\"\nDescribe your family using an individual-level approach (e.g., # of adults and children, locations, etc.). The easiest way to do this is probably as a table. E.g., the start of the table of my family might look like this. Be creative in the variables that you measure. :)\n\n\n\n\n\n\n\n\n\n\nName\nAge\nGender\nHair color\n\n\n\n\nRebecca\n11\nF\nBlond\n\n\nWilliam\n9\nM\nBrown\n\n\nOwen\n6\nM\nBlond\n\n\n\n\nDescribe your family in each of the following ways:\n\n\ndrawing a social network graph\nwriting out a social network edge list\ncreating a social network matrix\n\n\nTurn in your assignment on BrightSpace.",
+    "crumbs": [
+      "Assignments",
+      "Homework 1"
+    ]
   },
   {
     "objectID": "activities/who_dunnit/whodunnit.html#instructions",
@@ -1826,220 +1685,389 @@
     "text": "Debrief\n\nWho succeeded?\nWhy? How did network position influence your ability to gather information?\nHow did you make effort to overcome your constraints?\nHow did you decide who to talk to?\nHow is this game similar or different from real life situations?"
   },
   {
-    "objectID": "assignments/Homework-1.html",
-    "href": "assignments/Homework-1.html",
-    "title": "Homework 1",
+    "objectID": "activities/network_simulation/resource_game.html#discord-signup",
+    "href": "activities/network_simulation/resource_game.html#discord-signup",
+    "title": "The Resource Game",
+    "section": "Discord signup",
+    "text": "Discord signup\nhttps://discord.gg/WSc5J7stgg"
+  },
+  {
+    "objectID": "activities/network_simulation/resource_game.html#the-game",
+    "href": "activities/network_simulation/resource_game.html#the-game",
+    "title": "The Resource Game",
+    "section": "The game",
+    "text": "The game\nEach of you needs things that other people in the room have. These resources are represented by letters.\nHowever, you are only “friends” with a small number of people. These are the people that you can communicate with, ask for resources, and give resources to.\nThe goal is to get the resources that you need as quickly as possible."
+  },
+  {
+    "objectID": "activities/network_simulation/resource_game.html#rules",
+    "href": "activities/network_simulation/resource_game.html#rules",
+    "title": "The Resource Game",
+    "section": "Rules",
+    "text": "Rules\n\nOnly communicate through written messages, to neighbors\nGive resources by sending ‘$give jdfoote A’ to the NetworkGameBot\nIf you forget what you have/need, send ‘$status’\nIf you are an observer, send ‘$status’ to get an updated network graph\nYou can continue playing after you have all resources, if you want"
+  },
+  {
+    "objectID": "activities/network_simulation/resource_game.html#how-did-it-go",
+    "href": "activities/network_simulation/resource_game.html#how-did-it-go",
+    "title": "The Resource Game",
+    "section": "How did it go?",
+    "text": "How did it go?\n\nWhat worked well?\nWhat didn’t?\nWho was fastest? Why?\nWhat was the longest path a resource traveled?"
+  },
+  {
+    "objectID": "activities/network_simulation/resource_game.html#global-network",
+    "href": "activities/network_simulation/resource_game.html#global-network",
+    "title": "The Resource Game",
+    "section": "Global network",
+    "text": "Global network"
+  },
+  {
+    "objectID": "activities/network_simulation/resource_game.html#debrief-topics-to-cover",
+    "href": "activities/network_simulation/resource_game.html#debrief-topics-to-cover",
+    "title": "The Resource Game",
+    "section": "Debrief topics to cover",
+    "text": "Debrief topics to cover\n\nDegree centrality\nReciprocity\nSocial capital\nStructural holes\nReputation and deceit\nPosition and power\nMultiplexity\nNumber vs. type of ties (centrality measures)"
+  },
+  {
+    "objectID": "activities/network_simulation/resource_game.html#debrief-topics-to-cover-1",
+    "href": "activities/network_simulation/resource_game.html#debrief-topics-to-cover-1",
+    "title": "The Resource Game",
+    "section": "Debrief topics to cover",
+    "text": "Debrief topics to cover\n\nGlobal/local networks\nTie maintenance\nSponsorship\nNorms and social conventions"
+  },
+  {
+    "objectID": "activities/network_simulation/resource_game.html#meta-discussion",
+    "href": "activities/network_simulation/resource_game.html#meta-discussion",
+    "title": "The Resource Game",
+    "section": "Meta discussion",
+    "text": "Meta discussion\n\nHow does this differ from real-world networks?\nWhat does this make you see differently?"
+  },
+  {
+    "objectID": "activities/troubled_lands/troubled_lands.html#troubled-lands-explainer",
+    "href": "activities/troubled_lands/troubled_lands.html#troubled-lands-explainer",
+    "title": "Troubled Lands Activity",
+    "section": "Troubled Lands Explainer",
+    "text": "Troubled Lands Explainer"
+  },
+  {
+    "objectID": "activities/troubled_lands/troubled_lands.html#troubled-lands",
+    "href": "activities/troubled_lands/troubled_lands.html#troubled-lands",
+    "title": "Troubled Lands Activity",
+    "section": "Troubled Lands",
+    "text": "Troubled Lands\n\nRules\n\nTalking is fine\nNo talking/interacting with other groups\nCan see other people’s cards\nEach person does one thing each turn (before drawing the weather card)\nEroded -&gt; Fallow -&gt; Forest/Fields/Pasture\nWeather are 1-10 (plus extra 6,8), sorted randomly\n6/9 are tough to distinguish - make sure raindrops are falling down"
+  },
+  {
+    "objectID": "activities/troubled_lands/troubled_lands.html#round-1---collaborative",
+    "href": "activities/troubled_lands/troubled_lands.html#round-1---collaborative",
+    "title": "Troubled Lands Activity",
+    "section": "Round 1 - Collaborative",
+    "text": "Round 1 - Collaborative\n\n8 turns\nGroup with highest total score wins\nWhen done, bring weather cards to me for reshuffling and write your score on the board"
+  },
+  {
+    "objectID": "activities/troubled_lands/troubled_lands.html#reminder",
+    "href": "activities/troubled_lands/troubled_lands.html#reminder",
+    "title": "Troubled Lands Activity",
+    "section": "Reminder",
+    "text": "Reminder\n\nStart with:\n\n6 Forest\n2 Fallows\n2 Fields\n2 Pasture\n\nEroded if more rain than forests\n\n2 become eroded\nErosion order: Fallows, field, pasture, forest\n\n\nCan’t plant on eroded, have to turn it to fallows first"
+  },
+  {
+    "objectID": "activities/troubled_lands/troubled_lands.html#round-2---within-group-competition",
+    "href": "activities/troubled_lands/troubled_lands.html#round-2---within-group-competition",
+    "title": "Troubled Lands Activity",
+    "section": "Round 2 - Within-group competition",
+    "text": "Round 2 - Within-group competition\n\n8 turns\nPerson in group with highest score wins\nWhen done, bring weather cards to me for reshuffling\nWrite your score and role on the board"
+  },
+  {
+    "objectID": "activities/troubled_lands/troubled_lands.html#round-3---within-role-competition",
+    "href": "activities/troubled_lands/troubled_lands.html#round-3---within-role-competition",
+    "title": "Troubled Lands Activity",
+    "section": "Round 3 - Within-role competition",
+    "text": "Round 3 - Within-role competition\n\nPerson of each type with highest score wins"
+  },
+  {
+    "objectID": "activities/troubled_lands/troubled_lands.html#take-a-few-minutes-to-thinkwrite-about",
+    "href": "activities/troubled_lands/troubled_lands.html#take-a-few-minutes-to-thinkwrite-about",
+    "title": "Troubled Lands Activity",
+    "section": "Take a few minutes to think/write about:",
+    "text": "Take a few minutes to think/write about:\n\nHow did you play differently in different versions?\nWhat in real life is similar to each version of the game?\nHow did you decide whether or not to help others?\nWhat does this have to do with social networks and social capital?!"
+  },
+  {
+    "objectID": "activities/troubled_lands/troubled_lands.html#debrief",
+    "href": "activities/troubled_lands/troubled_lands.html#debrief",
+    "title": "Troubled Lands Activity",
+    "section": "Debrief",
+    "text": "Debrief\n\nWhat did you think about while playing?\nHow did you feel as you played? Did those feeling change across different versions of the game?\nWhen do you help others in real life?"
+  },
+  {
+    "objectID": "activities/troubled_lands/troubled_lands.html#debrief-1",
+    "href": "activities/troubled_lands/troubled_lands.html#debrief-1",
+    "title": "Troubled Lands Activity",
+    "section": "Debrief",
+    "text": "Debrief\n\nWere resources and abilities distributed fairly?\nHow should resources be distributed in the real world?\nWhat role did communication play? How did your group make decisions?\nDid you work to make things equal? Why or why not?\nWhat kinds of inequality appeared in the game?"
+  },
+  {
+    "objectID": "activities/troubled_lands/troubled_lands.html#debrief-2",
+    "href": "activities/troubled_lands/troubled_lands.html#debrief-2",
+    "title": "Troubled Lands Activity",
+    "section": "Debrief",
+    "text": "Debrief\n\nDid anyone sanction someone else? Why?"
+  },
+  {
+    "objectID": "assignments/Final-Self-Assessment-Reflection.html",
+    "href": "assignments/Final-Self-Assessment-Reflection.html",
+    "title": "Final Self-Assessment Reflection",
     "section": "",
-    "text": "Before starting, read through Individuals versus Networks by James Cook. This will help you to finish the assignment.\n\nDefine a set of people who you consider to be your \"family.\"\nDescribe your family using an individual-level approach (e.g., # of adults and children, locations, etc.). The easiest way to do this is probably as a table. E.g., the start of the table of my family might look like this. Be creative in the variables that you measure. :)\n\n\n\n\n\n\n\n\n\n\nName\nAge\nGender\nHair color\n\n\n\n\nRebecca\n11\nF\nBlond\n\n\nWilliam\n9\nM\nBrown\n\n\nOwen\n6\nM\nBlond\n\n\n\n\nDescribe your family in each of the following ways:\n\n\ndrawing a social network graph\nwriting out a social network edge list\ncreating a social network matrix\n\n\nTurn in your assignment on BrightSpace.",
+    "text": "Answer the following questions about your learning and participation thus far. Please note that there are a lot of questions. I am not expecting extensive essays for these. Some may be answered in a single sentence, while others may inspire more detail.\n\nWhat have you done to ensure that you understand the material and concepts?\nHow have you addressed previous goals, challenges, and/or feedback?\nWhat have you done to apply the concepts we’ve been learning to your own experiences?\nWhat have you learned in this class that you will take with you?\nWhat obstacles have you overcome?\nWhat else would you like to share?\n\nNext, I’d like you to look on Brightspace and Discord and review the work you’ve done, and think about your participation in class. I’d also like you to review the expectations for each grade in this class.\n\nBased on your answers above, the work you have done, and the guidelines in the syllabus, what grade would you assign yourself in the class? Why?\n\nFinally, some feedback for me (feel free to submit this at https://forms.gle/ZQbTXHiaqy7WrxFj7 if you’d prefer to be anonymous):\n\nWhat did you enjoy about this class?\nWhat are two ways in which this class could be better?",
     "crumbs": [
       "Assignments",
-      "Homework 1"
+      "Final Self-Assessment Reflection"
     ]
   },
   {
-    "objectID": "assignments/Six-Degrees-of-Wikipedia-Activity.html",
-    "href": "assignments/Six-Degrees-of-Wikipedia-Activity.html",
-    "title": "Six Degrees of Wikipedia Activity",
+    "objectID": "assignments/Self-Assessment-Reflection.html",
+    "href": "assignments/Self-Assessment-Reflection.html",
+    "title": "Self-Assessment Reflection",
     "section": "",
-    "text": "So far we have read about how social networks often have short average path lengths, and we are all much closer than we might assume. To an even greater extent than human networks, online networks display small world properties, in that there is high clustering but also short average path lengths. In this assignment, you will explore the network of links between Wikipedia pages.\nFor this assignment you will look for those short paths in the links between entries in Wikipedia. For example, imagine trying to get from the page of Purdue University to the page Brigham Young University (my alma mater) moving only through links on Wikipedia. That is pretty straight forward. One path is:\n Purdue University → NCAA → West Coast Conference → Brigham Young University\nThis path has 3 links. In general, there may be many paths, but always try to find the shortest. Finding a path between two universities is pretty easy. Sometimes things are harder and you make wrong turns. For example, if you tried to go from West Lafayette, Indiana to Abraham Lincoln you might go:\n West Lafayette, Indiana → Purdue University → West Lafayette, Indiana → Indiana → Illinois → Abraham Lincoln\nNote that you can go backwards in your search, as above. This path had 5 links.\nPlease describe the paths that you find for the following pairs (and keep track of wrong turns).\n\nPurdue University → Kevin Bacon\nKevin Bacon → Purdue University\nPurdue University → Henry VIII of England\nHenry VIII of England → Purdue University\nPurdue University → Moon\nMoon → Purdue University\nPurdue University → Reno, Nevada (my hometown)\nReno, Nevada → Purdue University\n\nGo to the website Six Degrees of Wikipedia and find the actual shortest paths.\nWork together with your partner to discuss and write brief answers for the following questions:\n\nWere you closer to the true shortest paths when you going from Purdue University or when you were going to Purdue University? Be specific and cite data.\nTravers and Milgram (1969) noted that of the 64 chains that reached the target 16 were sent by Mr. Jacobs, a clothing merchant in the town.\n\nDid you observe funneling in your searches to Purdue University? Why do you think this happened?\nDid you funnel in your searches from Purdue University? Why do you think this happened?\n\nImagine that you were going to advise a friend about how to get to the Purdue University page from a random Wikipedia page. What algorithm/strategy/approach would you advise them to use?\nThe diameter of a graph is the longest possible shortest path in a graph. For example, if you calculated the shortest path between all points on Wikipedia, the diameter would be the longest of these shortest paths. Try to find two pages that have a very long shortest path connecting them (remember you can find the degrees of separation here). However, there are a few rules: you can’t use the pages of asteroids; you can’t use any of the paths that are already listed on the web; and you can’t use brute force trial and error (i.e., just trying lots and lots of different random pages).\n\nWhat is the longest path you found?\nWhat was the process you went through to find this pair?"
-  },
-  {
-    "objectID": "assignments/Visualization-challenge.html",
-    "href": "assignments/Visualization-challenge.html",
-    "title": "Visualization challenge",
-    "section": "",
-    "text": "So far, the exercises have done a lot of hand-holding in helping you to import and visualize networks. For this project, you will identify a network-based question that you think a visualization could help to answer, and create a visualization.\nThere are three parts of the assignment:\n\nFirst, I want you to think about a question and draw on a piece of paper what you want the outcome to look like. For example, if you want to visualize whether people who have a certain attribute are more popular, you may decide to color nodes by in-degree and change their size or shape based on that attribute.\nSecond, you will do your best to recreate your idea using tidygraph and ggraph. I would like you to turn in both your drawing and your visualization.\nWrite a paragraph or two explaining what the visualization tells us about the question that you asked.\n\nYou are welcome to work with a partner if you would like. Just make it clear who you worked with and I would encourage you to be a bit more ambitious in what you try to do.",
+    "text": "Answer the following questions about your learning and participation thus far. Please note that there are a lot of questions. I am not expecting extensive essays for these. Some may be answered in a single sentence, while others may inspire more detail. Remember, also, that the grade you assign here is not some element of a permanent calculation - this is for us to align our expectations and set goals. So, if you absolutely want to earn an A in the class, but you assign yourself a B- for your work thus far, you can absolutely still earn an A by setting and meeting higher goals for the remainder of the course.\n\nWhat have you done to ensure that you understand the material and concepts?\nHow have you addressed challenges and/or feedback?\nWhat have you done to apply the concepts we’ve been learning to your own experiences?\nHow have you used AI in this class (ChatGPT, Claude.AI, etc)?\nHow have you helped others in the class to learn?\nWhat is something you could improve on related to the class?\nWhat are your goals for the rest of class?\nWhat else would you like to share?\nWhat would you like feedback on?\nBased on your answers above, the work you have done, and the guidelines in the syllabus, what grade would you assign yourself thus far? Why?\n\nFinally, some feedback for me.\nI have learned that feedback is more honest (and therefore more helpful!) if given anonymously, so I would encourage you to fill out this survey.",
     "crumbs": [
       "Assignments",
-      "Visualization challenge"
+      "Self-Assessment Reflection"
     ]
   },
   {
-    "objectID": "assignments/Visualization-challenge.html#the_goal",
-    "href": "assignments/Visualization-challenge.html#the_goal",
-    "title": "Visualization challenge",
+    "objectID": "assignments/Social-Search-Assignment.html",
+    "href": "assignments/Social-Search-Assignment.html",
+    "title": "Social Search Assignment",
     "section": "",
-    "text": "So far, the exercises have done a lot of hand-holding in helping you to import and visualize networks. For this project, you will identify a network-based question that you think a visualization could help to answer, and create a visualization.\nThere are three parts of the assignment:\n\nFirst, I want you to think about a question and draw on a piece of paper what you want the outcome to look like. For example, if you want to visualize whether people who have a certain attribute are more popular, you may decide to color nodes by in-degree and change their size or shape based on that attribute.\nSecond, you will do your best to recreate your idea using tidygraph and ggraph. I would like you to turn in both your drawing and your visualization.\nWrite a paragraph or two explaining what the visualization tells us about the question that you asked.\n\nYou are welcome to work with a partner if you would like. Just make it clear who you worked with and I would encourage you to be a bit more ambitious in what you try to do.",
+    "text": "We’ve read about how people in Stanley Milgram’s experiments used their personal networks to find a target person. You’re going to use your personal networks to find a Purdue student who has a driver’s license from Hawaii. If you personally have one, you’ll need to find someone else that has one too.\nThe rules:\n\nYou can only ask one person at a time (i.e., no using social media or group texts)\nYou can only contact people that you know on a first-name basis and who know you on a first-name basis\nYou can’t contact other people in this class\nFor those you ask, ask them who they asked and build a diagram of your network search\nOnce your network finds someone, trace that entire path\n\nWrite up a brief report of your experience, including the following information:\n\nInclude your search diagram.\nHow many fresh starts were there in your search?\nHow many people were involved in total?\nWhat was the longest search chain that you had?\nHow long was the chain – measured in links – that ultimately lead you to a target person?\nWhat strategy did you use in your search? When writing up your search strategy, try to describe them in terms of ideas that we have learned about in class.",
     "crumbs": [
       "Assignments",
-      "Visualization challenge"
+      "Social Search Assignment"
     ]
   },
   {
-    "objectID": "assignments/Visualization-challenge.html#dutch_school_data",
-    "href": "assignments/Visualization-challenge.html#dutch_school_data",
-    "title": "Visualization challenge",
-    "section": "Dutch School Data",
-    "text": "Dutch School Data\nIn 2003 and 2004, researchers repeatedly surveyed a number of Dutch school students about their friendships and their behavior. They were particularly interested in the relationship between friendships and drinking behavior. They recorded information about alcohol use, gender, age, ethnicity (whether Dutch or not), and religion.\nYou may want to ask questions like:\n\nAre people who drink more more popular?\nAre males or females more likely to have the same drinking behavior as their friends?\nAre people of the dominant religion more likely to be popular? More likely to be friends with each other?\n\n\nResources\nThe Introduction to ggraph and tidygraph reading actually uses this dataset. You can look to that for examples to build on.\nData:\n\nNode data\nEdge data\n\nDescriptions of what each measure means are at this site, maintained by the people who collected the data.\nTo import the data you can right-click on and save the edge and node data files above to your computer and then import them into R.\nAlternatively, the following code will download the files and create a graph object. You are welcome to reuse it.\nlibrary(tidyverse)\nlibrary(igraph)\nlibrary(tidygraph)\nlibrary(ggraph)\n\nnodes = read_csv('https://can-s25.jeremydfoote.com/resources/school_graph_nodes.csv')\nedges = read_csv('https://can-s25.jeremydfoote.com/resources/school_graph_edges.csv')\n\nG = graph_from_data_frame(d=edges, v=nodes) %&gt;% as_tbl_graph()",
-    "crumbs": [
-      "Assignments",
-      "Visualization challenge"
-    ]
-  },
-  {
-    "objectID": "assignments/Visualization-challenge.html#harry_potter_data",
-    "href": "assignments/Visualization-challenge.html#harry_potter_data",
-    "title": "Visualization challenge",
-    "section": "Harry Potter Data",
-    "text": "Harry Potter Data\nThe authors of this paper coded all of the peer support relationships in Harry Potter books. For each student, they also recorded their school year, gender and house.\nYou may want to ask questions like:\n\nAre students of the same gender more likely to provide support?\nAre Slytherins less likely to provide support?\nAre older students more likely to provide support to younger students?\n\nAs with the Dutch school data, I’ve prepared some files and some code to get you started. These data files are for the fifth book. You may want to remove nodes who don’t have any edges (since they might not even appear in the book).\nlibrary(tidyverse)\nlibrary(igraph)\nlibrary(tidygraph)\nlibrary(ggraph)\n\nnodes = read_csv('https://can-s25.jeremydfoote.com/resources/harry_potter/hp_node_atts.csv')\nedges = read_csv('https://can-s25.jeremydfoote.com/resources/harry_potter/hp_edgelist.csv')\n\nG = graph_from_data_frame(d=edges, v=nodes) %&gt;% as_tbl_graph()",
-    "crumbs": [
-      "Assignments",
-      "Visualization challenge"
-    ]
-  },
-  {
-    "objectID": "assignments/assignments.html",
-    "href": "assignments/assignments.html",
-    "title": "Overview of Assignments",
+    "objectID": "assignments/Social-Search-Assignment.html#social_search",
+    "href": "assignments/Social-Search-Assignment.html#social_search",
+    "title": "Social Search Assignment",
     "section": "",
-    "text": "Here’s where you will find all of the assignments. Most of them are R Labs, which will include a Quarto (.qmd) file which you should download and open in VSCode. The first homework includes instructions on how to download and install Quarto and VSCode.\nMost of the assignments have video walkthroughs to help explain them and get you set up.",
+    "text": "We’ve read about how people in Stanley Milgram’s experiments used their personal networks to find a target person. You’re going to use your personal networks to find a Purdue student who has a driver’s license from Hawaii. If you personally have one, you’ll need to find someone else that has one too.\nThe rules:\n\nYou can only ask one person at a time (i.e., no using social media or group texts)\nYou can only contact people that you know on a first-name basis and who know you on a first-name basis\nYou can’t contact other people in this class\nFor those you ask, ask them who they asked and build a diagram of your network search\nOnce your network finds someone, trace that entire path\n\nWrite up a brief report of your experience, including the following information:\n\nInclude your search diagram.\nHow many fresh starts were there in your search?\nHow many people were involved in total?\nWhat was the longest search chain that you had?\nHow long was the chain – measured in links – that ultimately lead you to a target person?\nWhat strategy did you use in your search? When writing up your search strategy, try to describe them in terms of ideas that we have learned about in class.",
     "crumbs": [
       "Assignments",
-      "Overview"
+      "Social Search Assignment"
     ]
   },
   {
-    "objectID": "assignments/final_project/Final-project.html",
-    "href": "assignments/final_project/Final-project.html",
-    "title": "Final project",
+    "objectID": "assignments/advanced_visualizations.html",
+    "href": "assignments/advanced_visualizations.html",
+    "title": "Advanced Visualization Techniques",
     "section": "",
-    "text": "You can choose a final project from one of the following options:\n\nNetwork Intervention\nNetwork Analysis\nCompany Pitch\n\nMore information about each option is below. For each project, you will produce a research report of some kind. You should write this in a Quarto file, and then export it to a PDF.\n\n\nIn teams of 3 or 4, you will design, carry out, and measure a network intervention, using principles from this class, like diffusion, contagion, social capital, etc. You will identify a message/product/idea/etc and try to spread it, either within or beyond Purdue.\nI would encourage you to identify a goal that is meaningful to your group; projects should be creative, courageous, and challenging. We will evaluate your work not based on whether your are ultimately successful, but how innovate your approach is, and how grounded it is in the network theories we have learned about.\n\n\nBrooke Foucault-Welles has run a similar project in her class. Examples of well-designed projects in her class include:\n\nA comparison of the diffusion on Twitter of a plain-text and image-and-text message about feminism.\nAn alteration intervention that aimed to boost morale in a student organization by creating cross-cohort (year in school) friendship ties.\nA marketing campaign that leveraged the friendship paradox to spread the word about a new student group.\nAn intervention that targeted student leaders to lobby University Health and Counseling Services to bring therapy animals to campus during finals week.\n\n\n\n\nThe key component of this assignment is a 5-6 page executive report. This report should have the following sections:\n\nIntroduction\n\nIn the introduction you will describe the motivation for your intervention. You will explain what you did, and why you chose that approach.\n\nNetwork Theory\n\nIn your introduction, you will likely mention some network theories that helped to motivate your intervention. In this section, you will provide more detail about the theories that guide your work. You should include at least three references to support your approach and analyses.\n\nApproach\n\nIn the introduction you will give a high-level explanation of your intervention. Here you will provide a more detailed description, together with a more extended argument about why this is a good approach to meet your goals.\n\nAnalysis\n\nYou will analyze the effect of your intervention. The data to do this can take different forms - e.g., you may survey people to learn about awareness or beliefs, or you might gather data from the web or gather network data. At some point in your report you should include 1) a network analysis and 2) at least 1-2 network visualizations. It’s possible that these may come earlier. For example, you might use existing data or simulated data to explain a network theory or to motivate your approach. If you are able to gather network data, then the network analysis and visualizations would probably be part of this Analysis section.\n\nConclusion\n\nFinally, write a few paragraphs reflecting on what was learned from your work.\n\n\n\n\n\n\nEither alone or in groups of up to 4, you will design and carry out a research project based on existing or novel network data. Group projects are expected to be more ambitious than individual projects.\nBasically, you will identify a network and a set of hypotheses/research questions that you would like to answer using data from that network. You will use network analysis and network visualization tools to answer those questions, and then you will report on and discuss your findings.\n\n\nThere are a number of repositories of network datasets. Probably the simplest to use are those found in the networkdata package, which we have already been using. If you look at the homepage of the package, you can see descriptions of the datasets that are included.\nAnother repository I really like is the Index of Complex Networks. You can filter by type of network, size, etc. One thing to note about these networks is that you will need to load them into R (unlike networkdata). They are in different formats, and you will likely need to do some work to get them to be igraph/tidygraph networks.\nFortunately, there are a number of tools in igraph designed to help you to import different file types. This page gives a great overview.\nYou can also create a network from your own data. For example, students have created friendship networks of their coworkers or within their sorority, or have analyzed network data from some of the activities we have done in class.\nEarly in the semester you should identify the network you want to work with and make sure that 1) it has the attributes you need to answer the questions you want to answer and 2) you are able to load it into tidygraph format.\n\n\n\nYou will prepare a ~5 page report, with the following sections:\n\nIntroduction\n\nGive a compelling introduction to the project: why is this something worth studying? You may also want to preview some of the results of your research.\n\nNetwork Theory\n\nIn your introduction, you will likely mention some network theories that helped to motivate your research. In this section, you will provide more detail about the theories, leading up to the development of 2-5 hypotheses or research questions. You should include at least three references to support your arguments.\n\nMethod and Data\n\nYou will explain how you are going to answer your research questions / hypotheses. Explain what data you will be using, and describe what analyses you will do, and why those are appropriate for answering your questions.\n\nAnalysis\n\nFor each hypothesis / research question, you will perform some sort of analysis. For some questions, this will be an analysis of network measures. For others, this might be a network visualization. Your analysis can include other types of analyses (e.g., statistical analyses) but it should include at least one network analysis and at least one visualization.\n\nDiscussion and Conclusion\n\nFinally, write a few paragraphs 1) summarizing the findings from your analyses and 2) reflecting on how your findings fit in (or don't) with network theories you learned about in the class.\n\n\n\n\n\n\nBased on your work in this class, you will craft a pitch to help an organization (business, club, fraternity, church, etc.) make sense of their own social networks and craft a portfolio of your work with data drawing on the previous labs and readings to support your pitch.\n\nSelect a potential organization, and research them to identify the pressing organizational issues facing them as a company.\nWrite a document for the organization that\n\nIntroduces you and states your professional objectives. (1 paragraph)\nMakes the case for the most important problems facing this organization or industry based on your research. Be sure to cite any literature that you use. (1 paragraph)\nExplains how a network approach and your expertise in particular can help address the sorts of problems facing their organization and industry\n\nInclude at least three distinctive insights (e.g., my expertise in network analysis can help you identify opinion leaders in this organization).\nInclude example visualizations of each insight from your own work (or create new visualizations).\nInclude ideas from and references to the class readings to make your case.\n\nCloses with a request for a meeting to learn more about their organization.\n\nCompile and submit your document on Brightspace\n\nWhile I want everyone to write and turn in their own document, I encourage you to help each other with the visualization portions and to ask questions on the group Discord channel. I expect that the final document will be ~5 pages long (maybe longer if you want to showcase a lot of visualizations).\n\n\nIf you would like, you can use data from a real organization. There are some great options of network data files already in igraph format at https://github.com/schochastics/networkdata.\nI created an example of how to load this data, and how to run some simple network metrics and visualizations. There's an RMarkdown file here and the HTML output here.\n\n\n\nThis project is similar to a final project that Josh Barbour assigns to his class. You can find examples of their projects on Brightspace.",
+    "text": "No exercises in this one - I’m just going to show you a few advanced techniques in ggraph in case you want to use them in your final projects.\nFor each of these, we’ll use the ffe_elite network as an example.\nG = ffe_elite |&gt; as_tbl_graph()"
+  },
+  {
+    "objectID": "assignments/advanced_visualizations.html#faceting",
+    "href": "assignments/advanced_visualizations.html#faceting",
+    "title": "Advanced Visualization Techniques",
+    "section": "Faceting",
+    "text": "Faceting\nThe first is faceting. This lets you break a network apart based on some variable. For example, this shows different networks based on the university that a person attended.\n\nG |&gt;\n  ggraph() + \n  geom_edge_fan() + \n  geom_node_point() +\n  facet_nodes(~university)\n\nUsing \"stress\" as default layout\n\n\n\n\n\n\n\n\n\nThere are a few different options - facet_nodes as used above, splits a network based on node attributes. facet_edges keeps the nodes in the same position, and filters the edges based on some attribute of the edges. For example, this shows reciprocated and non-reciprocated edges.\n\nG |&gt;\n  activate(edges) |&gt;\n  mutate(mutual = edge_is_mutual()) |&gt;\n  ggraph() +\n  geom_edge_fan(alpha  = .3) + \n  geom_node_point() + \n  facet_edges(~mutual)\n\nUsing \"stress\" as default layout\n\n\n\n\n\n\n\n\n\nFinally, facet_graph lets you facet by node and edge attributes at the same time.\nLet’s just combine the two above and facet by university and whether edges are mutual.\n\nG |&gt;\n  activate(edges) |&gt;\n  mutate(mutual = edge_is_mutual()) |&gt;\n  ggraph() +\n  geom_edge_fan(alpha  = .3) + \n  geom_node_point() + \n  facet_graph(mutual~university)\n\nUsing \"stress\" as default layout"
+  },
+  {
+    "objectID": "assignments/advanced_visualizations.html#calculating-group-statistics",
+    "href": "assignments/advanced_visualizations.html#calculating-group-statistics",
+    "title": "Advanced Visualization Techniques",
+    "section": "Calculating group statistics",
+    "text": "Calculating group statistics\nSometimes we might want to calculate group-level statistics and then compare each node to the group they are in. This is a bit complicated, and takes some practice to do different things. This is just one example, but there are lots of different approaches you can do with grouping.\nHere, we group the network by university. Then, we calculate the median birth year for people who attended each university, and create the variable older_at_univ which measures whether they are older or younger than the median for their university, and color the nodes by that measure.\nThis is a bit of a silly measure for this network, but you might want to do something like adjusting for gender when visualizing some variable.\n\nG |&gt;\n  activate(nodes) |&gt;\n  group_by(university) |&gt;\n  mutate(older_at_univ = birthdate &lt; median(birthdate)) |&gt;\n  ggraph() + \n  geom_edge_fan(alpha=.2) + \n  geom_node_point(aes(color = older_at_univ), size= 3)\n\nUsing \"stress\" as default layout"
+  },
+  {
+    "objectID": "assignments/advanced_visualizations.html#calculating-network-level-statistics-for-groups",
+    "href": "assignments/advanced_visualizations.html#calculating-network-level-statistics-for-groups",
+    "title": "Advanced Visualization Techniques",
+    "section": "Calculating network-level statistics for groups",
+    "text": "Calculating network-level statistics for groups\nA related, but even trickier approach is to create network-level statistics for groups. For example, you might want to show the difference in density for each of the universities. To do that, we have to use morph from tidygraph. This makes a temporary representation of a graph, in our case, a temporary set of graphs split by university. We can then use the temporary representations to calculate statistics and then unmorph the statistics back into the original graph.\n\nG = G |&gt; \n  morph(to_split, university) |&gt; \n  mutate(university_density = edge_density(.G())) |&gt; \n  unmorph()\n\nSplitting by nodes\n\n\nThis is a bit silly, as now we have a university_density entry for each node, which is the same for every node that went to the same university. However, we can use it, for example, to create a bar graph for the density of each university. Again, this is beyond what we covered in class, but basically I’m just getting the density values for each university and plotting them.\n\nG |&gt;\n  activate(nodes) |&gt;\n  mutate(university = as_factor(university)) |&gt;\n  as_tibble() |&gt;\n  group_by(university) |&gt;\n  summarize(university_density = mean(university_density)) |&gt;\n  ggplot() + \n  geom_col(aes(x = university, y = university_density, fill = university)) + \n  theme_minimal()"
+  },
+  {
+    "objectID": "assignments/advanced_visualizations.html#homophily",
+    "href": "assignments/advanced_visualizations.html#homophily",
+    "title": "Advanced Visualization Techniques",
+    "section": "Homophily",
+    "text": "Homophily\nOne visualization that I really like colors the edges based on how similar two nodes are. For example, we may want to show whether people have similar ages as their neighbors.\nSo, we use mutate to create a new edge variable based on the absolute distance between birthdates for the two nodes on either side of the edge.\n\nG |&gt;\n  activate(edges) |&gt;\n  mutate(age_diff = abs(.N()$birthdate[from] - .N()$birthdate[to])) |&gt;\n  ggraph(layout = 'stress') + \n  geom_edge_fan(aes(color = age_diff), alpha = .4) +\n  geom_node_point(aes(color=birthdate), size = 3) +\n  scale_edge_color_gradient2()\n\n\n\n\n\n\n\n\nThis is tricky to understand.\nBasically, we need to create an edge variable based on something about the nodes. However, when we activate the edge table we don’t have information about the nodes. .N() lets us access the nodes table from the edge table, and from and to refer to the node that an edge is coming from and the node it is going to, respectively.\nSo, .N()$birthdate refers to the birthdate column in the nodes table, and .N()$birthdate[from] refers to the value of birthdate for the from node.\nPutting it all together, abs(.N()$birthdate[from] - .N()$birthdate[to]) subtracts the birthdate of the “to” node from that of the “from” node, and takes the absolute value. It saves that as age_diff and then colors edges based on that."
+  },
+  {
+    "objectID": "assignments/advanced_visualizations.html#changing-color-palettes",
+    "href": "assignments/advanced_visualizations.html#changing-color-palettes",
+    "title": "Advanced Visualization Techniques",
+    "section": "Changing color palettes",
+    "text": "Changing color palettes\nYou may want to use different color palettes than R’s defaults. One of my favorites is the viridis palette which is prettier and easier to read.\nIn order to change the color palette, you use scale_ functions. There are two functions - one for nodes (scale_color_X) and one for edges (scale_edge_color_X).\nFirst, I’ll show how to change colors using a pre-existing palette (viridis)\n\nG |&gt;\n  ggraph(layout = 'stress') + \n  geom_edge_fan(alpha = .2) + \n  geom_node_point(aes(color = religion), size = 3) + \n  scale_color_viridis()\n\n\n\n\n\n\n\n\nIf we want to explicitly treat a variable as a factor, then we need to tell the scale that this is a discrete variable, like so:\n\nG |&gt;\n  ggraph(layout = 'stress') + \n  geom_edge_fan(alpha = .2) + \n  geom_node_point(aes(color = as_factor(religion)), size = 3) + \n  scale_color_viridis(discrete = TRUE)\n\n\n\n\n\n\n\n\nYou can also create a manual scale, where you provide specific colors for each value, like so:\n\nG |&gt;\n  ggraph(layout = 'stress') + \n  geom_edge_fan(alpha = .2) + \n  geom_node_point(aes(color = as_factor(religion)), size = 3) + \n  scale_color_manual(values = c(\"2\" = \"green\", \"3\" = \"orange\", \"4\" = \"blue\"))\n\n\n\n\n\n\n\n\nFinally, you may want to look into scale_color_brewer, which gives access to a bunch of great palettes. You can try them out by changing the palette parameter. More info here.\nHere’s a quick example - try changing the palette to different numbers.\n\nG |&gt;\n  ggraph(layout = 'stress') + \n  geom_edge_fan(alpha = .2) + \n  geom_node_point(aes(color = as_factor(religion)), size = 3) + \n  scale_color_brewer(palette = 1)"
+  },
+  {
+    "objectID": "assignments/advanced_visualizations.html#changing-legend-titles",
+    "href": "assignments/advanced_visualizations.html#changing-legend-titles",
+    "title": "Advanced Visualization Techniques",
+    "section": "Changing legend titles",
+    "text": "Changing legend titles\nA lot of the plots above have really ugly legend titles. It’s super easy to change those - it’s just the name parameter in scale_ functions.\n\nG |&gt;\n  ggraph(layout = 'stress') + \n  geom_edge_fan(alpha = .2) + \n  geom_node_point(aes(color = as_factor(religion)), size = 3) + \n  scale_color_viridis(discrete = TRUE, name='Religion')\n\n\n\n\n\n\n\n\nWe can also add a title to the whole plot if we want. This is another layer.\n\nG |&gt;\n  ggraph(layout = 'stress') + \n  geom_edge_fan(alpha = .2) + \n  geom_node_point(aes(color = as_factor(religion)), size = 3) + \n  scale_color_viridis(discrete = TRUE, name='Religion') + \n  labs(title=\"French Financial Elite Network\")"
+  },
+  {
+    "objectID": "assignments/advanced_visualizations.html#changing-variable-values",
+    "href": "assignments/advanced_visualizations.html#changing-variable-values",
+    "title": "Advanced Visualization Techniques",
+    "section": "Changing variable values",
+    "text": "Changing variable values\nFinally(!), we might want to change the variable names to make them more descriptive. For example, maybe we know that religion 2 is Catholic, 3 is Protestant, and 4 is non-religious. There are a few ways to change the labels. One is to actually change the data. We may want to do this if we want to display it in multiple plots. We can also just change the labels, in the scale function.\n\nG |&gt;\n  ggraph(layout = 'stress') + \n  geom_edge_fan(alpha = .2) + \n  geom_node_point(aes(color = as_factor(religion)), size = 3) + \n  scale_color_viridis(discrete = TRUE, name='Religion', labels=c(\"2\" = \"Catholic\", \"3\" = \"Protestant\", \"4\" = \"Non-religious\")) + \n  labs(title=\"French Financial Elite Network\")\n\n\n\n\n\n\n\n\nThat is not a bad-looking plot!"
+  },
+  {
+    "objectID": "assignments/ego_networks_activity.html",
+    "href": "assignments/ego_networks_activity.html",
+    "title": "Ego Networks Activity",
+    "section": "",
+    "text": "Download Assignment (right-click and save)",
+    "crumbs": [
+      "Assignments",
+      "Ego Networks Activity"
+    ]
+  },
+  {
+    "objectID": "assignments/ego_networks_activity.html#assignment-file",
+    "href": "assignments/ego_networks_activity.html#assignment-file",
+    "title": "Ego Networks Activity",
+    "section": "",
+    "text": "Download Assignment (right-click and save)",
+    "crumbs": [
+      "Assignments",
+      "Ego Networks Activity"
+    ]
+  },
+  {
+    "objectID": "assignments/ego_networks_activity.html#example-solution",
+    "href": "assignments/ego_networks_activity.html#example-solution",
+    "title": "Ego Networks Activity",
+    "section": "Example Solution",
+    "text": "Example Solution\nView Example Solution",
+    "crumbs": [
+      "Assignments",
+      "Ego Networks Activity"
+    ]
+  },
+  {
+    "objectID": "assignments/final_project/peer-feedback.html",
+    "href": "assignments/final_project/peer-feedback.html",
+    "title": "Peer Feedback",
+    "section": "",
+    "text": "Write a ~1 page response for each of the rough drafts from your group members. For each response, you should provide feedback on the following:\n\nHow well does the paper explain the goals of the project?\nHow well does the paper incorporate network concepts?\nAre the visualizations clear, informative, and professional-looking? Do they help to further the arguments of the paper?\n\nYou can also provide feedback on other aspects of the paper, such as the writing style, organization, or any other aspects that you think could be improved or that you think are particularly strong."
+  },
+  {
+    "objectID": "assignments/final_project/rough-draft.html",
+    "href": "assignments/final_project/rough-draft.html",
+    "title": "Final Project Rough Draft",
+    "section": "",
+    "text": "Each of the final project options includes a written report. While the format of these differs somewhat, they all include both network concepts and network visualizations.\nThis rough draft is designed to help you to get feedback before the final version is submitted. Ideally, it should be basically complete at this point. Everyone in the class will be placed in groups of ~3 people to provide feedback on each other’s projects.\nYou should submit your rough draft to Brightspace and also send it to your group members, probably through Discord.",
     "crumbs": [
       "Assignments",
       "Final Project",
-      "Final project"
+      "Final Project Rough Draft"
     ]
   },
   {
-    "objectID": "assignments/final_project/Final-project.html#project-options",
-    "href": "assignments/final_project/Final-project.html#project-options",
-    "title": "Final project",
-    "section": "",
-    "text": "You can choose a final project from one of the following options:\n\nNetwork Intervention\nNetwork Analysis\nCompany Pitch\n\nMore information about each option is below. For each project, you will produce a research report of some kind. You should write this in a Quarto file, and then export it to a PDF.\n\n\nIn teams of 3 or 4, you will design, carry out, and measure a network intervention, using principles from this class, like diffusion, contagion, social capital, etc. You will identify a message/product/idea/etc and try to spread it, either within or beyond Purdue.\nI would encourage you to identify a goal that is meaningful to your group; projects should be creative, courageous, and challenging. We will evaluate your work not based on whether your are ultimately successful, but how innovate your approach is, and how grounded it is in the network theories we have learned about.\n\n\nBrooke Foucault-Welles has run a similar project in her class. Examples of well-designed projects in her class include:\n\nA comparison of the diffusion on Twitter of a plain-text and image-and-text message about feminism.\nAn alteration intervention that aimed to boost morale in a student organization by creating cross-cohort (year in school) friendship ties.\nA marketing campaign that leveraged the friendship paradox to spread the word about a new student group.\nAn intervention that targeted student leaders to lobby University Health and Counseling Services to bring therapy animals to campus during finals week.\n\n\n\n\nThe key component of this assignment is a 5-6 page executive report. This report should have the following sections:\n\nIntroduction\n\nIn the introduction you will describe the motivation for your intervention. You will explain what you did, and why you chose that approach.\n\nNetwork Theory\n\nIn your introduction, you will likely mention some network theories that helped to motivate your intervention. In this section, you will provide more detail about the theories that guide your work. You should include at least three references to support your approach and analyses.\n\nApproach\n\nIn the introduction you will give a high-level explanation of your intervention. Here you will provide a more detailed description, together with a more extended argument about why this is a good approach to meet your goals.\n\nAnalysis\n\nYou will analyze the effect of your intervention. The data to do this can take different forms - e.g., you may survey people to learn about awareness or beliefs, or you might gather data from the web or gather network data. At some point in your report you should include 1) a network analysis and 2) at least 1-2 network visualizations. It’s possible that these may come earlier. For example, you might use existing data or simulated data to explain a network theory or to motivate your approach. If you are able to gather network data, then the network analysis and visualizations would probably be part of this Analysis section.\n\nConclusion\n\nFinally, write a few paragraphs reflecting on what was learned from your work.\n\n\n\n\n\n\nEither alone or in groups of up to 4, you will design and carry out a research project based on existing or novel network data. Group projects are expected to be more ambitious than individual projects.\nBasically, you will identify a network and a set of hypotheses/research questions that you would like to answer using data from that network. You will use network analysis and network visualization tools to answer those questions, and then you will report on and discuss your findings.\n\n\nThere are a number of repositories of network datasets. Probably the simplest to use are those found in the networkdata package, which we have already been using. If you look at the homepage of the package, you can see descriptions of the datasets that are included.\nAnother repository I really like is the Index of Complex Networks. You can filter by type of network, size, etc. One thing to note about these networks is that you will need to load them into R (unlike networkdata). They are in different formats, and you will likely need to do some work to get them to be igraph/tidygraph networks.\nFortunately, there are a number of tools in igraph designed to help you to import different file types. This page gives a great overview.\nYou can also create a network from your own data. For example, students have created friendship networks of their coworkers or within their sorority, or have analyzed network data from some of the activities we have done in class.\nEarly in the semester you should identify the network you want to work with and make sure that 1) it has the attributes you need to answer the questions you want to answer and 2) you are able to load it into tidygraph format.\n\n\n\nYou will prepare a ~5 page report, with the following sections:\n\nIntroduction\n\nGive a compelling introduction to the project: why is this something worth studying? You may also want to preview some of the results of your research.\n\nNetwork Theory\n\nIn your introduction, you will likely mention some network theories that helped to motivate your research. In this section, you will provide more detail about the theories, leading up to the development of 2-5 hypotheses or research questions. You should include at least three references to support your arguments.\n\nMethod and Data\n\nYou will explain how you are going to answer your research questions / hypotheses. Explain what data you will be using, and describe what analyses you will do, and why those are appropriate for answering your questions.\n\nAnalysis\n\nFor each hypothesis / research question, you will perform some sort of analysis. For some questions, this will be an analysis of network measures. For others, this might be a network visualization. Your analysis can include other types of analyses (e.g., statistical analyses) but it should include at least one network analysis and at least one visualization.\n\nDiscussion and Conclusion\n\nFinally, write a few paragraphs 1) summarizing the findings from your analyses and 2) reflecting on how your findings fit in (or don't) with network theories you learned about in the class.\n\n\n\n\n\n\nBased on your work in this class, you will craft a pitch to help an organization (business, club, fraternity, church, etc.) make sense of their own social networks and craft a portfolio of your work with data drawing on the previous labs and readings to support your pitch.\n\nSelect a potential organization, and research them to identify the pressing organizational issues facing them as a company.\nWrite a document for the organization that\n\nIntroduces you and states your professional objectives. (1 paragraph)\nMakes the case for the most important problems facing this organization or industry based on your research. Be sure to cite any literature that you use. (1 paragraph)\nExplains how a network approach and your expertise in particular can help address the sorts of problems facing their organization and industry\n\nInclude at least three distinctive insights (e.g., my expertise in network analysis can help you identify opinion leaders in this organization).\nInclude example visualizations of each insight from your own work (or create new visualizations).\nInclude ideas from and references to the class readings to make your case.\n\nCloses with a request for a meeting to learn more about their organization.\n\nCompile and submit your document on Brightspace\n\nWhile I want everyone to write and turn in their own document, I encourage you to help each other with the visualization portions and to ask questions on the group Discord channel. I expect that the final document will be ~5 pages long (maybe longer if you want to showcase a lot of visualizations).\n\n\nIf you would like, you can use data from a real organization. There are some great options of network data files already in igraph format at https://github.com/schochastics/networkdata.\nI created an example of how to load this data, and how to run some simple network metrics and visualizations. There's an RMarkdown file here and the HTML output here.\n\n\n\nThis project is similar to a final project that Josh Barbour assigns to his class. You can find examples of their projects on Brightspace.",
-    "crumbs": [
-      "Assignments",
-      "Final Project",
-      "Final project"
-    ]
-  },
-  {
-    "objectID": "assignments/final_project/Final-project.html#final-project-deliverables",
-    "href": "assignments/final_project/Final-project.html#final-project-deliverables",
-    "title": "Final project",
-    "section": "Final Project Deliverables",
-    "text": "Final Project Deliverables\n\nWritten Component\nThe written component of your final project should be turned in on Brightspace. This includes the .qmd file as well as a PDF of your report. For the PDF export, make sure to set echo=FALSE so that it doesn’t include all of your code, and just looks like a nice report.\n\n\nClass Presentation\nThe last week of class, we will have presentations. You will have 5 minutes to present your project to the class (a few minutes extra for group projects), with three minutes for questions. You should prepare a slide deck for this presentation.",
-    "crumbs": [
-      "Assignments",
-      "Final Project",
-      "Final project"
-    ]
-  },
-  {
-    "objectID": "assignments/final_project/Final-project.html#timeline",
-    "href": "assignments/final_project/Final-project.html#timeline",
-    "title": "Final project",
-    "section": "Timeline",
-    "text": "Timeline\n\nMarch 11: Final Project Idea\nApril 24: Rough Draft\nApril 26: Peer Feedback\nApril 29 / May 1: Presentations\nMay 2: Final Project Due",
-    "crumbs": [
-      "Assignments",
-      "Final Project",
-      "Final project"
-    ]
-  },
-  {
-    "objectID": "assignments/final_project/project-idea.html",
-    "href": "assignments/final_project/project-idea.html",
-    "title": "Project Idea",
-    "section": "",
-    "text": "Some of the projects require ongoing work during the semester, such as doing a network-based intervention or gathering network data.\nTo help you to be well-prepared for the final project, you should start thinking about your project idea early. For this assignment, you will submit a brief (~1 page) description of your project idea. This should include the following:\n\nWhich project option you are planning to do\nA brief description of the data you will use\nA brief description of the network concepts you will use\n\nTurn this in on Brightspace.",
-    "crumbs": [
-      "Assignments",
-      "Final Project",
-      "Project Idea"
-    ]
-  },
-  {
-    "objectID": "assignments/r_lab_1_-_installation.html",
-    "href": "assignments/r_lab_1_-_installation.html",
-    "title": "R Lab 1 - Setting up your environment",
-    "section": "",
-    "text": "This lab has three goals:\n\nGet your R environment is set up correctly\nIntroduce you to the idea of Quarto files\nCreate your first network graph\n\nWe will be using VSCode as our development environment. This is a popular, open source Integrated Development Environment. This is the software that you will actual open and use to do all of your work.\nUnder the hood, VSCode will use Quarto and R. Quarto is a tool that lets you write code and text in the same document, and then convert it to a variety of formats, including PDF, HTML, and Word. R is even lower level, and is the engine that actually runs the code that you write.\nFor the first step, you will need to download and install the three main piece of software that we will be using: Quarto, VSCode, and R.\n\nInstall Quarto\n\nInstall Quarto\n\n\n\nInstall VSCode\n\nInstall VSCode\n\n\n\nInstall R\n\nInstall R. This is a really old, janky-looking site, but I promise it’s real.\n\n\n\nTry to run the lab\n\nCreate a folder on your computer called COM_411_Labs\nRight-click on this link to Lab 1 and save it into the COM_411_Labs folder\nOpen VSCode\nClick on the Extensions icon on the left (it’s 3 attached squares and one floating square)\nSearch for “quarto” and install the quarto extension\nSearch for “R” and install the R extension\nIn VSCode, Click File &gt; Open Folder; Navigate to the COM_411_Labs folder that you created earlier and open it. You should see the lab_1\nClick on the lab_1_quarto.qmd file, and it should open in the main window of VSCode. At this point, it may ask if you want to install “languageserver”. You can click “Install” if it asks.\nScroll down to line 36. You should see a little button that says “Run Cell”. Push that button, and a terminal will open at the bottom of the screen. This will run the R code in the cell.\nIn the R shell at the bottom of VSCode, paste the following:\n\ninstall.packages(c(\"rmarkdown\",\"tidyverse\",\"ggraph\",\"tidygraph\",\"igraphdata\"))\nIt will ask you what CRAN mirror you’d like to use. You can choose something in the US.\nIf it asks if you want to install from source, you can type “no”\nThis will show a bunch of crazy messages for a while. You can probably ignore them.\nWINDOWS USERS: There’s a chance that this won’t work because VSCode doesn’t know where R is. This page has some instructions on how to fix it. Look under “Connect R”. If you can’t get it to work, ask a neighbor (or me) for help.\n\nInstall tinytex. Click the Quarto Preview terminal (in the bottom right) and type:\n\nquarto install tinytex\n\nClick the “Preview” icon at the top right, and hopefully it works!\nRead the document, do the exercises at the bottom, and then preview the document again. Notice that there is a new PDF file in the folder.\nUpload the PDF to Brightspace! You did it!!\n\nIf things aren’t working then ask a neighbor for help.\n\n\nVideo Walkthrough\nThis was from an older version of VSCode, but should still be helpful:\n\n\n\nSet up Github Copilot\nIf you want to use Github Copilot\n\nSign up for an account at Github education\nInstall the GitHub Copilot extension in VSCode\nAuthenticate using the popup that shows up in the bottom right\n\nWe will talk more about how to use Copilot in class.",
-    "crumbs": [
-      "Assignments",
-      "R Labs",
-      "R Lab 1 - Setting up your environment"
-    ]
-  },
-  {
-    "objectID": "assignments/r_lab_3_–_mutating_and_filtering.html#assignment-file",
-    "href": "assignments/r_lab_3_–_mutating_and_filtering.html#assignment-file",
-    "title": "R Lab 3 – Mutating and Filtering",
+    "objectID": "assignments/r_lab_2_–_creating_networks.html#assignment-file",
+    "href": "assignments/r_lab_2_–_creating_networks.html#assignment-file",
+    "title": "R Lab 2 – Creating Networks",
     "section": "Assignment File",
     "text": "Assignment File\nDownload Assignment (right-click and save)",
     "crumbs": [
       "Assignments",
       "R Labs",
-      "R Lab 3 – Mutating and Filtering"
+      "R Lab 2 – Creating Networks"
     ]
   },
   {
-    "objectID": "assignments/r_lab_3_–_mutating_and_filtering.html#example-solution",
-    "href": "assignments/r_lab_3_–_mutating_and_filtering.html#example-solution",
-    "title": "R Lab 3 – Mutating and Filtering",
+    "objectID": "assignments/r_lab_2_–_creating_networks.html#example-solution",
+    "href": "assignments/r_lab_2_–_creating_networks.html#example-solution",
+    "title": "R Lab 2 – Creating Networks",
     "section": "Example Solution",
     "text": "Example Solution\nView Example Solution",
     "crumbs": [
       "Assignments",
       "R Labs",
-      "R Lab 3 – Mutating and Filtering"
+      "R Lab 2 – Creating Networks"
     ]
   },
   {
-    "objectID": "assignments/r_lab_5_–_aesthetics_in_ggraph.html#assignment-file",
-    "href": "assignments/r_lab_5_–_aesthetics_in_ggraph.html#assignment-file",
-    "title": "R Lab 5 – Aesthetics in ggraph",
+    "objectID": "assignments/r_lab_4_–_intro_to_ggraph.html#assignment-file",
+    "href": "assignments/r_lab_4_–_intro_to_ggraph.html#assignment-file",
+    "title": "R Lab 4 – Intro to ggraph",
     "section": "Assignment File",
     "text": "Assignment File\nDownload Assignment (right-click and save)",
     "crumbs": [
       "Assignments",
       "R Labs",
-      "R Lab 5 – Aesthetics in ggraph"
+      "R Lab 4 – Intro to ggraph"
     ]
   },
   {
-    "objectID": "assignments/r_lab_5_–_aesthetics_in_ggraph.html#example-solution",
-    "href": "assignments/r_lab_5_–_aesthetics_in_ggraph.html#example-solution",
-    "title": "R Lab 5 – Aesthetics in ggraph",
+    "objectID": "assignments/r_lab_4_–_intro_to_ggraph.html#example-solution",
+    "href": "assignments/r_lab_4_–_intro_to_ggraph.html#example-solution",
+    "title": "R Lab 4 – Intro to ggraph",
     "section": "Example Solution",
     "text": "Example Solution\nView Example Solution",
     "crumbs": [
       "Assignments",
       "R Labs",
-      "R Lab 5 – Aesthetics in ggraph"
+      "R Lab 4 – Intro to ggraph"
     ]
   },
   {
-    "objectID": "assignments/r_lab_7_–_groups_in_networks.html#assignment-file",
-    "href": "assignments/r_lab_7_–_groups_in_networks.html#assignment-file",
-    "title": "R Lab 7 – Groups in Networks",
+    "objectID": "assignments/r_lab_6_–_visualizing_power.html#assignment-file",
+    "href": "assignments/r_lab_6_–_visualizing_power.html#assignment-file",
+    "title": "R Lab 6 – Visualizing Power",
     "section": "Assignment File",
     "text": "Assignment File\nDownload Assignment (right-click and save)",
     "crumbs": [
       "Assignments",
       "R Labs",
-      "R Lab 7 – Groups in Networks"
+      "R Lab 6 – Visualizing Power"
     ]
   },
   {
-    "objectID": "assignments/r_lab_7_–_groups_in_networks.html#example-solution",
-    "href": "assignments/r_lab_7_–_groups_in_networks.html#example-solution",
-    "title": "R Lab 7 – Groups in Networks",
+    "objectID": "assignments/r_lab_6_–_visualizing_power.html#example-solution",
+    "href": "assignments/r_lab_6_–_visualizing_power.html#example-solution",
+    "title": "R Lab 6 – Visualizing Power",
     "section": "Example Solution",
     "text": "Example Solution\nView Example Solution",
     "crumbs": [
       "Assignments",
       "R Labs",
-      "R Lab 7 – Groups in Networks"
+      "R Lab 6 – Visualizing Power"
+    ]
+  },
+  {
+    "objectID": "assignments/r_lab_8_–_network_stats.html",
+    "href": "assignments/r_lab_8_–_network_stats.html",
+    "title": "R Lab 8 – Network Stats",
+    "section": "",
+    "text": "Download Assignment (right-click and save)",
+    "crumbs": [
+      "Assignments",
+      "R Labs",
+      "R Lab 8 – Network Stats"
+    ]
+  },
+  {
+    "objectID": "assignments/r_lab_8_–_network_stats.html#assignment-file",
+    "href": "assignments/r_lab_8_–_network_stats.html#assignment-file",
+    "title": "R Lab 8 – Network Stats",
+    "section": "",
+    "text": "Download Assignment (right-click and save)",
+    "crumbs": [
+      "Assignments",
+      "R Labs",
+      "R Lab 8 – Network Stats"
+    ]
+  },
+  {
+    "objectID": "assignments/r_lab_8_–_network_stats.html#example-solution",
+    "href": "assignments/r_lab_8_–_network_stats.html#example-solution",
+    "title": "R Lab 8 – Network Stats",
+    "section": "Example Solution",
+    "text": "Example Solution\nView Example Solution",
+    "crumbs": [
+      "Assignments",
+      "R Labs",
+      "R Lab 8 – Network Stats"
     ]
   },
   {
@@ -2194,7 +2222,7 @@
     "href": "assignments/r_lab_examples/lab_7_groups_in_networks.html#cliques",
     "title": "Groups in Networks",
     "section": "Cliques",
-    "text": "Cliques\nThe next simplest idea is a clique—this identifies groups of nodes where everyone is connected to everyone else in the group.\nLet’s find the largest cliques in this network, using the largest_cliques function\n\n# Find the largest clique(s)\nUK |&gt; \n  largest_cliques()\n\n[[1]]\n+ 9/81 vertices, from fa2b0a2:\n[1] 49 69 77  5 27 10 68 23 13\n\n[[2]]\n+ 9/81 vertices, from fa2b0a2:\n[1] 49 69 77  5 27 10 68 23 42\n\n[[3]]\n+ 9/81 vertices, from fa2b0a2:\n[1] 49 69 77 33 27 10 68 23 13\n\n[[4]]\n+ 9/81 vertices, from fa2b0a2:\n[1] 49 69 77 33 27 10 68 23 42\n\n[[5]]\n+ 9/81 vertices, from fa2b0a2:\n[1] 57 29 79 37 15 43 35  2 31\n\n[[6]]\n+ 9/81 vertices, from fa2b0a2:\n[1] 57 29 79 37 15 43 35  2 18\n\n[[7]]\n+ 9/81 vertices, from fa2b0a2:\n[1] 57 29 79 46 18 15 43 35  2\n\n[[8]]\n+ 9/81 vertices, from fa2b0a2:\n[1] 57 29 79 46 31 15 43 35  2\n\n[[9]]\n+ 9/81 vertices, from fa2b0a2:\n[1] 77 69  7 27 23 10  5 68 13\n\n[[10]]\n+ 9/81 vertices, from fa2b0a2:\n[1] 77 69  7 27 23 10  5 68 40\n\n[[11]]\n+ 9/81 vertices, from fa2b0a2:\n[1] 77 69  7 27 23 10  5 68 42\n\n[[12]]\n+ 9/81 vertices, from fa2b0a2:\n[1] 21 29 31 15 79  2 37 43 35\n\n[[13]]\n+ 9/81 vertices, from fa2b0a2:\n[1] 21 29 31 15 79  2 46 43 35\n\n\nThis network has a bunch of cliques of size 9—that means that each person in the clique is connected to each of the other 8 people.\nLet’s visualize this by coloring the first of these cliques.\n\n# First, get the list of nodes in the first clique\nclique_nodes &lt;- largest_cliques(UK)[[1]]\nUK |&gt; \n  activate(nodes) |&gt;\n  mutate(idx = 1:nrow(.N())) |&gt; # Create an index for the nodes\n  mutate(in_clique = idx %in% clique_nodes) |&gt; # If the index is one of the clique nodes\nggraph(layout = 'stress') +\n  geom_edge_fan(alpha=.1) +\n  geom_node_point(aes(color=in_clique)) + # Color by whether the node is in the clique\n  scale_color_discrete(name='In largest clique')\n\n\n\n\n\n\n\n\nThis is a fairly intuitive way of identifying groups but we can see the limitations pretty quickly. For example, in the figure above, we can see quite a few nodes which are clearly part of the group but which aren’t included in the clique. This is because maybe they are connected to all but one of the others in that group. This is a problem with cliques—they are very strict about who is in the group and who isn’t.\nA number of tweaks to this approach exist, such as n-cliques (where everyone in the group has to be connected within a distance of n) and k-plexes (where everyone in the group has to be connected to all but k other members). These do help make groups more natural. Unfortunately, neither of these have simple implementations in igraph so I won’t visualize them."
+    "text": "Cliques\nThe next simplest idea is a clique—this identifies groups of nodes where everyone is connected to everyone else in the group.\nLet’s find the largest cliques in this network, using the largest_cliques function\n\n# Find the largest clique(s)\nUK |&gt; \n  largest_cliques()\n\n[[1]]\n+ 9/81 vertices, from 9d28a74:\n[1] 49 69 77  5 27 10 68 23 13\n\n[[2]]\n+ 9/81 vertices, from 9d28a74:\n[1] 49 69 77  5 27 10 68 23 42\n\n[[3]]\n+ 9/81 vertices, from 9d28a74:\n[1] 49 69 77 33 27 10 68 23 13\n\n[[4]]\n+ 9/81 vertices, from 9d28a74:\n[1] 49 69 77 33 27 10 68 23 42\n\n[[5]]\n+ 9/81 vertices, from 9d28a74:\n[1] 57 29 79 37 15 43 35  2 31\n\n[[6]]\n+ 9/81 vertices, from 9d28a74:\n[1] 57 29 79 37 15 43 35  2 18\n\n[[7]]\n+ 9/81 vertices, from 9d28a74:\n[1] 57 29 79 46 18 15 43 35  2\n\n[[8]]\n+ 9/81 vertices, from 9d28a74:\n[1] 57 29 79 46 31 15 43 35  2\n\n[[9]]\n+ 9/81 vertices, from 9d28a74:\n[1] 77 69  7 27 23 10  5 68 13\n\n[[10]]\n+ 9/81 vertices, from 9d28a74:\n[1] 77 69  7 27 23 10  5 68 40\n\n[[11]]\n+ 9/81 vertices, from 9d28a74:\n[1] 77 69  7 27 23 10  5 68 42\n\n[[12]]\n+ 9/81 vertices, from 9d28a74:\n[1] 21 29 31 15 79  2 37 43 35\n\n[[13]]\n+ 9/81 vertices, from 9d28a74:\n[1] 21 29 31 15 79  2 46 43 35\n\n\nThis network has a bunch of cliques of size 9—that means that each person in the clique is connected to each of the other 8 people.\nLet’s visualize this by coloring the first of these cliques.\n\n# First, get the list of nodes in the first clique\nclique_nodes &lt;- largest_cliques(UK)[[1]]\nUK |&gt; \n  activate(nodes) |&gt;\n  mutate(idx = 1:nrow(.N())) |&gt; # Create an index for the nodes\n  mutate(in_clique = idx %in% clique_nodes) |&gt; # If the index is one of the clique nodes\nggraph(layout = 'stress') +\n  geom_edge_fan(alpha=.1) +\n  geom_node_point(aes(color=in_clique)) + # Color by whether the node is in the clique\n  scale_color_discrete(name='In largest clique')\n\n\n\n\n\n\n\n\nThis is a fairly intuitive way of identifying groups but we can see the limitations pretty quickly. For example, in the figure above, we can see quite a few nodes which are clearly part of the group but which aren’t included in the clique. This is because maybe they are connected to all but one of the others in that group. This is a problem with cliques—they are very strict about who is in the group and who isn’t.\nA number of tweaks to this approach exist, such as n-cliques (where everyone in the group has to be connected within a distance of n) and k-plexes (where everyone in the group has to be connected to all but k other members). These do help make groups more natural. Unfortunately, neither of these have simple implementations in igraph so I won’t visualize them."
   },
   {
     "objectID": "assignments/r_lab_examples/lab_7_groups_in_networks.html#community-detection",
@@ -2712,7 +2740,14 @@
     "href": "lectures/class_lectures/week_5.html#housekeeping",
     "title": "Week 5 - Ego Networks",
     "section": "Housekeeping",
-    "text": "Housekeeping\n\nPoll Everywhere for discussion questions - add them and vote now\nVideos + readings on centrality and power\nHow do we measure who is important and influential?\nThursday\n\nEgo network activity\nMore co-working time"
+    "text": "Housekeeping\n\nVideos + readings on centrality and power\nHow do we measure who is important and influential?\nThursday\n\nEgo network activity\nMore co-working time"
+  },
+  {
+    "objectID": "lectures/class_lectures/week_5.html#example",
+    "href": "lectures/class_lectures/week_5.html#example",
+    "title": "Week 5 - Ego Networks",
+    "section": "3-2-1 Example",
+    "text": "3-2-1 Example"
   },
   {
     "objectID": "lectures/class_lectures/week_5.html#homework-review",
@@ -2726,21 +2761,28 @@
     "href": "lectures/class_lectures/week_5.html#review",
     "title": "Week 5 - Ego Networks",
     "section": "Review",
-    "text": "Review\n\nWhat is an “ego network”?\nWhat is the “cognitive activation” of a network?\nWhy might SES be related to which networks are activated in stress?"
+    "text": "Review\n\nWhat is an “ego network”?\nWhat are the benefits of having a dense ego network?\nWhat are the benefits of having a sparse ego network?"
   },
   {
     "objectID": "lectures/class_lectures/week_5.html#review-1",
     "href": "lectures/class_lectures/week_5.html#review-1",
     "title": "Week 5 - Ego Networks",
     "section": "Review",
-    "text": "Review\n\nWhat are the benefits of having a dense ego network?\nWhat are the benefits of having a sparse ego network?\nWhat are some reasons that you think friendship can be asymmetrical?\nIs there such thing as a “true” social network? How could we find it out?\nWhat are some ways that our perceptions of a network could influence our behaviors?"
+    "text": "Review\n\nWhat are some reasons that you think friendship can be asymmetrical?\nIs there such thing as a “true” social network? How could we find it out?\nWhat are some ways that our perceptions of a network could influence our behaviors?"
+  },
+  {
+    "objectID": "lectures/class_lectures/week_5.html#review-2",
+    "href": "lectures/class_lectures/week_5.html#review-2",
+    "title": "Week 5 - Ego Networks",
+    "section": "Review",
+    "text": "Review\n\nWhat is the “cognitive activation” of a network?\nWhy might SES be related to which networks are activated in stress?"
   },
   {
     "objectID": "lectures/class_lectures/week_5.html#discussion-questions",
     "href": "lectures/class_lectures/week_5.html#discussion-questions",
     "title": "Week 5 - Ego Networks",
     "section": "Discussion Questions",
-    "text": "Discussion Questions\n\nGoffman and networks\nSurveys as questionable data sources\n\nHow else could we measure networks?\nEgo vs. nodes"
+    "text": "Discussion Questions"
   },
   {
     "objectID": "lectures/class_lectures/week_5.html#summary",
