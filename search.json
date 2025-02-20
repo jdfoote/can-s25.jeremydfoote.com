@@ -737,18 +737,25 @@
     "href": "lectures/class_lectures/week_6.html#housekeeping",
     "title": "Week 6 - Centrality and Centralization",
     "section": "Housekeeping",
-    "text": "Housekeeping\n\nHomework questions in #homework-help on Discord\n\nHow to copy and paste code"
+    "text": "Housekeeping\n\nSelf Assessment Reflection Feedback is done\nHomework questions on Discord\n\nHow to copy and paste code\n\nA lot like qmd files\n\n\n\n```r\n\nG |&gt;\n  activate(nodes) |&gt;\n  filter(age &gt; 25)\n```"
   },
   {
     "objectID": "lectures/class_lectures/week_6.html#concept-review",
     "href": "lectures/class_lectures/week_6.html#concept-review",
     "title": "Week 6 - Centrality and Centralization",
     "section": "Concept Review",
-    "text": "Concept Review\n\nWhat is centrality?\nWhat is the difference between centrality and centralization?\nWhat is degree centrality?\nWhat are some shortcomings of degree centrality as a measure of power/influence?\nWhat is betweenness centrality?\nWhat is closeness centrality?\nWhat is eigenvector centrality?"
+    "text": "Concept Review\n\nWhat is centrality?\nWhat is the difference between centrality and centralization?\nWhat is degree centrality?\nWhat are some shortcomings of degree centrality as a measure of power/influence?"
   },
   {
     "objectID": "lectures/class_lectures/week_6.html#concept-review-1",
     "href": "lectures/class_lectures/week_6.html#concept-review-1",
+    "title": "Week 6 - Centrality and Centralization",
+    "section": "Concept Review",
+    "text": "Concept Review\n\nWhat is betweenness centrality?\nWhat is closeness centrality?\nWhat is eigenvector centrality?"
+  },
+  {
+    "objectID": "lectures/class_lectures/week_6.html#concept-review-2",
+    "href": "lectures/class_lectures/week_6.html#concept-review-2",
     "title": "Week 6 - Centrality and Centralization",
     "section": "Concept Review",
     "text": "Concept Review\n\nWhat aspects of power/influence do centrality measures miss?\nWhat can centralization tell us about a network?\nWhat does density tell us about a network?\nWhat is hierarchy?"
@@ -758,21 +765,21 @@
     "href": "lectures/class_lectures/week_6.html#practical-review",
     "title": "Week 6 - Centrality and Centralization",
     "section": "Practical Review",
-    "text": "Practical Review\nWhat is the degree/closeness/betweenness centrality of node A?"
+    "text": "Practical Review\nWhat is the degree/closeness/betweenness centrality of node A? What is the density of the network?"
   },
   {
     "objectID": "lectures/class_lectures/week_6.html#practical-review-1",
     "href": "lectures/class_lectures/week_6.html#practical-review-1",
     "title": "Week 6 - Centrality and Centralization",
     "section": "Practical Review",
-    "text": "Practical Review\nWhat is the degree/closeness/betweenness centrality of node A?\n\nG |&gt;\n  mutate(degree = centrality_degree(),\n         closeness = centrality_closeness(),\n         betweenness = centrality_betweenness()) |&gt;\n  filter(name == \"A\")\n\n# A tbl_graph: 1 nodes and 0 edges\n#\n# An unrooted tree\n#\n# Node Data: 1 × 4 (active)\n  name  degree closeness betweenness\n  &lt;chr&gt;  &lt;dbl&gt;     &lt;dbl&gt;       &lt;dbl&gt;\n1 A          3     0.143         0.5\n#\n# Edge Data: 0 × 2\n# ℹ 2 variables: from &lt;int&gt;, to &lt;int&gt;"
+    "text": "Practical Review\nWhat is the degree/closeness/betweenness centrality of node A?\n\nG |&gt;\n  mutate(degree = centrality_degree(),\n         closeness = centrality_closeness(),\n         betweenness = centrality_betweenness()) |&gt;\n  filter(name == \"A\")\n\n# A tbl_graph: 1 nodes and 0 edges\n#\n# An unrooted tree\n#\n# Node Data: 1 × 4 (active)\n  name  degree closeness betweenness\n  &lt;chr&gt;  &lt;dbl&gt;     &lt;dbl&gt;       &lt;dbl&gt;\n1 A          2     0.125           0\n#\n# Edge Data: 0 × 2\n# ℹ 2 variables: from &lt;int&gt;, to &lt;int&gt;"
   },
   {
     "objectID": "lectures/class_lectures/week_6.html#discussion-questions",
     "href": "lectures/class_lectures/week_6.html#discussion-questions",
     "title": "Week 6 - Centrality and Centralization",
     "section": "Discussion Questions",
-    "text": "Discussion Questions"
+    "text": "Discussion Questions\n\nBipartite graphs (Paul Revere)\nHow do these approaches scale to huge networks?\nHow are centrality measures impacted by missing data?\nHierarchy and directed networks"
   },
   {
     "objectID": "lectures/class_lectures/week_6.html#r-review",
@@ -1367,14 +1374,14 @@
     "href": "assignments/r_lab_examples/ego_analysis.html",
     "title": "Ego Networks Activity",
     "section": "",
-    "text": "We read about the ego networks of Americans. In this exercise, you’ll create your own ego network and visualize it, using the skills that we’ve been working on in R.\nFirst, you should create your network spreadsheets in Excel. Start by making a node attributes file with a row for each person that you have “discussed important matters with” over the last 6 months.\nThe columns of the spreadsheet should be: - name - sex - education (years of education) - race - age - is.kin (are they related to you?)\nThen, make a spreadsheet that’s an edgelist with a row for each connection in your network. For each edge, put the edge weight as 0 if they are strangers, 1 if they are especially close, or .5 if they are somewhere in between.\nChange the code below so that the path points to where you saved the edgelist and node attribute files.\nedges &lt;- read_excel('/home/jeremy/Teaching/can-s25.jeremydfoote.com/assignments/r_lab_examples/ego_edges.xlsx')\nnodes &lt;- read_excel('/home/jeremy/Teaching/can-s25.jeremydfoote.com/assignments/r_lab_examples/ego_atts.xlsx')\nCode to load the file into R and make it into a network object.\nG &lt;- graph_from_data_frame(d=edges, vertices = nodes, directed = F) |&gt; as_tbl_graph()\nCode to filter out the edges that have a weight of 0.\nG &lt;- G |&gt;\n  activate(edges) |&gt;\n  filter(!is.na(weight)) |&gt;\n  filter(weight != 0)\nThis code will make a plot of the network. You’ll learn soon how to do this on your own.\nG |&gt;\n  ggraph(layout = 'stress') +\n  geom_edge_fan(aes(width = weight), alpha = .3) +\n  geom_node_point(aes(color = is.kin), size = 3) +\n  geom_node_text(aes(label = name), repel = TRUE, size = 4) +\n  scale_color_viridis_d() +\n  scale_edge_width(range = c(1, 3))"
+    "text": "We read about the ego networks of Americans. In this exercise, you’ll create your own ego network and visualize it, using the skills that we’ve been working on in R.\nFirst, you should create your network spreadsheets in Excel. Start by making a node attributes file with a row for each person that you have “discussed important matters with” over the last 6 months.\nThe columns of the spreadsheet should be: - name - gender - education (years of education) - race - age - is.kin (are they related to you?)\nFor is.kin, write TRUE if they are related to you and FALSE if they are not. Then, make a spreadsheet that’s an edgelist with a row for each connection in your network. For each edge, put the edge weight as 0 if they are strangers, 2 if they are especially close, or 1 if they are somewhere in between.\nIt should look something like this:\n…\nChange the code below so that the path points to where you saved the edgelist and node attribute files.\nedges &lt;- read_excel('/home/jeremy/Teaching/can-s25.jeremydfoote.com/assignments/r_lab_examples/ego_edges.xlsx')\nnodes &lt;- read_excel('/home/jeremy/Teaching/can-s25.jeremydfoote.com/assignments/r_lab_examples/ego_atts.xlsx')\nCode to load the file into R and make it into a network object.\nG &lt;- graph_from_data_frame(d=edges, vertices = nodes, directed = F) |&gt; as_tbl_graph()\nCode to filter out the edges that have a weight of 0.\nG &lt;- G |&gt;\n  activate(edges) |&gt;\n  filter(!is.na(weight)) |&gt;\n  filter(weight != 0)\nThis code will make a plot of the network. You’ll learn soon how to do this on your own.\nG |&gt;\n  ggraph(layout = 'stress') +\n  geom_edge_fan(aes(width = weight), alpha = .3) +\n  geom_node_point(aes(color = is.kin), size = 3) +\n  geom_node_text(aes(label = name), repel = TRUE, size = 4) +\n  scale_color_viridis_d() +\n  scale_edge_width(range = c(1, 3))"
   },
   {
     "objectID": "assignments/r_lab_examples/ego_analysis.html#exercises",
     "href": "assignments/r_lab_examples/ego_analysis.html#exercises",
     "title": "Ego Networks Activity",
     "section": "Exercises",
-    "text": "Exercises\nCalculate the following for your network. Use Google to find the code to do this. I’ll give you the first one.\n\nThe number of nodes\n\n\nG |&gt;\n  vcount()\n\n[1] 11\n\n\n\nThe number of nodes who are kin (use the filter function)\n\n\n\n[1] 8\n\n\n\nThe number of nodes who are non-kin\n\n\n\n[1] 3\n\n\n\nThe density of the network\n\n\n\n[1] 0.6909091\n\n\n\nThe standard deviation of age in your network.\n\nAs a hint, here’s how you would get the standard deviation of education\n\nG |&gt;\n  activate(nodes) |&gt;\n  as_tibble() |&gt;\n  summarize(education_sd = sd(education))\n\n# A tibble: 1 × 1\n  education_sd\n         &lt;dbl&gt;\n1         5.35\n\n\n\n\n# A tibble: 1 × 1\n  age_sd\n   &lt;dbl&gt;\n1   16.5"
+    "text": "Exercises\nCalculate the following for your network. Use Google to find the code to do this. I’ll give you the first one.\n\nThe number of nodes\n\n\nG |&gt;\n  vcount()\n\n[1] 13\n\n\n\nThe number of nodes who are kin (use the filter function)\n\n\n\n[1] 8\n\n\n\nThe number of nodes who are non-kin\n\n\n\n[1] 5\n\n\n\nThe density of the network\n\n\n\n[1] 0.4615385\n\n\n\nThe standard deviation of age in your network.\n\nAs a hint, here’s how you would get the standard deviation of education\n\nG |&gt;\n  activate(nodes) |&gt;\n  as_tibble() |&gt;\n  summarize(education_sd = sd(education))\n\n# A tibble: 1 × 1\n  education_sd\n         &lt;dbl&gt;\n1         5.46\n\n\n\n\n# A tibble: 1 × 1\n  age_sd\n   &lt;dbl&gt;\n1   15.5\n\n\n\nWhat proportion of your network has the same race (the most common race)?\n\nHINT: Here’s how you would get the proportion of the network that is kin.\n\nG |&gt;\n  activate(nodes) |&gt;\n  as_tibble() |&gt;\n  summarize(kin_proportion = sum(is.kin == TRUE) / n())\n\n# A tibble: 1 × 1\n  kin_proportion\n           &lt;dbl&gt;\n1          0.615\n\n\n\n\n# A tibble: 1 × 1\n  same_race_proportion\n                 &lt;dbl&gt;\n1                0.923\n\n\n\nWhat proportion of your network has the same gender (the most common gender)?\n\n\n\n# A tibble: 13 × 6\n   name      gender education race    age is.kin\n   &lt;chr&gt;     &lt;chr&gt;      &lt;dbl&gt; &lt;chr&gt; &lt;dbl&gt; &lt;lgl&gt; \n 1 Kedra     F             16 W        38 TRUE  \n 2 Rebecca   F              8 W        15 TRUE  \n 3 Christina F             12 W        62 TRUE  \n 4 Dave      M             15 W        66 TRUE  \n 5 Lisa      F             16 W        36 TRUE  \n 6 Kim       F             16 W        34 TRUE  \n 7 Tyler     M             16 W        41 TRUE  \n 8 Seungyoon F             22 A        46 FALSE \n 9 Jeff      M             22 W        48 FALSE \n10 Joshua    M             22 W        39 FALSE \n11 William   M              6 W        13 TRUE  \n12 Stacey    F             22 W        55 FALSE \n13 Diana     F             22 W        40 FALSE \n\n\n# A tibble: 1 × 1\n  same_gender_proportion\n                   &lt;dbl&gt;\n1                  0.385"
   },
   {
     "objectID": "assignments/r_lab_7_–_groups_in_networks.html#assignment-file",

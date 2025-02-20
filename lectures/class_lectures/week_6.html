@@ -408,11 +408,24 @@ I had to put my foot down.
 <section id="housekeeping" class="slide level2">
 <h2>Housekeeping</h2>
 <ul>
-<li class="fragment">Homework questions in #homework-help on Discord
+<li class="fragment">Self Assessment Reflection Feedback is done</li>
+<li class="fragment">Homework questions on Discord
 <ul>
 <li class="fragment">How to copy and paste code</li>
 </ul></li>
+<li class="fragment">A lot like qmd files</li>
 </ul>
+<div class="fragment">
+<code>
+<pre>```r
+
+G |&gt;
+  activate(nodes) |&gt;
+  filter(age &gt; 25)
+```
+</pre>
+</code><p><code></code></p>
+</div>
 <!--
 ## Collective Norms Discussion
 
@@ -429,12 +442,17 @@ I had to put my foot down.
 <li class="fragment">What is the difference between centrality and centralization?</li>
 <li class="fragment">What is degree centrality?</li>
 <li class="fragment">What are some shortcomings of degree centrality as a measure of power/influence?</li>
+</ul>
+</section>
+<section id="concept-review-1" class="slide level2">
+<h2>Concept Review</h2>
+<ul>
 <li class="fragment">What is betweenness centrality?</li>
 <li class="fragment">What is closeness centrality?</li>
 <li class="fragment">What is eigenvector centrality?</li>
 </ul>
 </section>
-<section id="concept-review-1" class="slide level2">
+<section id="concept-review-2" class="slide level2">
 <h2>Concept Review</h2>
 <ul>
 <li class="fragment">What aspects of power/influence do centrality measures miss?</li>
@@ -445,7 +463,7 @@ I had to put my foot down.
 </section>
 <section id="practical-review" class="slide level2">
 <h2>Practical Review</h2>
-<p>What is the degree/closeness/betweenness centrality of node A?</p>
+<p>What is the degree/closeness/betweenness centrality of node A? What is the density of the network?</p>
 
 <img data-src="week_6_files/figure-revealjs/unnamed-chunk-1-1.png" width="960" class="r-stretch"></section>
 <section id="practical-review-1" class="slide level2">
@@ -465,7 +483,7 @@ I had to put my foot down.
 # Node Data: 1 × 4 (active)
   name  degree closeness betweenness
   &lt;chr&gt;  &lt;dbl&gt;     &lt;dbl&gt;       &lt;dbl&gt;
-1 A          3     0.143         0.5
+1 A          2     0.125           0
 #
 # Edge Data: 0 × 2
 # ℹ 2 variables: from &lt;int&gt;, to &lt;int&gt;</code></pre>
@@ -474,6 +492,12 @@ I had to put my foot down.
 </section>
 <section id="discussion-questions" class="slide level2">
 <h2>Discussion Questions</h2>
+<ul>
+<li class="fragment">Bipartite graphs (Paul Revere)</li>
+<li class="fragment">How do these approaches scale to huge networks?</li>
+<li class="fragment">How are centrality measures impacted by missing data?</li>
+<li class="fragment">Hierarchy and directed networks</li>
+</ul>
 </section>
 <section id="r-review" class="slide level2">
 <h2>R Review</h2>
