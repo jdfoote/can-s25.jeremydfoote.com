@@ -12,5 +12,5 @@ date: 2025-02-10
 
 ## Example Solution
 
-[View Example Solution](/assignments/ego_networks/ego_analysis.pdf)
+[View Example Solution](/assignments/r_lab_examples/ego_analysis.pdf)
 

@@ -28,8 +28,22 @@ I had to put my foot down.
 
 ## Housekeeping
 
-> - Homework questions in #homework-help on Discord
+> - Self Assessment Reflection Feedback is done
+> - Homework questions on Discord
 >	- How to copy and paste code
+> - A lot like qmd files
+
+<div class='fragment'>
+<code><pre>
+```r
+
+G |>
+  activate(nodes) |>
+  filter(age > 25)
+```
+</pre>
+</code>
+</div>
 
 
 <!--
@@ -48,6 +62,9 @@ I had to put my foot down.
 > - What is the difference between centrality and centralization?
 > - What is degree centrality?
 > - What are some shortcomings of degree centrality as a measure of power/influence?
+
+## Concept Review
+
 > - What is betweenness centrality?
 > - What is closeness centrality?
 > - What is eigenvector centrality?
@@ -61,9 +78,10 @@ I had to put my foot down.
 
 ## Practical Review
 
-What is the degree/closeness/betweenness centrality of node A?
+What is the degree/closeness/betweenness centrality of node A? What is the density of the network?
 
 ```{r echo=FALSE}
+set.seed(123)
 G <- play_gnp(6, 0.5, directed=F) |> as_tbl_graph() |>
   mutate(name = LETTERS[1:nrow(.N())])
 
@@ -92,6 +110,11 @@ G |>
 
 
 ## Discussion Questions
+
+> - Bipartite graphs (Paul Revere)
+> - How do these approaches scale to huge networks?
+> - How are centrality measures impacted by missing data?
+> - Hierarchy and directed networks
 
 
 ## R Review

@@ -32,36 +32,38 @@ Brochure.
 
 ## Housekeeping
 
-> - Poll Everywhere for discussion questions - add them and vote now
 > - Videos + readings on centrality and power
 > - How do we measure who is important and influential?
 > - Thursday
 >   - Ego network activity
 >   - More co-working time
 
+## 3-2-1 Example
+
+![](/lectures/class_lectures/images/3_2_1_example.png)
+
 ## Homework Review
 
 ## Review
 
 > - What is an "ego network"?
-> - What is the "cognitive activation" of a network?
-> - Why might SES be related to which networks are activated in stress?
+> - What are the benefits of having a dense ego network?
+> - What are the benefits of having a sparse ego network?
 
 
 ## Review
 
-> - What are the benefits of having a dense ego network?
-> - What are the benefits of having a sparse ego network?
 > - What are some reasons that you think friendship can be asymmetrical?
 > - Is there such thing as a "true" social network? How could we find it out?
 > - What are some ways that our perceptions of a network could influence our behaviors?
 
+## Review
+
+> - What is the "cognitive activation" of a network?
+> - Why might SES be related to which networks are activated in stress?
+
 ## Discussion Questions
 
-> - Goffman and networks
-> - Surveys as questionable data sources  
-> - How else could we measure networks?
-> - Ego vs. nodes
 
 
 ## Summary

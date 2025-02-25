@@ -133,7 +133,7 @@ G |>
 
 knitr::opts_chunk$set(echo = F, warn=F, message=F)
 
-G |> centr_betweenness()
+G |> centr_betw()
 
 ```
 

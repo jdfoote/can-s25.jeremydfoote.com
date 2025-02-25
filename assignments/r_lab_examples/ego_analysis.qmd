@@ -1,6 +1,6 @@
 ---
 title: "Ego Networks Activity"
-author: "Your Name Here"
+author: "Dr. Foote's Example"
 format: pdf
 pdf-engine: pdflatex
 ---
@@ -30,7 +30,6 @@ The columns of the spreadsheet should be:
 - is.kin (are they related to you?)
 
 For `is.kin`, write TRUE if they are related to you and FALSE if they are not.
-
 Then, make a spreadsheet that's an edgelist with a row for each connection in your network. For each edge, put the edge weight as 0 if they are strangers, 2 if they are especially close, or 1 if they are somewhere in between.
 
 It should look something like this:
@@ -89,8 +88,14 @@ G |>
 ```
 
 2. The number of nodes who are kin (use the `filter` function)
-```{r}
+```{r echo=F}
 
+knitr::opts_chunk$set(echo = FALSE)
+
+G |>
+  activate(nodes) |>
+  filter(is.kin == TRUE) |>
+  vcount()
 ## YOUR CODE HERE
 
 
@@ -102,6 +107,12 @@ G |>
 
 ## YOUR CODE HERE
 
+
+G |>
+  activate(nodes) |>
+  filter(is.kin == FALSE) |>
+  vcount()
+
 ```
 
 
@@ -109,6 +120,7 @@ G |>
 ```{r}
 
 ## YOUR CODE HERE
+G |> edge_density()
 
 ```
 
@@ -116,7 +128,7 @@ G |>
 
 As a hint, here's how you would get the standard deviation of education
 
-```{r}
+```{r echo = T}
 
 G |>
   activate(nodes) |>
@@ -129,24 +141,32 @@ G |>
 
 ## YOUR CODE HERE
 
+G |>
+  activate(nodes) |>
+  as_tibble() |>
+  summarize(age_sd = sd(age))
+
 ```
 
 6. What proportion of your network has the same race (the most common race)?
 
 HINT: Here's how you would get the proportion of the network that is kin.
 
-```{r}
+```{r echo = T}
 
 G |>
   activate(nodes) |>
   as_tibble() |>
-  summarize(kin_proportion = sum(is.kin) / n())
+  summarize(kin_proportion = sum(is.kin == TRUE) / n())
 
 ```
 
 ```{r}
 
-## YOUR CODE HERE
+G |>
+  activate(nodes) |>
+  as_tibble() |>
+  summarize(same_race_proportion = sum(race == 'W') / n())
 
 ```
 
@@ -156,5 +176,11 @@ G |>
 ```{r}
 
 ## YOUR CODE HERE
+
+G |>
+  activate(nodes) |>
+  as_tibble() |>
+  print() |>
+  summarize(same_gender_proportion = sum(gender == 'M') / n())
 
 ```

@@ -32,8 +32,6 @@ Luckily I was still up playing the drums.
 ## Housekeeping
 
 > - Practice asking a question on Discord
-> - Plan for discussion questions. Slido? PollEverywhere?
-> - Tech suggestions - laptops down during group discussions?
 
 ## Housekeeping
 
@@ -53,16 +51,30 @@ Luckily I was still up playing the drums.
 
 > - What is centralization?
 > - When is a centralized network better?
+> - What does "embedded" mean in the context of a network?
 > - What is "transactive memory"?
+
+## Review Questions
+
 > - According to the Informal Networks article, why is it important to identify different kinds of networks?
 > - What sorts of information can be learned from an advice network?
 >	- A trust network?
 > - Have you thought about the groups that you are in from a network perspective? What insights have you had?
 
+## Review Questions
+
+> - What is hierarchy?
+> - What is a core-periphery structure?
+> - What is a structural hole?
+> - What is multiplexity?
+
 ## Discussion Questions
+
+> - How can organizations intentionally foster beneficial informal networks without making them feel forced or artificial?
+> - Are strong ties always better than weak ties for productivity?
 
 
 ## Thursday
 
-- No class
+- R Review
 - Work on R Lab 3 - Mutating and filtering

@@ -130,7 +130,7 @@ There will be one exam. It will assess your understanding of core communication 
 
 ## Final Project
 
-Students will complete a [Final Project](/assignments/Final-project.html) that uses the theories, principles, and skills learned in this class.
+Students will complete a [Final Project](/assignments/final_project/Final-project.qmd) that uses the theories, principles, and skills learned in this class.
 
 A number of intermediate assignments through the semester will help you to gain the skills and data necessary to be successful.
 
