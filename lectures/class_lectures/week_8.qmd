@@ -29,19 +29,21 @@ A stick.
 
 ## Housekeeping
 
-> - Social Search assignment
->	- Try to find someone with driver's license from HI
->	- No group texts
->	- Diagram search network
->	- Instructions on website
+> - Final project idea due next week
+> - Social Search assignment due after Spring Break
+>	  - Try to find someone with driver's license from HI
+>	  - No group texts
+>	  - Diagram search network
+>	  - Instructions on website
+> - Internet network activity?
 
 ## Also upcoming
 
 > - Visualization Challenge
->	- Start from existing dataset (Dutch school student behavior or Harry Potter)
->	- Come up with a question
->	- Create a network visualization that helps to answer that question
->	- Working in pairs is great
+>	  - Start from existing dataset (Dutch school student behavior or Harry Potter)
+>	  - Come up with a question
+>	  - Create a network visualization that helps to answer that question
+>	  - Working in pairs is great
 
 ## Anatomy of ggraph
 
@@ -74,12 +76,18 @@ A stick.
 > - What is the "geodesic distance" or "diameter" of a network?
 > - What is triadic closure?
 > - Why would we expect networks with high triadic closure to have high geodesic distance?
+
+## Review Questions
+
 > - What was the Travers and Milgram experiment?
 > - How can we have such high triadic closure but still have short path lengths? What was the key insight from Watts and Strogatz?
+> - What does this have to do with Granovetter (weak ties)?
 
 ## Questions from 3-2-1s
 
-> - The video also mentioned that you are likely to be connected to someone in Manila as you are to someone in your hometown.
-> - What is the exact definition of a groupy network? Is it just the nature of most networks that exist in the real world?
+> - Skepticism about the Milgram experiment
+> - How does edge definition matter?
+> - Social media and small worlds
+
 
 ## R Co-working time

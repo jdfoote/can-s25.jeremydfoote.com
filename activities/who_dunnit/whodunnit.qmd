@@ -23,7 +23,7 @@ edges = read_csv('./whodunnit_edgelist.csv')
 
 ## DON'T FORGET TO CHANGE THIS
 
-num_players = 15
+num_players = 18
 
 G <- graph_from_data_frame(edges, v=nodes, directed = F) %>% as_tbl_graph() %>%
   activate(nodes) %>%
@@ -200,6 +200,6 @@ theme(legend.position = 'none')
 
 > - Who succeeded?
 > - Why? How did network position influence your ability to gather information?
-> - How did you make effort to overcome your constraints?
+> - How did you make efforts to overcome your constraints?
 > - How did you decide who to talk to?
 > - How is this game similar or different from real life situations?
