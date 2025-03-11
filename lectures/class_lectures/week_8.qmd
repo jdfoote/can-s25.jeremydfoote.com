@@ -1,5 +1,5 @@
 ---
-title: Week 8
+title: Weak Ties and Small Worlds
 format: 
   revealjs:
     css: /resources/custom_css.css
@@ -21,10 +21,10 @@ library(ggraph)
 
 ## Dad Joke
 
-What is brown and sticky?
+My wife asked me to put ketchup on the shopping list.
 
 <span class='fragment'>
-A stick.
+Now I can't read it at all!
 </span>
 
 ## Housekeeping

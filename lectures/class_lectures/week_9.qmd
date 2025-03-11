@@ -31,6 +31,31 @@ Because he couldn't find a date.
 ## Housekeeping
 
 > - Thursday - 6 Degrees of Wikipedia
+> - Final Project Ideas due (yesterday)
+> - Self Assessment, Lab 6, and Social Search all due after Spring Break
+> - 6 degrees of Wikipedia on Thursday
+
+## Troubled Lands Reflection
+
+![](images/troubled_lands.jpg)
+
+## Troubled Lands Reflection
+
+> - What did you think about while playing?
+> - How did you feel as you played? Did those feeling change across different versions of the game?
+> - When do you help others in real life?
+
+## Troubled Lands Reflection
+
+> - Were resources and abilities distributed fairly?
+> - How should resources be distributed in the real world?
+> - What role did communication play? How did your group make decisions?
+> - Did you work to make things equal? Why or why not?
+> - What kinds of inequality appeared in the game?
+
+## Troubled Lands Reflection
+
+> - Did anyone sanction someone else? Why?
 
 ## Review Questions
 
@@ -136,6 +161,9 @@ p +
 </div>
 
 ## Discussion Questions
+
+> - What are the limits of scale-free networks?
+> - Should we try to limit them more?
 
 
 ## Visualization Challenge

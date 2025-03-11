@@ -33,7 +33,8 @@ date: "2025-03-31"
 
 **Class Schedule:**
 
-* [R Lab 7 - Finding and visualizing groups in networks](/assignments/r_lab_7_%E2%80%93_groups_in_networks.qmd)
+* How the Internet Works Activity
+<!-- * [R Lab 7 - Finding and visualizing groups in networks](/assignments/r_lab_7_%E2%80%93_groups_in_networks.qmd) -->
 
 ### Discussion Questions
 
