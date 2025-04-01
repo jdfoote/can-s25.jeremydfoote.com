@@ -30,8 +30,8 @@ Me: "Listening. I would say listening is my biggest weakness."
 
 ## Housekeeping
 
-> - Self-assessment reflections due today
->	- In-person feedback; sign up for spot on my calendar in November
+> - Self-assessment reflections due
+>	- In-person feedback; sign up for spot on my calendar by end of next week
 > - Wisdom or Madness of Crowds simulation + R on Thursday
 
 ## Upcoming Assignments
@@ -129,14 +129,21 @@ create_notable('zachary') |>
 
 > - What is an example of simple contagion?
 > - What is an example of something that spreads via complex contagion?
+> - What's an example of when you've been influenced?
+> - How does tie strength relate to contagion?
 > - What was the argument of the "Special People" chapter?
 
+
 ## Discussion Questions
+
+> - Why is it still so difficult to anticipate what will become popular or go viral when we have so much data now?
+> - Have marketers used the findings of the Special People chapter? If not, why not?
+> - How can we avoid being led astray by our networks?
 
 
 ## Wisdom / Madness of Crowds
 
 > - How does the majority illusion work?
-> - How does this related to the spiral of silence?
-> - Why is it tough to spread information across bridges?
+> - How is this related to the spiral of silence?
+> - Why is it tough for beliefs to spread across bridges?
 > - What is the role of people who aren't easily influenced in contagions?

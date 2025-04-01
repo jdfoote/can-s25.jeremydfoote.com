@@ -45,11 +45,9 @@ My thoughts are with his family.
 
 > - Make an appointment for Self Assessment Reflection review
 > - Submit Exam Questions ASAP
-> - What to do on Thursday - R Lab or activity?
-> - No class on Tuesday, November 5th
->   - Conversation on Discord instead
->   - Post 1 question and 1 thing you've learned
->   - Respond to 2 other posts
+> - Internet technologies demo on Thursday
+> - Exam April 17
+> - Exam review April 10
 
 ## Plan for today
 
@@ -115,8 +113,18 @@ ggraph(layout='stress') +
 
 ## Discussion Questions
 
+> - How can random walks identify communities?
 > - Do k-plexes really happen? Are you really connected to everyone but one person?
+> - Do all groups have a periphery?
 > - Clustering coefficient
+> - Rich club coefficient
 > - Homophily vs. cliques
-> - Networks vs. communities
-> - Minimum size of core
+
+## Visualization Challenge Review
+
+> - Discussion about LLMs and coding
+>   - I have been intentionally vague
+>   - I want you to learn computational thinking, learn syntax of R
+>   - I also want you to learn how to use AI to do cool stuff!
+>   - I'm torn about what to expect / how to encourage
+>   - Fundamental knowledge makes AI stuff easier
