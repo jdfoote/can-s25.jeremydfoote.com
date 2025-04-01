@@ -996,7 +996,7 @@
     "href": "lectures/class_lectures/week_11.html#housekeeping",
     "title": "Week 11 - Communities in Networks",
     "section": "Housekeeping",
-    "text": "Housekeeping\n\nMake an appointment for Self Assessment Reflection review\nSubmit Exam Questions ASAP\nWhat to do on Thursday - R Lab or activity?\nNo class on Tuesday, November 5th\n\nConversation on Discord instead\nPost 1 question and 1 thing you’ve learned\nRespond to 2 other posts"
+    "text": "Housekeeping\n\nMake an appointment for Self Assessment Reflection review\nSubmit Exam Questions ASAP\nInternet technologies demo on Thursday\nExam April 17\nExam review April 10"
   },
   {
     "objectID": "lectures/class_lectures/week_11.html#plan-for-today",
@@ -1031,7 +1031,14 @@
     "href": "lectures/class_lectures/week_11.html#discussion-questions",
     "title": "Week 11 - Communities in Networks",
     "section": "Discussion Questions",
-    "text": "Discussion Questions\n\nDo k-plexes really happen? Are you really connected to everyone but one person?\nClustering coefficient\nHomophily vs. cliques\nNetworks vs. communities\nMinimum size of core"
+    "text": "Discussion Questions\n\nHow can random walks identify communities?\nDo k-plexes really happen? Are you really connected to everyone but one person?\nDo all groups have a periphery?\nClustering coefficient\nRich club coefficient\nHomophily vs. cliques"
+  },
+  {
+    "objectID": "lectures/class_lectures/week_11.html#visualization-challenge-review",
+    "href": "lectures/class_lectures/week_11.html#visualization-challenge-review",
+    "title": "Week 11 - Communities in Networks",
+    "section": "Visualization Challenge Review",
+    "text": "Visualization Challenge Review\n\nDiscussion about LLMs and coding\n\nI have been intentionally vague\nI want you to learn computational thinking, learn syntax of R\nI also want you to learn how to use AI to do cool stuff!\nI’m torn about what to expect / how to encourage\nFundamental knowledge makes AI stuff easier"
   },
   {
     "objectID": "lectures/class_lectures/week_1.html#about-me",
@@ -2278,7 +2285,7 @@
     "href": "lectures/class_lectures/week_10.html#housekeeping",
     "title": "Diffusion and Contagion",
     "section": "Housekeeping",
-    "text": "Housekeeping\n\nSelf-assessment reflections due today\n\nIn-person feedback; sign up for spot on my calendar in November\n\nWisdom or Madness of Crowds simulation + R on Thursday"
+    "text": "Housekeeping\n\nSelf-assessment reflections due\n\nIn-person feedback; sign up for spot on my calendar by end of next week\n\nWisdom or Madness of Crowds simulation + R on Thursday"
   },
   {
     "objectID": "lectures/class_lectures/week_10.html#upcoming-assignments",
@@ -2327,21 +2334,21 @@
     "href": "lectures/class_lectures/week_10.html#review-questions-1",
     "title": "Diffusion and Contagion",
     "section": "Review Questions",
-    "text": "Review Questions\n\nWhat is an example of simple contagion?\nWhat is an example of something that spreads via complex contagion?\nWhat was the argument of the “Special People” chapter?"
+    "text": "Review Questions\n\nWhat is an example of simple contagion?\nWhat is an example of something that spreads via complex contagion?\nWhat’s an example of when you’ve been influenced?\nHow does tie strength relate to contagion?\nWhat was the argument of the “Special People” chapter?"
   },
   {
     "objectID": "lectures/class_lectures/week_10.html#discussion-questions",
     "href": "lectures/class_lectures/week_10.html#discussion-questions",
     "title": "Diffusion and Contagion",
     "section": "Discussion Questions",
-    "text": "Discussion Questions"
+    "text": "Discussion Questions\n\nWhy is it still so difficult to anticipate what will become popular or go viral when we have so much data now?\nHave marketers used the findings of the Special People chapter? If not, why not?\nHow can we avoid being led astray by our networks?"
   },
   {
     "objectID": "lectures/class_lectures/week_10.html#wisdom-madness-of-crowds",
     "href": "lectures/class_lectures/week_10.html#wisdom-madness-of-crowds",
     "title": "Diffusion and Contagion",
     "section": "Wisdom / Madness of Crowds",
-    "text": "Wisdom / Madness of Crowds\n\nHow does the majority illusion work?\nHow does this related to the spiral of silence?\nWhy is it tough to spread information across bridges?\nWhat is the role of people who aren’t easily influenced in contagions?"
+    "text": "Wisdom / Madness of Crowds\n\nHow does the majority illusion work?\nHow is this related to the spiral of silence?\nWhy is it tough for beliefs to spread across bridges?\nWhat is the role of people who aren’t easily influenced in contagions?"
   },
   {
     "objectID": "lectures/class_lectures/week_12.html#todays-dad-joke",
