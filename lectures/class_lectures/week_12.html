@@ -408,11 +408,33 @@ Times were hard.
 <section id="housekeeping" class="slide level2">
 <h2>Housekeeping</h2>
 <ul>
-<li class="fragment">Exam next week
+<li class="fragment">Exam next week</li>
+<li class="fragment">One page of notes, front and back (printed)
 <ul>
-<li class="fragment">Open book / open note / open internet?</li>
 <li class="fragment">Short response + multiple choice</li>
 </ul></li>
+<li class="fragment">Making networks without grids
+<ul>
+<li class="fragment"><code>set_graph_style(family='sans')</code> or <code>theme_graph()</code></li>
+</ul></li>
+</ul>
+</section>
+<section id="ai-conversation" class="slide level2">
+<h2>AI Conversation</h2>
+<ul>
+<li class="fragment">There is a tension
+<ul>
+<li class="fragment">Universities are meant to educate and credential</li>
+<li class="fragment">AI is an amazing tutor</li>
+<li class="fragment">But it can also be used to substitute for learning and make evaluation much more difficult</li>
+<li class="fragment">AI can help us to understand deeper, or to pretend that we understand deeper.</li>
+</ul></li>
+</ul>
+</section>
+<section id="ai-conversation-1" class="slide level2">
+<h2>AI Conversation</h2>
+<ul>
+<li class="fragment">Imagine that you were the instructor for a class like COM 411. How would you design the class to encourage learning given today’s technological environment?</li>
 </ul>
 </section>
 <section id="final-project" class="slide level2">
@@ -496,11 +518,11 @@ Times were hard.
 <section id="decentralized-network" class="slide level2">
 <h2>Decentralized network</h2>
 
-<img data-src="week_12_files/figure-revealjs/unnamed-chunk-1-1.png" width="960" class="r-stretch"></section>
+<img data-src="week_12_files/figure-revealjs/unnamed-chunk-3-1.png" width="960" class="r-stretch"></section>
 <section id="centralized-network" class="slide level2">
 <h2>Centralized network</h2>
 
-<img data-src="week_12_files/figure-revealjs/unnamed-chunk-2-1.png" width="960" class="r-stretch"></section>
+<img data-src="week_12_files/figure-revealjs/unnamed-chunk-4-1.png" width="960" class="r-stretch"></section>
 <section id="connections-to-other-network-concepts" class="slide level2">
 <h2>Connections to other network concepts</h2>
 <ul>
@@ -535,7 +557,7 @@ Times were hard.
 <li>What code produces this graph?</li>
 </ul>
 
-<img data-src="week_12_files/figure-revealjs/unnamed-chunk-3-1.png" width="960" class="r-stretch"><div class="sourceCode" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a></a>G <span class="sc">|&gt;</span></span>
+<img data-src="week_12_files/figure-revealjs/unnamed-chunk-5-1.png" width="960" class="r-stretch"><div class="sourceCode" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a></a>G <span class="sc">|&gt;</span></span>
 <span id="cb1-2"><a></a>  <span class="fu">mutate</span>(<span class="at">centrality =</span> <span class="fu">centrality_degree</span>()) <span class="sc">|&gt;</span></span>
 <span id="cb1-3"><a></a>  <span class="fu">activate</span>(edges) <span class="sc">|&gt;</span></span>
 <span id="cb1-4"><a></a>  <span class="fu">ggraph</span>() <span class="sc">+</span></span>

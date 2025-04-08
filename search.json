@@ -177,7 +177,7 @@
     "href": "schedule/week_13.html",
     "title": "Week 13: Technology and networks",
     "section": "",
-    "text": "Tuesday\nAssignment Due:\n\nReading Review\n\nDiscussion Questions\n\n\nReadings:\n\nPariser, E. Beware Online Filter Bubbles TED talk\nFletcher, R. The truth behind filter bubbles: Bursting some myths.\nBail, C. Should we break our echo chambers?\nCohen, M. Context Collapse\n(Optional) Kleinberg, J. (2012). The Convergence of Social and Technological Networks. In M. Agrawal, S. B. Cooper, & A. Li (Eds.), Theory and Applications of Models of Computation.\nChris Bail, et al. (2018). Exposure to opposing views on social media can increase political polarization. PNAS.\n\nLecture Video:\n [19:38]\n\nSlides\n\n\n\n\n\nThursday\n\nIn class exam!\n\n\n\nDiscussion Questions",
+    "text": "Tuesday\nAssignment Due:\n\nReading Review\n\nDiscussion Questions\n\n\nReadings:\n\nPariser, E. Beware Online Filter Bubbles TED talk\nFletcher, R. The truth behind filter bubbles: Bursting some myths.\nBail, C. Should we break our echo chambers?\nCohen, M. Context Collapse\n(Optional) Kleinberg, J. (2012). The Convergence of Social and Technological Networks. In M. Agrawal, S. B. Cooper, & A. Li (Eds.), Theory and Applications of Models of Computation.\nChris Bail, et al. (2018). Exposure to opposing views on social media can increase political polarization. PNAS.\n\nLecture Video:\n [19:38]\n\nSlides\n\n\n\n\n\nThursday\n\nIn class exam!\n\nStudy Guide\n\n\n\n\nDiscussion Questions",
     "crumbs": [
       "Schedule",
       "Course content",
@@ -1038,7 +1038,14 @@
     "href": "lectures/class_lectures/week_11.html#visualization-challenge-review",
     "title": "Week 11 - Communities in Networks",
     "section": "Visualization Challenge Review",
-    "text": "Visualization Challenge Review\n\nDiscussion about LLMs and coding\n\nI have been intentionally vague\nI want you to learn computational thinking, learn syntax of R\nI also want you to learn how to use AI to do cool stuff!\nI’m torn about what to expect / how to encourage\nFundamental knowledge makes AI stuff easier"
+    "text": "Visualization Challenge Review\n\nGlanced at a handful and they are quite good!\nDiscussion about LLMs and coding\n\nI have been intentionally vague\nI want you to learn computational thinking, learn syntax of R\nI also want you to learn how to use AI to do cool stuff!\nI’m torn about what to expect / how to encourage\nFundamental knowledge makes AI stuff easier"
+  },
+  {
+    "objectID": "lectures/class_lectures/week_11.html#further-ai-discussion",
+    "href": "lectures/class_lectures/week_11.html#further-ai-discussion",
+    "title": "Week 11 - Communities in Networks",
+    "section": "Further AI discussion",
+    "text": "Further AI discussion\n\nSimilar concerns about AI-augmented reading.\n\nAI can help us to understand deeper, or to pretend that we understand deeper.\nHow can instructors encourage the former?"
   },
   {
     "objectID": "lectures/class_lectures/week_1.html#about-me",
@@ -2362,7 +2369,21 @@
     "href": "lectures/class_lectures/week_12.html#housekeeping",
     "title": "Week 12 - Collective Behavior",
     "section": "Housekeeping",
-    "text": "Housekeeping\n\nExam next week\n\nOpen book / open note / open internet?\nShort response + multiple choice"
+    "text": "Housekeeping\n\nExam next week\nOne page of notes, front and back (printed)\n\nShort response + multiple choice\n\nMaking networks without grids\n\nset_graph_style(family='sans') or theme_graph()"
+  },
+  {
+    "objectID": "lectures/class_lectures/week_12.html#ai-conversation",
+    "href": "lectures/class_lectures/week_12.html#ai-conversation",
+    "title": "Week 12 - Collective Behavior",
+    "section": "AI Conversation",
+    "text": "AI Conversation\n\nThere is a tension\n\nUniversities are meant to educate and credential\nAI is an amazing tutor\nBut it can also be used to substitute for learning and make evaluation much more difficult\nAI can help us to understand deeper, or to pretend that we understand deeper."
+  },
+  {
+    "objectID": "lectures/class_lectures/week_12.html#ai-conversation-1",
+    "href": "lectures/class_lectures/week_12.html#ai-conversation-1",
+    "title": "Week 12 - Collective Behavior",
+    "section": "AI Conversation",
+    "text": "AI Conversation\n\nImagine that you were the instructor for a class like COM 411. How would you design the class to encourage learning given today’s technological environment?"
   },
   {
     "objectID": "lectures/class_lectures/week_12.html#final-project",
@@ -3603,7 +3624,7 @@
     "href": "schedule/week_12.html",
     "title": "Week 12: Collective behavior",
     "section": "",
-    "text": "Tuesday\nAssignment Due:\n\nR Lab 7 - Finding and visualizing groups in networks\nReading Review\n\nDiscussion Questions\n\n\nReadings:\n\nBecker, J., Brackbill, D., & Centola, D. (2017). Network dynamics of social influence in the wisdom of crowds. Proceedings of the National Academy of Sciences, 201615978.\nVideo discussion with Dr. Becker (watch after reading paper)\n\n\n\nThursday\n\nExam Review\n\n\n\nDiscussion Questions",
+    "text": "Tuesday\nAssignment Due:\n\nR Lab 7 - Finding and visualizing groups in networks\nReading Review\n\nDiscussion Questions\n\n\nReadings:\n\nBecker, J., Brackbill, D., & Centola, D. (2017). Network dynamics of social influence in the wisdom of crowds. Proceedings of the National Academy of Sciences, 201615978.\nVideo discussion with Dr. Becker (watch after reading paper)\nBook Guessing Form (in-class activity)\n\n\n\nThursday\n\nExam Review\n\n\n\nDiscussion Questions",
     "crumbs": [
       "Schedule",
       "Course content",
