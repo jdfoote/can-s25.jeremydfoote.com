@@ -16,6 +16,8 @@ date: "2025-04-07"
 * Becker, J., Brackbill, D., & Centola, D. (2017). [Network dynamics of social influence in the wisdom of crowds](https://doi.org/10.1073/pnas.1615978114). Proceedings of the National Academy of Sciences, 201615978.
 * [Video discussion with Dr. Becker](https://youtu.be/sdI-b5mfjH4) (watch after reading paper)
 
+* [Book Guessing Form](https://forms.gle/4UY897MWH5FbFgFt7) (in-class activity)
+
 ### Thursday
 
 * Exam Review

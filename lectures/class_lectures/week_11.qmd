@@ -122,9 +122,16 @@ ggraph(layout='stress') +
 
 ## Visualization Challenge Review
 
+> - Glanced at a handful and they are quite good!
 > - Discussion about LLMs and coding
 >   - I have been intentionally vague
 >   - I want you to learn computational thinking, learn syntax of R
 >   - I also want you to learn how to use AI to do cool stuff!
 >   - I'm torn about what to expect / how to encourage
 >   - Fundamental knowledge makes AI stuff easier
+
+## Further AI discussion 
+
+> - Similar concerns about AI-augmented reading.
+>   - AI can help us to understand deeper, or to pretend that we understand deeper.
+>   - How can instructors encourage the former?

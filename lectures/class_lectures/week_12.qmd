@@ -20,8 +20,37 @@ library(ggraph)
 library(tidyverse)
 library(networkdata)
 # Set graph theme
-df = read_csv('./resources/wisdom_of_crowds_activity.csv') |>
-  filter(is.na(Guess)==F)
+#df = read_csv('./resources/wisdom_of_crowds_activity.csv') |>
+#  filter(is.na(Guess)==F)
+
+```
+
+```{r}
+df = read_csv('https://docs.google.com/spreadsheets/d/e/2PACX-1vTyb7i8hKbLErLrmPmiRSnOIhsinOaYXw3YX4pZnpFB_a_Fow-QaK19GmcoAvneYolwJDTHtLBEwybm/pub?gid=1899213608&single=true&output=csv')
+
+# Wide to long
+
+df <- df |>
+  pivot_longer(
+    cols = starts_with("Book"), # Adjust this to match your column names
+    names_to = c("Book", "Round"),
+    names_pattern = "Book (\\d+), Round (\\d+)", # Regex to extract Book and Guess numbers
+    values_to = "Guess" # Name of the column for the values
+  )
+
+# Change Book 1 to Decentralized and Book 2 to Centralized
+df <- df |>
+  mutate(Network_Type = ifelse(Book == 1, "Decentralized", "Centralized")) |>
+  select(-Book) |>
+  mutate(Guess = as.numeric(Guess)) |>
+  mutate(Round = as.numeric(Round)) |>
+  filter(!is.na(Guess)) # Remove rows with NA values in 
+```
+```{r}
+# Filter to timestamps within the last 30 days
+df <- df |>
+  mutate(timestamp = as.POSIXct(Timestamp, format = "%m/%d/%Y %H:%M:%S")) |>
+  filter(timestamp >= Sys.time() - 30 * 24 * 60 * 60) # Last 30 days
 
 ```
 
@@ -36,8 +65,22 @@ Times were hard.
 ## Housekeeping
 
 > - Exam next week
->	- Open book / open note / open internet?
->	- Short response  + multiple choice
+> - One page of notes, front and back (printed)
+>	- Short response + multiple choice
+> - Making networks without grids
+>   -  `set_graph_style(family='sans')` or `theme_graph()`
+
+## AI Conversation
+
+> - There is a tension
+>   - Universities are meant to educate and credential
+>   - AI is an amazing tutor
+>   - But it can also be used to substitute for learning and make evaluation much more difficult
+>   - AI can help us to understand deeper, or to pretend that we understand deeper.
+
+## AI Conversation
+
+> - Imagine that you were the instructor for a class like COM 411. How would you design the class to encourage learning given today's technological environment?
 
 ## Final Project
 
@@ -104,10 +147,10 @@ Times were hard.
 df |>
   filter(Network_Type == 'Decentralized') |>
   ggplot() +
-  geom_density(aes(x = Guess, fill = as_factor(Round)), alpha = .3) + #, position='dodge', bins = 5) + 
+  geom_density(aes(x = Guess, fill = as_factor(Round)), alpha = .4) + #, position='dodge', bins = 5) + 
   geom_vline(xintercept=182, color = 'red', linetype='dashed') + 
   theme_minimal() + 
-  scale_fill_viridis_d(name='Round')
+  scale_fill_viridis_d(name='Round', end=.8)
 ```
 
 ## Centralized network
@@ -116,10 +159,10 @@ df |>
 df |>
   filter(Network_Type == 'Centralized') |>
   ggplot() +
-  geom_density(aes(x = Guess, fill = as_factor(Round)), alpha = .3) + #, position='dodge', bins = 5) + 
+  geom_density(aes(x = Guess, fill = as_factor(Round)), alpha = .4) + #, position='dodge', bins = 5) + 
   geom_vline(xintercept=294, color = 'red', linetype='dashed') + 
   theme_minimal() + 
-  scale_fill_viridis_d(name='Round')
+  scale_fill_viridis_d(name='Round', end = .8)
 ```
 
 ## Connections to other network concepts
@@ -168,7 +211,7 @@ G |>
   ggraph() +
   geom_edge_fan(color = 'purple') +
   geom_node_point(aes(size = centrality), color = 'green')
-  ```
+```
 
 
 ## Exam Review
