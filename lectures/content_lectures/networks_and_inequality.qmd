@@ -15,22 +15,28 @@ format:
 > - Overt, animus-based racism has declined a lot
 <img class='fragment' src='https://content.gallup.com/origin/gallupinc/GallupSpaces/Production/Cms/POLL/9r8-rc0zn0eloptdnsbl3a.png'/>
 
-## But there is still lots of racism
+## But racial inequality is still dramatic
 
-> - Some is psychological
->	- Unconscious biases
->	- Homophily
-> - Some is "structural" and a result of past racism
->	- Examples in the built environment?
->	- In education?
->	- In hiring?
+<img class='fragment' src='https://www.census.gov/content/dam/Census/library/stories/2024/04/wealth-by-race/figure-1-wealth-by-race.jpg'/>
 
-## Networks and racism
+## But racial inequality is still dramatic
 
-> - How can networks produce or maintain racially biased outcomes?
-> - How does this tie into ideas about social/cultural/economic capital?
-> - How can we use what we know about networks to reduce racial inequality?
+<img class='fragment' src='https://www.census.gov/content/dam/Census/library/stories/2024/04/wealth-by-race/figure-2-wealth-by-race.jpg' />
 
+## There is a lot of research on the causes
+
+> - Overt social, economic, and institutional racism existed until the 1960s
+>   - Slavery, Jim Crow, Redlining, GI Bill, etc.
+> - This left black Americans with less wealth, worse jobs, worse schools, etc.
+> - Our system makes some of these inequalities self-reinforcing
+>   - E.g., school funding
+
+## Social Capital is an underappreciated cause
+
+> - Social capital is our ability to access resources through our social networks
+> - Social networks are highly segregated, and so even without overt racism, people of color have less access to social capital
+> - This can include access to mentors, jobs, etc. but also money to handle unexpected expenses or to invest in a small business
+> - We can see other inequalities, but social capital is often invisible
 
 ## Networks matter a lot
 
@@ -46,7 +52,7 @@ format:
 
 ## Follow up study in 2022
 
-<img class='fragment' src='/lectures/class_lectures/images/chetty_EC.webp' style='width:100%;'/>
+<img class='fragment' src='/lectures/class_lectures/images/chetty_EC.webp'/>
 
 
 ## Takeaways
@@ -59,3 +65,9 @@ format:
 ## Discussion
 
 
+
+## Networks and racism
+
+> - How can networks produce or maintain racially biased outcomes?
+> - How does this tie into ideas about social/cultural/economic capital?
+> - How can we use what we know about networks to reduce racial inequality?

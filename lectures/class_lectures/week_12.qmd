@@ -148,7 +148,7 @@ df |>
   filter(Network_Type == 'Decentralized') |>
   ggplot() +
   geom_density(aes(x = Guess, fill = as_factor(Round)), alpha = .4) + #, position='dodge', bins = 5) + 
-  geom_vline(xintercept=182, color = 'red', linetype='dashed') + 
+  geom_vline(xintercept=333, color = 'red', linetype='dashed') + 
   theme_minimal() + 
   scale_fill_viridis_d(name='Round', end=.8)
 ```
@@ -160,7 +160,7 @@ df |>
   filter(Network_Type == 'Centralized') |>
   ggplot() +
   geom_density(aes(x = Guess, fill = as_factor(Round)), alpha = .4) + #, position='dodge', bins = 5) + 
-  geom_vline(xintercept=294, color = 'red', linetype='dashed') + 
+  geom_vline(xintercept=451, color = 'red', linetype='dashed') + 
   theme_minimal() + 
   scale_fill_viridis_d(name='Round', end = .8)
 ```
@@ -242,8 +242,8 @@ G |>
 > - Power and social capital
 > - Contagion and diffusion
 > - Centrality
-> - Resilience
 > - Bipartite networks and projections
+> - Random rewirings
 
 ## Exam Review
 

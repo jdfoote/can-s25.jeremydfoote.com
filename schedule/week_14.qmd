@@ -20,7 +20,7 @@ date: "2025-04-21"
 
 **Lecture video:**
 
-TBA
+{{< video https://youtu.be/u6bwvh1VcnE >}} [12:50]
 
 * Slides
 

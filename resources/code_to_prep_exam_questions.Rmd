@@ -79,4 +79,17 @@ G |>
 ```
 
 
-
+```{r}
+G |>
+mutate(name = 1:n()) |>
+mutate(ec = centrality_eigen(), bc = centrality_betweenness()) |>
+as_tibble() |>
+select(name, ec,bc) |>
+print(n=33)
+ggraph() +
+geom_edge_fan(color='gray') +
+geom_node_point(color='darkgreen', size = 12) +
+geom_node_text(aes(label = name), repel = FALSE, size = 6, color = "white")
+# Save this as a png
+ggsave("~/Desktop/DeleteMe/exam_image.png", width = 8, height = 6)
+```
