@@ -985,6 +985,13 @@
     "text": "Review Questions\n\nWhat is context collapse?\nHow does context collapse relate to network principles we have discussed?"
   },
   {
+    "objectID": "lectures/class_lectures/week_13.html#review-questions-2",
+    "href": "lectures/class_lectures/week_13.html#review-questions-2",
+    "title": "Week 13 - Networks and Technology",
+    "section": "Review Questions",
+    "text": "Review Questions\n\nDoes technology help to explain the rise of extreme beliefs? (e.g., QAnon)\nHow might we use social networks to combat misinformation and extreme beliefs?\nWhich of your beliefs have changed? What changed them?"
+  },
+  {
     "objectID": "lectures/class_lectures/week_11.html#dad-joke",
     "href": "lectures/class_lectures/week_11.html#dad-joke",
     "title": "Week 11 - Communities in Networks",
@@ -2509,7 +2516,7 @@
     "href": "lectures/class_lectures/week_12.html#exam-review-3",
     "title": "Week 12 - Collective Behavior",
     "section": "Exam Review",
-    "text": "Exam Review\n\nPower and social capital\nContagion and diffusion\nCentrality\nResilience\nBipartite networks and projections"
+    "text": "Exam Review\n\nPower and social capital\nContagion and diffusion\nCentrality\nBipartite networks and projections\nRandom rewirings"
   },
   {
     "objectID": "lectures/class_lectures/week_12.html#exam-review-4",
@@ -3149,18 +3156,32 @@
     "text": "Racism in America\n\nOvert, animus-based racism has declined a lot"
   },
   {
-    "objectID": "lectures/content_lectures/networks_and_inequality.html#but-there-is-still-lots-of-racism",
-    "href": "lectures/content_lectures/networks_and_inequality.html#but-there-is-still-lots-of-racism",
+    "objectID": "lectures/content_lectures/networks_and_inequality.html#but-racial-inequality-is-still-dramatic",
+    "href": "lectures/content_lectures/networks_and_inequality.html#but-racial-inequality-is-still-dramatic",
     "title": "Networks and Inequality",
-    "section": "But there is still lots of racism",
-    "text": "But there is still lots of racism\n\nSome is psychological\n\nUnconscious biases\nHomophily\n\nSome is “structural” and a result of past racism\n\nExamples in the built environment?\nIn education?\nIn hiring?"
+    "section": "But racial inequality is still dramatic",
+    "text": "But racial inequality is still dramatic"
   },
   {
-    "objectID": "lectures/content_lectures/networks_and_inequality.html#networks-and-racism",
-    "href": "lectures/content_lectures/networks_and_inequality.html#networks-and-racism",
+    "objectID": "lectures/content_lectures/networks_and_inequality.html#but-racial-inequality-is-still-dramatic-1",
+    "href": "lectures/content_lectures/networks_and_inequality.html#but-racial-inequality-is-still-dramatic-1",
     "title": "Networks and Inequality",
-    "section": "Networks and racism",
-    "text": "Networks and racism\n\nHow can networks produce or maintain racially biased outcomes?\nHow does this tie into ideas about social/cultural/economic capital?\nHow can we use what we know about networks to reduce racial inequality?"
+    "section": "But racial inequality is still dramatic",
+    "text": "But racial inequality is still dramatic"
+  },
+  {
+    "objectID": "lectures/content_lectures/networks_and_inequality.html#there-is-a-lot-of-research-on-the-causes",
+    "href": "lectures/content_lectures/networks_and_inequality.html#there-is-a-lot-of-research-on-the-causes",
+    "title": "Networks and Inequality",
+    "section": "There is a lot of research on the causes",
+    "text": "There is a lot of research on the causes\n\nOvert social, economic, and institutional racism existed until the 1960s\n\nSlavery, Jim Crow, Redlining, GI Bill, etc.\n\nThis left black Americans with less wealth, worse jobs, worse schools, etc.\nOur system makes some of these inequalities self-reinforcing\n\nE.g., school funding"
+  },
+  {
+    "objectID": "lectures/content_lectures/networks_and_inequality.html#social-capital-is-an-underappreciated-cause",
+    "href": "lectures/content_lectures/networks_and_inequality.html#social-capital-is-an-underappreciated-cause",
+    "title": "Networks and Inequality",
+    "section": "Social Capital is an underappreciated cause",
+    "text": "Social Capital is an underappreciated cause\n\nSocial capital is our ability to access resources through our social networks\nSocial networks are highly segregated, and so even without overt racism, people of color have less access to social capital\nThis can include access to mentors, jobs, etc. but also money to handle unexpected expenses or to invest in a small business\nWe can see other inequalities, but social capital is often invisible"
   },
   {
     "objectID": "lectures/content_lectures/networks_and_inequality.html#networks-matter-a-lot",
@@ -3196,6 +3217,13 @@
     "title": "Networks and Inequality",
     "section": "Discussion",
     "text": "Discussion"
+  },
+  {
+    "objectID": "lectures/content_lectures/networks_and_inequality.html#networks-and-racism",
+    "href": "lectures/content_lectures/networks_and_inequality.html#networks-and-racism",
+    "title": "Networks and Inequality",
+    "section": "Networks and racism",
+    "text": "Networks and racism\n\nHow can networks produce or maintain racially biased outcomes?\nHow does this tie into ideas about social/cultural/economic capital?\nHow can we use what we know about networks to reduce racial inequality?"
   },
   {
     "objectID": "lectures/content_lectures/scale_free_and_friend_paradox.html#scale-free-networks",
@@ -3636,7 +3664,7 @@
     "href": "schedule/week_14.html",
     "title": "Week 14: Networks and Equality",
     "section": "",
-    "text": "Tuesday\nAssignment Due:\n\nR Lab 8 - Calculating network statistics\nReading Review\n\nDiscussion Questions\n\n\nReadings:\n\nFernandez, R. M., & Fernandez-Mateo, I. (2006). Networks, Race, and Hiring. American Sociological Review, 71(1), 42–71. Read the introduction (pp. 42–47) and the Summary and Conclusion (pp. 65–67)\nChetty, R., Jackson, M.O., Kuchler, T. et al. Social capital I: measurement and associations with economic mobility. Nature 608, 108–121 (2022).\n(Optional) Sunstein, C. R. (1991). Why markets don’t stop discrimination. Social Philosophy and Policy, 8(02), 22–37. https://doi.org/10.1017/S0265052500001114\n\nLecture video:\nTBA\n\nSlides\n\n\n\n\n\nThursday\nAssignments Due:\n\nRough draft of Final Project on Brightspace and sent to your “peers”\nSaturday: Feedback sent back to your “peers”\n\nClass Schedule:\n\nNo class - work on Final Project\n\n\n\nDiscussion Questions",
+    "text": "Tuesday\nAssignment Due:\n\nR Lab 8 - Calculating network statistics\nReading Review\n\nDiscussion Questions\n\n\nReadings:\n\nFernandez, R. M., & Fernandez-Mateo, I. (2006). Networks, Race, and Hiring. American Sociological Review, 71(1), 42–71. Read the introduction (pp. 42–47) and the Summary and Conclusion (pp. 65–67)\nChetty, R., Jackson, M.O., Kuchler, T. et al. Social capital I: measurement and associations with economic mobility. Nature 608, 108–121 (2022).\n(Optional) Sunstein, C. R. (1991). Why markets don’t stop discrimination. Social Philosophy and Policy, 8(02), 22–37. https://doi.org/10.1017/S0265052500001114\n\nLecture video:\n [12:50]\n\nSlides\n\n\n\n\n\nThursday\nAssignments Due:\n\nRough draft of Final Project on Brightspace and sent to your “peers”\nSaturday: Feedback sent back to your “peers”\n\nClass Schedule:\n\nNo class - work on Final Project\n\n\n\nDiscussion Questions",
     "crumbs": [
       "Schedule",
       "Course content",
