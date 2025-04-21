@@ -13,15 +13,15 @@ format:
 ## Racism in America
 
 > - Overt, animus-based racism has declined a lot
-<img class='fragment' src='https://content.gallup.com/origin/gallupinc/GallupSpaces/Production/Cms/POLL/9r8-rc0zn0eloptdnsbl3a.png'/>
+<img src='https://content.gallup.com/origin/gallupinc/GallupSpaces/Production/Cms/POLL/9r8-rc0zn0eloptdnsbl3a.png'/>
 
 ## But racial inequality is still dramatic
 
-<img class='fragment' src='https://www.census.gov/content/dam/Census/library/stories/2024/04/wealth-by-race/figure-1-wealth-by-race.jpg'/>
+<img src='https://www.census.gov/content/dam/Census/library/stories/2024/04/wealth-by-race/figure-1-wealth-by-race.jpg'/>
 
 ## But racial inequality is still dramatic
 
-<img class='fragment' src='https://www.census.gov/content/dam/Census/library/stories/2024/04/wealth-by-race/figure-2-wealth-by-race.jpg' />
+<img src='https://www.census.gov/content/dam/Census/library/stories/2024/04/wealth-by-race/figure-2-wealth-by-race.jpg' />
 
 ## There is a lot of research on the causes
 
@@ -52,7 +52,7 @@ format:
 
 ## Follow up study in 2022
 
-<img class='fragment' src='/lectures/class_lectures/images/chetty_EC.webp'/>
+<img src='/lectures/class_lectures/images/chetty_EC.webp'/>
 
 
 ## Takeaways

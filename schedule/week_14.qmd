@@ -20,7 +20,7 @@ date: "2025-04-21"
 
 **Lecture video:**
 
-{{< video https://youtu.be/u6bwvh1VcnE >}} [12:50]
+{{< video https://www.youtube.com/watch?v=3OcNPd42ZJY >}} [12:50]
 
 * Slides
 

@@ -1,5 +1,5 @@
 ---
-title: ""
+title: "Networks and Inequality"
 format: 
   revealjs:
     css: /resources/custom_css.css
@@ -36,3 +36,12 @@ By its bark
 > - Sign up to meet with me (virtually is great)
 > - Presentations on Thursday
 
+## Discussion
+
+
+
+## Networks and racism
+
+> - How can networks produce or maintain racially biased outcomes?
+> - How does this tie into ideas about social/cultural/economic capital?
+> - How can we use what we know about networks to reduce racial inequality?
