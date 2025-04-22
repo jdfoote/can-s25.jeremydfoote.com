@@ -2292,7 +2292,7 @@
     "href": "class_lectures.html",
     "title": "In-class Lecture Slides",
     "section": "",
-    "text": "Date\n\n\nTitle\n\n\nAuthor\n\n\n\n\n\n\n \n\n\nWeek 2 - Network Data and Network Types\n\n\n \n\n\n\n\n \n\n\nWeek 3 - Edge Formation\n\n\n \n\n\n\n\n \n\n\nWeek 4 - Small Group Networks\n\n\n \n\n\n\n\n \n\n\nWeek 11 - Communities in Networks\n\n\n \n\n\n\n\n \n\n\nWeek 5 - Ego Networks\n\n\n \n\n\n\n\n \n\n\nWeek 6 - Centrality and Centralization\n\n\n \n\n\n\n\n \n\n\nCapital and Social Capital\n\n\n \n\n\n\n\n \n\n\nDiffusion and Contagion\n\n\n \n\n\n\n\n \n\n\nNetwork Visualization and Wrap Up\n\n\n \n\n\n\n\n \n\n\nNetworks and Inequality\n\n\n \n\n\n\n\n \n\n\nWeak Ties and Small Worlds\n\n\n \n\n\n\n\n \n\n\nWeek 12 - Collective Behavior\n\n\n \n\n\n\n\n \n\n\nWeek 13 - Networks and Technology\n\n\n \n\n\n\n\n \n\n\nWeek 14 - Cooperation\n\n\n \n\n\n\n\n \n\n\nWeek 9: Scale-Free Networks and the Friendship Paradox\n\n\n \n\n\n\n\nJan 1, 2001\n\n\nWelcome to COM 411: Communication and Social Networks!\n\n\n \n\n\n\n\n\nNo matching items"
+    "text": "Date\n\n\nTitle\n\n\nAuthor\n\n\n\n\n\n\n \n\n\nWeek 2 - Network Data and Network Types\n\n\n \n\n\n\n\n \n\n\nWeek 3 - Edge Formation\n\n\n \n\n\n\n\n \n\n\nWeek 4 - Small Group Networks\n\n\n \n\n\n\n\n \n\n\nWeek 11 - Communities in Networks\n\n\n \n\n\n\n\n \n\n\nWeek 5 - Ego Networks\n\n\n \n\n\n\n\n \n\n\nWeek 6 - Centrality and Centralization\n\n\n \n\n\n\n\n \n\n\nCapital and Social Capital\n\n\n \n\n\n\n\n \n\n\nDiffusion and Contagion\n\n\n \n\n\n\n\n \n\n\nNetwork Visualization and Wrap Up\n\n\n \n\n\n\n\n \n\n\nNetworks and Inequality\n\n\n \n\n\n\n\n \n\n\nWeak Ties and Small Worlds\n\n\n \n\n\n\n\n \n\n\nWeek 12 - Collective Behavior\n\n\n \n\n\n\n\n \n\n\nWeek 13 - Networks and Technology\n\n\n \n\n\n\n\n \n\n\nWeek 14 - Networks and Inequality\n\n\n \n\n\n\n\n \n\n\nWeek 9: Scale-Free Networks and the Friendship Paradox\n\n\n \n\n\n\n\nJan 1, 2001\n\n\nWelcome to COM 411: Communication and Social Networks!\n\n\n \n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "index.html",
@@ -2542,58 +2542,30 @@
   {
     "objectID": "lectures/class_lectures/week_14.html#todays-dad-joke",
     "href": "lectures/class_lectures/week_14.html#todays-dad-joke",
-    "title": "Week 14 - Cooperation",
+    "title": "Week 14 - Networks and Inequality",
     "section": "Today’s Dad Joke",
     "text": "Today’s Dad Joke\nYesterday I confused the words “jacuzzi” and “Yakuza”.\n Now I’m in hot water with the Japanese mafia."
   },
   {
     "objectID": "lectures/class_lectures/week_14.html#housekeeping",
     "href": "lectures/class_lectures/week_14.html#housekeeping",
-    "title": "Week 14 - Cooperation",
+    "title": "Week 14 - Networks and Inequality",
     "section": "Housekeeping",
-    "text": "Housekeeping\n\nFinal project schedule\n\nRough draft next Thursday\nPeer feedback by the following Monday\nPresentations on the last 2 days of class\nFinal report due on May 2\nI will make peer assignments and send a Brightspace + discord announcement\n\nMay want to look at the Advanced R Rmd file"
-  },
-  {
-    "objectID": "lectures/class_lectures/week_14.html#housekeeping-1",
-    "href": "lectures/class_lectures/week_14.html#housekeeping-1",
-    "title": "Week 14 - Cooperation",
-    "section": "Housekeeping",
-    "text": "Housekeeping\n\nNo class on Tuesday before Thanksgiving - work on final project\nTroubled Lands activity Thursday"
-  },
-  {
-    "objectID": "lectures/class_lectures/week_14.html#plan-for-today",
-    "href": "lectures/class_lectures/week_14.html#plan-for-today",
-    "title": "Week 14 - Cooperation",
-    "section": "Plan for today",
-    "text": "Plan for today\n\nReview Questions\nDiscussion Questions\nExam review"
+    "text": "Housekeeping\n\nFinal project schedule\n\nRough draft on Thursday\nPeer feedback by Saturday\nPresentations next Tuesday and Thursday\nFinal report due on May 2\n\nMay want to look at the Advanced R Rmd file (Week 15 on the schedule)\nNo class on Thursday - work on final project"
   },
   {
     "objectID": "lectures/class_lectures/week_14.html#review-questions",
     "href": "lectures/class_lectures/week_14.html#review-questions",
-    "title": "Week 14 - Cooperation",
+    "title": "Week 14 - Networks and Inequality",
     "section": "Review Questions",
-    "text": "Review Questions\n\nWhat is a public/collective good?\nWhy do collective goods often fail?\nHow can networks help people to collaborate and solve collective goods problems?\nWhat is “transactive memory”?\n\n\nRumors and defection\nTransactive memory\nShared mental models"
+    "text": "Review Questions\n\nWhat are some mechanisms by which networks can produce inequality?\nWhat do Fernandez and Fernandez-Mateo mean by “wrong networks”?\nWhat are some ways that networks can help reduce inequality?\nWhat social, political, or structural barriers might be preventing efforts to increase cross-class interactions?"
   },
   {
     "objectID": "lectures/class_lectures/week_14.html#review-questions-1",
     "href": "lectures/class_lectures/week_14.html#review-questions-1",
-    "title": "Week 14 - Cooperation",
+    "title": "Week 14 - Networks and Inequality",
     "section": "Review Questions",
-    "text": "Review Questions\n\nWhat are some reasons that online collaboration works?"
-  },
-  {
-    "objectID": "lectures/class_lectures/week_14.html#discussion-questions",
-    "href": "lectures/class_lectures/week_14.html#discussion-questions",
-    "title": "Week 14 - Cooperation",
-    "section": "Discussion Questions",
-    "text": "Discussion Questions"
-  },
-  {
-    "objectID": "lectures/class_lectures/week_14.html#exam-review",
-    "href": "lectures/class_lectures/week_14.html#exam-review",
-    "title": "Week 14 - Cooperation",
-    "section": "Exam Review",
-    "text": "Exam Review"
+    "text": "Review Questions\n\nWhat approaches could increase cross-class and cross-race relationships?\nWhat are the downsides of these approaches?"
   },
   {
     "objectID": "lectures/class_lectures/week_16.html#todays-dad-joke",
@@ -3224,20 +3196,6 @@
     "title": "Networks and Inequality",
     "section": "Takeaways",
     "text": "Takeaways\n\nNetworks provide a hidden inertia to society, reproducing the world as it is\nDifferences in economic capital or cultural capital are more visible\nOur achievements are partially a function of our undeserved social networks\nWorth thinking about “network equality”"
-  },
-  {
-    "objectID": "lectures/content_lectures/networks_and_inequality.html#discussion",
-    "href": "lectures/content_lectures/networks_and_inequality.html#discussion",
-    "title": "Networks and Inequality",
-    "section": "Discussion",
-    "text": "Discussion"
-  },
-  {
-    "objectID": "lectures/content_lectures/networks_and_inequality.html#networks-and-racism",
-    "href": "lectures/content_lectures/networks_and_inequality.html#networks-and-racism",
-    "title": "Networks and Inequality",
-    "section": "Networks and racism",
-    "text": "Networks and racism\n\nHow can networks produce or maintain racially biased outcomes?\nHow does this tie into ideas about social/cultural/economic capital?\nHow can we use what we know about networks to reduce racial inequality?"
   },
   {
     "objectID": "lectures/content_lectures/scale_free_and_friend_paradox.html#scale-free-networks",
