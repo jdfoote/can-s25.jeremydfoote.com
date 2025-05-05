@@ -163,7 +163,7 @@ G |>
 ```
 
 
-5. Come up with something else that you want to visualize, either as a histogram or as boxplots and create a visualization below.
+6. Come up with something else that you want to visualize, either as a histogram or as boxplots and create a visualization below.
 
 ```{r}
 

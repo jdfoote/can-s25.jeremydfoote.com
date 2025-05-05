@@ -1,5 +1,5 @@
 ---
-title: Week 14 - Cooperation
+title: Week 14 - Networks and Inequality
 format: 
   revealjs:
     css: /resources/custom_css.css
@@ -21,34 +21,40 @@ library(ggraph)
 
 ## Today's Dad Joke
 
-Yesterday I confused the words "jacuzzi" and "Yakuza".
+Within minutes, the detective knew exactly what the murder weapon was.
 
 <span class='fragment'>
-Now I'm in hot water with the Japanese mafia.
+It was a brief case.
 </span>
 
 ## Housekeeping
 
 > - Final project schedule
->   - Rough draft next Thursday
->   - Peer feedback by the following Monday
->   - Presentations on the last 2 days of class
+>   - Rough draft on Thursday
+>   - Peer feedback by Saturday
+>   - Presentations next Tuesday and Thursday
 >   - Final report due on May 2
->	- I will make peer assignments and send a Brightspace + discord announcement
-> - May want to look at the Advanced R Rmd file
+> - May want to look at the Advanced R Rmd file (Week 15 on the schedule)
+> - No class on Thursday - work on final project
 
-## Housekeeping
+## Review Questions
 
-> - No class on Tuesday before Thanksgiving - work on final project
-> - Troubled Lands activity Thursday
+> - What are some mechanisms by which networks can produce inequality?
+> - What do Fernandez and Fernandez-Mateo mean by "wrong networks"?
+> - What are some ways that networks can help reduce inequality?
+> - What social, political, or structural barriers might be preventing efforts to increase cross-class interactions?
 
-## Plan for today
+## Review Questions
 
-> - Review Questions
-> - Discussion Questions
-> - Exam review
+> - What approaches could increase cross-class and cross-race relationships?
+> - What are the downsides of these approaches?
 
+## R Lab 8 Review
 
+> - Tibbles
+> - ggplot
+
+<!--
 ## Review Questions
 
 > - What is a public/collective good?
@@ -74,3 +80,4 @@ Shared mental models
 
 ## Exam Review
 
+-->
