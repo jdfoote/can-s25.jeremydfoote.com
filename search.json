@@ -165,7 +165,7 @@
     "href": "schedule/week_15.html",
     "title": "Week 15: Class Presentations and Final Projects",
     "section": "",
-    "text": "Tuesday\nAssignment Due:\n\nSaturday: Feedback on final project to peers\nTuesday / Thursday: Final Project Presentation\nFriday: Final Project on Brightspace\n\nClass Schedule:\n\nFinal project presentations\n\n\n\nThursday\nClass Schedule:\n\nFinal project presentations\n\nResources:\n\n(Optional) Advanced network visualizations in R",
+    "text": "Tuesday\nAssignment Due:\n\nSaturday: Feedback on final project to peers\nTuesday / Thursday: Final Project Presentation\nFriday: Final Project on Brightspace\nFriday: Final Self Assessment Reflection on Brightspace\n\nClass Schedule:\n\nFinal project presentations\n\n\n\nThursday\nClass Schedule:\n\nFinal project presentations\n\nResources:\n\n(Optional) Advanced network visualizations in R",
     "crumbs": [
       "Schedule",
       "Course content",
@@ -2544,7 +2544,7 @@
     "href": "lectures/class_lectures/week_14.html#todays-dad-joke",
     "title": "Week 14 - Networks and Inequality",
     "section": "Today’s Dad Joke",
-    "text": "Today’s Dad Joke\nYesterday I confused the words “jacuzzi” and “Yakuza”.\n Now I’m in hot water with the Japanese mafia."
+    "text": "Today’s Dad Joke\nWithin minutes, the detective knew exactly what the murder weapon was.\n It was a brief case."
   },
   {
     "objectID": "lectures/class_lectures/week_14.html#housekeeping",
@@ -2566,6 +2566,13 @@
     "title": "Week 14 - Networks and Inequality",
     "section": "Review Questions",
     "text": "Review Questions\n\nWhat approaches could increase cross-class and cross-race relationships?\nWhat are the downsides of these approaches?"
+  },
+  {
+    "objectID": "lectures/class_lectures/week_14.html#r-lab-8-review",
+    "href": "lectures/class_lectures/week_14.html#r-lab-8-review",
+    "title": "Week 14 - Networks and Inequality",
+    "section": "R Lab 8 Review",
+    "text": "R Lab 8 Review\n\nTibbles\nggplot"
   },
   {
     "objectID": "lectures/class_lectures/week_16.html#todays-dad-joke",
@@ -3648,7 +3655,7 @@
     "href": "schedule/week_16.html",
     "title": "Finals week",
     "section": "",
-    "text": "Assignments Due\n\nSign up for a Final Reflection Discussion on my calendar at https://jeremydfoote.com/calendar/ (15 minutes)\n\nMust happen by May 8",
+    "text": "Assignments Due\n\nSign up for a Final Reflection Discussion on my calendar at https://jeremydfoote.com/calendar/ (15 minutes)\n\nVirtual or in person\nMust happen by May 9",
     "crumbs": [
       "Schedule",
       "Course content",
