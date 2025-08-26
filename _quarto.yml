@@ -93,3 +93,4 @@ format:
     theme: yeti
     css: resources/custom_css.css
     toc: true
+    include-before-body: resources/old_version_banner.html
